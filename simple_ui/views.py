@@ -112,7 +112,7 @@ def content(request, slug, language=None):
         request,
         "content/index-cih.html",
         {
-            'feedback_url': settings.FEEDBACK_URL[user_language],
+            'feedback_url': settings.FEEDBACK_URL.get(user_language, settings.FEEDBACK_URL.get('en', '/')),
             'location': region,
             'has_important': True if [r for r in region['content'] if r['important']] else False,
         },
