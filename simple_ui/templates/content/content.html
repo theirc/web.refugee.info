@@ -1,0 +1,66 @@
+{% load static %}
+{% load i18n %}
+<div id="container" class="language-{{ LANGUAGE_CODE }}">
+    <h1 class="page-title page-{{ LANGUAGE_CODE }}">{{ location.name }}</h1>
+    {% if has_important %}
+        <table class="toc important">
+            {% for p in location.content %}
+                {% if p.important %}
+                    <tr>
+                        <td>
+                            {% if p.image %}
+                                <img src="{{ p.image }}" class="title-icon"/>
+                            {% endif %}
+                        </td>
+                        <td><a href="#Anchor_{{ p.index }}">{{ p.title }}</a></td>
+                    </tr>
+                {% endif %}
+            {% endfor %}
+        </table>
+    {% endif %}
+    <table class="toc">
+        {% for p in location.content %}
+            {% if not p.important %}
+                <tr>
+                    <td>
+                        {% if p.image %}
+                            <img src="{{ p.image }}" class="title-icon"/>
+                        {% endif %}
+                    </td>
+                    <td><a href="#Anchor_{{ p.index }}">{{ p.title }}</a></td>
+                </tr>
+            {% endif %}
+        {% endfor %}
+    </table>
+    {% for c in location.content %}
+        <div>
+            <div class="section-header{% if c.important %} important{% endif %}{% if c.inherited %} inherited{% endif %}">
+                <h3 class="anchor">
+                    {% if c.image %}
+                        <img src="{{ c.image }}" class="title-icon"/>
+                    {% endif %} &nbsp;
+                    <a name="Anchor_{{ c.index }}">{{ c.title }}</a><br/>
+                    <a href="#top" class="back-to-top">{% trans "Back to top" %}</a>
+                </h3>
+                <hr class="title-hr"/>
+            </div>
+            {{ c.section|safe }}
+        </div>
+    {% endfor %}
+</div>
+<div class="language-{{ LANGUAGE_CODE }}">
+    <h3 class="anchor">
+        <a name="OtherLocations">{% trans "OTHER LOCATIONS" %}</a><br>
+        <a href="#top" class="back-to-top">{%  trans "Back to top" %}</a>
+    </h3>
+    <hr class="title-hr" style="margin-bottom: 1em;"/>
+    <a class="link-button" href="/">{% trans "VIEW INFO ON OTHER LOCATIONS" %}</a>
+
+    <h3 class="anchor">
+        <a name="OtherLocations">{% trans "FEEDBACK" %}</a><br>
+        <a href="#top" class="back-to-top">{%  trans "Back to top" %}</a>
+    </h3>
+    <hr class="title-hr" style="margin-bottom: 1em;"/>
+    <a class="link-button"
+       href="{{ feedback_url }}">{% trans "GIVE FEEDBACK ON THIS PAGE" %}</a>
+</div>

@@ -1,0 +1,52 @@
+{% load static %}
+{% load i18n %}
+<ul class="menu-left">
+    <li>
+        <a href="{{ feedback_url }}/"> <img src="{% static "images/feedback.png" %}"
+                                            alt="{% trans "Feedback" %}"
+                                            class="content-button"/></a>
+    </li>
+</ul>
+<ul class="menu">
+    <li>
+        <img src="{% static "images/translate.png" %}" alt="Other Languages" class="content-button"/>
+        <ul>
+            {% for k, v in LANGUAGES %}
+                <li><a href="/{{ location.slug }}/{{ k }}/">
+                    {% language k %}
+                    {% trans v %}
+                    {% endlanguage %}
+                </a></li>
+            {% endfor %}
+        </ul>
+    </li>
+</ul>
+<div class="logo-bar-container">
+
+    <div style="width: 100%; text-align: center">
+        <img src="{% static "images/wordmark.png" %}"/></div>
+    <hr/>
+
+    <img src="/imaging/logo-bar/" alt="IRC | MercyCorps"/>
+    <hr/>
+</div>
+{% if is_captive %}
+    <div style="width: 100%; text-align: center"><img
+            src="https://d3w2ev2d100chk.cloudfront.net/media/filer_public/2a/8d/2a8d9390-618e-4d0e-9eda-5e5a6992461d/header.png"
+            alt="Important notice"></div>
+{% endif %}
+
+{% if is_captive and is_meraki %}
+    <div style="margin-bottom: 5px">
+        <h3>
+            {% if provider %}
+                {% trans "This is a free wifi hotspot provider by " %} {{ provider }}.
+            {% endif %}
+            {% blocktrans %}
+                Tap the button below to continue to the internet, or
+                scroll
+                below for important information about this location.
+            {% endblocktrans %}</h3>
+        <a class="link-button" href="{{ next }}">{% trans "CONTINUE TO THE INTERNET" %}</a>
+    </div>
+{% endif %}
