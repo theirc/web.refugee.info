@@ -12,7 +12,6 @@ from django.views.decorators.cache import cache_page
 CACHE_LENGTH = getattr(settings, 'CACHE_LENGTH', 15) * 60
 
 
-@cache_page(CACHE_LENGTH)
 def home(request):
     """
 
@@ -74,7 +73,6 @@ def home(request):
     return response
 
 
-@cache_page(CACHE_LENGTH)
 def content(request, slug, language=None):
     """
     Main view of the system. All it does is try to figure out which language is more appropriate and passes it over to
