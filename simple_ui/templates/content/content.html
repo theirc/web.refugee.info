@@ -1,7 +1,7 @@
 {% load static %}
 {% load i18n %}
 <div id="container" class="language-{{ LANGUAGE_CODE }}">
-    <h1 class="page-title page-{{ LANGUAGE_CODE }}">{{ location.name }}</h1>
+    <h1 class="page-title page-{{ LANGUAGE_CODE }}">{{ location.metadata.page_title }}</h1>
     {% if has_important %}
         <table class="toc important">
             {% for p in location.content %}

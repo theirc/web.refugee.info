@@ -8,12 +8,17 @@
     </li>
 </ul>
 <div class="logo-bar-container">
-
-    <div style="width: 100%; text-align: center">
-        <a href="/?language={{ LANGUAGE_CODE }}">
-            <img src="{% static "images/wordmark.png" %}"/>
-        </a>
-    </div>
+    {% if is_captive %}
+        <div style="width: 100%; text-align: center"><img
+                src="https://d3w2ev2d100chk.cloudfront.net/media/filer_public/2a/8d/2a8d9390-618e-4d0e-9eda-5e5a6992461d/header.png"
+                alt="Important notice"></div>
+    {% else %}
+        <div style="width: 100%; text-align: center">
+            <a href="/?language={{ LANGUAGE_CODE }}">
+                <img src="{% static "images/wordmark.png" %}"/>
+            </a>
+        </div>
+    {% endif %}
     <hr/>
 
     <img src="/imaging/logo-bar/" alt="IRC | MercyCorps"/>
@@ -31,15 +36,17 @@
         {% language 'fa' %}
             <li><a href="/{{ location.slug }}/fa/">{% trans "Farsi" %}</a></li>
         {% endlanguage %}
-        <li>{% trans "Other Languages" %}
-            <ul>
-                {% for k, v in national_languages %}
-                    {% language k %}
-                        <li><a href="/{{ location.slug }}/{{ k }}/">{% trans v %}</a></li>
-                    {% endlanguage %}
-                {% endfor %}
-            </ul>
-        </li>
+        {% if national_languages %}
+            <li>{% trans "Other Languages" %}
+                <ul>
+                    {% for k, v in national_languages %}
+                        {% language k %}
+                            <li><a href="/{{ location.slug }}/{{ k }}/">{% trans v %}</a></li>
+                        {% endlanguage %}
+                    {% endfor %}
+                </ul>
+            </li>
+        {% endif %}
     </ul>
     <ul class="languages short-languages">
         <li>{% trans "Languages" %}
@@ -55,11 +62,6 @@
 </div>
 <hr/>
 
-{% if is_captive %}
-    <div style="width: 100%; text-align: center"><img
-            src="https://d3w2ev2d100chk.cloudfront.net/media/filer_public/2a/8d/2a8d9390-618e-4d0e-9eda-5e5a6992461d/header.png"
-            alt="Important notice"></div>
-{% endif %}
 
 {% if is_captive and is_meraki %}
     <div style="margin-bottom: 5px">

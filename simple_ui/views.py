@@ -1,4 +1,5 @@
 import os
+from urllib.parse import quote_plus
 
 import requests
 from django.conf import settings
@@ -14,16 +15,7 @@ def home(request):
     :param request:
     :return:
     """
-    if 'language' in request.GET:
-        user_language = request.GET['language'][0:2]
-    elif 'HTTP_ACCEPT_LANGUAGE' in request.META:
-        accept_language = request.META['HTTP_ACCEPT_LANGUAGE'].split(',')
-        user_language = accept_language[0].split('-')
-
-        if user_language:
-            user_language = user_language[0]
-    else:
-        user_language = 'en'
+    user_language = find_language(request)
 
     activate(user_language)
 
@@ -45,9 +37,9 @@ def home(request):
         })
     regions = r.json()
 
-    parents = [r for r in regions if 'parent' not in r or not r['parent']]
+    parents = [r for r in regions if ('parent' not in r or not r['parent'])]
     for p in parents:
-        p['children'] = [r for r in regions if r['id'] != p['id'] and r['full_slug'].startswith(p['slug'])]
+        p['children'] = [r for r in regions if r['id'] != p['id'] and r['full_slug'].startswith(p['slug']) and r['level'] != 2]
 
     response = render(
         request,
@@ -72,18 +64,24 @@ def content(request, slug, language=None):
     :param language:
     :return:
     """
-    if language:
-        user_language = language[0:2]
-    elif 'HTTP_ACCEPT_LANGUAGE' in request.META:
-        accept_language = request.META['HTTP_ACCEPT_LANGUAGE'].split(',')
-        user_language = accept_language[0].split('-')
-
-        if user_language:
-            user_language = user_language[0]
-    else:
-        user_language = 'en'
+    user_language = find_language(request, language=language)
 
     activate(user_language)
+
+    # Handling Meraki:
+    context = {
+    }
+
+    if 'source' in request.GET:
+        context['is_captive'] = True
+
+    if 'base_grant_url' in request.GET:
+        context['is_captive'] = True
+        context['is_meraki'] = True
+        context['next'] = "{}?continue_url={}".format(
+            request.GET['base_grant_url'],
+            quote_plus(request.GET['user_continue_url'])
+        )
 
     x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
     if x_forwarded_for:
@@ -113,16 +111,20 @@ def content(request, slug, language=None):
 
     region = regions[0]
 
-    response = render(
-        request,
-        "content/index-cih.html",
+    context.update(
         {
             'national_languages': [(k, v) for k, v in settings.LANGUAGES if
                                    k in region['languages_available'] and k not in ['en', 'ar', 'fa']],
             'feedback_url': settings.FEEDBACK_URL.get(user_language, settings.FEEDBACK_URL.get('en', '/')),
             'location': region,
             'has_important': True if [r for r in region['content'] if r['important']] else False,
-        },
+        }
+    )
+
+    response = render(
+        request,
+        "content/index-cih.html",
+        context,
         RequestContext(request)
     )
     response.set_cookie(settings.LANGUAGE_COOKIE_NAME, user_language)
@@ -130,16 +132,7 @@ def content(request, slug, language=None):
 
 
 def acknowledgements(request):
-    if 'language' in request.GET:
-        user_language = request.GET['language'][0:2]
-    elif 'HTTP_ACCEPT_LANGUAGE' in request.META:
-        accept_language = request.META['HTTP_ACCEPT_LANGUAGE'].split(',')
-        user_language = accept_language[0].split('-')
-
-        if user_language:
-            user_language = user_language[0]
-    else:
-        user_language = 'en'
+    user_language = find_language(request)
 
     activate(user_language)
 
@@ -152,3 +145,19 @@ def acknowledgements(request):
     )
     response.set_cookie(settings.LANGUAGE_COOKIE_NAME, user_language)
     return response
+
+
+def find_language(request, language=None):
+    if language:
+        user_language = language[0:2]
+    elif 'language' in request.GET:
+        user_language = request.GET['language'][0:2]
+    elif 'HTTP_ACCEPT_LANGUAGE' in request.META:
+        accept_language = request.META['HTTP_ACCEPT_LANGUAGE'].split(',')
+        user_language = accept_language[0].split('-')
+
+        if user_language:
+            user_language = user_language[0]
+    else:
+        user_language = 'en'
+    return user_language

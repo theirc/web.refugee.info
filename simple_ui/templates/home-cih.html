@@ -108,7 +108,7 @@
         </li>
         {% if r.children %}
             {% for c in r.children %}
-                <li><a href="{{ c.slug }}/{{ LANGUAGE_CODE }}/">{% firstof c.metadata.page_title c.name %}</a></li>
+                <li onclick="location.href='{{ c.slug }}/{{ LANGUAGE_CODE }}/'"><a href="{{ c.slug }}/{{ LANGUAGE_CODE }}/">{% firstof c.metadata.page_title c.name %}</a></li>
             {% endfor %}
         {% endif %}
     </ul>
