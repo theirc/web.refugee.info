@@ -51,7 +51,7 @@ def home(request):
     if closest:
         closest = closest[0]
 
-    parents = [r for r in regions if ('parent' not in r or not r['parent'])]
+    parents = [r for r in regions if ('parent' not in r or not r['parent']) and ('hidden' not in r or not r['hidden'])]
     for p in parents:
         p['children'] = [r for r in regions if r['id'] != p['id'] and r['full_slug'].startswith(p['slug']) and r['level'] != 2]
 
