@@ -1,24 +1,10 @@
 {% load static %}
 {% load i18n %}
-<ul class="menu-left">
+<ul class="menu">
     <li>
         <a href="{{ feedback_url }}/"> <img src="{% static "images/feedback.png" %}"
                                             alt="{% trans "Feedback" %}"
                                             class="content-button"/></a>
-    </li>
-</ul>
-<ul class="menu">
-    <li>
-        <img src="{% static "images/translate.png" %}" alt="Other Languages" class="content-button"/>
-        <ul>
-            {% for k, v in LANGUAGES %}
-                <li><a href="/{{ location.slug }}/{{ k }}/">
-                    {% language k %}
-                    {% trans v %}
-                    {% endlanguage %}
-                </a></li>
-            {% endfor %}
-        </ul>
     </li>
 </ul>
 <div class="logo-bar-container">
@@ -30,6 +16,42 @@
     <img src="/imaging/logo-bar/" alt="IRC | MercyCorps"/>
     <hr/>
 </div>
+
+<div class="language-wrapper">
+    <ul class="languages detailed-languages">
+        {% language 'en' %}
+            <li><a href="/{{ location.slug }}/en/">{% trans "English" %}</a></li>
+        {% endlanguage %}
+        {% language 'ar' %}
+            <li><a href="/{{ location.slug }}/ar/">{% trans "Arabic" %}</a></li>
+        {% endlanguage %}
+        {% language 'fa' %}
+            <li><a href="/{{ location.slug }}/fa/">{% trans "Farsi" %}</a></li>
+        {% endlanguage %}
+        <li>{% trans "Other Languages" %}
+            <ul>
+                {% for k, v in national_languages %}
+                    {% language k %}
+                        <li><a href="/{{ location.slug }}/{{ k }}/">{% trans v %}</a></li>
+                    {% endlanguage %}
+                {% endfor %}
+            </ul>
+        </li>
+    </ul>
+    <ul class="languages short-languages">
+        <li>{% trans "Languages" %}
+            <ul>
+                {% for k, v in LANGUAGES %}
+                    {% language k %}
+                        <li><a href="/{{ location.slug }}/{{ k }}/">{% trans v %}</a></li>
+                    {% endlanguage %}
+                {% endfor %}
+            </ul>
+        </li>
+    </ul>
+</div>
+<hr/>
+
 {% if is_captive %}
     <div style="width: 100%; text-align: center"><img
             src="https://d3w2ev2d100chk.cloudfront.net/media/filer_public/2a/8d/2a8d9390-618e-4d0e-9eda-5e5a6992461d/header.png"

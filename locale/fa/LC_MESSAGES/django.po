@@ -161,3 +161,6 @@ msgstr "اطلاعات مهم برای پناهجویان! لطفا با دقت 
 
 msgid "Back to top"
 msgstr "رفتن به بالای صفحه"
+
+msgid "Farsi"
+msgstr "فارسی"

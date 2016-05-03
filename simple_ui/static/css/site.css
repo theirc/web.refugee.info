@@ -4,8 +4,9 @@ html, body {
     font-family: Arial, Helvetica, sans-serif;
     color: white;
 }
+
 body {
-        background-color: #000;
+    background-color: #000;
 }
 
 li:before {
@@ -21,7 +22,8 @@ li:before {
     color: white;
     font-weight: bold;
 }
- #container a {
+
+#container a {
     color: white
 }
 
@@ -39,14 +41,14 @@ li:before {
     font-family: 'Courier New', Courier, monospace
 }
 
-
 .light html, .light body {
     height: 100%;
     font-family: Arial, Helvetica, sans-serif;
     color: black;
 }
+
 .light body {
-        background-color: #f0f0f0;
+    background-color: #f0f0f0;
 }
 
 .light li:before {
@@ -62,9 +64,11 @@ li:before {
     color: black;
     font-weight: bold;
 }
-.light  #container a {
+
+.light #container a {
     color: black
 }
+
 .light .menu a {
     text-decoration: none;
     color: black;
@@ -79,7 +83,6 @@ li:before {
     font-family: 'Courier New', Courier, monospace
 }
 
-
 body.content-page {
     padding-left: 10px;
     margin-top: 0;
@@ -88,7 +91,7 @@ body.content-page {
 
 @media (max-width: 800px) {
     body.content-page {
-            max-width: 566.9pt;
+        max-width: 566.9pt;
     }
 }
 
@@ -203,7 +206,6 @@ ul.menu li:hover ul {
 iframe {
     display: block
 }
-
 
 .g-translate {
     float: right;
@@ -394,8 +396,6 @@ span.tel {
     display: inline-block;
 }
 
-
-
 ul.menu-left {
     text-align: left;
     display: inline;
@@ -456,4 +456,150 @@ ul.menu-left li ul li {
     display: block;
     color: #fff;
     text-shadow: 0 -1px 0 #000;
+}
+
+/* LANGUAGE MENU */
+
+@media (max-width: 280px) {
+    .detailed-languages {
+        display: none !important;
+    }
+
+    .short-languages {
+        display: inline !important;
+    }
+}
+
+@media (min-width: 280px) {
+    .detailed-languages {
+        display: inline !important;
+    }
+
+    .short-languages {
+        display: none !important;
+    }
+}
+
+ul.languages {
+    text-align: left;
+    display: inline;
+    margin: 0;
+    position: absolute;
+    right: 15px;
+    padding: 0 0;
+    list-style: none;
+    -webkit-box-shadow: 0 0 5px rgba(0, 0, 0, 0.15);
+    -moz-box-shadow: 0 0 5px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.15);
+}
+
+ul.languages li {
+    font: bold 2vh sans-serif;
+    display: inline-block;
+    padding: 6px 6px;
+    border: 1px white solid;
+    background: #fff;
+    color: #000;
+    cursor: pointer;
+    -webkit-transition: all 0.2s;
+    -moz-transition: all 0.2s;
+    -ms-transition: all 0.2s;
+    -o-transition: all 0.2s;
+    transition: all 0.2s;
+    height: 20px;
+    line-height: 20px;
+    /* width: 9vh; */
+    text-align: center;
+    text-overflow: clip
+
+}
+
+ul.languages li:hover {
+    background: #000;
+    color: #fff;
+}
+
+ul.languages a {
+    color: #000;
+    text-decoration: none;
+}
+ul.languages li:hover a {
+    color: #fff;
+    text-decoration: none;
+}
+
+ul.languages li ul {
+    padding: 0;
+    position: absolute;
+    top: 38px;
+    border-bottom: 1px white solid;
+    right: 0px;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+    display: none;
+    opacity: 0;
+    visibility: hidden;
+    -webkit-transiton: opacity 0.2s;
+    -moz-transition: opacity 0.2s;
+    -ms-transition: opacity 0.2s;
+    -o-transition: opacity 0.2s;
+    -transition: opacity 0.2s;
+}
+
+ul.languages li ul li {
+    border-top: 1px white solid;
+    background: #fff;
+    display: block;
+    color: #000;
+    text-shadow: 0 -1px 0 #000;
+}
+
+ul.languages li ul li:hover {
+    background: #000;
+}
+ul.languages li ul li a {
+    color: #000!important;;
+}
+ul.languages li ul li:hover a {
+    color: #fff!important;
+}
+
+ul.languages li:hover ul {
+    display: block;
+    opacity: 1;
+    visibility: visible;
+}
+.language-wrapper {
+    height:  38px;
+    display: block;
+    clear: both;
+}
+
+
+ul.locations {
+    text-align: center;
+    display: inline-block;
+    padding: 0 0;
+    list-style: none;
+    width: 100%
+}
+
+ul.locations li {
+
+    display: block;
+    border: 1px white solid;
+    background: #000;
+    color: #fff;
+    cursor: pointer;
+    text-align: center;
+    text-overflow: clip;
+    margin-bottom: 5px;
+    padding: 10px 0px;
+}
+
+ul.locations li a {
+
+    color: #fff;
+    text-decoration: none;
 }

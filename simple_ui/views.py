@@ -14,8 +14,8 @@ def home(request):
     :param request:
     :return:
     """
-    if 'language' in request:
-        user_language = request['language'][0:2]
+    if 'language' in request.GET:
+        user_language = request.GET['language'][0:2]
     elif 'HTTP_ACCEPT_LANGUAGE' in request.META:
         accept_language = request.META['HTTP_ACCEPT_LANGUAGE'].split(',')
         user_language = accept_language[0].split('-')
@@ -30,6 +30,8 @@ def home(request):
         ip = x_forwarded_for.split(',')[0]
     else:
         ip = request.META.get('REMOTE_ADDR')
+
+    activate(user_language)
 
     # Url is actually a filter in the regions for the slug we are looking for
     url = "{}".format(os.path.join(settings.API_URL, 'v1/region/'))
@@ -51,6 +53,7 @@ def home(request):
         request,
         "home-cih.html",
         {
+            'national_languages': [(k, v) for k, v in settings.LANGUAGES if k not in ('ar', 'fa', 'en')],
             'regions': parents
         },
         RequestContext(request)
@@ -112,6 +115,8 @@ def content(request, slug, language=None):
         request,
         "content/index-cih.html",
         {
+            'national_languages': [(k, v) for k, v in settings.LANGUAGES if
+                                   k in region['languages_available'] and k not in ['en', 'ar', 'fa']],
             'feedback_url': settings.FEEDBACK_URL.get(user_language, settings.FEEDBACK_URL.get('en', '/')),
             'location': region,
             'has_important': True if [r for r in region['content'] if r['important']] else False,
