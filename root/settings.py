@@ -160,5 +160,3 @@ else:
             'LOCATION': 'unique-snowflake',
         }
     }
-
-API_URL = 'http://localhost:8001/'
