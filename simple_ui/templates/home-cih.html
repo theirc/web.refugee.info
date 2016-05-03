@@ -121,10 +121,10 @@
 
         <ul class="locations children white" id="region{{ r.id }}" style="display: none">
             {% if not r.hidden %}
-                <li><a href="{{ r.slug }}/{{ LANGUAGE_CODE }}/">{% firstof r.metadata.page_title r.name %}</a>
+                <li onclick="location.href='{{ c.slug }}/{{ LANGUAGE_CODE }}/'">
+                    <a href="{{ r.slug }}/{{ LANGUAGE_CODE }}/">{% firstof r.metadata.page_title r.name %}</a>
+                </li>
             {% endif %}
-
-            </li>
             {% if r.children %}
                 {% for c in r.children %}
                     <li onclick="location.href='{{ c.slug }}/{{ LANGUAGE_CODE }}/'"><a
