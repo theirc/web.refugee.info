@@ -96,19 +96,28 @@
     </div>
     <hr/>
 </div>
-
+{% if closest %}
+    <h3>{% trans "Closest location you:" %}</h3>
+    <ul class="locations  white">
+        <li><a href="{{ closest.slug }}/{{ LANGUAGE_CODE }}/">{% firstof closest.metadata.page_title closest.name %}
+            {% if closest.distance %}({{ closest.distance|floatformat }} km){% endif %}</a>
+        </li>
+    </ul>
+{% endif %}
+<h3>{% trans "Other locations available:" %}</h3>
 {% for r in regions %}
     <ul class="locations">
         <li onclick="$('.locations.children').slideUp(); $('#region{{ r.id }}').slideDown()">{% firstof r.metadata.page_title r.name %}
         </li>
     </ul>
 
-    <ul class="locations children" id="region{{ r.id }}" style="display: none">
+    <ul class="locations children white" id="region{{ r.id }}" style="display: none">
         <li><a href="{{ r.slug }}/{{ LANGUAGE_CODE }}/">{% firstof r.metadata.page_title r.name %}</a>
         </li>
         {% if r.children %}
             {% for c in r.children %}
-                <li onclick="location.href='{{ c.slug }}/{{ LANGUAGE_CODE }}/'"><a href="{{ c.slug }}/{{ LANGUAGE_CODE }}/">{% firstof c.metadata.page_title c.name %}</a></li>
+                <li onclick="location.href='{{ c.slug }}/{{ LANGUAGE_CODE }}/'"><a
+                        href="{{ c.slug }}/{{ LANGUAGE_CODE }}/">{% firstof c.metadata.page_title c.name %}</a></li>
             {% endfor %}
         {% endif %}
     </ul>

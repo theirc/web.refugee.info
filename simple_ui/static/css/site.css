@@ -605,12 +605,12 @@ ul.locations li a {
     color: #fff;
     text-decoration: none;
 }
-ul.locations.children li {
+ul.locations.white li {
     background-color: #fff;
     color: #000;
     text-decoration: none;
 }
-ul.locations.children li a {
+ul.locations.white li a {
     color: #000;
     text-decoration: none;
 }

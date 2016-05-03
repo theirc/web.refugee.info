@@ -28,6 +28,8 @@ def home(request):
     # Url is actually a filter in the regions for the slug we are looking for
     url = "{}".format(os.path.join(settings.API_URL, 'v1/region/'))
 
+    closest = "{}".format(os.path.join(settings.API_URL, 'v1/region/closest/'))
+
     r = requests.get(
         url,
         headers={
@@ -36,6 +38,18 @@ def home(request):
             'x-requested-for': ip,
         })
     regions = r.json()
+
+    r = requests.get(
+        url,
+        headers={
+            'accept-language': user_language,
+            'accept': 'application/json',
+            'x-requested-for': ip,
+        })
+    closest = r.json()
+
+    if closest:
+        closest = closest[0]
 
     parents = [r for r in regions if ('parent' not in r or not r['parent'])]
     for p in parents:
@@ -46,7 +60,8 @@ def home(request):
         "home-cih.html",
         {
             'national_languages': [(k, v) for k, v in settings.LANGUAGES if k not in ('ar', 'fa', 'en')],
-            'regions': parents
+            'regions': parents,
+            'closest': closest,
         },
         RequestContext(request)
     )
