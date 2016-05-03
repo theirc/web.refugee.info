@@ -7,8 +7,12 @@ from django.http import Http404
 from django.shortcuts import render
 from django.template import RequestContext
 from django.utils.translation import activate
+from django.views.decorators.cache import cache_page
+
+CACHE_LENGTH = getattr(settings, 'CACHE_LENGTH', 15) * 60
 
 
+@cache_page(CACHE_LENGTH)
 def home(request):
     """
 
@@ -53,7 +57,8 @@ def home(request):
 
     parents = [r for r in regions if ('parent' not in r or not r['parent']) and ('hidden' not in r or not r['hidden'])]
     for p in parents:
-        p['children'] = [r for r in regions if r['id'] != p['id'] and r['full_slug'].startswith(p['slug']) and r['level'] != 2]
+        p['children'] = [r for r in regions if
+                         r['id'] != p['id'] and r['full_slug'].startswith(p['slug']) and r['level'] != 2]
 
     response = render(
         request,
@@ -69,6 +74,7 @@ def home(request):
     return response
 
 
+@cache_page(CACHE_LENGTH)
 def content(request, slug, language=None):
     """
     Main view of the system. All it does is try to figure out which language is more appropriate and passes it over to
@@ -146,6 +152,7 @@ def content(request, slug, language=None):
     return response
 
 
+@cache_page(CACHE_LENGTH * 4)
 def acknowledgements(request):
     user_language = find_language(request)
 
