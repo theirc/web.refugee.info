@@ -13,7 +13,7 @@
     <meta content="width=device-width" name="viewport">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="mobile-web-app-capable" content="yes">
-    <meta name="description" content="Important information for refugees in {{ location.name }}"/>
+    <meta name="description" content="Important information for refugees."/>
 
     <title>RefugeeInfo</title>
     <script>
@@ -33,12 +33,11 @@
 
         ga('send', 'pageview');
     </script>
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
     <meta name="msapplication-TileColor" content="#000000">
-    <meta name="msapplication-TileImage" content="{{ cons.path.favicons }}/mstile-144x144.png">
+    <meta name="msapplication-TileImage" content="mstile-144x144.png">
     <meta name="theme-color" content="#000000">
-    <link rel="stylesheet" href="{% static "css/site.css" %}"
-    "/>
+    <link rel="stylesheet" href="{% static "css/site.css" %}"/>
 
     <!-- Font and Styles -->
     <style>
@@ -57,7 +56,10 @@
 <div class="logo-bar-container">
 
     <div style="width: 100%; text-align: center">
-        <img src="{% static "images/wordmark.png" %}"/></div>
+        <a href="/?language={{ LANGUAGE_CODE }}">
+            <img src="{% static "images/wordmark.png" %}"/>
+        </a>
+    </div>
     <hr/>
     <div class="language-wrapper">
         <ul class="languages detailed-languages">
@@ -93,23 +95,37 @@
         </ul>
     </div>
     <hr/>
+</div>
 
+{% for r in regions %}
     <ul class="locations">
-        {% for r in regions %}
-            <li><a href="{{ r.slug }}/{{ LANGUAGE_CODE }}/">{{ r.name }}</a>
-            </li>
-            {% if r.children %}
-                {% for c in r.children %}
-                    <li><a href="{{ c.slug }}/{{ LANGUAGE_CODE }}/">{{ c.name }}</a></li>
-                {% endfor %}
-            {% endif %}
-        {% endfor %}
+        <li onclick="$('.locations.children').slideUp(); $('#region{{ r.id }}').slideDown()">{% firstof r.metadata.page_title r.name %}
+        </li>
     </ul>
-    <hr/>
 
-    <img src="/imaging/logo-bar/" alt="IRC | MercyCorps"/>
-    <hr/>
+    <ul class="locations children" id="region{{ r.id }}" style="display: none">
+        <li><a href="{{ r.slug }}/{{ LANGUAGE_CODE }}/">{% firstof r.metadata.page_title r.name %}</a>
+        </li>
+        {% if r.children %}
+            {% for c in r.children %}
+                <li><a href="{{ c.slug }}/{{ LANGUAGE_CODE }}/">{% firstof c.metadata.page_title c.name %}</a></li>
+            {% endfor %}
+        {% endif %}
+    </ul>
 
+{% endfor %}
+<hr/>
+<ul class="locations">
+    <li><a href="/acknowledgements/">Detect my location</a></li>
+</ul>
+<hr/>
+
+<img src="/imaging/logo-bar/" alt="IRC | MercyCorps"/>
+<hr/>
+<ul class="locations">
+    <li><a href="/acknowledgements/">Acknowledgements</a></li>
+</ul>
+{% include "footer.html" %}
 </body>
 
 </html>

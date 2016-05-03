@@ -523,6 +523,7 @@ ul.languages a {
     color: #000;
     text-decoration: none;
 }
+
 ul.languages li:hover a {
     color: #fff;
     text-decoration: none;
@@ -558,11 +559,13 @@ ul.languages li ul li {
 ul.languages li ul li:hover {
     background: #000;
 }
+
 ul.languages li ul li a {
-    color: #000!important;;
+    color: #000 !important;;
 }
+
 ul.languages li ul li:hover a {
-    color: #fff!important;
+    color: #fff !important;
 }
 
 ul.languages li:hover ul {
@@ -570,36 +573,51 @@ ul.languages li:hover ul {
     opacity: 1;
     visibility: visible;
 }
+
 .language-wrapper {
-    height:  38px;
+    height: 38px;
     display: block;
     clear: both;
 }
-
 
 ul.locations {
     text-align: center;
     display: inline-block;
     padding: 0 0;
+    margin: 0 0;
     list-style: none;
     width: 100%
 }
 
 ul.locations li {
-
     display: block;
     border: 1px white solid;
     background: #000;
     color: #fff;
     cursor: pointer;
-    text-align: center;
-    text-overflow: clip;
     margin-bottom: 5px;
     padding: 10px 0px;
+    text-align: center;
+    text-overflow: clip
 }
 
 ul.locations li a {
-
     color: #fff;
     text-decoration: none;
+}
+ul.locations.children li {
+    background-color: #fff;
+    color: #000;
+    text-decoration: none;
+}
+ul.locations.children li a {
+    color: #000;
+    text-decoration: none;
+}
+
+
+ul.locations li.open ul {
+    display: block;
+    visibility: visible;
+    opacity: 1;
 }

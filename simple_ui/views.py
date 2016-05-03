@@ -25,13 +25,13 @@ def home(request):
     else:
         user_language = 'en'
 
+    activate(user_language)
+
     x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
     if x_forwarded_for:
         ip = x_forwarded_for.split(',')[0]
     else:
         ip = request.META.get('REMOTE_ADDR')
-
-    activate(user_language)
 
     # Url is actually a filter in the regions for the slug we are looking for
     url = "{}".format(os.path.join(settings.API_URL, 'v1/region/'))
@@ -49,7 +49,7 @@ def home(request):
     for p in parents:
         p['children'] = [r for r in regions if r['id'] != p['id'] and r['full_slug'].startswith(p['slug'])]
 
-    return render(
+    response = render(
         request,
         "home-cih.html",
         {
@@ -58,6 +58,8 @@ def home(request):
         },
         RequestContext(request)
     )
+    response.set_cookie(settings.LANGUAGE_COOKIE_NAME, user_language)
+    return response
 
 
 def content(request, slug, language=None):
@@ -81,6 +83,8 @@ def content(request, slug, language=None):
     else:
         user_language = 'en'
 
+    activate(user_language)
+
     x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
     if x_forwarded_for:
         ip = x_forwarded_for.split(',')[0]
@@ -98,8 +102,6 @@ def content(request, slug, language=None):
             'x-requested-for': ip,
         })
 
-    activate(user_language)
-
     # Anything that is not a 200 in the API will become a 404 here
     if int(r.status_code / 100) != 2:
         raise Http404
@@ -111,7 +113,7 @@ def content(request, slug, language=None):
 
     region = regions[0]
 
-    return render(
+    response = render(
         request,
         "content/index-cih.html",
         {
@@ -123,3 +125,30 @@ def content(request, slug, language=None):
         },
         RequestContext(request)
     )
+    response.set_cookie(settings.LANGUAGE_COOKIE_NAME, user_language)
+    return response
+
+
+def acknowledgements(request):
+    if 'language' in request.GET:
+        user_language = request.GET['language'][0:2]
+    elif 'HTTP_ACCEPT_LANGUAGE' in request.META:
+        accept_language = request.META['HTTP_ACCEPT_LANGUAGE'].split(',')
+        user_language = accept_language[0].split('-')
+
+        if user_language:
+            user_language = user_language[0]
+    else:
+        user_language = 'en'
+
+    activate(user_language)
+
+    response = render(
+        request,
+        "acknowledgements-cih.html",
+        {
+        },
+        RequestContext(request)
+    )
+    response.set_cookie(settings.LANGUAGE_COOKIE_NAME, user_language)
+    return response
