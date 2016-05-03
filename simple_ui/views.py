@@ -31,7 +31,7 @@ def home(request):
     # Url is actually a filter in the regions for the slug we are looking for
     url = "{}".format(os.path.join(settings.API_URL, 'v1/region/'))
 
-    closest = "{}".format(os.path.join(settings.API_URL, 'v1/region/closest/'))
+    closest_url = "{}".format(os.path.join(settings.API_URL, 'v1/region/closest/?hidden=False'))
 
     r = requests.get(
         url,
@@ -43,7 +43,7 @@ def home(request):
     regions = r.json()
 
     r = requests.get(
-        url,
+        closest_url,
         headers={
             'accept-language': user_language,
             'accept': 'application/json',
@@ -54,10 +54,14 @@ def home(request):
     if closest:
         closest = closest[0]
 
-    parents = [r for r in regions if ('parent' not in r or not r['parent']) and ('hidden' not in r or not r['hidden'])]
+    parents = [r for r in regions if ('parent' not in r or not r['parent'])]
     for p in parents:
         p['children'] = [r for r in regions if
-                         r['id'] != p['id'] and r['full_slug'].startswith(p['slug']) and r['level'] != 2]
+                         r['id'] != p['id'] and
+                         r['full_slug'].startswith(p['slug']) and
+                         r['level'] != 2 and
+                         ('hidden' not in r or not r['hidden'])
+                         ]
 
     response = render(
         request,
@@ -66,6 +70,7 @@ def home(request):
             'national_languages': [(k, v) for k, v in settings.LANGUAGES if k not in ('ar', 'fa', 'en')],
             'regions': parents,
             'closest': closest,
+            'API_URL': settings.API_URL,
         },
         RequestContext(request)
     )

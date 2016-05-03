@@ -38,6 +38,13 @@
     <meta name="msapplication-TileImage" content="mstile-144x144.png">
     <meta name="theme-color" content="#000000">
     <link rel="stylesheet" href="{% static "css/site.css" %}"/>
+    <script>
+        window.messages = {
+            NO_LOCATION_FOUND: '{% trans "No location found!" %}'
+        }
+        window.apiUrl = '{{ API_URL }}';
+    </script>
+    <script src="{% static "js/main.js" %}"></script>
 
     <!-- Font and Styles -->
     <style>
@@ -106,26 +113,31 @@
 {% endif %}
 <h3>{% trans "Other locations available:" %}</h3>
 {% for r in regions %}
-    <ul class="locations">
-        <li onclick="$('.locations.children').slideUp(); $('#region{{ r.id }}').slideDown()">{% firstof r.metadata.page_title r.name %}
-        </li>
-    </ul>
+    {% if r.children or not r.hidden %}
+        <ul class="locations">
+            <li onclick="$('.locations.children').slideUp(); $('#region{{ r.id }}').slideDown()">{% firstof r.metadata.page_title r.name %}
+            </li>
+        </ul>
 
-    <ul class="locations children white" id="region{{ r.id }}" style="display: none">
-        <li><a href="{{ r.slug }}/{{ LANGUAGE_CODE }}/">{% firstof r.metadata.page_title r.name %}</a>
-        </li>
-        {% if r.children %}
-            {% for c in r.children %}
-                <li onclick="location.href='{{ c.slug }}/{{ LANGUAGE_CODE }}/'"><a
-                        href="{{ c.slug }}/{{ LANGUAGE_CODE }}/">{% firstof c.metadata.page_title c.name %}</a></li>
-            {% endfor %}
-        {% endif %}
-    </ul>
+        <ul class="locations children white" id="region{{ r.id }}" style="display: none">
+            {% if not r.hidden %}
+                <li><a href="{{ r.slug }}/{{ LANGUAGE_CODE }}/">{% firstof r.metadata.page_title r.name %}</a>
+            {% endif %}
+
+            </li>
+            {% if r.children %}
+                {% for c in r.children %}
+                    <li onclick="location.href='{{ c.slug }}/{{ LANGUAGE_CODE }}/'"><a
+                            href="{{ c.slug }}/{{ LANGUAGE_CODE }}/">{% firstof c.metadata.page_title c.name %}</a></li>
+                {% endfor %}
+            {% endif %}
+        </ul>
+    {% endif %}
 
 {% endfor %}
 <hr/>
 <ul class="locations">
-    <li><a href="/acknowledgements/">Detect my location</a></li>
+    <li onclick="detectLocation()">Detect my location</li>
 </ul>
 <hr/>
 
