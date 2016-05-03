@@ -3,3 +3,5 @@ __pycache__
 .idea
 *.sqlite[3]
 *.py[co]
+node_modules/
+bower_components/

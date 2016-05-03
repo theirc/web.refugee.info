@@ -37,6 +37,7 @@
     <meta name="msapplication-TileColor" content="#000000">
     <meta name="msapplication-TileImage" content="{{ cons.path.favicons }}/mstile-144x144.png">
     <meta name="theme-color" content="#000000">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/pure/0.6.0/pure-min.css"/>
     <link rel="stylesheet" href="{% static "css/site.css" %}"/>
 
     <!-- Font and Styles -->
@@ -60,18 +61,32 @@
 
     <img src="/imaging/logo-bar/" alt="IRC | MercyCorps"/>
     <hr/>
-</body>
-<ulgit statu>
-    {% for r in regions %}
-        <li><a href="{{ r.slug }}">{{ r.name }}</a>
-            {% if r.children %}
-                <ul>
-                    {% for c in r.children %}
-                        <li><a href="{{ c.slug }}">{{ c.name }}</a></li>
-                    {% endfor %}
+    <div class="pure-menu pure-menu-horizontal">
+        <ul class="pure-menu-list">
+            <li class="pure-menu-item pure-menu-selected"><a href="#" class="pure-menu-link">Home</a></li>
+            <li class="pure-menu-item pure-menu-has-children pure-menu-allow-hover">
+                <a href="#" id="menuLink1" class="pure-menu-link">Contact</a>
+                <ul class="pure-menu-children">
+                    <li class="pure-menu-item"><a href="#" class="pure-menu-link">Email</a></li>
+                    <li class="pure-menu-item"><a href="#" class="pure-menu-link">Twitter</a></li>
+                    <li class="pure-menu-item"><a href="#" class="pure-menu-link">Tumblr Blog</a></li>
                 </ul>
-            {% endif %}
-        </li>
-    {% endfor %}
-</ulgit>
+            </li>
+        </ul>
+    </div>
+    <ul statu>
+        {% for r in regions %}
+            <li><a href="{{ r.slug }}">{{ r.name }}</a>
+                {% if r.children %}
+                    <ul>
+                        {% for c in r.children %}
+                            <li><a href="{{ c.slug }}">{{ c.name }}</a></li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+
 </html>

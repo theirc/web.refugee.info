@@ -1,0 +1,22 @@
+{
+  "name": "web.refugee.info",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {},
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "postinstall": "npm install -g bower && bower install"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/theirc/web.refugee.info.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/theirc/web.refugee.info/issues"
+  },
+  "homepage": "https://github.com/theirc/web.refugee.info#readme"
+}
