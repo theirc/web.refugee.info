@@ -621,3 +621,13 @@ ul.locations li.open ul {
     visibility: visible;
     opacity: 1;
 }
+
+.banner {
+    border: 1px white solid;
+    padding: 5px 5px;
+    margin-bottom: 5px;
+}
+.banner p {
+    padding: 5px 5px;
+    margin: 0 0;
+}

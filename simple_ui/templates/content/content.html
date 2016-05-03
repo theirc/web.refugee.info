@@ -1,6 +1,11 @@
 {% load static %}
 {% load i18n %}
 <div id="container" class="language-{{ LANGUAGE_CODE }}">
+    {% for b in location.metadata.banners %}
+        <div class="banner">
+            {{ b|safe }}
+        </div>
+    {% endfor %}
     <h1 class="page-title page-{{ LANGUAGE_CODE }}">{{ location.metadata.page_title }}</h1>
     {% if has_important %}
         <table class="toc important">
@@ -51,14 +56,14 @@
 <div class="language-{{ LANGUAGE_CODE }}">
     <h3 class="anchor">
         <a name="OtherLocations">{% trans "OTHER LOCATIONS" %}</a><br>
-        <a href="#top" class="back-to-top">{%  trans "Back to top" %}</a>
+        <a href="#top" class="back-to-top">{% trans "Back to top" %}</a>
     </h3>
     <hr class="title-hr" style="margin-bottom: 1em;"/>
     <a class="link-button" href="/?language={{ LANGUAGE_CODE }}">{% trans "VIEW INFO ON OTHER LOCATIONS" %}</a>
 
     <h3 class="anchor">
         <a name="OtherLocations">{% trans "FEEDBACK" %}</a><br>
-        <a href="#top" class="back-to-top">{%  trans "Back to top" %}</a>
+        <a href="#top" class="back-to-top">{% trans "Back to top" %}</a>
     </h3>
     <hr class="title-hr" style="margin-bottom: 1em;"/>
     <a class="link-button"
