@@ -108,7 +108,7 @@
     <ul class="locations  white">
         <li><a href="{{ closest.slug }}/{{ LANGUAGE_CODE }}/">{% firstof closest.metadata.page_title closest.name %}
             {% if closest.distance %}
-                <span style="direction: ltr">{{ closest.distance|floatformat }} km)</span>
+                <span style="direction: ltr">({{ closest.distance|floatformat }} km)</span>
             {% endif %}</a>
         </li>
     </ul>
