@@ -646,9 +646,9 @@ ul.locations li.open ul {
         padding-right: 25%;
     }
     ul.menu {
-        right: 25%;
+        right: calc(25% + 10px);
     }
     .language-wrapper .languages {
-        right: 25%;
+        right: calc(25% + 10px);
     }
 }
