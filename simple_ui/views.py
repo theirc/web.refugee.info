@@ -124,16 +124,28 @@ def content(request, slug, language=None):
             'x-requested-for': ip,
         })
 
+    r_en = requests.get(
+        url,
+        headers={
+            'accept-language': 'en',
+            'accept': 'application/json',
+            'x-requested-for': ip,
+        })
+
     # Anything that is not a 200 in the API will become a 404 here
     if int(r.status_code / 100) != 2:
         raise Http404
 
     regions = r.json()
+    regions_en = r_en.json()
 
-    if not regions:
+    if not regions and not regions_en:
         raise Http404
 
     region = regions[0]
+    region_en = regions_en[0]
+
+    region = region if 'content' in region and region['content'] else region_en
 
     context.update(
         {
