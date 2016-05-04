@@ -222,8 +222,9 @@ iframe {
 
 h1.page-title {
     font-size: 36pt;
-    margin-top: 0;
     margin-bottom: .5em;
+        margin-top: .25em;
+
 }
 
 table.important {
