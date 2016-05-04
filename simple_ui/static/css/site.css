@@ -278,11 +278,10 @@ h3.anchor {
 }
 
 a.link-button {
-    height: 3em;
+    min-height: 3em;
     line-height: 3em;
     background-color: #ffffff;
     display: block;
-    width: 280px;
     color: #000000 !important;
     font-size: 100%;
     font-weight: bold;
@@ -539,7 +538,7 @@ ul.languages li:hover a {
 ul.languages li ul {
     padding: 0;
     position: absolute;
-    top: 38px;
+    top: 35px;
     border-bottom: 1px white solid;
     right: 0px;
     -webkit-box-shadow: none;
@@ -639,4 +638,17 @@ ul.locations li.open ul {
 .banner p {
     padding: 5px 5px;
     margin: 0 0;
+}
+
+@media (min-width: 800px) {
+    html {
+        padding-left: 25%;
+        padding-right: 25%;
+    }
+    ul.menu {
+        right: 25%;
+    }
+    .language-wrapper .languages {
+        right: 25%;
+    }
 }
