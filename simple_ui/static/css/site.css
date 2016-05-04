@@ -244,9 +244,15 @@ table.toc {
 
 }
 
+table.toc .image {
+    max-height: 30px;
+}
+
 table.toc td {
     border-bottom: 1px white solid;
     padding: 5px 5px;
+    height: 30px;
+
 }
 
 table.toc a {
@@ -605,16 +611,17 @@ ul.locations li a {
     color: #fff;
     text-decoration: none;
 }
+
 ul.locations.white li {
     background-color: #fff;
     color: #000;
     text-decoration: none;
 }
+
 ul.locations.white li a {
     color: #000;
     text-decoration: none;
 }
-
 
 ul.locations li.open ul {
     display: block;
@@ -627,6 +634,7 @@ ul.locations li.open ul {
     padding: 5px 5px;
     margin-bottom: 5px;
 }
+
 .banner p {
     padding: 5px 5px;
     margin: 0 0;

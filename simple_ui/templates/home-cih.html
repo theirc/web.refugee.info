@@ -68,7 +68,7 @@
         </a>
     </div>
     <hr/>
-    <div class="language-wrapper language-en" >
+    <div class="language-wrapper language-en">
         <ul class="languages detailed-languages">
             {% language 'en' %}
                 <li><a href="/?language=en">{% trans "English" %}</a></li>
@@ -79,6 +79,8 @@
             {% language 'fa' %}
                 <li><a href="/?language=fa">{% trans "Farsi" %}</a></li>
             {% endlanguage %}
+            {# Removing the multiple language picker for now  #}
+            {% comment %}
             <li>{% trans "Other Languages" %}
                 <ul>
                     {% for k, v in national_languages %}
@@ -88,7 +90,9 @@
                     {% endfor %}
                 </ul>
             </li>
+        {% endcomment %}
         </ul>
+
         <ul class="languages short-languages">
             <li>{% trans "Languages" %}
                 <ul>

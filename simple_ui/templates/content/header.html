@@ -36,7 +36,16 @@
         {% language 'fa' %}
             <li><a href="/{{ location.slug }}/fa/">{% trans "Farsi" %}</a></li>
         {% endlanguage %}
-        {% if national_languages %}
+        {# If there is only one national language, we can just show it inline  #}
+        {% if national_languages|length_is:1 %}
+            {% for k, v in national_languages %}
+                {% language k %}
+                    <li><a href="/{{ location.slug }}/{{ k }}/">{% trans v %}</a></li>
+                {% endlanguage %}
+            {% endfor %}
+        {% endif %}
+        {# More than one requires a dropdown #}
+        {% if national_languages|length > 1 %}
             <li>{% trans "Other Languages" %}
                 <ul>
                     {% for k, v in national_languages %}

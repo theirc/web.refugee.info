@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-05-04 01:28+0000\n"
+"POT-Creation-Date: 2016-05-04 15:15+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -95,7 +95,7 @@ msgid "No location found!"
 msgstr ""
 
 #: simple_ui/templates/home-cih.html:107
-msgid "Closest location you:"
+msgid "Closest location:"
 msgstr ""
 
 #: simple_ui/templates/home-cih.html:110 simple_ui/templates/home-cih.html:129
