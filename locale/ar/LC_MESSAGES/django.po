@@ -3,44 +3,40 @@
 # This file is distributed under the same license as the PACKAGE package.
 #
 # Translators:
-# Mumen Ghazi Shafiq El-Tibi <bromumen@gmail.com>, 2015-2016
-# Rey Rodrigues <Reynaldo.Rodrigues@rescue.org>, 2015-2016
+# Mumen Ghazi Shafiq El-Tibi <bromumen@gmail.com>, 2016
+# Rey Rodrigues <Reynaldo.Rodrigues@rescue.org>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: RefugeeInfo\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-05-04 01:28+0000\n"
-"PO-Revision-Date: 2016-02-10 12:11+0000\n"
+"POT-Creation-Date: 2016-05-04 15:15+0000\n"
+"PO-Revision-Date: 2016-05-04 16:13+0000\n"
 "Last-Translator: Hossam Khattab <htkhattab@gmail.com>\n"
-"Language-Team: Arabic (http://www.transifex.com/refugeeinfo/refugeeinfo/"
-"language/ar/)\n"
-"Language: ar\n"
+"Language-Team: Arabic (http://www.transifex.com/refugeeinfo/refugeeinfo/language/ar/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 "
-"&& n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;\n"
+"Language: ar\n"
+"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;\n"
 
 #: root/settings.py:90 simple_ui/templates/content/header.html.py:31
 #: simple_ui/templates/home-cih.html:74
 msgid "English"
-msgstr ""
+msgstr "الإنجليـزيـة"
 
 #: root/settings.py:91 simple_ui/templates/content/header.html.py:34
 #: simple_ui/templates/home-cih.html:77
 msgid "Arabic"
-msgstr ""
+msgstr "العربيـة"
 
 #: root/settings.py:92
-#, fuzzy
-#| msgid "Greece"
 msgid "Greek"
-msgstr "اليونان"
+msgstr "اليـونـانيـة"
 
 #: root/settings.py:93 simple_ui/templates/content/header.html.py:37
 #: simple_ui/templates/home-cih.html:80
 msgid "Farsi"
-msgstr ""
+msgstr "الفـارسية"
 
 #: simple_ui/templates/content/content.html:48
 #: simple_ui/templates/content/content.html:59
@@ -70,15 +66,13 @@ msgstr "تقيـيم محتـوى المـوقع"
 
 #: simple_ui/templates/content/header.html:40
 #: simple_ui/templates/home-cih.html:82
-#, fuzzy
-#| msgid "Other Countries"
 msgid "Other Languages"
-msgstr "بلدان أخرى"
+msgstr "لغـات أخـرى"
 
 #: simple_ui/templates/content/header.html:52
 #: simple_ui/templates/home-cih.html:93
 msgid "Languages"
-msgstr ""
+msgstr "اللغـات المتـاحة"
 
 #: simple_ui/templates/content/header.html:70
 msgid "This is a free wifi hotspot provider by "
@@ -91,10 +85,7 @@ msgid ""
 "                scroll\n"
 "                below for important information about this location.\n"
 "            "
-msgstr ""
-"\n"
-"اضغط على زر التالي للمتابعة إلى الإنترنت، أو انتقل أدناه للحصول على معلومات "
-"هامة حول هذا الموقع."
+msgstr "\nاضغط على زر التالي للمتابعة إلى الإنترنت، أو انتقل أدناه للحصول على معلومات هامة حول هذا الموقع."
 
 #: simple_ui/templates/content/header.html:77
 msgid "CONTINUE TO THE INTERNET"
@@ -102,13 +93,11 @@ msgstr "الإستمرار لتصفح الإنترنت"
 
 #: simple_ui/templates/home-cih.html:43
 msgid "No location found!"
-msgstr ""
+msgstr "لـم يتـم تحـديد موقـع تـواجدك!"
 
 #: simple_ui/templates/home-cih.html:107
-#, fuzzy
-#| msgid "Select your location:"
-msgid "Closest location you:"
-msgstr "إختر منطقتك:"
+msgid "Closest location:"
+msgstr "أقـرب موقـع بالنسـبة لك:"
 
 #: simple_ui/templates/home-cih.html:110 simple_ui/templates/home-cih.html:129
 #: simple_ui/templates/home-cih.html:135
@@ -117,7 +106,7 @@ msgstr "عرض المعلومـات الخاصة بـ"
 
 #: simple_ui/templates/home-cih.html:118
 msgid "Other locations available:"
-msgstr ""
+msgstr "منـاطق أخـرى متـاحة:"
 
 #: simple_ui/templates/home-cih.html:144
 msgid "Detect my location"
@@ -126,72 +115,3 @@ msgstr "حدّد مكان تواجدي الآن"
 #: simple_ui/templates/home-cih.html:151
 msgid "Acknowledgements"
 msgstr "إقـرار وشكـر للجهـات المسـاهمة"
-
-#~ msgid "Open Map"
-#~ msgstr "تصفح الخارطة"
-
-#~ msgid "Lesvos"
-#~ msgstr "ليسفوس"
-
-#~ msgid "Kos"
-#~ msgstr "كوس"
-
-#~ msgid "Athens"
-#~ msgstr "آثينا"
-
-#~ msgid "Gevgelija"
-#~ msgstr "غيفغليا"
-
-#~ msgid "Tabanovce/Preševo"
-#~ msgstr "تابانوفسي/بريسيفو "
-
-#~ msgid "Šid"
-#~ msgstr "شيد"
-
-#~ msgid "Slavonski Brod"
-#~ msgstr "سلافونسكي برود"
-
-#~ msgid "Macedonia"
-#~ msgstr "جمهورية مقدونيا اليوغوسلافية السابقة"
-
-#~ msgid "Macedonia (FYROM)"
-#~ msgstr "جمهورية مقدونيا اليوغوسلافية السابقة"
-
-#~ msgid "Serbia"
-#~ msgstr "صربيا"
-
-#~ msgid "Croatia"
-#~ msgstr "كرواتيا"
-
-#~ msgid "Chios"
-#~ msgstr "العـنوان: خيـوس"
-
-#~ msgid "Dimitrovgrad"
-#~ msgstr "ديـميتروفغـراد"
-
-#~ msgid "Belgrade"
-#~ msgstr "بلغـراد"
-
-#~ msgid "Leros"
-#~ msgstr "ليـروس"
-
-#~ msgid "Idomeni"
-#~ msgstr "إدوميـني"
-
-#~ msgid "Samos"
-#~ msgstr "سـاموس"
-
-#~ msgid "Slovenia"
-#~ msgstr "سـلوفيـنيـا"
-
-#~ msgid "Dobova"
-#~ msgstr "دوبوفـا"
-
-#~ msgid "Sentilj"
-#~ msgstr "سيـنتيـلج"
-
-#~ msgid "Germany"
-#~ msgstr "ألمانيا"
-
-#~ msgid "Important Information for Refugees! Please read carefully!"
-#~ msgstr "معلومـات هـامة للاجئيـن! الرجـاء قراءتـها بعنـاية!"
