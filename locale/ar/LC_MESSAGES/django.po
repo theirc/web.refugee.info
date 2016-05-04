@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: RefugeeInfo\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-05-03 21:23+0000\n"
+"POT-Creation-Date: 2016-05-04 01:28+0000\n"
 "PO-Revision-Date: 2016-02-10 12:11+0000\n"
 "Last-Translator: Hossam Khattab <htkhattab@gmail.com>\n"
 "Language-Team: Arabic (http://www.transifex.com/refugeeinfo/refugeeinfo/"
@@ -110,83 +110,88 @@ msgstr ""
 msgid "Closest location you:"
 msgstr "إختر منطقتك:"
 
-#: simple_ui/templates/home-cih.html:114
-msgid "Other locations available:"
-msgstr ""
+#: simple_ui/templates/home-cih.html:110 simple_ui/templates/home-cih.html:129
+#: simple_ui/templates/home-cih.html:135
 msgid "View info for"
 msgstr "عرض المعلومـات الخاصة بـ"
 
-msgid "Open Map"
-msgstr "تصفح الخارطة"
+#: simple_ui/templates/home-cih.html:118
+msgid "Other locations available:"
+msgstr ""
 
+#: simple_ui/templates/home-cih.html:144
 msgid "Detect my location"
 msgstr "حدّد مكان تواجدي الآن"
 
+#: simple_ui/templates/home-cih.html:151
 msgid "Acknowledgements"
 msgstr "إقـرار وشكـر للجهـات المسـاهمة"
 
-msgid "Lesvos"
-msgstr "ليسفوس"
+#~ msgid "Open Map"
+#~ msgstr "تصفح الخارطة"
 
-msgid "Kos"
-msgstr "كوس"
+#~ msgid "Lesvos"
+#~ msgstr "ليسفوس"
 
-msgid "Athens"
-msgstr "آثينا"
+#~ msgid "Kos"
+#~ msgstr "كوس"
 
-msgid "Gevgelija"
-msgstr "غيفغليا"
+#~ msgid "Athens"
+#~ msgstr "آثينا"
 
-msgid "Tabanovce/Preševo"
-msgstr "تابانوفسي/بريسيفو "
+#~ msgid "Gevgelija"
+#~ msgstr "غيفغليا"
 
-msgid "Šid"
-msgstr "شيد"
+#~ msgid "Tabanovce/Preševo"
+#~ msgstr "تابانوفسي/بريسيفو "
 
-msgid "Slavonski Brod"
-msgstr "سلافونسكي برود"
+#~ msgid "Šid"
+#~ msgstr "شيد"
 
-msgid "Macedonia"
-msgstr "جمهورية مقدونيا اليوغوسلافية السابقة"
+#~ msgid "Slavonski Brod"
+#~ msgstr "سلافونسكي برود"
 
-msgid "Macedonia (FYROM)"
-msgstr "جمهورية مقدونيا اليوغوسلافية السابقة"
+#~ msgid "Macedonia"
+#~ msgstr "جمهورية مقدونيا اليوغوسلافية السابقة"
 
-msgid "Serbia"
-msgstr "صربيا"
+#~ msgid "Macedonia (FYROM)"
+#~ msgstr "جمهورية مقدونيا اليوغوسلافية السابقة"
 
-msgid "Croatia"
-msgstr "كرواتيا"
+#~ msgid "Serbia"
+#~ msgstr "صربيا"
 
-msgid "Chios"
-msgstr "العـنوان: خيـوس"
+#~ msgid "Croatia"
+#~ msgstr "كرواتيا"
 
-msgid "Dimitrovgrad"
-msgstr "ديـميتروفغـراد"
+#~ msgid "Chios"
+#~ msgstr "العـنوان: خيـوس"
 
-msgid "Belgrade"
-msgstr "بلغـراد"
+#~ msgid "Dimitrovgrad"
+#~ msgstr "ديـميتروفغـراد"
 
-msgid "Leros"
-msgstr "ليـروس"
+#~ msgid "Belgrade"
+#~ msgstr "بلغـراد"
 
-msgid "Idomeni"
-msgstr "إدوميـني"
+#~ msgid "Leros"
+#~ msgstr "ليـروس"
 
-msgid "Samos"
-msgstr "سـاموس"
+#~ msgid "Idomeni"
+#~ msgstr "إدوميـني"
 
-msgid "Slovenia"
-msgstr "سـلوفيـنيـا"
+#~ msgid "Samos"
+#~ msgstr "سـاموس"
 
-msgid "Dobova"
-msgstr "دوبوفـا"
+#~ msgid "Slovenia"
+#~ msgstr "سـلوفيـنيـا"
 
-msgid "Sentilj"
-msgstr "سيـنتيـلج"
+#~ msgid "Dobova"
+#~ msgstr "دوبوفـا"
 
-msgid "Germany"
-msgstr "ألمانيا"
+#~ msgid "Sentilj"
+#~ msgstr "سيـنتيـلج"
 
-msgid "Important Information for Refugees! Please read carefully!"
-msgstr "معلومـات هـامة للاجئيـن! الرجـاء قراءتـها بعنـاية!"
+#~ msgid "Germany"
+#~ msgstr "ألمانيا"
+
+#~ msgid "Important Information for Refugees! Please read carefully!"
+#~ msgstr "معلومـات هـامة للاجئيـن! الرجـاء قراءتـها بعنـاية!"

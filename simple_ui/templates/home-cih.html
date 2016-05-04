@@ -58,7 +58,7 @@
 
     </style>
 </head>
-<body class="content-page">
+<body class="content-page language-{{ LANGUAGE_CODE }}">
 
 <div class="logo-bar-container">
 
@@ -68,7 +68,7 @@
         </a>
     </div>
     <hr/>
-    <div class="language-wrapper">
+    <div class="language-wrapper language-en" >
         <ul class="languages detailed-languages">
             {% language 'en' %}
                 <li><a href="/?language=en">{% trans "English" %}</a></li>
@@ -106,10 +106,12 @@
 {% if closest %}
     <h3>{% trans "Closest location you:" %}</h3>
     <ul class="locations  white">
-        <li><a href="{{ closest.slug }}/{{ LANGUAGE_CODE }}/">{% firstof closest.metadata.page_title closest.name %}
+        <li onclick="location.href='/{{ closest.slug }}/{{ LANGUAGE_CODE }}/'">
+            {% trans "View info for" %}: <br/>
+            {% firstof closest.metadata.page_title closest.name %}
             {% if closest.distance %}
                 <span style="direction: ltr">({{ closest.distance|floatformat }} km)</span>
-            {% endif %}</a>
+            {% endif %}
         </li>
     </ul>
 {% endif %}
@@ -123,14 +125,14 @@
 
         <ul class="locations children white" id="region{{ r.id }}" style="display: none">
             {% if not r.hidden %}
-                <li onclick="location.href='{{ c.slug }}/{{ LANGUAGE_CODE }}/'">
-                    <a href="{{ r.slug }}/{{ LANGUAGE_CODE }}/">{% firstof r.metadata.page_title r.name %}</a>
+                <li onclick="location.href='/{{ r.slug }}/{{ LANGUAGE_CODE }}/'">
+                    {% trans "View info for" %}:<br/>{% firstof r.metadata.page_title r.name %}
                 </li>
             {% endif %}
             {% if r.children %}
                 {% for c in r.children %}
-                    <li onclick="location.href='{{ c.slug }}/{{ LANGUAGE_CODE }}/'"><a
-                            href="{{ c.slug }}/{{ LANGUAGE_CODE }}/">{% firstof c.metadata.page_title c.name %}</a></li>
+                    <li onclick="location.href='/{{ c.slug }}/{{ LANGUAGE_CODE }}/'">
+                        {% trans "View info for" %}:<br/>{% firstof c.metadata.page_title c.name %}</li>
                 {% endfor %}
             {% endif %}
         </ul>
@@ -139,14 +141,14 @@
 {% endfor %}
 <hr/>
 <ul class="locations">
-    <li onclick="detectLocation()">Detect my location</li>
+    <li onclick="detectLocation()">{% trans "Detect my location" %}</li>
 </ul>
 <hr/>
 
 <img src="/imaging/logo-bar/" alt="IRC | MercyCorps"/>
 <hr/>
 <ul class="locations">
-    <li><a href="/acknowledgements/">Acknowledgements</a></li>
+    <li><a href="/acknowledgements/">{% trans "Acknowledgements" %}</a></li>
 </ul>
 {% include "footer.html" %}
 </body>
