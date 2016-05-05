@@ -150,7 +150,7 @@ def content(request, slug, language=None):
     feedback_url = ""
     try:
         feedback_url = settings.FEEDBACK_URL.get(user_language, settings.FEEDBACK_URL.get('en', '/'))
-        feedback_url = feedback_url.format(region.slug)
+        feedback_url = feedback_url.format(region['slug'])
     except:
         pass
 
