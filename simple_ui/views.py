@@ -147,11 +147,18 @@ def content(request, slug, language=None):
 
     region = region if 'content' in region and region['content'] else region_en
 
+    feedback_url = ""
+    try:
+        feedback_url = settings.FEEDBACK_URL.get(user_language, settings.FEEDBACK_URL.get('en', '/'))
+        feedback_url = feedback_url.format(region.slug)
+    except:
+        pass
+
     context.update(
         {
             'national_languages': [(k, v) for k, v in settings.LANGUAGES if
                                    k in region['languages_available'] and k not in ['en', 'ar', 'fa']],
-            'feedback_url': settings.FEEDBACK_URL.get(user_language, settings.FEEDBACK_URL.get('en', '/')),
+            'feedback_url': feedback_url,
             'location': region,
             'has_important': True if [r for r in region['content'] if r['important']] else False,
         }
