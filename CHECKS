@@ -1,0 +1,5 @@
+WAIT=15
+TIMEOUT=30
+ATTEMPTS=10
+
+/               RefugeeInfo
