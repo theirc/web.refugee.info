@@ -278,11 +278,12 @@ h3.anchor {
 }
 
 a.link-button {
+    background-color: #ffffff;
+    color: #000000 !important;
+
     min-height: 3em;
     line-height: 3em;
-    background-color: #ffffff;
     display: block;
-    color: #000000 !important;
     font-size: 100%;
     font-weight: bold;
     text-align: center;
@@ -292,13 +293,13 @@ a.link-button {
 }
 
 a.link-button-reversed {
-    height: 3em;
-    line-height: 3em;
     border: 1px #fff solid;
     background-color: #000;
-    display: block;
-    width: 280px;
     color: #fff !important;
+
+    height: 3em;
+    line-height: 3em;
+    display: block;
     font-size: 100%;
     font-weight: bold;
     text-align: center;
