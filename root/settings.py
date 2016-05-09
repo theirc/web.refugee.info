@@ -133,7 +133,7 @@ LOCALE_PATHS = (
     os.path.join(BASE_DIR, 'locale'),
 )
 
-API_URL = 'http://api.refugee.info'
+API_URL = os.environ.get('API_URL', 'http://api.refugee.info')
 
 
 FEEDBACK_URL = os.environ.get("FEEDBACK_URL", "en;https://docs.google.com/forms/d/1gc-hN_p5pqC3DoPXxTfCAmlIiCEd1mOIdQMWeAz2n_U/viewform?entry.1237329743={}&entry.76257945&entry.197209127&entry.2029928797&entry.1325640830|")
