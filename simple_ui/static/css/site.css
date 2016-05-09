@@ -307,6 +307,20 @@ a.link-button-reversed {
     margin-left: .5em;
     margin-right: .5em;
 }
+a.link-button-reversed:hover {
+    background-color: #ffffff;
+    color: #000000 !important;
+
+    min-height: 3em;
+    line-height: 3em;
+    display: block;
+    font-size: 100%;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    margin-left: .5em;
+    margin-right: .5em;
+}
 
 .language-en, .language-el {
     direction: ltr;
