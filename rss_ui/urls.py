@@ -13,14 +13,12 @@ Including another URLconf
     1. Import the include() function: from django.conf.urls import url, include
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
-from django.conf import settings
-from django.conf.urls import url, include
-from django.conf.urls.static import static
+from django.conf.urls import url
+
+from . import feeds
 
 urlpatterns = [
-                  url(r'^imaging/', include('imaging.urls')),
-                  url(r'^', include('rss_ui.urls')),
-                  url(r'^', include('simple_ui.urls')),
-              ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+    url(r'^rss/(?P<slug>[a-zA-Z\-0-9]+)/?$', feeds.TestFeed(), ),
+    url(r'^rss/(?P<slug>[a-zA-Z\-0-9]+)/(?P<language>[a-zA-Z\-0-9]+)/?$', feeds.TestFeed(), ),
 
-handler404 = 'root.views.redirect_to_home'
+]
