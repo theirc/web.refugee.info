@@ -1,14 +1,11 @@
-from django.contrib.syndication.views import Feed
 import os
-from urllib.parse import quote_plus
 
 import requests
 from django.conf import settings
+from django.contrib.syndication.views import Feed
 from django.http import Http404
-from django.shortcuts import render
-from django.template import RequestContext
 from django.utils.translation import activate
-from django.views.decorators.cache import cache_page
+
 
 class RssFeed(Feed):
     def get_object(self, request, slug, language='en'):
