@@ -19,6 +19,4 @@ from . import feeds
 
 urlpatterns = [
     url(r'^rss/(?P<slug>[a-zA-Z\-0-9]+)/?$', feeds.RssFeed(), ),
-    url(r'^rss/(?P<slug>[a-zA-Z\-0-9]+)/(?P<language>[a-zA-Z\-0-9]+)/?$', feeds.RssFeed(), ),
-
 ]
