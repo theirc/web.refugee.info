@@ -138,10 +138,10 @@ def content(request, slug, language=None):
     if 2 not in status_codes:
         raise Http404
 
-    regions = r.json()
-    regions_en = r_en.json()
-    information = info_r.json()
-    information_en = info_r_en.json()
+    regions = sorted(r.json(), key=lambda j: j['parent'] or -1)
+    regions_en = sorted(r_en.json(), key=lambda j: j['parent'] or -1)
+    information = sorted(info_r.json(), key=lambda j: j['region'] or -1)
+    information_en = sorted(info_r_en.json(), key=lambda j: j['region'] or -1)
 
     if not regions and not regions_en and not information and not information_en:
         raise Http404
