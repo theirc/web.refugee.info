@@ -117,37 +117,19 @@ def content(request, slug, language=None):
     region_url = "{}?slug={}".format(os.path.join(settings.API_URL, 'v1/region/'), slug)
     information_url = "{}?slug={}".format(os.path.join(settings.API_URL, 'v1/important-information/'), slug)
 
-    r = requests.get(
-        region_url,
-        headers={
-            'accept-language': user_language,
-            'accept': 'application/json',
-            'x-requested-for': ip,
-        })
+    def __request(url, language, ip):
+        return requests.get(
+            url,
+            headers={
+                'accept-language': language,
+                'accept': 'application/json',
+                'x-requested-for': ip,
+            })
 
-    r_en = requests.get(
-        region_url,
-        headers={
-            'accept-language': 'en',
-            'accept': 'application/json',
-            'x-requested-for': ip,
-        })
-
-    info_r = requests.get(
-        information_url,
-        headers={
-            'accept-language': user_language,
-            'accept': 'application/json',
-            'x-requested-for': ip,
-        })
-
-    info_r_en = requests.get(
-        information_url,
-        headers={
-            'accept-language': 'en',
-            'accept': 'application/json',
-            'x-requested-for': ip,
-        })
+    r = __request(region_url, user_language, ip)
+    r_en = __request(region_url, 'en', ip)
+    info_r = __request(information_url, user_language, ip)
+    info_r_en = __request(information_url, 'en', ip)
 
     # Anything that is not a 200 in the API will become a 404 here
     status_codes = [r.status_code, r_en.status_code, info_r.status_code, info_r_en.status_code]
