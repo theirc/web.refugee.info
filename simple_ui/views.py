@@ -162,8 +162,11 @@ def content(request, slug, language=None):
         pass
 
     publication_date = None
-    if 'metadata' in region and 'last_updated' in region['metadata']:
-        publication_date = parser.parse(region['metadata']['last_updated'])
+    try:
+        if 'metadata' in region and 'last_updated' in region['metadata']:
+            publication_date = parser.parse(region['metadata']['last_updated'])
+    except:
+        pass
 
     context.update(
         {
