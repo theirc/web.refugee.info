@@ -76,7 +76,7 @@
         }
     </style>
 </head>
-<body class="content-page language-{{ LANGUAGE_CODE }}{% if is_blue %} blue-content{% endif %}">
+<body class="content-page {% if is_blue %} blue-content{% endif %}">
 {% include "content/header.html" %}
 
 {% include "content/content.html" %}
