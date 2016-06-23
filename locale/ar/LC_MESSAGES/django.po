@@ -115,3 +115,9 @@ msgstr "حدّد مكان تواجدي الآن"
 #: simple_ui/templates/home-cih.html:151
 msgid "Acknowledgements"
 msgstr "إقـرار وشكـر للجهـات المسـاهمة"
+
+
+#: title_plugin/templates/title_plugin/last_updated_plugin.html:5
+msgid "Last updated on:"
+msgstr "آخـر تحـديث بتـاريخ:"
+

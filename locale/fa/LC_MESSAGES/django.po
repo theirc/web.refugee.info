@@ -115,3 +115,7 @@ msgstr "موقعيت من را مشخص كن"
 #: simple_ui/templates/home-cih.html:151
 msgid "Acknowledgements"
 msgstr "تصدیق/سپاسگزاری"
+
+msgid "Last updated on:"
+msgstr "اطلاعات روزآمد شده را در اینجا ببینید:"
+

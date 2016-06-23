@@ -1,5 +1,8 @@
 {% load static %}
 {% load i18n %}
+{% load tz %}
+{% load l10n %}
+
 <div id="container" class="language-{{ LANGUAGE_CODE }}">
     {% for b in location.metadata.banners %}
         <div class="banner">
@@ -54,6 +57,11 @@
             </td>
         </tr>
     </table>
+    {% if publication_date %}
+        <em class="last-updated" data-date="{{ publication_date|utc|date:'c' }}">
+            {% trans "Last updated on:" %} {{ publication_date|utc|localize }} UTC
+        </em>
+    {% endif %}
     {% for c in location.content %}
         <div>
             <div class="section-header{% if c.important %} important{% endif %}{% if c.inherited %} inherited{% endif %}">

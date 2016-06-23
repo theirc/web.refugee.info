@@ -8,6 +8,7 @@ from django.shortcuts import render
 from django.template import RequestContext
 from django.utils.translation import activate
 from django.views.decorators.cache import cache_page
+from dateutil import parser
 
 CACHE_LENGTH = getattr(settings, 'CACHE_LENGTH', 15) * 60
 
@@ -92,6 +93,8 @@ def content(request, slug, language=None):
 
     activate(user_language)
 
+    is_blue = slug in settings.BLUE_PAGES
+
     # Handling Meraki:
     context = {
     }
@@ -158,12 +161,18 @@ def content(request, slug, language=None):
     except:
         pass
 
+    publication_date = None
+    if 'metadata' in region and 'last_updated' in region['metadata']:
+        publication_date = parser.parse(region['metadata']['last_updated'])
+
     context.update(
         {
             'national_languages': [(k, v) for k, v in settings.LANGUAGES if 'languages_available' in region and
                                    k in region['languages_available'] and k not in ['en', 'ar', 'fa']],
             'feedback_url': feedback_url,
             'location': region,
+            'publication_date': publication_date,
+            'is_blue': is_blue,
             'has_important': True if [r for r in region['content'] if r['important']] else False,
         }
     )

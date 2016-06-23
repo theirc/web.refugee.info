@@ -113,3 +113,7 @@ msgstr ""
 #: simple_ui/templates/home-cih.html:151
 msgid "Acknowledgements"
 msgstr ""
+
+msgid "Last updated on:"
+msgstr ""
+

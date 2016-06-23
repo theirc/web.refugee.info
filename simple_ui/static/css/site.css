@@ -667,3 +667,10 @@ ul.locations li.open ul {
         right: calc(25% + 10px);
     }
 }
+
+.blue-content {
+    background-color: #222B61
+}
+.blue-content ul.menu li {
+    background-color: #222B61
+}
