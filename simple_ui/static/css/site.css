@@ -223,7 +223,7 @@ iframe {
 h1.page-title {
     font-size: 36pt;
     margin-bottom: .5em;
-        margin-top: .25em;
+    margin-top: .25em;
 
 }
 
@@ -307,6 +307,7 @@ a.link-button-reversed {
     margin-left: .5em;
     margin-right: .5em;
 }
+
 a.link-button-reversed:hover {
     background-color: #ffffff;
     color: #000000 !important;
@@ -655,22 +656,52 @@ ul.locations li.open ul {
     margin: 0 0;
 }
 
-@media (min-width: 800px) {
+@media (min-width: 900px) {
     html {
         padding-left: 25%;
         padding-right: 25%;
     }
+
     ul.menu {
         right: calc(25% + 10px);
     }
+
     .language-wrapper .languages {
         right: calc(25% + 10px);
+    }
+
+    img {
+        max-width: 100%;
     }
 }
 
 .blue-content {
     background-color: #222B61
 }
+
 .blue-content ul.menu li {
     background-color: #222B61
+}
+
+.table-responsive table {
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+.table-responsive table, .table-responsive th, .table-responsive td {
+    border: 1px solid white;
+}
+
+.table-responsive td {
+    padding: 8px 8px;
+    white-space: nowrap;
+}
+
+.table-responsive td p {
+    padding: 0;
+    margin: 0;
+}
+
+.tel {
+    white-space: nowrap;
 }
