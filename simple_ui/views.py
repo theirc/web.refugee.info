@@ -30,9 +30,9 @@ def home(request):
         ip = request.META.get('REMOTE_ADDR')
 
     # Url is actually a filter in the regions for the slug we are looking for
-    url = "{}".format(os.path.join(settings.API_URL, 'v1/region/'))
+    url = "{}".format(os.path.join(settings.API_URL, 'v1/region/?no_content=true'))
 
-    closest_url = "{}".format(os.path.join(settings.API_URL, 'v1/region/closest/?hidden=False'))
+    closest_url = "{}".format(os.path.join(settings.API_URL, 'v1/region/closest/?no_content=true&hidden=False'))
 
     r = requests.get(
         url,
@@ -51,9 +51,15 @@ def home(request):
             'x-requested-for': ip,
         })
     closest = r.json()
+    language_key = 'title_{}'.format(user_language)
 
     if closest:
         closest = closest[0]
+        closest['title'] = closest[language_key] if language_key in closest else closest['title_en']
+
+    for r in regions:
+        r['title'] = r[language_key] if language_key in r else r['title_en']
+
 
     parents = [r for r in regions if ('parent' not in r or not r['parent'])]
     for p in parents:
