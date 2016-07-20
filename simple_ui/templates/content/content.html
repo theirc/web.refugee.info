@@ -69,7 +69,7 @@
                     {% if c.image %}
                         <img src="{{ c.image }}" class="title-icon"/>
                     {% endif %} &nbsp;
-                    <a name="Anchor_{{ c.index }}">{{ c.title }}</a><br/>
+                    <a name="{% if c.anchor_name %}{{ c.anchor_name }}{% else %}Anchor_{{ c.index }}{% endif %}">{{ c.title }}</a><br/>
                     <a href="#top" class="back-to-top">{% trans "Back to top" %}</a>
                 </h3>
                 <hr class="title-hr"/>
