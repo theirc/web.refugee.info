@@ -20,7 +20,7 @@
                                 <img src="{{ p.image }}" class="title-icon"/>
                             {% endif %}
                         </td>
-                        <td><a href="#Anchor_{{ p.index }}">{{ p.title }}</a></td>
+                        <td><a href="#{% if p.anchor_name %}{{ p.anchor_name }}{% else %}Anchor_{{ p.index }}{% endif %}">{{ p.title }}</a></td>
                     </tr>
                 {% endif %}
             {% endfor %}
@@ -37,8 +37,7 @@
                         {% endif %}
 
                     </td>
-                    <td><a href="#Anchor_{{ p.index }}">{{ p.title }}</a>
-                    </td>
+                    <td><a href="#{% if p.anchor_name %}{{ p.anchor_name }}{% else %}Anchor_{{ p.index }}{% endif %}">{{ p.title }}</a></td>
                 </tr>
             {% endif %}
         {% endfor %}
