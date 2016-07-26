@@ -1,0 +1,32 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta content="width=device-width" name="viewport">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="description" content="Important information for refugees."/>
+    <script type="text/javascript" src='{% static 'jquery/dist/jquery.js' %}'></script>
+    <script type="text/javascript" src='{% static 'materialize/dist/js/materialize.min.js' %}'></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'materialize/dist/css/materialize.min.css' %}" media="screen,projection">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/site.css' %}">
+
+    {% block additional-requirements %}{% endblock %}
+
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+    <title>{% block title %}RefugeeInfo{% endblock title %}</title>
+</head>
+<body>
+    {% block body %}
+        <div class="container">
+            <div class="row">
+                {% block content %}{% endblock content %}
+            </div>
+        </div>
+    {% endblock body %}
+</body>
+</html>

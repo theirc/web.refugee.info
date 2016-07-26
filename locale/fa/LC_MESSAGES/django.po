@@ -9,54 +9,61 @@ msgid ""
 msgstr ""
 "Project-Id-Version: RefugeeInfo\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-05-04 15:15+0000\n"
+"POT-Creation-Date: 2016-07-26 14:14+0200\n"
 "PO-Revision-Date: 2016-05-04 22:11+0000\n"
 "Last-Translator: Afsaneh Noorparvar <anoorparvar@gmail.com>\n"
-"Language-Team: Persian (http://www.transifex.com/refugeeinfo/refugeeinfo/language/fa/)\n"
+"Language-Team: Persian (http://www.transifex.com/refugeeinfo/refugeeinfo/"
+"language/fa/)\n"
+"Language: fa\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: fa\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: root/settings.py:90 simple_ui/templates/content/header.html.py:31
-#: simple_ui/templates/home-cih.html:74
+#: root/settings.py:91 simple_ui/templates/content/header.html.py:31
+#: simple_ui/templates/home-cih.html:103 simple_ui/templates/home.html:62
 msgid "English"
 msgstr "انگلیسی "
 
-#: root/settings.py:91 simple_ui/templates/content/header.html.py:34
-#: simple_ui/templates/home-cih.html:77
+#: root/settings.py:92 simple_ui/templates/content/header.html.py:34
+#: simple_ui/templates/home-cih.html:106 simple_ui/templates/home.html:65
 msgid "Arabic"
 msgstr "عربی"
 
-#: root/settings.py:92
+#: root/settings.py:93
 msgid "Greek"
 msgstr "یونانی"
 
-#: root/settings.py:93 simple_ui/templates/content/header.html.py:37
-#: simple_ui/templates/home-cih.html:80
+#: root/settings.py:94 simple_ui/templates/content/header.html.py:37
+#: simple_ui/templates/home-cih.html:109 simple_ui/templates/home.html:68
 msgid "Farsi"
 msgstr "فارسی"
 
 #: simple_ui/templates/content/content.html:48
-#: simple_ui/templates/content/content.html:59
-#: simple_ui/templates/content/content.html:66
-msgid "Back to top"
-msgstr "رفتن به بالای صفحه"
-
-#: simple_ui/templates/content/content.html:58
+#: simple_ui/templates/content/content.html:82
 msgid "OTHER LOCATIONS"
 msgstr "مكانهاي ديگر"
 
-#: simple_ui/templates/content/content.html:62
-msgid "VIEW INFO ON OTHER LOCATIONS"
-msgstr "نمایش دادن اطلاعات در دیگر مکان ها"
-
-#: simple_ui/templates/content/content.html:65
+#: simple_ui/templates/content/content.html:55
+#: simple_ui/templates/content/content.html:89
 msgid "FEEDBACK"
 msgstr "بازخورد"
 
-#: simple_ui/templates/content/content.html:70
+#: simple_ui/templates/content/content.html:61
+msgid "Last updated on:"
+msgstr "اطلاعات روزآمد شده را در اینجا ببینید:"
+
+#: simple_ui/templates/content/content.html:72
+#: simple_ui/templates/content/content.html:83
+#: simple_ui/templates/content/content.html:90
+msgid "Back to top"
+msgstr "رفتن به بالای صفحه"
+
+#: simple_ui/templates/content/content.html:86
+msgid "VIEW INFO ON OTHER LOCATIONS"
+msgstr "نمایش دادن اطلاعات در دیگر مکان ها"
+
+#: simple_ui/templates/content/content.html:94
 msgid "GIVE FEEDBACK ON THIS PAGE"
 msgstr "در مورد این صفحه به ما بازخورد بدهید"
 
@@ -64,58 +71,74 @@ msgstr "در مورد این صفحه به ما بازخورد بدهید"
 msgid "Feedback"
 msgstr "باز تاب"
 
-#: simple_ui/templates/content/header.html:40
-#: simple_ui/templates/home-cih.html:82
+#: simple_ui/templates/content/header.html:49
 msgid "Other Languages"
 msgstr "سایر زبان ها"
 
-#: simple_ui/templates/content/header.html:52
-#: simple_ui/templates/home-cih.html:93
+#: simple_ui/templates/content/header.html:61
+#: simple_ui/templates/home-cih.html:127
 msgid "Languages"
 msgstr "زبان ها"
 
-#: simple_ui/templates/content/header.html:70
+#: simple_ui/templates/content/header.html:79
 msgid "This is a free wifi hotspot provider by "
 msgstr "این یک کانون دسترسی به اینترنت بی سیم مجانی است"
 
-#: simple_ui/templates/content/header.html:72
+#: simple_ui/templates/content/header.html:81
 msgid ""
 "\n"
 "                Tap the button below to continue to the internet, or\n"
 "                scroll\n"
 "                below for important information about this location.\n"
 "            "
-msgstr "\nدکمه‌ی زیر را بزنید تا به جستجو در اینترنت ادامه بدهید، یا برای کسب اطلاعات بیشتر در مورد این مکان، تا پایین صفحه بروید."
+msgstr ""
+"\n"
+"دکمه‌ی زیر را بزنید تا به جستجو در اینترنت ادامه بدهید، یا برای کسب اطلاعات "
+"بیشتر در مورد این مکان، تا پایین صفحه بروید."
 
-#: simple_ui/templates/content/header.html:77
+#: simple_ui/templates/content/header.html:86
 msgid "CONTINUE TO THE INTERNET"
 msgstr "ادامه جستجو در اينترنت"
 
-#: simple_ui/templates/home-cih.html:43
+#: simple_ui/templates/home-cih.html:72 simple_ui/templates/home.html.py:51
 msgid "No location found!"
 msgstr "هیچ مکانی پیدا نشد!"
 
-#: simple_ui/templates/home-cih.html:107
+#: simple_ui/templates/home-cih.html:141
 msgid "Closest location:"
 msgstr "نزدیک ترین مکان:"
 
-#: simple_ui/templates/home-cih.html:110 simple_ui/templates/home-cih.html:129
-#: simple_ui/templates/home-cih.html:135
+#: simple_ui/templates/home-cih.html:144 simple_ui/templates/home-cih.html:163
+#: simple_ui/templates/home-cih.html:169
 msgid "View info for"
 msgstr "نمایش اطلاعات برای"
 
-#: simple_ui/templates/home-cih.html:118
+#: simple_ui/templates/home-cih.html:152
 msgid "Other locations available:"
 msgstr "مکان های دیگر در دسترس:"
 
-#: simple_ui/templates/home-cih.html:144
+#: simple_ui/templates/home-cih.html:178
 msgid "Detect my location"
 msgstr "موقعيت من را مشخص كن"
 
-#: simple_ui/templates/home-cih.html:151
+#: simple_ui/templates/home-cih.html:185
 msgid "Acknowledgements"
 msgstr "تصدیق/سپاسگزاری"
 
-msgid "Last updated on:"
-msgstr "اطلاعات روزآمد شده را در اینجا ببینید:"
+#: simple_ui/templates/home.html:74
+msgid ""
+"If you don't have a very strong internet connection pick our basic version "
+"to save bandwith."
+msgstr ""
 
+#: simple_ui/templates/home.html:75
+msgid "If your internet is good use our ultimate version!"
+msgstr ""
+
+#: simple_ui/templates/home.html:77
+msgid "For slow connections"
+msgstr ""
+
+#: simple_ui/templates/home.html:80
+msgid "For fast internet connection"
+msgstr ""
