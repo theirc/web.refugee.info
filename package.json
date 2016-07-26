@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "postinstall": "npm install bower -g"
+    "postinstall": "npm install bower -g; bower install"
   },
   "repository": {
     "type": "git",
