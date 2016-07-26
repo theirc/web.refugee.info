@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-05-04 15:15+0000\n"
+"POT-Creation-Date: 2016-07-26 14:14+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,44 +17,50 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: root/settings.py:90 simple_ui/templates/content/header.html.py:31
-#: simple_ui/templates/home-cih.html:74
+#: root/settings.py:91 simple_ui/templates/content/header.html.py:31
+#: simple_ui/templates/home-cih.html:103 simple_ui/templates/home.html:62
 msgid "English"
 msgstr ""
 
-#: root/settings.py:91 simple_ui/templates/content/header.html.py:34
-#: simple_ui/templates/home-cih.html:77
+#: root/settings.py:92 simple_ui/templates/content/header.html.py:34
+#: simple_ui/templates/home-cih.html:106 simple_ui/templates/home.html:65
 msgid "Arabic"
 msgstr ""
 
-#: root/settings.py:92
+#: root/settings.py:93
 msgid "Greek"
 msgstr ""
 
-#: root/settings.py:93 simple_ui/templates/content/header.html.py:37
-#: simple_ui/templates/home-cih.html:80
+#: root/settings.py:94 simple_ui/templates/content/header.html.py:37
+#: simple_ui/templates/home-cih.html:109 simple_ui/templates/home.html:68
 msgid "Farsi"
 msgstr ""
 
 #: simple_ui/templates/content/content.html:48
-#: simple_ui/templates/content/content.html:59
-#: simple_ui/templates/content/content.html:66
-msgid "Back to top"
-msgstr ""
-
-#: simple_ui/templates/content/content.html:58
+#: simple_ui/templates/content/content.html:82
 msgid "OTHER LOCATIONS"
 msgstr ""
 
-#: simple_ui/templates/content/content.html:62
-msgid "VIEW INFO ON OTHER LOCATIONS"
-msgstr ""
-
-#: simple_ui/templates/content/content.html:65
+#: simple_ui/templates/content/content.html:55
+#: simple_ui/templates/content/content.html:89
 msgid "FEEDBACK"
 msgstr ""
 
-#: simple_ui/templates/content/content.html:70
+#: simple_ui/templates/content/content.html:61
+msgid "Last updated on:"
+msgstr ""
+
+#: simple_ui/templates/content/content.html:72
+#: simple_ui/templates/content/content.html:83
+#: simple_ui/templates/content/content.html:90
+msgid "Back to top"
+msgstr ""
+
+#: simple_ui/templates/content/content.html:86
+msgid "VIEW INFO ON OTHER LOCATIONS"
+msgstr ""
+
+#: simple_ui/templates/content/content.html:94
 msgid "GIVE FEEDBACK ON THIS PAGE"
 msgstr ""
 
@@ -62,21 +68,20 @@ msgstr ""
 msgid "Feedback"
 msgstr ""
 
-#: simple_ui/templates/content/header.html:40
-#: simple_ui/templates/home-cih.html:82
+#: simple_ui/templates/content/header.html:49
 msgid "Other Languages"
 msgstr ""
 
-#: simple_ui/templates/content/header.html:52
-#: simple_ui/templates/home-cih.html:93
+#: simple_ui/templates/content/header.html:61
+#: simple_ui/templates/home-cih.html:127
 msgid "Languages"
 msgstr ""
 
-#: simple_ui/templates/content/header.html:70
+#: simple_ui/templates/content/header.html:79
 msgid "This is a free wifi hotspot provider by "
 msgstr ""
 
-#: simple_ui/templates/content/header.html:72
+#: simple_ui/templates/content/header.html:81
 msgid ""
 "\n"
 "                Tap the button below to continue to the internet, or\n"
@@ -85,35 +90,49 @@ msgid ""
 "            "
 msgstr ""
 
-#: simple_ui/templates/content/header.html:77
+#: simple_ui/templates/content/header.html:86
 msgid "CONTINUE TO THE INTERNET"
 msgstr ""
 
-#: simple_ui/templates/home-cih.html:43
+#: simple_ui/templates/home-cih.html:72 simple_ui/templates/home.html.py:51
 msgid "No location found!"
 msgstr ""
 
-#: simple_ui/templates/home-cih.html:107
+#: simple_ui/templates/home-cih.html:141
 msgid "Closest location:"
 msgstr ""
 
-#: simple_ui/templates/home-cih.html:110 simple_ui/templates/home-cih.html:129
-#: simple_ui/templates/home-cih.html:135
+#: simple_ui/templates/home-cih.html:144 simple_ui/templates/home-cih.html:163
+#: simple_ui/templates/home-cih.html:169
 msgid "View info for"
 msgstr ""
 
-#: simple_ui/templates/home-cih.html:118
+#: simple_ui/templates/home-cih.html:152
 msgid "Other locations available:"
 msgstr ""
 
-#: simple_ui/templates/home-cih.html:144
+#: simple_ui/templates/home-cih.html:178
 msgid "Detect my location"
 msgstr ""
 
-#: simple_ui/templates/home-cih.html:151
+#: simple_ui/templates/home-cih.html:185
 msgid "Acknowledgements"
 msgstr ""
 
-msgid "Last updated on:"
+#: simple_ui/templates/home.html:74
+msgid ""
+"If you don't have a very strong internet connection pick our basic version "
+"to save bandwith."
 msgstr ""
 
+#: simple_ui/templates/home.html:75
+msgid "If your internet is good use our ultimate version!"
+msgstr ""
+
+#: simple_ui/templates/home.html:77
+msgid "For slow connections"
+msgstr ""
+
+#: simple_ui/templates/home.html:80
+msgid "For fast internet connection"
+msgstr ""

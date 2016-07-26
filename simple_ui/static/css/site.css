@@ -6,7 +6,7 @@ html, body {
 }
 
 body {
-    background-color: #000;
+    background-color: #181818;
 }
 
 li:before {
@@ -89,11 +89,6 @@ body.content-page {
     margin-left: 5px;
 }
 
-@media (max-width: 800px) {
-    body.content-page {
-        max-width: 566.9pt;
-    }
-}
 
 /*
 Styles for the content pages
@@ -371,11 +366,6 @@ a.link-button-reversed:hover {
     }
 }
 
-@media (max-width: 600px) {
-    img {
-        max-width: 280px;
-    }
-}
 
 div.table-responsive {
     display: block;
@@ -503,37 +493,15 @@ ul.menu-left li ul li {
 }
 
 ul.languages {
-    text-align: left;
     display: inline;
     margin: 0;
-    position: absolute;
-    right: 15px;
     padding: 0 0;
     list-style: none;
-    -webkit-box-shadow: 0 0 5px rgba(0, 0, 0, 0.15);
-    -moz-box-shadow: 0 0 5px rgba(0, 0, 0, 0.15);
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.15);
 }
 
 ul.languages li {
     font: bold 2vh sans-serif;
     display: inline-block;
-    padding: 6px 6px;
-    border: 1px white solid;
-    background: #fff;
-    color: #000;
-    cursor: pointer;
-    -webkit-transition: all 0.2s;
-    -moz-transition: all 0.2s;
-    -ms-transition: all 0.2s;
-    -o-transition: all 0.2s;
-    transition: all 0.2s;
-    height: 20px;
-    line-height: 20px;
-    /* width: 9vh; */
-    text-align: center;
-    text-overflow: clip
-
 }
 
 ul.languages li:hover {
@@ -657,11 +625,6 @@ ul.locations li.open ul {
 }
 
 @media (min-width: 900px) {
-    html {
-        padding-left: 25%;
-        padding-right: 25%;
-    }
-
     ul.menu {
         right: calc(25% + 10px);
     }
@@ -704,4 +667,13 @@ ul.locations li.open ul {
 
 .tel {
     white-space: nowrap;
+}
+
+.connection-btn{
+    border:1px solid white;
+    background-color: transparent;
+    width: 50%;
+    margin-bottom: 5px;
+    padding: 10px 0;
+    text-align: center;
 }
