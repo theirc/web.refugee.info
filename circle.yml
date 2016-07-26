@@ -1,0 +1,11 @@
+dependencies:
+  post:
+    - bower install
+    - npm install -g mocha
+    - pip install django-nose flake8 flake8-junit-report
+    - mkdir $CIRCLE_TEST_REPORTS/django
+
+test:
+  override:
+    - python manage.py test --with-xunit --xunit-file=$CIRCLE_TEST_REPORTS/django/nose.xml
+    - mocha ./**/spec/*.js --reporter xunit --recursive > $CIRCLE_TEST_REPORTS/django/mocha.xml

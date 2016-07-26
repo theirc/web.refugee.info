@@ -168,6 +168,8 @@ else:
         }
     }
 
+TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
+
 try:
     from .localsettings import *
 except ImportError:
