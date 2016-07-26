@@ -6,4 +6,4 @@ __pycache__
 node_modules/
 bower_components/
 localsettings.py
-static/
+/static/
