@@ -163,3 +163,8 @@ else:
             'LOCATION': 'unique-snowflake',
         }
     }
+
+try:
+    from .localsettings import *
+except ImportError:
+    pass
