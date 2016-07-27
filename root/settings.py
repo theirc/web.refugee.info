@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'compressor',
+    'djng',
 
     'simple_ui',
     'rss_ui',

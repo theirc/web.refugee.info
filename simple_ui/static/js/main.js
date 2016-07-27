@@ -16,7 +16,7 @@
                     url: url,
                     success: function (data) {
                         if (data.length) {
-                            location.href = '/' + data[0].slug + '/'
+                            location.href = '/' + data[0].slug + '/';
                         } else {
                             alert(window.messages.NO_LOCATION_FOUND);
                         }

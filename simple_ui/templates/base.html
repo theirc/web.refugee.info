@@ -1,5 +1,7 @@
 {% load static %}
 {% load compress %}
+{% load djng_tags %}
+
 <!DOCTYPE html>
 <html>
 <head lang="en">
@@ -11,8 +13,24 @@
     <meta name="description" content="Important information for refugees."/>
     <script type="text/javascript" src='{% static 'jquery/dist/jquery.js' %}'></script>
     <script type="text/javascript" src='{% static 'materialize/dist/js/materialize.min.js' %}'></script>
+
+    <script type="text/javascript" src='{% static 'angular/angular.min.js' %}'></script>
+    <script type="text/javascript" src='{% static 'angular-ui-router/release/angular-ui-router.min.js' %}'></script>
+    <script type="text/javascript" src='{% static 'angular-cookies/angular-cookies.min.js' %}'></script>
+    <script type="text/javascript" src='{% static 'angular-sanitize/angular-sanitize.min.js' %}'></script>
+    <script src="{% static 'djng/js/django-angular.js' %}"></script>
+
+
+    <script type="text/javascript" src='{% static 'js/refugeeApp/app.js' %}'></script>
+    <script type="text/javascript" src='{% static 'js/refugeeApp/controllers/LocationChoiceController.js' %}'></script>
+    <script type="text/javascript" src='{% static 'js/refugeeApp/controllers/LocationDetailsController.js' %}'></script>
+
+    <script type="text/javascript" src='{% static 'js/refugeeApp/directives/regionChoice.js' %}'></script>
+    <script type="text/javascript" src='{% static 'js/refugeeApp/directives/regionName.js' %}'></script>
+    <script type="text/javascript" src='{% static 'js/refugeeApp/directives/scrollToAnchor.js' %}'></script>
+
+
     <link rel="stylesheet" type="text/css" href="{% static 'materialize/dist/css/materialize.min.css' %}" media="screen,projection">
-    <link rel="stylesheet" type="text/css" href="{% static 'css/site.css' %}">
 
     {% compress css %}
         <link rel="stylesheet" type="text/x-scss" href="{% static 'scss/site.scss' %}">
@@ -20,12 +38,19 @@
 
     {% block additional-requirements %}{% endblock %}
 
+    <script type="text/javascript">
+        var tags = {% djng_all_rmi %};
+        angular.module('refugeeApp').config(function(djangoRMIProvider) {
+            djangoRMIProvider.configure(tags);
+        });
+    </script>
     <!--Let browser know website is optimized for mobile-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
     <title>{% block title %}RefugeeInfo{% endblock title %}</title>
 </head>
 <body>
+    {% csrf_token %}
     {% block body %}
         <div class="container">
             <div class="row">
