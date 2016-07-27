@@ -1,0 +1,16 @@
+{% load i18n %}
+<div>
+    <ul id="locations-{$ region.id $}" class="locations">
+        <li ng-click="handleClick()">
+            <region-name region="region"></region-name>
+        </li>
+    </ul>
+    <ul class="locations children white" id="region{$ region.id $}" style="display: none">
+        <li ng-click="navigateToDetails(region)" ng-if="!region.hidden">
+            <region-name region="region"></region-name>
+        </li>
+        <li ng-repeat="child in region.children" ng-click="navigateToDetails(child)">{% trans "View info for" %}:<br/>
+            <region-name region="child"></region-name>
+        </li>
+    </ul>
+</div>

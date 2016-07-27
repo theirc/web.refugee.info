@@ -1,0 +1,81 @@
+{% load static %}
+{% load i18n %}
+{% load tz %}
+{% load l10n %}
+
+<div class="s12 center col" ng-show="!ctrl.loaded">Loading...</div>
+
+<div id="container" class="language-{{ LANGUAGE_CODE }}" ng-show="ctrl.loaded">
+    <div ng-repeat="b in ctrl.data.location.metadata.banners" class="banner" ng-bind-html="b">
+
+    </div>
+    <h1 class="page-title page-{{ LANGUAGE_CODE }}">{$ data.location.metadata.page_title $}</h1>
+    <table class="toc important" ng-if="ctrl.data.has_important">
+        <tr ng-repeat="p in ctrl.data.location.content | filter: {important: true}">
+            <td>
+                <img src="{$ p.image $}" class="title-icon" ng-if="p.image"/>
+            </td>
+            <td>
+                <a href="{$ '#' + (p.anchor_name || 'Anchor_' + p.index) $}" scroll-to-anchor>
+                    {$ p.title $}
+                </a>
+            </td>
+        </tr>
+    </table>
+    <table class="toc">
+        <tr ng-repeat="p in ctrl.data.location.content | filter: {important: false}">
+            <td>
+                <img src="{$ p.image $}" class="title-icon" ng-if="!!p.image"/>
+            </td>
+            <td>
+                <a href="{$ '#' + (p.anchor_name || 'Anchor_' + p.index) $}" scroll-to-anchor>
+                    {$ p.title $}
+                </a>
+            </td>
+        </tr>
+        <tr>
+            <td>&nbsp;
+            </td>
+            <td>
+                <a href="#OtherLocations" scroll-to-anchor>{% trans "OTHER LOCATIONS" %}</a>
+            </td>
+        </tr>
+        <tr>
+            <td>&nbsp;
+            </td>
+            <td>
+                <a href="#Feedback" scroll-to-anchor>{% trans "FEEDBACK" %}</a>
+            </td>
+        </tr>
+    </table>
+    <em class="last-updated" data-date="{$ ctrl.data.publication_date $}" ng-if="!!ctrl.data.publication_date">
+        {% trans "Last updated on:" %} {$ ctrl.data.localized_date $} UTC
+    </em>
+    <div ng-repeat="c in ctrl.data.location.content">
+        <div class="section-header{% if c.important %} important{% endif %}{% if c.inherited %} inherited{% endif %}">
+            <h3 class="anchor">
+                <img src="{$ p.image $}" class="title-icon" ng-if="!!p.image"/>
+                <a name="{$ (p.anchor_name || 'Anchor_' + c.index) $}" scroll-to-anchor>{$ c.title $}</a><br/>
+                <a href="#top" class="back-to-top" scroll-to-anchor>{% trans "Back to top" %}</a>
+            </h3>
+            <hr class="title-hr"/>
+        </div>
+        <div ng-bind-html="c.section"></div>
+    </div>
+</div>
+<div class="language-{{ LANGUAGE_CODE }}" ng-show="ctrl.loaded">
+    <h3 class="anchor">
+        <a name="OtherLocations">{% trans "OTHER LOCATIONS" %}</a><br>
+        <a href="#top" class="back-to-top" scroll-to-anchor>{% trans "Back to top" %}</a>
+    </h3>
+    <hr class="title-hr" style="margin-bottom: 1em;"/>
+    <a class="link-button" href="/?language={{ LANGUAGE_CODE }}">{% trans "VIEW INFO ON OTHER LOCATIONS" %}</a>
+
+    <h3 class="anchor">
+        <a name="Feedback">{% trans "FEEDBACK" %}</a><br>
+        <a href="#top" class="back-to-top" scroll-to-anchor>{% trans "Back to top" %}</a>
+    </h3>
+    <hr class="title-hr" style="margin-bottom: 1em;"/>
+    <a class="link-button"
+       href="{$ ctrl.data.feedback_url $}">{% trans "GIVE FEEDBACK ON THIS PAGE" %}</a>
+</div>

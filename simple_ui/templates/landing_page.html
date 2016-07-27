@@ -69,15 +69,10 @@
             {% endlanguage %}
         </ul>
     </div>
-    <div class="col s12 center">
+    <div class="col s10 center">
         <img src="{% static "images/logo-dark.png" %}"/>
-        <p>{% trans "If you don't have a very strong internet connection pick our basic version to save bandwith." %}</p>
-        <p>{% trans "If your internet is good use our ultimate version!" %}</p>
-        <div>
-            <button class="connection-btn transparent">{% trans "For slow connections" %}</button>
-        </div>
-        <div>
-            <button class="connection-btn transparent">{% trans "For fast internet connection" %}</button>
-        </div>
     </div>
+    <hr />
+    <div class="col s12" ng-app="refugeeApp" ui-view></div>
+
 {% endblock content %}
