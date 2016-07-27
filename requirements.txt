@@ -8,3 +8,4 @@ six==1.10.0
 static3==0.6.1
 wheel==0.24.0
 python-dateutil
+django_compressor

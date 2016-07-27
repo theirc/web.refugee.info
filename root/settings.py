@@ -37,9 +37,12 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    'compressor',
+
     'simple_ui',
     'rss_ui',
     'imaging',
+
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -134,6 +137,12 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "bower_components")
 ]
 
+STATICFILES_FINDERS = [
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    'compressor.finders.CompressorFinder'
+]
+
 LOCALE_PATHS = (
     os.path.join(BASE_DIR, 'locale'),
 )
@@ -169,6 +178,13 @@ else:
     }
 
 TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
+
+COMPRESS_ENABLED = True
+COMPRESS_OFFLINE = True
+
+COMPRESS_PRECOMPILERS = (
+    ('text/x-scss', 'sass --scss {infile} {outfile}'),
+)
 
 try:
     from .localsettings import *

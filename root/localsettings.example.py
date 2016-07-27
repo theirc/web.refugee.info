@@ -1,1 +1,4 @@
 DEBUG = True
+
+COMPRESS_ENABLED = False
+COMPRESS_OFFLINE = False
