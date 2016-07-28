@@ -683,3 +683,69 @@ ul.locations li.open ul {
     padding: 10px 0;
     text-align: center;
 }
+
+.service-information-choice {
+  color: #e8e8e8;
+}
+
+.grey-button-medium {
+    border: 1px solid #6a6a6a;
+    background-color: #2d2d2d;
+    color: #e8e8e8;
+    width: 100%;
+    height: 70px;
+    text-align: center;
+    font-size: 16px;
+
+    i {
+      font-size: 25px;
+      color: #528d57;
+    }
+}
+
+.border-top-bottom {
+  border-top: 1px solid #303030;
+  border-bottom: 1px solid #303030;
+}
+
+.border-right {
+  border-right: 1px solid #303030;
+}
+
+.important-information {
+  height: 70px;
+}
+
+.button-transparent {
+  border: 0;
+  background-color: transparent;
+  color: #e8e8e8;
+  width: 100%;
+  height: 70px;
+  text-align: center;
+  font-size: 16px;
+}
+
+.change-location-button {
+  border: 0;
+  background-color: transparent;
+  color: #528d57;
+  text-decoration: underline;
+}
+
+.font-bold {
+  font-weight: bold;
+}
+
+.location-bar-header {
+  margin-bottom: 0 !important;
+}
+
+.location-bar {
+  background-color: #48b04f;
+  font-weight: bold;
+  text-align: center;
+  vertical-align: middle;
+  font-size: 20px;
+  color: #f8fefc
+}

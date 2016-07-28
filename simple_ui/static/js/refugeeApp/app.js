@@ -18,5 +18,14 @@ angular.module('refugeeApp', ['ui.router', 'ngCookies', 'ngSanitize', 'djng.rmi'
                 url: '/location/:slug',
                 templateUrl: 'partials/location.details.html',
                 controller: 'LocationDetailsController as ctrl'
+            })
+            .state('importantInformation', {
+                url: '/location/:slug/information',
+                templateUrl: 'partials/location.important-information.html',
+                controller: 'LocationDetailsController as ctrl'
+            })
+            .state('services', {
+                url: '/location/:slug/services',
+                templateUrl: 'partials/location.services.html'
             });
     });
