@@ -1,4 +1,4 @@
-angular.module('refugeeApp').controller('LocationDetailsController', function($scope, $stateParams, $anchorScroll, $location, djangoRMI) {
+angular.module('refugeeApp').controller('LocationDetailsController', function($scope, $stateParams, $state, djangoRMI) {
     var vm = this;
     vm.data = {};
     vm.loaded = false;
@@ -7,4 +7,8 @@ angular.module('refugeeApp').controller('LocationDetailsController', function($s
         vm.data = data;
         vm.loaded = true;
     });
+
+    vm.navigateTo = function(state) {
+        $state.go(state, {slug: $stateParams.slug});
+    };
 });
