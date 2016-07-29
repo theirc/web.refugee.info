@@ -56,23 +56,5 @@
 {% endblock %}
 
 {% block content %}
-    <div class="col s2 right">
-        <ul class="languages">
-            {% language 'en' %}
-                <li><a class="btn-floating" class="btn-floating" href="/?language=en">{% trans "English" %}</a></li>
-            {% endlanguage %}
-            {% language 'ar' %}
-                <li><a class="btn-floating" href="/?language=ar">{% trans "Arabic" %}</a></li>
-            {% endlanguage %}
-            {% language 'fa' %}
-                <li><a class="btn-floating" href="/?language=fa">{% trans "Farsi" %}</a></li>
-            {% endlanguage %}
-        </ul>
-    </div>
-    <div class="col s10 center">
-        <img src="{% static "images/logo-dark.png" %}"/>
-    </div>
-    <hr />
     <div class="col s12" ng-app="refugeeApp" ui-view></div>
-
 {% endblock content %}
