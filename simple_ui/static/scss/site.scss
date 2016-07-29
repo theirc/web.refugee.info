@@ -15,7 +15,7 @@ html, body {
 }
 
 body {
-    background-color: #181818;
+    background-color: #252525;
 }
 
 li:before {
@@ -748,4 +748,31 @@ ul.locations li.open ul {
   vertical-align: middle;
   font-size: 20px;
   color: #f8fefc
+}
+
+
+.caption {
+    display: block;
+}
+
+span.underline {
+  text-decoration: underline;
+}
+
+.brand-logo img{
+  max-height: 60px;
+}
+
+nav {
+  background-color: #181818;
+}
+
+.box-container{
+  background-color: #1c1c1c;
+  padding-left: 30px;
+  padding-right: 30px;
+}
+
+.lang-divider{
+  border-left: 1px solid white;
 }

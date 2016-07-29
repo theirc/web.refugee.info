@@ -56,8 +56,9 @@
 <body>
     {% csrf_token %}
     {% block body %}
-        <div class="container">
-            <div class="row">
+        <div class="row">
+            <div class="col s12 l8 offset-l2">
+                {%  include 'navigation.html' %}
                 {% block content %}{% endblock content %}
             </div>
         </div>
