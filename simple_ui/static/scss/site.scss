@@ -686,6 +686,15 @@ ul.locations li.open ul {
 
 .service-information-choice {
   color: #e8e8e8;
+  margin-top: 30px;
+
+  .content {
+    padding: 25px;
+  }
+
+  .buttons {
+    margin-top: 10px;
+  }
 }
 
 .grey-button-medium {
