@@ -22,19 +22,20 @@
     <script src="{% static 'djng/js/django-angular.js' %}"></script>
 
 
-    <script type="text/javascript" src='{% static 'js/refugeeApp/app.js' %}'></script>
-    <script type="text/javascript" src='{% static 'js/refugeeApp/controllers/LocationChoiceController.js' %}'></script>
-    <script type="text/javascript" src='{% static 'js/refugeeApp/controllers/LocationDetailsController.js' %}'></script>
+    {% compress js %}
+        <script type="text/javascript" src='{% static 'js/refugeeApp/app.js' %}'></script>
+        <script type="text/javascript" src='{% static 'js/refugeeApp/controllers/LocationChoiceController.js' %}'></script>
+        <script type="text/javascript" src='{% static 'js/refugeeApp/controllers/LocationDetailsController.js' %}'></script>
 
-    <script type="text/javascript" src='{% static 'js/refugeeApp/directives/regionChoice.js' %}'></script>
-    <script type="text/javascript" src='{% static 'js/refugeeApp/directives/regionName.js' %}'></script>
-    <script type="text/javascript" src='{% static 'js/refugeeApp/directives/scrollToAnchor.js' %}'></script>
+        <script type="text/javascript" src='{% static 'js/refugeeApp/directives/regionChoice.js' %}'></script>
+        <script type="text/javascript" src='{% static 'js/refugeeApp/directives/regionName.js' %}'></script>
+        <script type="text/javascript" src='{% static 'js/refugeeApp/directives/scrollToAnchor.js' %}'></script>
+    {% endcompress %}
 
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
     <link rel="stylesheet" type="text/css" href="{% static 'materialize/dist/css/materialize.min.css' %}" media="screen,projection">
     <link rel="stylesheet" type="text/css" href="{% static 'components-font-awesome/css/font-awesome.min.css' %}" media="screen,projection">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-
 
     {% compress css %}
         <link rel="stylesheet" type="text/x-scss" href="{% static 'scss/site.scss' %}">
