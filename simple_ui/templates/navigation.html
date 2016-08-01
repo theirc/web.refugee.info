@@ -1,5 +1,7 @@
 {%  load static %}
 {%  load i18n %}
+{% load marktags %}
+{% cookie 'theme' as theme %}
 <script>
 $( document ).ready(function(){
     $(".button-collapse").sideNav({edge: 'right'});
@@ -9,7 +11,11 @@ $( document ).ready(function(){
 <nav>
     <div class="nav-wrapper">
         <div class="hide-on-med-and-down" style="line-height: 20px; position: absolute; padding-left: 10px; padding-top: 5px">
-            <img src="{%  static 'images/logo-bar.png' %}" style="max-height: 25px"/><br>
+            {%  if theme == 'dark' %}
+                <img id="logo-bar" class="theme" src="{%  static 'images/logo-bar-dark.png' %}" style="max-height: 25px"/><br>
+            {% else %}
+                <img id="logo-bar" class="theme" src="{%  static 'images/logo-bar-light.png' %}" style="max-height: 25px"/><br>
+            {%  endif %}
             <a href="">
                 <span class="underline">About us</span>
             </a>
@@ -17,7 +23,13 @@ $( document ).ready(function(){
                 <span class="underline">Contact</span>
             </a>
         </div>
-        <a href="/" class="brand-logo center"><img src="{%  static 'images/logo-dark.png' %}" style="padding:10px" /></a>
+        <a href="/" class="brand-logo center">
+            {%  if theme == 'dark' %}
+                <img id="logo" class="theme"  src="{% static "images/logo-dark.png" %}" style="padding:10px"/>
+            {% else %}
+                <img id="logo" class="theme" src="{% static "images/logo-light.png" %}" style="padding:10px"/>
+            {%  endif %}
+        </a>
         <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
         <ul class="right hide-on-med-and-down" style="line-height: 25px; padding-top: 30px; text-align: center">
             <li>
