@@ -1,7 +1,8 @@
 {% load static %}
 {% load compress %}
 {% load djng_tags %}
-
+{% load marktags %}
+{% cookie 'theme' as theme %}
 <!DOCTYPE html>
 <html>
 <head lang="en">
@@ -14,7 +15,6 @@
     <script type="text/javascript" src='{% static 'jquery/dist/jquery.js' %}'></script>
     <script type="text/javascript" src='{% static 'materialize/dist/js/materialize.min.js' %}'></script>
 
-
     <script type="text/javascript" src='{% static 'angular/angular.min.js' %}'></script>
     <script type="text/javascript" src='{% static 'angular-ui-router/release/angular-ui-router.min.js' %}'></script>
     <script type="text/javascript" src='{% static 'angular-cookies/angular-cookies.min.js' %}'></script>
@@ -23,6 +23,10 @@
 
     <script type="text/javascript" src='{% static 'leaflet/dist/leaflet.js' %}'></script>
     <script type="text/javascript" src='{% static 'angular-leaflet-directive/dist/angular-leaflet-directive.js' %}'></script>
+    <script>
+        var theme = "{{ theme }}"
+    </script>
+    <script type="text/javascript" src='{% static 'js/changeTheme.js' %}'></script>
 
     {% compress js %}
         <script type="text/javascript" src='{% static 'js/refugeeApp/app.js' %}'></script>
@@ -34,16 +38,17 @@
         <script type="text/javascript" src='{% static 'js/refugeeApp/directives/scrollToAnchor.js' %}'></script>
         <script type="text/javascript" src='{% static 'js/refugeeApp/directives/regionMap.js' %}'></script>
     {% endcompress %}
-
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
     <link rel="stylesheet" type="text/css" href="{% static 'materialize/dist/css/materialize.min.css' %}" media="screen,projection">
     <link rel="stylesheet" type="text/css" href="{% static 'components-font-awesome/css/font-awesome.min.css' %}" media="screen,projection">
     <link rel="stylesheet" href='{% static 'leaflet/dist/leaflet.css' %}' />
 
-    {% compress css %}
-        <link rel="stylesheet" type="text/x-scss" href="{% static 'scss/site.scss' %}">
-    {% endcompress %}
+    {%  if theme == 'dark' %}
+        <link rel="stylesheet" type="text/css" class="theme" href="{% static 'scss/dark.css' %}">
+    {%  else %}
+        <link rel="stylesheet" type="text/css" class="theme" href="{% static 'scss/light.css' %}">
+    {%  endif %}
 
     {% block additional-requirements %}{% endblock %}
 
@@ -62,9 +67,10 @@
     {% csrf_token %}
     {% block body %}
         <div class="row">
-            <div class="col s12 l8 offset-l2">
+            <div class="col s12 l8 offset-l2 test">
                 {%  include 'navigation.html' %}
                 {% block content %}{% endblock content %}
+                {%  include 'footer.html' %}
             </div>
         </div>
     {% endblock body %}
