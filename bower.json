@@ -18,6 +18,8 @@
     "angular-ui-router": "^0.3.1",
     "angular-cookies": "^1.5.8",
     "angular-sanitize": "^1.5.8",
-    "components-font-awesome": "^4.6.3"
+    "components-font-awesome": "^4.6.3",
+    "leaflet": "^0.7.7",
+    "angular-leaflet-directive": "^0.10.0"
   }
 }

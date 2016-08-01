@@ -19,8 +19,10 @@
     <script type="text/javascript" src='{% static 'angular-ui-router/release/angular-ui-router.min.js' %}'></script>
     <script type="text/javascript" src='{% static 'angular-cookies/angular-cookies.min.js' %}'></script>
     <script type="text/javascript" src='{% static 'angular-sanitize/angular-sanitize.min.js' %}'></script>
-    <script src="{% static 'djng/js/django-angular.js' %}"></script>
+    <script type="text/javascript" src="{% static 'djng/js/django-angular.js' %}"></script>
 
+    <script type="text/javascript" src='{% static 'leaflet/dist/leaflet.js' %}'></script>
+    <script type="text/javascript" src='{% static 'angular-leaflet-directive/dist/angular-leaflet-directive.js' %}'></script>
 
     {% compress js %}
         <script type="text/javascript" src='{% static 'js/refugeeApp/app.js' %}'></script>
@@ -36,6 +38,7 @@
 
     <link rel="stylesheet" type="text/css" href="{% static 'materialize/dist/css/materialize.min.css' %}" media="screen,projection">
     <link rel="stylesheet" type="text/css" href="{% static 'components-font-awesome/css/font-awesome.min.css' %}" media="screen,projection">
+    <link rel="stylesheet" href='{% static 'leaflet/dist/leaflet.css' %}' />
 
     {% compress css %}
         <link rel="stylesheet" type="text/x-scss" href="{% static 'scss/site.scss' %}">
