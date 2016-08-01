@@ -4,6 +4,9 @@
         "jquery": true
     },
     "extends": "angular",
+    "globals": {
+        "L": true
+    },
     "rules": {
         "indent": [
             "error",
