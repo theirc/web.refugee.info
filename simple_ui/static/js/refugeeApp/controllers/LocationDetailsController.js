@@ -1,8 +1,7 @@
-angular.module('refugeeApp').controller('LocationDetailsController', function($scope, $stateParams, $state, djangoRMI) {
+angular.module('refugeeApp').controller('LocationDetailsController', function($scope, $stateParams, $state, djangoRMI, leafletData) {
     var vm = this;
     vm.data = {};
     vm.loaded = false;
-    vm.region = {};
 
     angular.extend(vm, {
         defaults: {
@@ -14,11 +13,6 @@ angular.module('refugeeApp').controller('LocationDetailsController', function($s
         vm.data = data;
         vm.loaded = true;
         angular.extend(vm, {
-            region: {
-                lat: data.location.centroid.coordinates[1],
-                lng: data.location.centroid.coordinates[0],
-                zoom: 10
-            },
             geojson: {
                 data: data.location.envelope,
                 style: {
@@ -30,6 +24,10 @@ angular.module('refugeeApp').controller('LocationDetailsController', function($s
                     fillOpacity: 0.7
                 }
             }
+        });
+        var polygon = L.geoJson(vm.geojson.data);
+        leafletData.getMap().then(function(map) {
+            map.fitBounds(polygon.getBounds());
         });
     });
 

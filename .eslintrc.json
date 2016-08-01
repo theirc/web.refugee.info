@@ -4,6 +4,9 @@
         "jquery": true
     },
     "extends": "eslint:recommended",
+    "globals": {
+        "L": true
+    },
     "rules": {
         "indent": [
             "error",
