@@ -44,11 +44,10 @@
     <link rel="stylesheet" type="text/css" href="{% static 'components-font-awesome/css/font-awesome.min.css' %}" media="screen,projection">
     <link rel="stylesheet" href='{% static 'leaflet/dist/leaflet.css' %}' />
 
-    {%  if theme == 'dark' %}
-        <link rel="stylesheet" type="text/css" class="theme" href="{% static 'scss/dark.css' %}">
-    {%  else %}
-        <link rel="stylesheet" type="text/css" class="theme" href="{% static 'scss/light.css' %}">
-    {%  endif %}
+    {% compress css %}
+    <link rel="stylesheet" type="text/x-scss" class="theme" href="{% static 'scss/main.scss' %}">
+    {% endcompress %}
+
 
     {% block additional-requirements %}{% endblock %}
 
