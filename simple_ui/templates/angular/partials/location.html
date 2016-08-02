@@ -1,5 +1,5 @@
 {% load i18n %}
-<div class="s12 center col" ng-show="!ctrl.loaded">Loading...</div>
+<div class="col-xs-12 text-center" ng-show="!ctrl.loaded">Loading...</div>
 <div ng-cloak ng-show="ctrl.loaded">
     <div ng-show="!!ctrl.data.closest">
         <h3>{% trans "Closest location:" %}</h3>

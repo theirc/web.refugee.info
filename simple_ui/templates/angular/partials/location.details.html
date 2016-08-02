@@ -5,36 +5,36 @@
 {% load marktags %}
 {% cookie 'theme' as theme %}
 
-<div class="s12 center col" ng-show="!ctrl.loaded">Loading...</div>
+<div class="col-xs-12 text-center" ng-show="!ctrl.loaded">Loading...</div>
 
 <div id="container" class="container service-information-choice" ng-show="ctrl.loaded">
-    <div class="col s12 content custom-form">
+    <div class="col-xs-10 col-xs-offset-1 content custom-form">
         <div class="row buttons">
-            <div class="col s6 center">
+            <div class="col-xs-6 text-center">
                 <button ng-click="ctrl.navigateTo('importantInformation')" class="grey-button-medium"><i class="fa fa-info small" aria-hidden="true"></i> Important Information</button>
             </div>
-            <div class="col s6 center">
+            <div class="col-xs-6 text-center">
                 <button ng-click="ctrl.navigateTo('services')" class="grey-button-medium"><i class="fa fa-wrench small" aria-hidden="true"></i> Services</button>
             </div>
         </div>
         <div class="row border-top-bottom important-information">
-            <div class="col s4 center border-right">
+            <div class="col-xs-4 text-center border-right">
                 <button class="button-transparent">Asylum Information</button>
             </div>
-            <div class="col s4 center border-right">
+            <div class="col-xs-4 text-center border-right">
                 <button class="button-transparent">Staying Safe</button>
             </div>
-            <div class="col s4 center">
+            <div class="col-xs-4 text-center">
                 <button class="button-transparent">Parents and Families</button>
             </div>
         </div>
         <div class="row location-bar-header">
-            <div class="col s4 center">
+            <div class="col-xs-4 center">
             </div>
-            <div class="col s4 center font-bold">
+            <div class="col-xs-4 text-center font-bold">
                 Your location:
             </div>
-            <div class="col s4 center">
+            <div class="col-xs-4 text-center">
                 <a ui-sref="location" class="change-location-button">CHANGE LOCATION <i class="material-icons">my_location</i></a>
             </div>
         </div>

@@ -13,7 +13,7 @@
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="description" content="Important information for refugees."/>
     <script type="text/javascript" src='{% static 'jquery/dist/jquery.js' %}'></script>
-    <script type="text/javascript" src='{% static 'materialize/dist/js/materialize.min.js' %}'></script>
+    <script type="text/javascript" src='{% static 'bootstrap/dist/js/bootstrap.min.js' %}'></script>
 
     <script type="text/javascript" src='{% static 'angular/angular.min.js' %}'></script>
     <script type="text/javascript" src='{% static 'angular-ui-router/release/angular-ui-router.min.js' %}'></script>
@@ -40,7 +40,7 @@
     {% endcompress %}
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-    <link rel="stylesheet" type="text/css" href="{% static 'materialize/dist/css/materialize.min.css' %}" media="screen,projection">
+    <link rel="stylesheet" type="text/css" href="{% static 'bootstrap/dist/css/bootstrap.css' %}" media="screen,projection">
     <link rel="stylesheet" type="text/css" href="{% static 'components-font-awesome/css/font-awesome.min.css' %}" media="screen,projection">
     <link rel="stylesheet" href='{% static 'leaflet/dist/leaflet.css' %}' />
 
@@ -66,7 +66,7 @@
     {% csrf_token %}
     {% block body %}
         <div class="row">
-            <div class="col s12 l8 offset-l2 test">
+            <div class="col-xs-12 col-md-8 col-md-offset-2">
                 {%  include 'navigation.html' %}
                 {% block content %}{% endblock content %}
                 {%  include 'footer.html' %}

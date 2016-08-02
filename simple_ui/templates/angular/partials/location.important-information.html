@@ -3,7 +3,7 @@
 {% load tz %}
 {% load l10n %}
 
-<div class="s12 center col" ng-show="!ctrl.loaded">Loading...</div>
+<div class="col-xs-12 text-center" ng-show="!ctrl.loaded">Loading...</div>
 
 <div id="container" class="language-{{ LANGUAGE_CODE }}" ng-show="ctrl.loaded">
     <div ng-repeat="b in ctrl.data.location.metadata.banners" class="banner" ng-bind-html="b">
