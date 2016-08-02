@@ -1,12 +1,12 @@
 $('document').ready(function () {
     var $body = $('body');
-    if (theme == 'light') {
-        $body.addClass('light-theme');
-        $('#theme-checkbox').prop('checked', false);
-    }
-    else {
+    if (theme == 'dark') {
         $body.addClass('dark-theme');
         $('#theme-checkbox').prop('checked', true);
+    }
+    else {
+        $body.addClass('light-theme');
+        $('#theme-checkbox').prop('checked', false);
     }
     $('#theme-checkbox').on('change', function () {
         if (this.checked) {
