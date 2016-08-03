@@ -1,3 +1,44 @@
-<div>
-    Services
+{% load static %}
+{% load i18n %}
+{% load tz %}
+{% load l10n %}
+{% load marktags %}
+{% cookie 'theme' as theme %}
+
+<div class="col-xs-12 text-center" ng-show="!ctrl.loaded">Loading...</div>
+
+<div id="container" class="container service-information-choice" ng-show="ctrl.loaded">
+    <div class="col-xs-10 col-xs-offset-1 content custom-form">
+        <div class="row refugee-page-header">
+            <i class="fa fa-wrench" aria-hidden="true"></i> Services
+        </div>
+        <div class="row buttons">
+            <div class="col-xs-6 text-center">
+                <a ui-sref="importantInformation({slug: ctrl.slug})" class="grey-button-medium"><i class="fa fa-info small" aria-hidden="true"></i> Important Information</a>
+            </div>
+            <div class="col-xs-6 text-center">
+                <a ui-sref="services({slug: ctrl.slug})" class="grey-button-medium"><i class="fa fa-wrench small" aria-hidden="true"></i> Services</a>
+            </div>
+        </div>
+        <div class="row location-bar-header">
+            <div class="col-xs-4 center">
+            </div>
+            <div class="col-xs-4 text-center font-bold">
+                Your location:
+            </div>
+            <div class="col-xs-4 text-center">
+                <a ui-sref="location" class="change-location-button">CHANGE LOCATION <i class="material-icons">my_location</i></a>
+            </div>
+        </div>
+        <div class="row location-bar">
+            <region-name region="ctrl.data.location"></region-name>
+        </div>
+        <div class="row">
+            <region-map region="ctrl.data.location.envelope" theme="{{ theme }}"></region-map>
+        </div>
+        <search-bar search="ctrl.search"></search-bar>
+        <div class="row">
+            <services-list filter="ctrl.search" location-slug="ctrl.slug"></services-list>
+        </div>
+    </div>
 </div>

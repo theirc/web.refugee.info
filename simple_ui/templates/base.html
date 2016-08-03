@@ -19,6 +19,7 @@
     <script type="text/javascript" src='{% static 'angular-ui-router/release/angular-ui-router.min.js' %}'></script>
     <script type="text/javascript" src='{% static 'angular-cookies/angular-cookies.min.js' %}'></script>
     <script type="text/javascript" src='{% static 'angular-sanitize/angular-sanitize.min.js' %}'></script>
+    <script type="text/javascript" src='{% static 'ngInfiniteScroll/build/ng-infinite-scroll.min.js' %}'></script>
     <script type="text/javascript" src="{% static 'djng/js/django-angular.js' %}"></script>
 
     <script type="text/javascript" src='{% static 'leaflet/dist/leaflet.js' %}'></script>
@@ -30,14 +31,25 @@
 
     {% compress js %}
         <script type="text/javascript" src='{% static 'js/refugeeApp/app.js' %}'></script>
+
+        <script type="text/javascript" src='{% static 'js/refugeeApp/services/LocationService.js' %}'></script>
+
         <script type="text/javascript" src='{% static 'js/refugeeApp/controllers/LocationChoiceController.js' %}'></script>
         <script type="text/javascript" src='{% static 'js/refugeeApp/controllers/LocationDetailsController.js' %}'></script>
+        <script type="text/javascript" src='{% static 'js/refugeeApp/controllers/LocationServicesController.js' %}'></script>
 
         <script type="text/javascript" src='{% static 'js/refugeeApp/directives/regionChoice.js' %}'></script>
         <script type="text/javascript" src='{% static 'js/refugeeApp/directives/regionName.js' %}'></script>
         <script type="text/javascript" src='{% static 'js/refugeeApp/directives/scrollToAnchor.js' %}'></script>
         <script type="text/javascript" src='{% static 'js/refugeeApp/directives/regionMap.js' %}'></script>
+        <script type="text/javascript" src='{% static 'js/refugeeApp/directives/servicesList.js' %}'></script>
+        <script type="text/javascript" src='{% static 'js/refugeeApp/directives/searchBar.js' %}'></script>
     {% endcompress %}
+
+    <script type="text/javascript">
+        angular.module('refugeeApp').constant('apiUrl', '{{ API_URL }}');
+    </script>
+
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
     <link rel="stylesheet" type="text/css" href="{% static 'bootstrap/dist/css/bootstrap.css' %}" media="screen,projection">

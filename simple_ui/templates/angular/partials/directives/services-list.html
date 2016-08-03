@@ -1,0 +1,27 @@
+<div class="service-list" ng-show="ctrl.loaded">
+    <div infinite-scroll="ctrl.getNextPage()" infinite-scroll-disabled='ctrl.busy' infinite-scroll-container="'.service-list'">
+        <div class="row" ng-repeat="rows in ctrl.chunkedServicesList">
+            <div class="col-md-4" ng-repeat="item in rows">
+                <div class="col-xs-2 col-md-3">
+                    <span class="fa {$ ctrl.getServiceIcon(item.type) $} fa-2x service-icon"></span>
+                </div>
+                <div class="col-xs-10 col-md-9 service-info">
+                    <div>
+                        <h4 class="font-bold">{$ item.name $}</h4>
+                    </div>
+                    <div>
+                        <h5>
+                            <span class="fa fa-map-marker" style="color: #989898"></span>
+                            <region-name region="ctrl.location"></region-name>
+                        </h5>
+                    </div>
+                    <div>
+                        <h6>RATING: TODO</h6>
+                    </div>
+                </div>
+            </div>
+            <div ng-show="ctrl.busy">Loading...</div>
+        </div>
+        <div style='clear: both;'></div>
+    </div>
+</div>

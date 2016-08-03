@@ -1,4 +1,4 @@
-angular.module('refugeeApp', ['ui.router', 'ngCookies', 'ngSanitize', 'djng.rmi', 'leaflet-directive'])
+angular.module('refugeeApp', ['ui.router', 'ngCookies', 'ngSanitize', 'djng.rmi', 'leaflet-directive', 'infinite-scroll'])
     .config(function($stateProvider, $urlRouterProvider, $interpolateProvider, $httpProvider) {
         $interpolateProvider.startSymbol('{$');
         $interpolateProvider.endSymbol('$}');
@@ -26,6 +26,7 @@ angular.module('refugeeApp', ['ui.router', 'ngCookies', 'ngSanitize', 'djng.rmi'
             })
             .state('services', {
                 url: '/location/:slug/services',
-                templateUrl: 'partials/location.services.html'
+                templateUrl: 'partials/location.services.html',
+                controller: 'LocationServicesController as ctrl'
             });
     });
