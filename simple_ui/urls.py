@@ -16,14 +16,17 @@ Including another URLconf
 from django.conf.urls import url, patterns, include
 from django.views.generic import TemplateView
 
-from simple_ui.views import LocationJSONView
+from simple_ui.views import LocationJSONView, LandingPageView
 from . import views
 
 
 directives_patterns = [
     url(r'^region-choice.html$',
         TemplateView.as_view(template_name='angular/partials/directives/region-choice.html'),
-        name='region-choice')
+        name='region-choice'),
+    url(r'^services-list.html$',
+        TemplateView.as_view(template_name='angular/partials/directives/services-list.html'),
+        name='services-list')
 ]
 
 
@@ -48,5 +51,5 @@ urlpatterns = [
     url(r'^(?P<slug>[a-zA-Z\-0-9]+)/(?P<language>[a-zA-Z\-0-9]+)/?$', views.content, ),
     url(r'^partials/', include(partial_patterns, namespace='partials')),
 
-    url(r'$', TemplateView.as_view(template_name="landing_page.html"))
+    url(r'$', LandingPageView.as_view())
 ]

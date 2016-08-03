@@ -1,4 +1,4 @@
-angular.module('refugeeApp').controller('LocationDetailsController', function($scope, $stateParams, $state, djangoRMI) {
+angular.module('refugeeApp').controller('LocationServicesController', function($scope, $stateParams, djangoRMI) {
     var vm = this;
     vm.data = {};
     vm.loaded = false;

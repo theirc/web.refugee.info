@@ -1,3 +1,5 @@
+$green-icon-color: #39b610;
+
 @mixin transition-mixin($property, $duration) {
   -webkit-transiton: $property #{$duration}s;
   -moz-transition: $property #{$duration}s;
@@ -6,8 +8,19 @@
   -transition: $property #{$duration}s;
 }
 
-@mixin theme($background-color, $form-color, $nav-color, $font-color, $grey-button-background,
-             $border-color, $grey-button-border, $important-info-color) {
+@mixin theme(
+  $background-color,
+  $form-color,
+  $nav-color,
+  $font-color,
+  $grey-button-background,
+  $border-color,
+  $grey-button-border,
+  $important-info-color,
+  $search-bar-bg-color,
+  $search-bar-input-color,
+  $search-bar-title-color
+) {
 
   & {
     color: $font-color;
@@ -381,10 +394,28 @@
     height: 70px;
     text-align: center;
     font-size: 16px;
+    display: inline-block;
+    line-height: 70px;
 
     i {
       font-size: 25px;
       color: #528d57;
+    }
+  }
+
+  .refugee-page-header {
+    height: 80px;
+    line-height: 80px;
+    text-align: left;
+    background-color: $nav-color;
+    font-size: 20px;
+    font-weight: bold;
+    text-transform: uppercase;
+    padding-left: 30px;
+    border-top: 1px solid $grey-button-border;
+
+    .fa-wrench {
+      font-size: 30px;
     }
   }
 
@@ -433,7 +464,8 @@
     text-align: center;
     vertical-align: middle;
     font-size: 20px;
-    color: #f8fefc
+    color: #f8fefc;
+    margin-bottom: 0 !important;
   }
 
   .caption {
@@ -486,6 +518,41 @@
     left: 80px;
   }
 
+  .service-list {
+    height: 500px;
+    overflow-y: scroll;
+
+    .service-icon {
+      color: #FFF;
+      display: inline-block;
+      border: 1px solid $green-icon-color;
+      background-color: $green-icon-color;
+      border-radius: 10px;
+      padding: 10px;
+    }
+  }
+
+  .search-bar {
+    height: 80px;
+    background-color: $search-bar-bg-color;
+    padding: 10px;
+
+    .title {
+      color: $search-bar-title-color;
+      text-transform: uppercase;
+    }
+
+    .input-group-addon,
+    input
+    {
+      background-color: $search-bar-input-color;
+      border: none;
+    }
+
+    i.fa {
+      color: $font-color;
+    }
+  }
 }
 
 html, body {
@@ -516,32 +583,41 @@ body.content-page {
     display: block;
 }
 
-.dark-theme {
-  $background-color : #202020;
-  $form-color : #1a1a1a;
-  $nav-color : #0b0b0b;
-  $font-color : #ffffff;
-  $grey-button-background: #2d2d2d;
-  $grey-button-border: #6a6a6a;
-  $border-color : #303030;
-  $important-info-color: #ffff;
+i.fa {
+  color: #528d57;
+}
 
-  @include theme($background-color, $form-color, $nav-color, $font-color, $grey-button-background,
-                 $border-color, $grey-button-border, $important-info-color);
+
+.dark-theme {
+  @include theme(
+    $background-color : #202020,
+    $form-color : #1a1a1a,
+    $nav-color : #0b0b0b,
+    $font-color : #ffffff,
+    $grey-button-background: #2d2d2d,
+    $grey-button-border: #6a6a6a,
+    $border-color : #303030,
+    $important-info-color: #ffff,
+    $search-bar-bg-color: #323232,
+    $search-bar-input-color: #000,
+    $search-bar-title-color: #919191
+  );
 }
 
 .light-theme {
-  $background-color : #fafafa;
-  $form-color : #ffffff;
-  $nav-color : #fff;
-  $font-color : #000;
-  $grey-button-background: #d2d2d2;
-  $border-color : #dedede;
-  $grey-button-border: #dfdfdf;
-  $important-info-color: #585858;
-
-  @include theme($background-color, $form-color, $nav-color, $font-color, $grey-button-background,
-                 $border-color, $grey-button-border, $important-info-color);
+  @include theme(
+    $background-color : #fafafa,
+    $form-color : #ffffff,
+    $nav-color : #fff,
+    $font-color : #000,
+    $grey-button-background: #d2d2d2,
+    $border-color : #dedede,
+    $grey-button-border: #dfdfdf,
+    $important-info-color: #585858,
+    $search-bar-bg-color: #f5f5f5,
+    $search-bar-input-color: #f2f2f2,
+    $search-bar-title-color: #bbbbbb
+  );
 }
 
 .switch {

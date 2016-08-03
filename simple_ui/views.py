@@ -12,7 +12,7 @@ from django.templatetags.tz import utc
 from django.utils.translation import activate
 from django.views.decorators.cache import cache_page
 from dateutil import parser
-from django.views.generic.base import View
+from django.views.generic.base import View, TemplateView
 from djng.views.mixins import JSONResponseMixin, allow_remote_invocation
 
 CACHE_LENGTH = getattr(settings, 'CACHE_LENGTH', 15) * 60
@@ -396,3 +396,12 @@ class LocationJSONView(JSONResponseMixin, View):
             }
         )
         return context
+
+
+class LandingPageView(TemplateView):
+
+    template_name = 'landing_page.html'
+
+    def get_context_data(self, **kwargs):
+        kwargs['API_URL'] = settings.API_URL
+        return super(LandingPageView, self).get_context_data(**kwargs)

@@ -11,10 +11,10 @@
     <div class="col-xs-10 col-xs-offset-1 content custom-form">
         <div class="row buttons">
             <div class="col-xs-6 text-center">
-                <button ng-click="ctrl.navigateTo('importantInformation')" class="grey-button-medium"><i class="fa fa-info small" aria-hidden="true"></i> Important Information</button>
+                <a ui-sref="importantInformation({slug: ctrl.slug})" class="grey-button-medium"><i class="fa fa-info small" aria-hidden="true"></i> Important Information</a>
             </div>
             <div class="col-xs-6 text-center">
-                <button ng-click="ctrl.navigateTo('services')" class="grey-button-medium"><i class="fa fa-wrench small" aria-hidden="true"></i> Services</button>
+                <a ui-sref="services({slug: ctrl.slug})" class="grey-button-medium"><i class="fa fa-wrench small" aria-hidden="true"></i> Services</a>
             </div>
         </div>
         <div class="row border-top-bottom important-information">
