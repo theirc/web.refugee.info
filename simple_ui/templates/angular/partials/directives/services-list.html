@@ -20,8 +20,9 @@
                     </div>
                 </div>
             </div>
-            <div ng-show="ctrl.busy">Loading...</div>
         </div>
+        <div ng-show="ctrl.busy">Loading...</div>
         <div style='clear: both;'></div>
     </div>
+    <div ng-show="ctrl.services.length === 0 && !ctrl.busy">No services found</div>
 </div>
