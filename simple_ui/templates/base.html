@@ -37,6 +37,7 @@
         <script type="text/javascript" src='{% static 'js/refugeeApp/controllers/LocationChoiceController.js' %}'></script>
         <script type="text/javascript" src='{% static 'js/refugeeApp/controllers/LocationDetailsController.js' %}'></script>
         <script type="text/javascript" src='{% static 'js/refugeeApp/controllers/LocationServicesController.js' %}'></script>
+        <script type="text/javascript" src='{% static 'js/refugeeApp/controllers/NavigationController.js' %}'></script>
 
         <script type="text/javascript" src='{% static 'js/refugeeApp/directives/regionChoice.js' %}'></script>
         <script type="text/javascript" src='{% static 'js/refugeeApp/directives/regionName.js' %}'></script>
@@ -74,7 +75,7 @@
 
     <title>{% block title %}RefugeeInfo{% endblock title %}</title>
 </head>
-<body>
+<body ng-app="refugeeApp">
     {% csrf_token %}
     {% block body %}
         <div class="row">

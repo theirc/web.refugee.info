@@ -1,9 +1,9 @@
-{%  load static %}
-{%  load i18n %}
+{% load static %}
+{% load i18n %}
 {% load marktags %}
 {% cookie 'theme' as theme %}
 
-<div class="navbar navbar-default navbar-refugee" role="navigation">
+<div class="navbar navbar-default navbar-refugee" role="navigation" ng-controller="NavigationController as vm">
     <div class="navbar-inner">
         <div>
             <div class="navbar-header">
@@ -41,15 +41,23 @@
                     </div>
                 </div>
                 <ul class="nav navbar-nav navbar-right">
-                    <li>
-                        <a href="/?language=en">{% trans "English" %}</a>
-                    </li>
-                    <li>
-                        <a href="/?language=ar">{% trans "Arabic" %}</a>
-                    </li>
-                    <li>
-                        <a href="/?language=fa">{% trans "Farsi" %}</a>
-                    </li>
+                    {% language 'en' %}
+                        <li>
+                            <a href="" ng-click="vm.changeLanguage('en')">{% trans "English" %}</a>
+                        </li>
+                    {%  endlanguage %}
+
+                    {% language 'ar' %}
+                        <li>
+                            <a href="" ng-click="vm.changeLanguage('ar')">{% trans "Arabic" %}</a>
+                        </li>
+                    {%  endlanguage %}
+                    {% language 'fa' %}
+                        <li>
+                            <a href="" ng-click="vm.changeLanguage('fa')">{% trans "Farsi" %}</a>
+                        </li>
+                    {%  endlanguage %}
+
                 </ul>
             </div>
         </div>
