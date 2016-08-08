@@ -18,7 +18,7 @@ angular.module('refugeeApp').directive('servicesList', function($state) {
         controller: function($scope, LocationService) {
             var vm = this;
 
-            vm.busy = false;
+            vm.busy = true;
             vm.noMoreData = false;
             vm.chunkedServicesList = [];
             vm.services = [];
@@ -49,6 +49,7 @@ angular.module('refugeeApp').directive('servicesList', function($state) {
                 if (response.data.length > 0) {
                     vm.location = response.data[0];
                 }
+                vm.busy = false;
             });
 
             vm.getServiceIcon = function(url) {
@@ -65,7 +66,7 @@ angular.module('refugeeApp').directive('servicesList', function($state) {
                     return;
                 }
                 vm.busy = true;
-                LocationService.getServices(vm.locationSlug, page, vm.filter).then(function(response) {
+                LocationService.getServices(vm.location, page, vm.filter).then(function(response) {
                     response.data.results.forEach(function(service) {
                         vm.services.push(service);
                     });

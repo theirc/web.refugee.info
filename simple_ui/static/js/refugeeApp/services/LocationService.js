@@ -9,13 +9,17 @@ angular.module('refugeeApp').factory('LocationService', function ($http, apiUrl)
                 }
             });
         },
-        getServices: function (locationSlug, page, search) {
+        getServices: function (location, page, search) {
             page = page || 1;
+
+            var coords = location.centroid.coordinates;
+
             return $http({
                 method: 'GET',
                 url: apiUrl + '/v1/services/search/',
                 params: {
-                    geographicRegion: locationSlug,
+                    geographic_region: location.slug,
+                    closest: coords[0] + ',' + coords[1],
                     page: page,
                     page_size: 12,
                     search: search
