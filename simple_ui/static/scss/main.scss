@@ -13,6 +13,7 @@ $green-icon-color: #39b610;
   $form-color,
   $nav-color,
   $font-color,
+  $font-muted-color,
   $grey-button-background,
   $border-color,
   $grey-button-border,
@@ -325,7 +326,7 @@ $green-icon-color: #39b610;
     color: #fff;
     cursor: pointer;
     margin-bottom: 5px;
-    padding: 10px 0px;
+    padding: 10px 0;
     text-align: center;
     text-overflow: clip
   }
@@ -383,6 +384,12 @@ $green-icon-color: #39b610;
 
     .buttons {
       margin-top: 10px;
+      .col-xs-6:first-of-type{
+        padding: 0 10px 0 0;
+      }
+      .col-xs-6:last-of-type {
+        padding: 0 0 0 10px;
+      }
     }
   }
 
@@ -553,11 +560,105 @@ $green-icon-color: #39b610;
       color: $font-color;
     }
   }
+  .service-details {
+    h1 {
+      margin: 0 0 10px 0;
+    }
+    h2 {
+      margin: 20px 0 15px 0;
+    }
+    p {
+      margin: 0 0 15px 0;
+    }
+    .service-name {
+      font-size: 16px;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+    .service-location {
+      font-size: 13px;
+      color: $green-icon-color;
+      .material-icons {
+        font-size: 15px;
+        position: relative;
+        top: 2px;
+        margin-right: 5px;
+      }
+    }
+    .service-rating {
+      font-size: 14px;
+      text-transform: uppercase;
+      color: $font-muted-color !important;
+      .material-icons {
+        font-size: 17px;
+        position: relative;
+        top: 3px;
+        margin-left: 2px;
+      }
+    }
+    .service-details-bar {
+      border: 0 solid $border-color;
+      border-bottom-width: 1px;
+    }
+    .service-rate-link {
+      text-decoration: underline;
+      font-size: 13px;
+      float: right;
+      color: $font-muted-color !important;
+      &:hover {
+        color: $font-color !important;
+      }
+    }
+    .service-description-title {
+      font-size: 15px;
+    }
+    .service-description-body {
+      font-size: 12px;
+      color: $font-muted-color !important;
+    }
+  }
+  .button-container {
+    margin: 40px 0;
+  }
+  .button {
+    width: 100%;
+    font-size: 12px;
+    padding: 12px 0;
+    display: block;
+    text-align: center;
+    margin-bottom: 8px;
+    border-radius: 3px;
+    cursor: pointer;
+    &:hover {
+      text-decoration: none;
+    }
+  }
+  .button-green {
+    background-color: #00BA50;
+    color: #FFFFFF;
+    &:hover {
+      background-color: #00c96a;
+    }
+  }
+  .button-black {
+    background-color: #000000;
+    color: #FFFFFF;
+    &:hover {
+      background-color: #303030;
+    }
+  }
+  .button-white {
+    background-color: #FFFFFF;
+    color: #000000 !important;
+    &:hover {
+      background-color: #e2e2e2;
+    }
+  }
 }
 
 html, body {
   height: 100%;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Montserrat', Helvetica, Arial, sans-serif;
 }
 
 body.content-page {
@@ -594,6 +695,7 @@ i.fa {
     $form-color : #1a1a1a,
     $nav-color : #0b0b0b,
     $font-color : #ffffff,
+    $font-muted-color: #cbcbcb,
     $grey-button-background: #2d2d2d,
     $grey-button-border: #6a6a6a,
     $border-color : #303030,
@@ -610,6 +712,7 @@ i.fa {
     $form-color : #ffffff,
     $nav-color : #fff,
     $font-color : #000,
+    $font-muted-color: #222222,
     $grey-button-background: #d2d2d2,
     $border-color : #dedede,
     $grey-button-border: #dfdfdf,
@@ -655,4 +758,29 @@ i.fa {
       transition: left 0.3s ease, background .3s ease, box-shadow 0.1s ease;
     }
   }
+}
+.no-padding {
+  padding: 0;
+}
+
+// flex helper classes
+
+.flex {
+  display: flex;
+}
+
+.flex-center {
+  justify-content: center;
+}
+
+.flex-start {
+  justify-content: flex-start;
+}
+
+.flex-end {
+  justify-content: flex-end;
+}
+
+.flex-space-between {
+  justify-content: space-between;
 }

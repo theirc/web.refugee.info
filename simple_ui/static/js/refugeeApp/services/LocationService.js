@@ -1,6 +1,6 @@
-angular.module('refugeeApp').factory('LocationService', function($http, apiUrl) {
+angular.module('refugeeApp').factory('LocationService', function ($http, apiUrl) {
     return {
-        getLocationBySlug: function(locationSlug) {
+        getLocationBySlug: function (locationSlug) {
             return $http({
                 method: 'GET',
                 url: apiUrl + '/v1/region/',
@@ -9,7 +9,7 @@ angular.module('refugeeApp').factory('LocationService', function($http, apiUrl) 
                 }
             });
         },
-        getServices: function(locationSlug, page, search) {
+        getServices: function (locationSlug, page, search) {
             page = page || 1;
             return $http({
                 method: 'GET',
@@ -22,10 +22,22 @@ angular.module('refugeeApp').factory('LocationService', function($http, apiUrl) 
                 }
             });
         },
-        getServiceTypes: function() {
+        getServiceTypes: function () {
             return $http({
                 method: 'GET',
                 url: apiUrl + '/v1/servicetypes/'
+            });
+        },
+        getService: function (serviceId) {
+            return $http({
+                method: 'GET',
+                url: apiUrl + '/v1/services/search/?format=json&id=' + serviceId
+            });
+        },
+        getServiceType: function (service) {
+            return $http({
+                method: 'GET',
+                url: service.type
             });
         }
     };

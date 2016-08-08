@@ -38,12 +38,15 @@
         <script type="text/javascript" src='{% static 'js/refugeeApp/controllers/LocationDetailsController.js' %}'></script>
         <script type="text/javascript" src='{% static 'js/refugeeApp/controllers/LocationServicesController.js' %}'></script>
         <script type="text/javascript" src='{% static 'js/refugeeApp/controllers/NavigationController.js' %}'></script>
+        <script type="text/javascript" src='{% static 'js/refugeeApp/controllers/ServiceDetailsController.js' %}'></script>
 
         <script type="text/javascript" src='{% static 'js/refugeeApp/directives/regionChoice.js' %}'></script>
         <script type="text/javascript" src='{% static 'js/refugeeApp/directives/regionName.js' %}'></script>
         <script type="text/javascript" src='{% static 'js/refugeeApp/directives/scrollToAnchor.js' %}'></script>
         <script type="text/javascript" src='{% static 'js/refugeeApp/directives/regionMap.js' %}'></script>
         <script type="text/javascript" src='{% static 'js/refugeeApp/directives/servicesList.js' %}'></script>
+        <script type="text/javascript" src='{% static 'js/refugeeApp/directives/serviceDetails.js' %}'></script>
+        <script type="text/javascript" src='{% static 'js/refugeeApp/directives/serviceMap.js' %}'></script>
         <script type="text/javascript" src='{% static 'js/refugeeApp/directives/searchBar.js' %}'></script>
     {% endcompress %}
 
@@ -56,6 +59,8 @@
     <link rel="stylesheet" type="text/css" href="{% static 'bootstrap/dist/css/bootstrap.css' %}" media="screen,projection">
     <link rel="stylesheet" type="text/css" href="{% static 'components-font-awesome/css/font-awesome.min.css' %}" media="screen,projection">
     <link rel="stylesheet" href='{% static 'leaflet/dist/leaflet.css' %}' />
+
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet">
 
     {% compress css %}
     <link rel="stylesheet" type="text/x-scss" class="theme" href="{% static 'scss/main.scss' %}">
@@ -80,9 +85,9 @@
     {% block body %}
         <div class="row">
             <div class="col-xs-12 col-md-8 col-md-offset-2">
-                {%  include 'navigation.html' %}
+                {% include 'navigation.html' %}
                 {% block content %}{% endblock content %}
-                {%  include 'footer.html' %}
+                {% include 'footer.html' %}
             </div>
         </div>
     {% endblock body %}
