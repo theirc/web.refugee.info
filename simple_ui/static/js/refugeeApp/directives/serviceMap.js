@@ -3,7 +3,7 @@ angular.module('refugeeApp').directive('serviceMap', function () {
         restrict: 'E',
         scope: {
             service: '=',
-            theme: '@?'
+            theme: '=?'
         },
         controller: function ($scope) {
             $scope.center = {
@@ -54,6 +54,7 @@ angular.module('refugeeApp').directive('serviceMap', function () {
                             zoom: 16
                         }
                     });
+
                 };
 
                 scope.$watch('service', function (newValue, oldValue) {
@@ -70,6 +71,7 @@ angular.module('refugeeApp').directive('serviceMap', function () {
                     }
 
                     scope.theme = newValue;
+                    scope.tile = scope.tiles[scope.theme];
                     refreshMap();
                 }, true);
             }
