@@ -3,7 +3,7 @@ angular.module('refugeeApp').directive('regionMap', function(leafletData) {
         restrict: 'E',
         scope: {
             region: '=',
-            theme: '@?'
+            theme: '=?'
         },
         link: {
             pre: function(scope) {
@@ -64,8 +64,8 @@ angular.module('refugeeApp').directive('regionMap', function(leafletData) {
                     if (oldValue === newValue) {
                         return;
                     }
-
                     scope.theme = newValue;
+                    scope.tile = scope.tiles[scope.theme];
                     refreshMap();
                 }, true);
             }

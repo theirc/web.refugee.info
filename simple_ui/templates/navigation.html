@@ -14,22 +14,14 @@
                     <span class="icon-bar"></span>
                 </button>
                 <a class="brand brand-logo img-responsive" style="margin: 0; float: none;" href="#">
-                    {%  if theme == 'dark' %}
-                        <img id="logo" class="theme"  src="{% static "images/logo-dark.png" %}"/>
-                    {% else %}
-                        <img id="logo" class="theme" src="{% static "images/logo-light.png" %}"/>
-                    {%  endif %}
+                    <img id="logo" class="theme"  ng-src="/static/images/logo-{$ baseController.theme() $}.png"/>
                 </a>
             </div>
 
             <div class="navbar-collapse collapse">
                 <div class="nav navbar-nav navbar-left">
                     <div>
-                        {%  if theme == 'dark' %}
-                            <img id="logo-bar" class="theme" src="{%  static 'images/logo-bar-dark.png' %}" style="max-height: 25px"/><br>
-                        {% else %}
-                            <img id="logo-bar" class="theme" src="{%  static 'images/logo-bar-light.png' %}" style="max-height: 25px"/><br>
-                        {%  endif %}
+                        <img id="logo-bar" class="theme" ng-src="/static/images/logo-bar-{$ baseController.theme() $}.png" style="max-height: 25px"/><br>
                     </div>
                     <div>
                         <a href="">

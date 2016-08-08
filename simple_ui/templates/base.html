@@ -24,16 +24,12 @@
 
     <script type="text/javascript" src='{% static 'leaflet/dist/leaflet.js' %}'></script>
     <script type="text/javascript" src='{% static 'angular-leaflet-directive/dist/angular-leaflet-directive.js' %}'></script>
-    <script>
-        var theme = "{{ theme }}"
-    </script>
-    <script type="text/javascript" src='{% static 'js/changeTheme.js' %}'></script>
 
     {% compress js %}
         <script type="text/javascript" src='{% static 'js/refugeeApp/app.js' %}'></script>
 
         <script type="text/javascript" src='{% static 'js/refugeeApp/services/LocationService.js' %}'></script>
-
+        <script type="text/javascript" src='{% static 'js/refugeeApp/controllers/BaseController.js' %}'></script>
         <script type="text/javascript" src='{% static 'js/refugeeApp/controllers/LocationChoiceController.js' %}'></script>
         <script type="text/javascript" src='{% static 'js/refugeeApp/controllers/LocationDetailsController.js' %}'></script>
         <script type="text/javascript" src='{% static 'js/refugeeApp/controllers/LocationServicesController.js' %}'></script>
@@ -63,7 +59,7 @@
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet">
 
     {% compress css %}
-    <link rel="stylesheet" type="text/x-scss" class="theme" href="{% static 'scss/main.scss' %}">
+    <link rel="stylesheet" type="text/x-scss" href="{% static 'scss/main.scss' %}">
     {% endcompress %}
 
 
@@ -80,10 +76,10 @@
 
     <title>{% block title %}RefugeeInfo{% endblock title %}</title>
 </head>
-<body ng-app="refugeeApp">
+<body ng-app="refugeeApp" ng-controller="BaseController as baseController" class="{$ baseController.theme() $}-theme">
     {% csrf_token %}
     {% block body %}
-        <div class="row">
+        <div class="row" >
             <div class="col-xs-12 col-md-8 col-md-offset-2">
                 {% include 'navigation.html' %}
                 {% block content %}{% endblock content %}
