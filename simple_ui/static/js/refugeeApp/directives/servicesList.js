@@ -6,7 +6,7 @@ function chunk(arr, size) {
     return newArr;
 }
 
-angular.module('refugeeApp').directive('servicesList', function() {
+angular.module('refugeeApp').directive('servicesList', function($state) {
     return {
         restrict: 'E',
         templateUrl: '/partials/directives/services-list.html',
@@ -76,6 +76,10 @@ angular.module('refugeeApp').directive('servicesList', function() {
                     }
                     vm.busy = false;
                 });
+            };
+
+            vm.navigateToDetails = function(service) {
+                $state.go('serviceDetails', {slug: $state.params.slug, serviceId: service.id});
             };
         },
         controllerAs: 'ctrl'

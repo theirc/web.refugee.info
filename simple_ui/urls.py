@@ -19,16 +19,17 @@ from django.views.generic import TemplateView
 from simple_ui.views import LocationJSONView, LandingPageView
 from . import views
 
-
 directives_patterns = [
     url(r'^region-choice.html$',
         TemplateView.as_view(template_name='angular/partials/directives/region-choice.html'),
         name='region-choice'),
     url(r'^services-list.html$',
         TemplateView.as_view(template_name='angular/partials/directives/services-list.html'),
-        name='services-list')
+        name='services-list'),
+    url(r'^service-details.html$',
+        TemplateView.as_view(template_name='angular/partials/directives/service-details.html'),
+        name='service-details')
 ]
-
 
 partial_patterns = [
     url(r'^location.html$', TemplateView.as_view(template_name='angular/partials/location.html'),
@@ -40,6 +41,9 @@ partial_patterns = [
         name='location_important_information'),
     url(r'^location.services.html$', TemplateView.as_view(template_name='angular/partials/location.services.html'),
         name='location_services'),
+    url(r'^location.service-details.html$', TemplateView.as_view(
+        template_name='angular/partials/location.service-details.html'
+    ), name='service_details'),
     url(r'^directives/', include(directives_patterns, namespace='directives'))
 ]
 
