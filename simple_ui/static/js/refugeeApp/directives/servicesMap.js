@@ -110,6 +110,7 @@ angular.module('refugeeApp').directive('servicesMap', function(leafletData) {
                         drawServices(map, scope.services);
                     });
                 }, true);
+                refreshMap();
             }
         },
         template: '<leaflet geojson="geojson" tiles="tile" defaults="defaults" style="height: 400px"></leaflet>'

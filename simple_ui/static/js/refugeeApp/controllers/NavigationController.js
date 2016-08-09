@@ -1,4 +1,4 @@
-angular.module('refugeeApp').controller('NavigationController', function ($state, $scope, $cookies, $templateCache) {
+angular.module('refugeeApp').controller('NavigationController', function ($state, $cookies, $templateCache) {
     var vm = this;
     vm.changeLanguage = function (value) {
         $cookies.put('django_language', value);

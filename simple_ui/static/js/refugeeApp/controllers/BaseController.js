@@ -1,4 +1,4 @@
-angular.module('refugeeApp').controller('BaseController', function($scope, $cookies) {
+angular.module('refugeeApp').controller('BaseController', function($scope, $rootScope, $cookies, LoadingOverlayService) {
     var vm = this;
     vm.isDark = $cookies.get('theme') === 'dark';
 
@@ -14,6 +14,19 @@ angular.module('refugeeApp').controller('BaseController', function($scope, $cook
         } else {
             $cookies.put('theme', 'light');
         }
+    });
+
+    var deregisterStateChangeStartHandler = $rootScope.$on('$stateChangeStart', function() {
+        LoadingOverlayService.start();
+    });
+
+    var deregisterStateChangeEndHandler = $rootScope.$on('$stateChangeSuccess', function() {
+        LoadingOverlayService.stop();
+    });
+
+    $rootScope.$on('$destroy', function() {
+        deregisterStateChangeStartHandler();
+        deregisterStateChangeEndHandler();
     });
 
     vm.theme = function() {

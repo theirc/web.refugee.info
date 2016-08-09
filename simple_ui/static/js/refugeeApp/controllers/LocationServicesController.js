@@ -5,41 +5,30 @@ function chunk(arr, size) {
     }
     return newArr;
 }
-angular.module('refugeeApp').controller('LocationServicesController', function($scope, $state, $stateParams, djangoRMI, LocationService) {
+
+angular.module('refugeeApp').controller('LocationServicesController', function($scope, $state, $stateParams, LocationService, location) {
     var vm = this;
-    vm.data = {};
-    vm.loaded = false;
-    vm.busy = true;
+    vm.busy = false;
     vm.noMoreData = false;
     vm.chunkedServicesList = [];
     vm.services = [];
     vm.serviceTypes = {};
-    vm.location = {};
+    vm.slug = $stateParams.slug;
 
-    djangoRMI.location_json_view.get_details({slug: $stateParams.slug}).success(function(data) {
-        vm.data = data;
-        vm.loaded = true;
-    });
+    vm.location = location;
 
-    LocationService.getServiceTypes().then(function(response) {
-        response.data.forEach(function(serviceType) {
+    LocationService.getServiceTypes().then(function (response) {
+        response.data.forEach(function (serviceType) {
             vm.serviceTypes[serviceType.url] = serviceType;
         });
         vm.loaded = true;
     });
 
-    LocationService.getLocationBySlug($stateParams.slug).then(function(response) {
-        if (response.data.length > 0) {
-            vm.location = response.data[0];
-        }
-        vm.busy = false;
-    });
-
     var page = 1;
 
-    $scope.$watch(function() {
+    $scope.$watch(function () {
         return vm.search;
-    }, function(newValue) {
+    }, function (newValue) {
         vm.services = [];
         vm.chunkedServicesList = [];
         vm.noMoreData = false;
@@ -48,7 +37,7 @@ angular.module('refugeeApp').controller('LocationServicesController', function($
         vm.getNextPage();
     });
 
-    vm.getServiceIcon = function(url) {
+    vm.getServiceIcon = function (url) {
         var serviceType = vm.serviceTypes[url];
         if (!serviceType) {
             return;
@@ -57,7 +46,7 @@ angular.module('refugeeApp').controller('LocationServicesController', function($
         }
     };
 
-    vm.getNextPage = function() {
+    vm.getNextPage = function () {
         if (vm.busy || vm.noMoreData) {
             return;
         }
@@ -75,7 +64,7 @@ angular.module('refugeeApp').controller('LocationServicesController', function($
         });
     };
 
-    vm.navigateToDetails = function(service) {
-        $state.go('serviceDetails', {slug: $stateParams.slug, serviceId: service.id});
+    vm.navigateToDetails = function (service) {
+        $state.go('locationDetails.serviceDetails', {slug: $stateParams.slug, serviceId: service.id});
     };
 });

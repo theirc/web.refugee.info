@@ -12,7 +12,7 @@ angular.module('refugeeApp').directive('regionChoice', function($state) {
             };
 
             scope.navigateToDetails = function(region) {
-                $state.go('locationDetails', {slug: region.slug});
+                $state.go('locationDetails.index', {slug: region.slug});
             };
         }
     };

@@ -5,20 +5,17 @@
 {% load marktags %}
 {% cookie 'theme' as theme %}
 
-<div class="col-xs-12 text-center" ng-show="!ctrl.loaded">Loading...</div>
-
-<div class="col-xs-12 col-md-8 col-md-offset-2 view-container" ng-show="ctrl.loaded">
-
+<div class="col-xs-12 col-md-8 col-md-offset-2 view-container">
     <div class="row refugee-page-header">
         <i class="fa {$ ctrl.serviceIcon $}" aria-hidden="true"></i>{$ ctrl.service.name $}
     </div>
     <div class="row buttons">
         <div class="col-sm-6 text-center">
-            <a ui-sref="importantInformation({slug: ctrl.slug})" class="grey-button-medium">
+            <a ui-sref="locationDetails.importantInformation({slug: ctrl.slug})" class="grey-button-medium">
                 <i class="fa fa-info small" aria-hidden="true"></i>Important Information</a>
         </div>
         <div class="col-sm-6 text-center">
-            <a ui-sref="services({slug: ctrl.slug})" class="grey-button-medium">
+            <a ui-sref="locationDetails.services({slug: ctrl.slug})" class="grey-button-medium">
                 <i class="fa fa-wrench small" aria-hidden="true"></i> Services</a>
         </div>
     </div>
@@ -34,7 +31,7 @@
         </div>
     </div>
     <div class="row location-bar">
-        <region-name region="ctrl.data.location"></region-name>
+        <region-name region="ctrl.location"></region-name>
     </div>
     <div class="row">
         <service-map service="ctrl.service" theme="baseController.theme()"></service-map>
