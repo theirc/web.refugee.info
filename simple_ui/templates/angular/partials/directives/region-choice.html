@@ -1,16 +1,22 @@
 {% load i18n %}
 <div>
-    <ul id="locations-{$ region.id $}" class="locations">
+    <ul id="locations-{$ region.id $}" class="locations country">
         <li ng-click="handleClick()">
-            <region-name region="region"></region-name>
+
+            <div class="location-flex" style="width: 220px">
+                <region-flag region="region" style="padding-left: 34px"></region-flag>
+                <region-name region="region" style="position: relative; top: 2px"></region-name>
+            </div>
         </li>
     </ul>
-    <ul class="locations children white" id="region{$ region.id $}" style="display: none">
+    <ul class="locations children" id="region{$ region.id $}" style="display: none">
         <li ng-click="navigateToDetails(region)" ng-if="!region.hidden">
-            <region-name region="region"></region-name>
+            <span class="location-left">{% trans "View info for" %}:</span>
+            <span class="location-center"><region-name region="region"></region-name></span>
         </li>
-        <li ng-repeat="child in region.children" ng-click="navigateToDetails(child)">{% trans "View info for" %}:<br/>
-            <region-name region="child"></region-name>
+        <li ng-repeat="child in region.children" ng-click="navigateToDetails(child)">
+            <span class="location-left">{% trans "View info for" %}:</span>
+            <span class="location-center"><region-name region="child"></region-name></span>
         </li>
     </ul>
 </div>
