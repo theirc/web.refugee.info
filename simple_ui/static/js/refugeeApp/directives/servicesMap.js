@@ -112,6 +112,6 @@ angular.module('refugeeApp').directive('servicesMap', function(leafletData) {
                 }, true);
             }
         },
-        template: '<leaflet geojson="geojson" tiles="tile" style="height: 400px"></leaflet>'
+        template: '<leaflet geojson="geojson" tiles="tile" defaults="defaults" style="height: 400px"></leaflet>'
     };
 });

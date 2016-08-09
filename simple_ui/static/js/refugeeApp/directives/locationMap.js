@@ -2,16 +2,13 @@ angular.module('refugeeApp').directive('locationMap', function () {
     return {
         restrict: 'E',
         scope: {
-            theme: '@?'
+            theme: '=?'
         },
         controller: function ($scope) {
             $scope.center = {
                 lat: 43,
                 lng: 23,
                 zoom: 5
-            };
-            $scope.defaults = {
-                scrollWheelZoom: false
             };
         },
         link: {
@@ -47,6 +44,7 @@ angular.module('refugeeApp').directive('locationMap', function () {
                         return;
                     }
                     scope.theme = newValue;
+                    scope.tile = scope.tiles[scope.theme];
                 }, true);
             }
         },
