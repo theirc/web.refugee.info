@@ -74,6 +74,8 @@ angular.module('refugeeApp').directive('serviceMap', function () {
                     scope.tile = scope.tiles[scope.theme];
                     refreshMap();
                 }, true);
+
+                refreshMap();
             }
         },
         template: '<leaflet markers="markers" lf-center="center" defaults="defaults" tiles="tile" style="height: 400px"></leaflet>'

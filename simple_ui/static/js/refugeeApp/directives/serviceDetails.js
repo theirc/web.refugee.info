@@ -8,7 +8,6 @@ angular.module('refugeeApp').directive('serviceDetails', function () {
         },
         controller: function ($window) {
             var vm = this;
-            vm.service = {};
 
             vm.getDirections = function () {
                 $window.open('https://maps.google.com?daddr=' + vm.service.address, '_blank');

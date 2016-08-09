@@ -25,12 +25,9 @@
                     <div>
                         <img id="logo-bar" class="theme" ng-src="/static/images/logo-bar-{$ baseController.theme() $}.png" style="max-height: 25px"/><br>
                     </div>
-                    <div>
-                        <a href="">
+                    <div ng-show="!!location">
+                        <a href="" ui-sref="locationDetails.aboutUs">
                             <span class="underline">About us</span>
-                        </a>
-                        <a href="">
-                            <span class="underline">Contact</span>
                         </a>
                     </div>
                 </div>

@@ -68,6 +68,7 @@ angular.module('refugeeApp').directive('regionMap', function(leafletData) {
                     scope.tile = scope.tiles[scope.theme];
                     refreshMap();
                 }, true);
+                refreshMap();
             }
         },
         template: '<leaflet geojson="geojson" defaults="defaults" tiles="tile" style="height: 400px"></leaflet>'
