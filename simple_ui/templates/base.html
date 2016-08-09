@@ -24,6 +24,7 @@
 
     <script type="text/javascript" src='{% static 'leaflet/dist/leaflet.js' %}'></script>
     <script type="text/javascript" src='{% static 'angular-leaflet-directive/dist/angular-leaflet-directive.js' %}'></script>
+    <script type="text/javascript" src='{% static 'leaflet.vector-markers/dist/leaflet-vector-markers.js' %}'></script>
 
     {% compress js %}
         <script type="text/javascript" src='{% static 'js/refugeeApp/app.js' %}'></script>
@@ -41,6 +42,7 @@
         <script type="text/javascript" src='{% static 'js/refugeeApp/directives/scrollToAnchor.js' %}'></script>
         <script type="text/javascript" src='{% static 'js/refugeeApp/directives/regionMap.js' %}'></script>
         <script type="text/javascript" src='{% static 'js/refugeeApp/directives/servicesList.js' %}'></script>
+        <script type="text/javascript" src='{% static 'js/refugeeApp/directives/servicesMap.js' %}'></script>
         <script type="text/javascript" src='{% static 'js/refugeeApp/directives/serviceDetails.js' %}'></script>
         <script type="text/javascript" src='{% static 'js/refugeeApp/directives/serviceMap.js' %}'></script>
         <script type="text/javascript" src='{% static 'js/refugeeApp/directives/searchBar.js' %}'></script>
@@ -55,6 +57,7 @@
     <link rel="stylesheet" type="text/css" href="{% static 'bootstrap/dist/css/bootstrap.css' %}" media="screen,projection">
     <link rel="stylesheet" type="text/css" href="{% static 'components-font-awesome/css/font-awesome.min.css' %}" media="screen,projection">
     <link rel="stylesheet" href='{% static 'leaflet/dist/leaflet.css' %}' />
+    <link rel="stylesheet" href="{% static 'leaflet.vector-markers/dist/leaflet-vector-markers.css' %}">
 
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet">
 
