@@ -1,7 +1,7 @@
 {% load i18n %}
 <div class="col-xs-12 text-center" ng-show="!ctrl.loaded">Loading...</div>
 <div ng-cloak ng-show="ctrl.loaded">
-    <location-map></location-map>
+    <location-map theme="baseController.theme()"></location-map>
     <div class="col-xs-12 col-md-8 col-md-offset-2 view-container">
         <div ng-show="!!ctrl.data.closest">
             <h3 class="header-center">{% trans "Closest location:" %}</h3>

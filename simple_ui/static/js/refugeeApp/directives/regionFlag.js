@@ -4,10 +4,10 @@ angular.module('refugeeApp').directive('regionFlag', function() {
         scope: {
             region: '='
         },
-        template: '<img class="region-flag" src="{$ staticUrl $}images/flags/{$ region.code $}.png" />',
+        template: '<img class="region-flag" src="{$ imageSrc $}" />',
 
         controller: function ($scope, staticUrl) {
-            $scope.staticUrl = staticUrl;
+            $scope.imageSrc = staticUrl + 'images/flags/' + $scope.region.code.toLowerCase() + '.png';
         }
     };
 });
