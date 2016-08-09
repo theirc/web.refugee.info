@@ -1,15 +1,17 @@
-angular.module('refugeeApp').directive('serviceMap', function () {
+angular.module('refugeeApp').directive('locationMap', function () {
     return {
         restrict: 'E',
         scope: {
-            service: '=',
             theme: '@?'
         },
         controller: function ($scope) {
             $scope.center = {
-                lat: 0,
-                lng: 0,
-                zoom: 1
+                lat: 43,
+                lng: 23,
+                zoom: 5
+            };
+            $scope.defaults = {
+                scrollWheelZoom: false
             };
         },
         link: {
@@ -40,40 +42,14 @@ angular.module('refugeeApp').directive('serviceMap', function () {
                 scope.tile = scope.tiles[scope.theme];
             },
             post: function (scope) {
-                var refreshMap = function () {
-                    angular.extend(scope, {
-                        markers: {
-                            service: {
-                                lat: scope.service.location.coordinates[1],
-                                lng: scope.service.location.coordinates[0]
-                            }
-                        },
-                        center: {
-                            lat: scope.service.location.coordinates[1],
-                            lng: scope.service.location.coordinates[0],
-                            zoom: 16
-                        }
-                    });
-                };
-
-                scope.$watch('service', function (newValue, oldValue) {
-                    if (oldValue === newValue) {
-                        return;
-                    }
-                    scope.service = newValue;
-                    refreshMap();
-                }, true);
-
                 scope.$watch('theme', function (newValue, oldValue) {
                     if (oldValue === newValue) {
                         return;
                     }
-
                     scope.theme = newValue;
-                    refreshMap();
                 }, true);
             }
         },
-        template: '<leaflet markers="markers" lf-center="center" defaults="defaults" tiles="tile" style="height: 400px"></leaflet>'
+        template: '<leaflet lf-center="center" tiles="tile" defaults="defaults" class="map-container"></leaflet>'
     };
 });

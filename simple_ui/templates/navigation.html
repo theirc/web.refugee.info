@@ -4,32 +4,36 @@
 {% cookie 'theme' as theme %}
 
 <div class="navbar navbar-default navbar-refugee" role="navigation" ng-controller="NavigationController as vm">
-    <div class="navbar-inner">
-        <div>
-            <div class="navbar-header">
-                <button type="button" class="pull-left navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse" aria-expanded="false">
+    <div class="container">
+
+        <div class="navbar-inner">
+            <div class="navbar-header flex">
+                <button type="button" class="pull-left navbar-toggle collapsed" data-toggle="collapse"
+                        data-target=".navbar-collapse" aria-expanded="false">
                     <span class="sr-only">Toggle navigation</span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
                 <a class="brand brand-logo img-responsive" style="margin: 0; float: none;" href="#">
-                    {%  if theme == 'dark' %}
-                        <img id="logo" class="theme"  src="{% static "images/logo-dark.png" %}"/>
+                    {% if theme == 'dark' %}
+                        <img id="logo" class="theme" src="{% static "images/logo-dark.png" %}"/>
                     {% else %}
                         <img id="logo" class="theme" src="{% static "images/logo-light.png" %}"/>
-                    {%  endif %}
+                    {% endif %}
                 </a>
             </div>
 
             <div class="navbar-collapse collapse">
                 <div class="nav navbar-nav navbar-left">
                     <div>
-                        {%  if theme == 'dark' %}
-                            <img id="logo-bar" class="theme" src="{%  static 'images/logo-bar-dark.png' %}" style="max-height: 25px"/><br>
+                        {% if theme == 'dark' %}
+                            <img id="logo-bar" class="theme" src="{% static 'images/logo-bar-dark.png' %}"
+                                 style="max-height: 25px"/>
                         {% else %}
-                            <img id="logo-bar" class="theme" src="{%  static 'images/logo-bar-light.png' %}" style="max-height: 25px"/><br>
-                        {%  endif %}
+                            <img id="logo-bar" class="theme" src="{% static 'images/logo-bar-light.png' %}"
+                                 style="max-height: 25px"/>
+                        {% endif %}
                     </div>
                     <div>
                         <a href="">
@@ -45,18 +49,18 @@
                         <li>
                             <a href="" ng-click="vm.changeLanguage('en')">{% trans "English" %}</a>
                         </li>
-                    {%  endlanguage %}
+                    {% endlanguage %}
 
                     {% language 'ar' %}
                         <li>
                             <a href="" ng-click="vm.changeLanguage('ar')">{% trans "Arabic" %}</a>
                         </li>
-                    {%  endlanguage %}
+                    {% endlanguage %}
                     {% language 'fa' %}
                         <li>
                             <a href="" ng-click="vm.changeLanguage('fa')">{% trans "Farsi" %}</a>
                         </li>
-                    {%  endlanguage %}
+                    {% endlanguage %}
 
                 </ul>
             </div>
