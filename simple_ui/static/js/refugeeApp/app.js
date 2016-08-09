@@ -1,4 +1,5 @@
-angular.module('refugeeApp', ['ui.router', 'ngCookies', 'ngSanitize', 'djng.rmi', 'leaflet-directive', 'infinite-scroll'])
+angular.module('refugeeApp', ['ui.router', 'ngCookies', 'ngSanitize', 'djng.rmi', 'leaflet-directive',
+                              'infinite-scroll'])
     .config(function($stateProvider, $urlRouterProvider, $interpolateProvider, $httpProvider) {
         $interpolateProvider.startSymbol('{$');
         $interpolateProvider.endSymbol('$}');
@@ -12,7 +13,14 @@ angular.module('refugeeApp', ['ui.router', 'ngCookies', 'ngSanitize', 'djng.rmi'
             .state('location', {
                 url: '/location',
                 templateUrl: 'partials/location.html',
-                controller: 'LocationChoiceController as ctrl'
+                controller: 'LocationChoiceController as ctrl',
+                resolve: {
+                    locationData: function(djangoRMI) {
+                        return djangoRMI.location_json_view.get_regions({}).then(function(response) {
+                            return response.data;
+                        });
+                    }
+                }
             })
             .state('locationDetails', {
                 abstract: true,

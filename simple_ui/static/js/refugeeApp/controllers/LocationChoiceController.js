@@ -1,12 +1,6 @@
-angular.module('refugeeApp').controller('LocationChoiceController', function($rootScope, djangoRMI) {
+angular.module('refugeeApp').controller('LocationChoiceController', function($rootScope, locationData) {
     var vm = this;
-    vm.data = [];
-    vm.loaded = false;
+    vm.data = locationData;
 
     $rootScope.location = null;
-    
-    djangoRMI.location_json_view.get_regions({}).success(function(data) {
-        vm.data = data;
-        vm.loaded = true;
-    });
 });

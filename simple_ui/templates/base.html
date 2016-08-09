@@ -25,11 +25,14 @@
     <script type="text/javascript" src='{% static 'leaflet/dist/leaflet.js' %}'></script>
     <script type="text/javascript" src='{% static 'angular-leaflet-directive/dist/angular-leaflet-directive.js' %}'></script>
     <script type="text/javascript" src='{% static 'leaflet.vector-markers/dist/leaflet-vector-markers.js' %}'></script>
+    <script type="text/javascript" src='{% static 'is-loading/jquery.isloading.min.js' %}'></script>
 
     {% compress js %}
         <script type="text/javascript" src='{% static 'js/refugeeApp/app.js' %}'></script>
 
         <script type="text/javascript" src='{% static 'js/refugeeApp/services/LocationService.js' %}'></script>
+        <script type="text/javascript" src='{% static 'js/refugeeApp/services/LoadingOverlayService.js' %}'></script>
+
         <script type="text/javascript" src='{% static 'js/refugeeApp/controllers/BaseController.js' %}'></script>
         <script type="text/javascript" src='{% static 'js/refugeeApp/controllers/LocationChoiceController.js' %}'></script>
         <script type="text/javascript" src='{% static 'js/refugeeApp/controllers/LocationDetailsController.js' %}'></script>
