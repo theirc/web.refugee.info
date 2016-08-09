@@ -1,12 +1,21 @@
-angular.module('refugeeApp').directive('regionMap', function(leafletData) {
+angular.module('refugeeApp').directive('locationMap', function () {
     return {
         restrict: 'E',
         scope: {
-            region: '=',
-            theme: '=?'
+            theme: '@?'
+        },
+        controller: function ($scope) {
+            $scope.center = {
+                lat: 43,
+                lng: 23,
+                zoom: 5
+            };
+            $scope.defaults = {
+                scrollWheelZoom: false
+            };
         },
         link: {
-            pre: function(scope) {
+            pre: function (scope) {
                 angular.extend(scope, {
                     defaults: {
                         scrollWheelZoom: false
@@ -32,44 +41,15 @@ angular.module('refugeeApp').directive('regionMap', function(leafletData) {
                 }
                 scope.tile = scope.tiles[scope.theme];
             },
-            post: function(scope) {
-                var refreshMap = function() {
-                    angular.extend(scope, {
-                        geojson: {
-                            data: scope.region,
-                            style: {
-                                fillColor: "#48b04f",
-                                weight: 2,
-                                opacity: 1,
-                                color: 'white',
-                                fillOpacity: 0.3
-                            }
-                        }
-                    });
-                    var polygon = L.geoJson(scope.geojson.data);
-                    leafletData.getMap().then(function(map) {
-                        map.fitBounds(polygon.getBounds());
-                    });
-                };
-
-                scope.$watch('region', function (newValue, oldValue) {
-                    if (oldValue === newValue) {
-                        return;
-                    }
-                    scope.region = newValue;
-                    refreshMap();
-                }, true);
-
+            post: function (scope) {
                 scope.$watch('theme', function (newValue, oldValue) {
                     if (oldValue === newValue) {
                         return;
                     }
                     scope.theme = newValue;
-                    scope.tile = scope.tiles[scope.theme];
-                    refreshMap();
                 }, true);
             }
         },
-        template: '<leaflet geojson="geojson" defaults="defaults" tiles="tile" style="height: 400px"></leaflet>'
+        template: '<leaflet lf-center="center" tiles="tile" defaults="defaults" class="map-container"></leaflet>'
     };
 });

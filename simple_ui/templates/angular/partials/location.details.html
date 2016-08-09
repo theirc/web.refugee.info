@@ -5,44 +5,45 @@
 {% load marktags %}
 {% cookie 'theme' as theme %}
 
-<div class="col-xs-12 text-center" ng-show="!ctrl.loaded">Loading...</div>
+<div class="col-xs-12 col-md-8 col-md-offset-2 text-center" ng-show="!ctrl.loaded">Loading...</div>
+<div class="col-xs-12 col-md-8 col-md-offset-2 view-container" ng-show="ctrl.loaded">
 
-<div id="container" class="container service-information-choice" ng-show="ctrl.loaded">
-    <div class="col-xs-10 col-xs-offset-1 content custom-form">
-        <div class="row buttons">
-            <div class="col-xs-6 text-center">
-                <a ui-sref="importantInformation({slug: ctrl.slug})" class="grey-button-medium"><i class="fa fa-info small" aria-hidden="true"></i> Important Information</a>
-            </div>
-            <div class="col-xs-6 text-center">
-                <a ui-sref="services({slug: ctrl.slug})" class="grey-button-medium"><i class="fa fa-wrench small" aria-hidden="true"></i> Services</a>
-            </div>
+    <div class="row buttons">
+        <div class="col-sm-6 text-center">
+            <a ui-sref="importantInformation({slug: ctrl.slug})" class="grey-button-medium">
+                <i class="fa fa-info small" aria-hidden="true"></i>
+                Important Information</a>
         </div>
-        <div class="row border-top-bottom important-information">
-            <div class="col-xs-4 text-center border-right">
-                <button class="button-transparent">Asylum Information</button>
-            </div>
-            <div class="col-xs-4 text-center border-right">
-                <button class="button-transparent">Staying Safe</button>
-            </div>
-            <div class="col-xs-4 text-center">
-                <button class="button-transparent">Parents and Families</button>
-            </div>
+        <div class="col-sm-6 text-center">
+            <a ui-sref="services({slug: ctrl.slug})" class="grey-button-medium">
+                <i class="fa fa-wrench small" aria-hidden="true"></i> Services</a>
         </div>
-        <div class="row location-bar-header">
-            <div class="col-xs-4 center">
-            </div>
-            <div class="col-xs-4 text-center font-bold">
-                Your location:
-            </div>
-            <div class="col-xs-4 text-center">
-                <a ui-sref="location" class="change-location-button">CHANGE LOCATION <i class="material-icons">my_location</i></a>
-            </div>
+    </div>
+    <div class="row border-top-bottom important-information">
+        <div class="col-sm-4 text-center border-right no-padding">
+            <button class="button-transparent">Asylum Information</button>
         </div>
-        <div class="row location-bar">
-            <region-name region="ctrl.data.location"></region-name>
+        <div class="col-sm-4 text-center border-right no-padding">
+            <button class="button-transparent">Staying Safe</button>
         </div>
-        <div class="row">
-            <region-map region="ctrl.data.location.envelope" theme="baseController.theme()"></region-map>
+        <div class="col-sm-4 text-center no-padding">
+            <button class="button-transparent">Parents and Families</button>
         </div>
+    </div>
+    <div class="row location-bar-header">
+        <div class="col-xs-4 center">
+        </div>
+        <div class="col-xs-4 text-center font-bold">
+            Your location:
+        </div>
+        <div class="col-xs-4 text-center">
+            <a ui-sref="location" class="change-location-button">CHANGE LOCATION <i class="material-icons">my_location</i></a>
+        </div>
+    </div>
+    <div class="row location-bar">
+        <region-name region="ctrl.data.location"></region-name>
+    </div>
+    <div class="row">
+        <region-map region="ctrl.data.location.envelope" theme="baseController.theme()"></region-map>
     </div>
 </div>

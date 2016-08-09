@@ -1,4 +1,14 @@
-$green-icon-color: #39b610;
+$green-accent-color: #00BA50;
+$green-accent-color-2: #21b149;
+$yellow-accent-color: #FFDF0C;
+
+// bootstrap responsive layout breakpoints
+$screen-sm-min: 768px;
+$screen-xs-max: ($screen-sm-min - 1);
+$screen-md-min: 992px;
+$screen-sm-max: ($screen-md-min - 1);
+$screen-lg-min: 1200px;
+$screen-md-max: ($screen-lg-min - 1);
 
 @mixin transition-mixin($property, $duration) {
   -webkit-transiton: $property #{$duration}s;
@@ -9,42 +19,75 @@ $green-icon-color: #39b610;
 }
 
 @mixin theme(
-  $background-color,
-  $form-color,
-  $nav-color,
-  $font-color,
-  $font-muted-color,
-  $grey-button-background,
-  $border-color,
-  $grey-button-border,
-  $important-info-color,
-  $search-bar-bg-color,
-  $search-bar-input-color,
-  $search-bar-title-color
+  $primary-color,
+  $primary-color-2,
+  $primary-color-3,
+  $primary-color-4,
+  $primary-color-5,
+  $primary-color-6,
+  $divider-color,
+  $divider-color-2,
+  $divider-color-3,
+  $text-color,
+  $text-color-muted,
+  $background-image: '../images/black-background.jpg'
 ) {
 
   & {
-    color: $font-color;
-    background-color: $background-color;
+    background-color: $primary-color-3;
+    background-image: url($background-image);
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-attachment: fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    color: $text-color;
   }
 
   .navbar-refugee {
-    background-color: $nav-color;
-    color: $font-color !important;
+    background-color: $primary-color-3;
+    color: $text-color !important;
     border: none;
-    margin: 10px;
-
+    @media (max-width: $screen-xs-max) {
+      padding: 0 10px;
+    }
+    @media (min-width: $screen-sm-min) {
+      height: 80px;
+      padding: 24px 10px 0 10px;
+    }
     a {
-      color: $font-color !important;
+      color: $text-color !important;
+    }
+    margin: 0;
+
+    .brand-logo img {
+      @media (max-width: $screen-xs-max) {
+        padding-top: 7px;
+        max-height: 40px;
+      }
+      max-height: 45px;
+    }
+
+    @media (min-width: $screen-sm-min) {
+      .navbar-inner {
+        border-bottom: 1px solid $divider-color;
+      }
+      .navbar-collapse {
+        @media (min-width: $screen-sm-min) {
+          padding-top: 5px;
+        }
+      }
     }
   }
 
   li:before {
-    color: $font-color;
+    color: $text-color;
   }
 
   .back-to-top {
-    color: $font-color;
+    color: $text-color;
     font-size: 75%;
   }
 
@@ -54,7 +97,7 @@ $green-icon-color: #39b610;
   }
 
   #container a {
-    color: $font-color
+    color: $text-color
   }
 
   .menu a {
@@ -66,12 +109,12 @@ $green-icon-color: #39b610;
     font-size: 70%;
     margin-top: 30px;
     margin-bottom: 5px;
-    color: $font-color;
+    color: $text-color;
     font-family: 'Courier New', Courier, monospace
   }
 
-  .powered-by a{
-    color: $font-color !important;
+  .powered-by a {
+    color: $text-color !important;
   }
 
   /*
@@ -311,7 +354,6 @@ $green-icon-color: #39b610;
   }
 
   ul.locations {
-    text-align: center;
     display: inline-block;
     padding: 0 0;
     margin: 0 0;
@@ -321,13 +363,10 @@ $green-icon-color: #39b610;
 
   ul.locations li {
     display: block;
-    border: 1px white solid;
     background: #000;
     color: #fff;
     cursor: pointer;
-    margin-bottom: 5px;
-    padding: 10px 0;
-    text-align: center;
+    padding: 10px 15px;
     text-overflow: clip
   }
 
@@ -336,15 +375,43 @@ $green-icon-color: #39b610;
     text-decoration: none;
   }
 
-  ul.locations.white li {
-    background-color: #fff;
+  ul.locations.highlighted li {
+    background-color: $green-accent-color;
+    color: white;
+    text-decoration: none;
+    &:hover {
+      background-color: $green-accent-color-2;
+    }
+  }
+
+  ul.locations.highlighted li a {
     color: #000;
     text-decoration: none;
   }
 
-  ul.locations.white li a {
-    color: #000;
+  ul.locations.country li {
+    background-color: $primary-color;
+    border-top: 1px solid $divider-color;
+    color: $text-color;
     text-decoration: none;
+    padding: 0;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    &:hover {
+      background-color: $primary-color-6;
+    }
+  }
+
+  ul.locations.children li {
+    background-color: $primary-color-5;
+    border-top: 1px solid $divider-color;
+    color: $text-color;
+    text-decoration: none;
+    &:hover {
+      background-color: $primary-color-6;
+    }
   }
 
   ul.locations li.open ul {
@@ -352,7 +419,28 @@ $green-icon-color: #39b610;
     visibility: visible;
     opacity: 1;
   }
-
+  .location-left {
+    font-size: 12px;
+    padding-top: 2px;
+    position: absolute;
+    text-transform: uppercase;
+    @media (max-width: $screen-xs-max) {
+      display: none
+    }
+  }
+  .location-center {
+    text-align: center;
+    display: block;
+  }
+  .location-flex {
+    display: flex;
+    justify-content: flex-start;
+  }
+  .region-flag {
+    height: 24px;
+    width: 54px;
+    padding: 0 15px;
+  }
   .banner {
     border: 1px white solid;
     padding: 5px 5px;
@@ -376,27 +464,30 @@ $green-icon-color: #39b610;
     white-space: nowrap;
   }
 
+  .buttons {
+    margin-top: 10px;
+    @media (min-width: $screen-sm-min) {
+      .col-sm-6:first-of-type {
+        padding: 0 10px 0 0;
+      }
+      .col-sm-6:last-of-type {
+        padding: 0 0 0 10px;
+      }
+    }
+  }
+
   .service-information-choice {
     margin-top: 30px;
     .content {
       padding: 25px;
     }
 
-    .buttons {
-      margin-top: 10px;
-      .col-xs-6:first-of-type{
-        padding: 0 10px 0 0;
-      }
-      .col-xs-6:last-of-type {
-        padding: 0 0 0 10px;
-      }
-    }
   }
 
   .grey-button-medium {
-    border: 1px solid $grey-button-border;
-    color: $font-color;
-    background-color: $grey-button-background;
+    border: 1px solid $divider-color;
+    color: $text-color;
+    background-color: $primary-color-2;
     width: 100%;
     height: 70px;
     text-align: center;
@@ -414,12 +505,12 @@ $green-icon-color: #39b610;
     height: 80px;
     line-height: 80px;
     text-align: left;
-    background-color: $nav-color;
+    background-color: $primary-color;
     font-size: 20px;
     font-weight: bold;
     text-transform: uppercase;
     padding-left: 30px;
-    border-top: 1px solid $grey-button-border;
+    border-top: 1px solid $divider-color-2;
 
     .fa-wrench {
       font-size: 30px;
@@ -427,38 +518,66 @@ $green-icon-color: #39b610;
   }
 
   .border-top-bottom {
-    border-top: 1px solid $border-color;
-    border-bottom: 1px solid $border-color;
+    border-top: 1px solid $divider-color;
+    border-bottom: 1px solid $divider-color;
   }
 
   .border-right {
-    border-right: 1px solid $border-color;
+    border-right: 1px solid $divider-color;
   }
 
   .important-information {
-    height: 70px;
-    color: $important-info-color;
+    @media (min-width: $screen-sm-min) {
+      height: 70px;
+    }
+    color: $primary-color-3;
   }
 
   .button-transparent {
     border: 0;
     background-color: transparent;
-    color: $important-info-color;
+    color: $text-color;
     width: 100%;
     height: 70px;
     text-align: center;
-    font-size: 16px;
+    font-size: 14px;
+    &:hover {
+      background-color: $primary-color-5;
+    }
   }
 
   .change-location-button {
     border: 0;
     background-color: transparent;
-    color: #528d57 !important;
+    color: $green-accent-color !important;
     text-decoration: underline;
   }
 
   .font-bold {
     font-weight: bold;
+  }
+  .service-list-row {
+    @media (max-width: $screen-xs-max) {
+      margin: 0;
+    }
+  }
+  .service-list-item-name {
+    font-weight: bold;
+    font-size: 16px;
+    margin-top: 0;
+  }
+  .service-list-item-location {
+    margin-bottom: 0;
+  }
+  .service-list-item {
+    display: flex;
+    flex-wrap: wrap;
+    height: 80px;
+    align-items: center;
+    cursor: pointer;
+    &:hover {
+      background-color: $primary-color-5;
+    }
   }
 
   .location-bar-header {
@@ -466,7 +585,7 @@ $green-icon-color: #39b610;
   }
 
   .location-bar {
-    background-color: #48b04f;
+    background-color: $green-accent-color;
     font-weight: bold;
     text-align: center;
     vertical-align: middle;
@@ -483,38 +602,30 @@ $green-icon-color: #39b610;
     text-decoration: underline;
   }
 
-  .brand-logo img {
-    max-height: 42px;
-  }
-
   nav {
-    background-color: $nav-color;
-    color: $font-color;
-    a{
-      color: $font-color !important;
+    background-color: $primary-color;
+    color: $text-color;
+    a {
+      color: $text-color !important;
     }
   }
 
-  .side-nav{
-    background-color: $nav-color;
+  .side-nav {
+    background-color: $primary-color;
   }
 
   .lang-divider {
-    border-left: 1px solid $font-color;
+    border-left: 1px solid $text-color;
   }
 
-  .custom-form{
-    background-color: $form-color;
-  }
-
-  .switch label{
-    color: $font-color;
-    .lever{
+  .switch label {
+    color: $text-color;
+    .lever {
       width: 80px;
       height: 2px;
-      background-color: $font-color !important;
-      &:after{
-        background-color: $font-color !important;
+      background-color: $text-color !important;
+      &:after {
+        background-color: $text-color !important;
         height: 10px;
         width: 10px;
         top: -4px;
@@ -526,38 +637,45 @@ $green-icon-color: #39b610;
   }
 
   .service-list {
-    height: 500px;
-    overflow-y: scroll;
-
+    .service-list-divider {
+      border-right: 1px solid $divider-color;
+    }
+    .service-list-item-icon-container {
+      width: 50px;
+      height: 50px;
+      background-color: $green-accent-color;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
     .service-icon {
       color: #FFF;
-      display: inline-block;
-      border: 1px solid $green-icon-color;
-      background-color: $green-icon-color;
-      border-radius: 10px;
-      padding: 10px;
     }
   }
 
   .search-bar {
+    display: flex;
+    align-items: center;
     height: 80px;
-    background-color: $search-bar-bg-color;
+    background-color: $primary-color;
     padding: 10px;
 
     .title {
-      color: $search-bar-title-color;
+      color: $text-color-muted;
       text-transform: uppercase;
     }
 
     .input-group-addon,
-    input
-    {
-      background-color: $search-bar-input-color;
+    input {
+      background-color: $primary-color-2;
       border: none;
+      outline: none;
+      box-shadow: none !important;
     }
 
     i.fa {
-      color: $font-color;
+      color: $text-color;
     }
   }
   .service-details {
@@ -577,7 +695,7 @@ $green-icon-color: #39b610;
     }
     .service-location {
       font-size: 13px;
-      color: $green-icon-color;
+      color: $green-accent-color;
       .material-icons {
         font-size: 15px;
         position: relative;
@@ -588,7 +706,7 @@ $green-icon-color: #39b610;
     .service-rating {
       font-size: 14px;
       text-transform: uppercase;
-      color: $font-muted-color !important;
+      color: $text-color-muted !important;
       .material-icons {
         font-size: 17px;
         position: relative;
@@ -597,16 +715,16 @@ $green-icon-color: #39b610;
       }
     }
     .service-details-bar {
-      border: 0 solid $border-color;
+      border: 0 solid $divider-color;
       border-bottom-width: 1px;
     }
     .service-rate-link {
       text-decoration: underline;
       font-size: 13px;
       float: right;
-      color: $font-muted-color !important;
+      color: $text-color-muted !important;
       &:hover {
-        color: $font-color !important;
+        color: $text-color !important;
       }
     }
     .service-description-title {
@@ -614,7 +732,7 @@ $green-icon-color: #39b610;
     }
     .service-description-body {
       font-size: 12px;
-      color: $font-muted-color !important;
+      color: $text-color-muted !important;
     }
   }
   .button-container {
@@ -634,10 +752,10 @@ $green-icon-color: #39b610;
     }
   }
   .button-green {
-    background-color: #00BA50;
+    background-color: $green-accent-color;
     color: #FFFFFF;
     &:hover {
-      background-color: #00c96a;
+      background-color: $green-accent-color-2;
     }
   }
   .button-black {
@@ -654,10 +772,34 @@ $green-icon-color: #39b610;
       background-color: #e2e2e2;
     }
   }
+  .map-container {
+    height: 400px;
+    width: 100%;
+    border-bottom: 1px solid $divider-color;
+    @media (max-width: $screen-xs-max) {
+      display: none;
+    }
+  }
+  .view-container {
+    margin-top: 20px;
+    @media (max-width: $screen-xs-max) {
+      padding: 10px;
+    }
+    @media (min-width: $screen-sm-min) {
+      padding: 30px;
+    }
+    background-color: $primary-color-4;
+  }
+  .header-center {
+    font-size: 18px;
+    text-align: center;
+    margin: 0 0 10px 0;
+  }
 }
 
 html, body {
-  height: 100%;
+  padding: 0;
+  margin: 0;
   font-family: 'Montserrat', Helvetica, Arial, sans-serif;
 }
 
@@ -674,52 +816,56 @@ body.content-page {
 }
 
 .navbar {
-    position: relative;
+  position: relative;
 }
 
 .brand {
-    position: absolute;
-    left: 50%;
-    margin-left: -50px !important;
-    display: block;
+  position: absolute;
+  left: 50%;
+  @media (max-width: $screen-xs-max) {
+    margin-left: -62px !important;
+  }
+  @media (min-width: $screen-sm-min) {
+    margin-left: -85px !important;
+  }
+  display: block;
 }
 
 i.fa {
   color: #528d57;
 }
 
-
 .dark-theme {
   @include theme(
-    $background-color : #202020,
-    $form-color : #1a1a1a,
-    $nav-color : #0b0b0b,
-    $font-color : #ffffff,
-    $font-muted-color: #cbcbcb,
-    $grey-button-background: #2d2d2d,
-    $grey-button-border: #6a6a6a,
-    $border-color : #303030,
-    $important-info-color: #ffff,
-    $search-bar-bg-color: #323232,
-    $search-bar-input-color: #000,
-    $search-bar-title-color: #919191
+          $primary-color: #2d2d2d,
+          $primary-color-2: #000000,
+          $primary-color-3: #181818,
+          $primary-color-4: #181818,
+          $primary-color-5: #434343,
+          $primary-color-6: #525252,
+          $divider-color: #6E6E6E,
+          $divider-color-2: #373737,
+          $divider-color-3: #BBBBBB,
+          $text-color: #FFFFFF,
+          $text-color-muted: #cbcbcb,
+          $background-image: '../images/black-background.jpg'
   );
 }
 
 .light-theme {
   @include theme(
-    $background-color : #fafafa,
-    $form-color : #ffffff,
-    $nav-color : #fff,
-    $font-color : #000,
-    $font-muted-color: #222222,
-    $grey-button-background: #d2d2d2,
-    $border-color : #dedede,
-    $grey-button-border: #dfdfdf,
-    $important-info-color: #585858,
-    $search-bar-bg-color: #f5f5f5,
-    $search-bar-input-color: #f2f2f2,
-    $search-bar-title-color: #bbbbbb
+          $primary-color: #F4F5F6,
+          $primary-color-2: #EEEEEE,
+          $primary-color-3: #FFFFFF,
+          $primary-color-4: #FFFFFF,
+          $primary-color-5: #DDDDDD,
+          $primary-color-6: #CCCCCC,
+          $divider-color: #E2E2E2,
+          $divider-color-2: #BABABA,
+          $divider-color-3: #F2F2F2,
+          $text-color: #000000,
+          $text-color-muted: #373737,
+          $background-image: '../images/white-background.jpg'
   );
 }
 
@@ -752,13 +898,14 @@ i.fa {
       height: 21px;
       background-color: #F1F1F1;
       border-radius: 21px;
-      box-shadow: 0 1px 3px 1px rgba(0,0,0,0.4);
+      box-shadow: 0 1px 3px 1px rgba(0, 0, 0, 0.4);
       left: -5px;
       top: -3px;
       transition: left 0.3s ease, background .3s ease, box-shadow 0.1s ease;
     }
   }
 }
+
 .no-padding {
   padding: 0;
 }

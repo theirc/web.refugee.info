@@ -76,6 +76,6 @@ angular.module('refugeeApp').directive('serviceMap', function () {
                 }, true);
             }
         },
-        template: '<leaflet markers="markers" lf-center="center" tiles="tile" style="height: 400px"></leaflet>'
+        template: '<leaflet markers="markers" lf-center="center" defaults="defaults" tiles="tile" style="height: 400px"></leaflet>'
     };
 });

@@ -41,15 +41,19 @@
         <script type="text/javascript" src='{% static 'js/refugeeApp/directives/regionName.js' %}'></script>
         <script type="text/javascript" src='{% static 'js/refugeeApp/directives/scrollToAnchor.js' %}'></script>
         <script type="text/javascript" src='{% static 'js/refugeeApp/directives/regionMap.js' %}'></script>
+        <script type="text/javascript" src='{% static 'js/refugeeApp/directives/regionFlag.js' %}'></script>
         <script type="text/javascript" src='{% static 'js/refugeeApp/directives/servicesList.js' %}'></script>
         <script type="text/javascript" src='{% static 'js/refugeeApp/directives/servicesMap.js' %}'></script>
         <script type="text/javascript" src='{% static 'js/refugeeApp/directives/serviceDetails.js' %}'></script>
         <script type="text/javascript" src='{% static 'js/refugeeApp/directives/serviceMap.js' %}'></script>
         <script type="text/javascript" src='{% static 'js/refugeeApp/directives/searchBar.js' %}'></script>
+        <script type="text/javascript" src='{% static 'js/refugeeApp/directives/locationMap.js' %}'></script>
     {% endcompress %}
 
     <script type="text/javascript">
         angular.module('refugeeApp').constant('apiUrl', '{{ API_URL }}');
+        angular.module('refugeeApp').constant('staticUrl', '{{ STATIC_URL }}');
+
     </script>
 
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -80,15 +84,11 @@
     <title>{% block title %}RefugeeInfo{% endblock title %}</title>
 </head>
 <body ng-app="refugeeApp" ng-controller="BaseController as baseController" class="{$ baseController.theme() $}-theme">
-    {% csrf_token %}
-    {% block body %}
-        <div class="row" >
-            <div class="col-xs-12 col-md-8 col-md-offset-2">
-                {% include 'navigation.html' %}
-                {% block content %}{% endblock content %}
-                {% include 'footer.html' %}
-            </div>
-        </div>
-    {% endblock body %}
+{% csrf_token %}
+{% block body %}
+    {% include 'navigation.html' %}
+    {% block content %}{% endblock content %}
+    {% include 'footer.html' %}
+{% endblock body %}
 </body>
 </html>

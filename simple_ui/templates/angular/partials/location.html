@@ -1,21 +1,26 @@
 {% load i18n %}
 <div class="col-xs-12 text-center" ng-show="!ctrl.loaded">Loading...</div>
 <div ng-cloak ng-show="ctrl.loaded">
-    <div ng-show="!!ctrl.data.closest">
-        <h3>{% trans "Closest location:" %}</h3>
-        <ul class="locations  white">
-            <li ng-click="ctrl.navigateTo('/{$ ctrl.data.closest.slug $}/{{ LANGUAGE_CODE }}/')">
-                {% trans "View info for" %}: <br/>
-                {$ ctrl.data.closest.title || ctrl.data.closest.metadata.page_title || ctrl.data.closest.name || '' $}
-                <span ng-if="ctrl.data.closest.distance" style="direction: ltr">({$ ctrl.data.closest.distance | number: 2 $} km)</span>
-            </li>
-        </ul>
-    </div>
+    <location-map></location-map>
+    <div class="col-xs-12 col-md-8 col-md-offset-2 view-container">
+        <div ng-show="!!ctrl.data.closest">
+            <h3 class="header-center">{% trans "Closest location:" %}</h3>
+            <ul class="locations highlighted">
+                <li ng-click="ctrl.navigateTo('/{$ ctrl.data.closest.slug $}/{{ LANGUAGE_CODE }}/')">
+                    <span class="location-left">{% trans "View info for" %}:</span>
+                    <span class="location-center">
+                        {$ ctrl.data.closest.title || ctrl.data.closest.metadata.page_title || ctrl.data.closest.name || '' $}
+                        <span ng-if="ctrl.data.closest.distance" style="direction: ltr">({$ ctrl.data.closest.distance | number: 2 $} km)</span>
+                    </span>
 
-    <div>
-        <h3>{% trans "Other locations available:" %}</h3>
-        <div ng-repeat="region in ctrl.data.regions | filter: !(region.children || !r.hidden)">
-            <region-choice region="region"></region-choice>
+                </li>
+            </ul>
+        </div>
+        <div>
+            <h3 class="header-center" style="margin-top: 30px">{% trans "Where are you?" %}</h3>
+            <div ng-repeat="region in ctrl.data.regions | filter: !(region.children || !r.hidden)">
+                <region-choice region="region"></region-choice>
+            </div>
         </div>
     </div>
 </div>
