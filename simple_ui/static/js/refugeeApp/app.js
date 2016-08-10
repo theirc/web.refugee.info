@@ -72,13 +72,21 @@ angular.module('refugeeApp', ['ui.router', 'ngCookies', 'ngSanitize', 'djng.rmi'
             })
             .state('locationDetails.aboutUs', {
                 url:'/about/',
-                template: '<div ng-bind-html="ctrl.about"></div>',
+                template: '<div class="col-xs-12 col-md-8 col-md-offset-2 view-container">' +
+                          '<h3>About Us</h3><div ng-bind-html="ctrl.getContent()"></div></div>',
                 controller: function(location) {
-                    // TODO: finish this when general info details will be done
                     var vm = this;
-                    vm.about = location.important_information.filter(function(x) {
-                        return x.slug === 'about-us';
-                    })[0].content[0].section;
+
+                    vm.getContent = function() {
+                        var aboutUs = location.important_information.filter(function(x) {
+                            return x.slug === 'about-us';
+                        });
+                        if (aboutUs.length > 0) {
+                            return aboutUs[0].content[0].section;
+                        } else {
+                            return '';
+                        }
+                    };
                 },
                 controllerAs: 'ctrl'
             })

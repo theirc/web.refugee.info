@@ -26,7 +26,7 @@
                         <img id="logo-bar" class="theme" ng-src="/static/images/logo-bar-{$ baseController.theme() $}.png" style="max-height: 25px"/><br>
                     </div>
                     <div ng-show="!!location">
-                        <a href="" ui-sref="locationDetails.aboutUs">
+                        <a href="" ui-sref="locationDetails.aboutUs({slug: location.slug})">
                             <span class="underline">About us</span>
                         </a>
                     </div>
