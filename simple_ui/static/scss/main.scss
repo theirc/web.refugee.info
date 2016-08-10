@@ -517,6 +517,10 @@ $screen-md-max: ($screen-lg-min - 1);
     }
   }
 
+  .border {
+    border: 1px solid $divider-color;
+  }
+
   .border-top-bottom {
     border-top: 1px solid $divider-color;
     border-bottom: 1px solid $divider-color;
