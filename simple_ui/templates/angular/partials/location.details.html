@@ -18,16 +18,8 @@
                 <i class="fa fa-wrench small" aria-hidden="true"></i> Services</a>
         </div>
     </div>
-    <div class="row border-top-bottom important-information">
-        <div class="col-sm-4 text-center border-right no-padding">
-            <button class="button-transparent">Asylum Information</button>
-        </div>
-        <div class="col-sm-4 text-center border-right no-padding">
-            <button class="button-transparent">Staying Safe</button>
-        </div>
-        <div class="col-sm-4 text-center no-padding">
-            <button class="button-transparent">Parents and Families</button>
-        </div>
+    <div class="row border important-information" ng-repeat="info in location.important_information | filter: {hidden: false}">
+        <button class="button-transparent">{$ info.title_en $}</button>
     </div>
     <div class="row location-bar-header">
         <div class="col-xs-4 center">
