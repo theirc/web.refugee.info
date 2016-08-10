@@ -4,71 +4,51 @@ angular.module('refugeeApp').directive('servicesMap', function(leafletData) {
         restrict: 'E',
         scope: {
             region: '=',
-            theme: '=?',
             services: '='
         },
+
         link: {
             pre: function(scope) {
                 angular.extend(scope, {
                     defaults: {
                         scrollWheelZoom: false
                     },
-                    tiles: {
-                        dark: {
-                            url: "http://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png",
-                            options: {
-                                attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-                            }
-                        },
-                        light: {
-                            url: "http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png",
-                            options: {
-                                attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                    layers: {
+                        baselayers: {
+                            googleRoadmap: {
+                                name: 'Google Streets',
+                                layerType: 'ROADMAP',
+                                type: 'google'
                             }
                         }
                     }
                 });
-
-                if (!scope.theme) {
-                    scope.theme = 'dark';
-                }
-                scope.tile = scope.tiles[scope.theme];
             },
             post: function(scope) {
                 var ctrl = scope.$parent.ctrl;
-                var markers = new L.layerGroup();
-                var refreshMap = function() {
-                    angular.extend(scope, {
-                        geojson: {
-                            data: scope.region,
-                            style: {
-                                fillColor: "#48b04f",
-                                weight: 2,
-                                opacity: 1,
-                                color: 'white',
-                                fillOpacity: 0.3
-                            }
-                        }
-                    });
-                    var polygon = L.geoJson(scope.geojson.data);
-                    leafletData.getMap().then(function(map) {
-                        map.fitBounds(polygon.getBounds());
-                    });
-                };
+                var markers = new L.markerClusterGroup({
+                    iconCreateFunction: function(cluster) {
+                        return L.divIcon({
+                            className: 'service-list-item-icon-container',
+                            html: '<span class="service-icon">' + cluster.getChildCount() + '</span>',
+                            iconSize:null
+                        });
+                    }
+                });
+
                 var markerClick = function onClick(e) {
                     ctrl.navigateToDetails(e.target.options.service);
                 };
+
                 var drawServices = function(map, services) {
+                    markers.clearLayers();
                     services.forEach(function(service){
                         var lat = service.location.coordinates[1];
                         var lng = service.location.coordinates[0];
-                        var icon = L.VectorMarkers.icon({
-                            prefix: 'fa',
-                            icon: ctrl.getServiceIcon(service.type),
-                            iconColor: 'white',
-                            markerColor: '#39b610',
-                            spin: false,
-                            shadowSize: [0, 0]
+                        var icon = L.divIcon({
+                            className: 'service-list-item-icon-container',
+                            html:'<span class="fa ' + ctrl.getServiceIcon(service.type) + ' fa-2x service-icon"></span>',
+                            iconSize:null
                         });
                         var marker = L.marker([lat, lng], {
                             icon: icon,
@@ -77,8 +57,8 @@ angular.module('refugeeApp').directive('servicesMap', function(leafletData) {
                         marker.on('click', markerClick);
                         markers.addLayer(marker);
                     });
-                    markers.addTo(map);
-
+                    map.addLayer(markers);
+                    map.fitBounds(markers.getBounds());
                 };
 
                 scope.$watch('region', function (newValue, oldValue) {
@@ -86,33 +66,19 @@ angular.module('refugeeApp').directive('servicesMap', function(leafletData) {
                         return;
                     }
                     scope.region = newValue;
-                    refreshMap();
-                    leafletData.getMap().then(function(map) {
-                        drawServices(map, scope.services);
-                    });
-                }, true);
-
-                scope.$watch('theme', function (newValue, oldValue) {
-                    if (oldValue === newValue) {
-                        return;
-                    }
-                    scope.theme = newValue;
-                    scope.tile = scope.tiles[scope.theme];
-                    refreshMap();
                 }, true);
 
                 scope.$watch('services', function (newValue, oldValue) {
                     if (oldValue === newValue) {
                         return;
                     }
+                    scope.services = newValue;
                     leafletData.getMap().then(function(map) {
-                        markers.clearLayers();
                         drawServices(map, scope.services);
                     });
                 }, true);
-                refreshMap();
             }
         },
-        template: '<leaflet geojson="geojson" tiles="tile" defaults="defaults" style="height: 400px"></leaflet>'
+        template: '<leaflet geojson="geojson" layers="layers" defaults="defaults" style="height: 400px"></leaflet>'
     };
 });

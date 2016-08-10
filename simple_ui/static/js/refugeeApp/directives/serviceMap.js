@@ -1,16 +1,8 @@
-angular.module('refugeeApp').directive('serviceMap', function () {
+angular.module('refugeeApp').directive('serviceMap', function (leafletData) {
     return {
         restrict: 'E',
         scope: {
             service: '=',
-            theme: '=?'
-        },
-        controller: function ($scope) {
-            $scope.center = {
-                lat: 0,
-                lng: 0,
-                zoom: 1
-            };
         },
         link: {
             pre: function (scope) {
@@ -18,43 +10,34 @@ angular.module('refugeeApp').directive('serviceMap', function () {
                     defaults: {
                         scrollWheelZoom: false
                     },
-                    tiles: {
-                        dark: {
-                            url: "http://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png",
-                            options: {
-                                attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-                            }
-                        },
-                        light: {
-                            url: "http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png",
-                            options: {
-                                attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                    layers: {
+                        baselayers: {
+                            googleRoadmap: {
+                                name: 'Google Streets',
+                                layerType: 'ROADMAP',
+                                type: 'google'
                             }
                         }
                     }
                 });
-
-                if (!scope.theme) {
-                    scope.theme = 'dark';
-                }
-                scope.tile = scope.tiles[scope.theme];
             },
             post: function (scope) {
                 var refreshMap = function () {
+                    var lat = scope.service.location.coordinates[1];
+                    var lng = scope.service.location.coordinates[0];
                     angular.extend(scope, {
                         markers: {
                             service: {
-                                lat: scope.service.location.coordinates[1],
-                                lng: scope.service.location.coordinates[0]
+                                lat: lat,
+                                lng: lng
                             }
-                        },
-                        center: {
-                            lat: scope.service.location.coordinates[1],
-                            lng: scope.service.location.coordinates[0],
-                            zoom: 16
                         }
                     });
-
+                    leafletData.getMap().then(function(map) {
+                        var zoom = 16;
+                        map._onResize();
+                        map.setView([lat, lng], zoom);
+                    });
                 };
 
                 scope.$watch('service', function (newValue, oldValue) {
@@ -65,19 +48,9 @@ angular.module('refugeeApp').directive('serviceMap', function () {
                     refreshMap();
                 }, true);
 
-                scope.$watch('theme', function (newValue, oldValue) {
-                    if (oldValue === newValue) {
-                        return;
-                    }
-
-                    scope.theme = newValue;
-                    scope.tile = scope.tiles[scope.theme];
-                    refreshMap();
-                }, true);
-
                 refreshMap();
             }
         },
-        template: '<leaflet markers="markers" lf-center="center" defaults="defaults" tiles="tile" style="height: 400px"></leaflet>'
+        template: '<leaflet markers="markers" defaults="defaults" layers="layers" style="height: 400px"></leaflet>'
     };
 });
