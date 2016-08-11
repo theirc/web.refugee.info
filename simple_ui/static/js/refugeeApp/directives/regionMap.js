@@ -11,26 +11,19 @@ angular.module('refugeeApp').directive('regionMap', function(leafletData) {
                     defaults: {
                         scrollWheelZoom: false
                     },
-                    tiles: {
-                        dark: {
-                            url: "http://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png",
-                            options: {
-                                attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-                            }
-                        },
-                        light: {
-                            url: "http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png",
-                            options: {
-                                attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                    layers: {
+                        baselayers: {
+                            googleRoadmap: {
+                                name: 'Google Streets',
+                                layerType: 'ROADMAP',
+                                type: 'google'
                             }
                         }
                     }
                 });
-
                 if (!scope.theme) {
                     scope.theme = 'dark';
                 }
-                scope.tile = scope.tiles[scope.theme];
             },
             post: function(scope) {
                 var refreshMap = function() {
@@ -65,12 +58,11 @@ angular.module('refugeeApp').directive('regionMap', function(leafletData) {
                         return;
                     }
                     scope.theme = newValue;
-                    scope.tile = scope.tiles[scope.theme];
                     refreshMap();
                 }, true);
                 refreshMap();
             }
         },
-        template: '<leaflet geojson="geojson" defaults="defaults" tiles="tile" style="height: 400px"></leaflet>'
+        template: '<leaflet geojson="geojson" defaults="defaults" layers="layers" style="height: 400px"></leaflet>'
     };
 });
