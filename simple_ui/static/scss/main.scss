@@ -644,18 +644,20 @@ $screen-md-max: ($screen-lg-min - 1);
     .service-list-divider {
       border-right: 1px solid $divider-color;
     }
-    .service-list-item-icon-container {
-      width: 50px;
-      height: 50px;
-      background-color: $green-accent-color;
-      border-radius: 10px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .service-icon {
-      color: #FFF;
-    }
+  }
+
+ .service-list-item-icon-container {
+    width: 50px;
+    height: 50px;
+    background-color: $green-accent-color !important;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .service-icon {
+    color: #FFF;
   }
 
   .search-bar {
@@ -936,7 +938,6 @@ i.fa {
   justify-content: space-between;
 }
 
-
 // loader overlay
 .isloading-wrapper.isloading-right {
   margin-left: 10px;
@@ -961,4 +962,11 @@ i.fa {
   top: 10%;
   z-index: 9000;
   color: black !important;
+}
+
+.leaflet-google-layer{
+    z-index: 0 !important;
+}
+.leaflet-map-pane{
+    z-index: 100;
 }
