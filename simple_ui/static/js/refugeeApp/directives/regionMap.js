@@ -1,9 +1,18 @@
-angular.module('refugeeApp').directive('regionMap', function(leafletData) {
+angular.module('refugeeApp').directive('regionMap', function() {
     return {
         restrict: 'E',
         scope: {
             region: '=',
             theme: '=?'
+        },
+        controller: function ($scope) {
+            var polygon = L.geoJson($scope.region);
+            var cityCenter = polygon.getBounds().getCenter();
+            $scope.center = {
+                lat: cityCenter.lat,
+                lng: cityCenter.lng,
+                zoom: 8
+            };
         },
         link: {
             pre: function(scope) {
@@ -28,20 +37,12 @@ angular.module('refugeeApp').directive('regionMap', function(leafletData) {
             post: function(scope) {
                 var refreshMap = function() {
                     angular.extend(scope, {
-                        geojson: {
-                            data: scope.region,
-                            style: {
-                                fillColor: "#48b04f",
-                                weight: 2,
-                                opacity: 1,
-                                color: 'white',
-                                fillOpacity: 0.3
+                        markers: {
+                            region: {
+                                lat: scope.center.lat,
+                                lng: scope.center.lng,
                             }
-                        }
-                    });
-                    var polygon = L.geoJson(scope.geojson.data);
-                    leafletData.getMap().then(function(map) {
-                        map.fitBounds(polygon.getBounds());
+                        },
                     });
                 };
 
@@ -63,6 +64,6 @@ angular.module('refugeeApp').directive('regionMap', function(leafletData) {
                 refreshMap();
             }
         },
-        template: '<leaflet geojson="geojson" defaults="defaults" layers="layers" style="height: 400px"></leaflet>'
+        template: '<leaflet geojson="geojson" lf-center="center" markers="markers" defaults="defaults" layers="layers" style="height: 400px"></leaflet>'
     };
 });
