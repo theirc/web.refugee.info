@@ -1,15 +1,14 @@
 {% load i18n %}
 <div>
     <ul id="locations-{$ region.id $}" class="locations country">
-        <li ng-click="handleClick()">
-
+        <li data-toggle="collapse" data-target="#region{$ region.id $}">
             <div class="location-flex" style="width: 220px">
                 <region-flag region="region" style="padding-left: 34px"></region-flag>
                 <region-name region="region" style="position: relative; top: 2px"></region-name>
             </div>
         </li>
     </ul>
-    <ul class="locations children" id="region{$ region.id $}" style="display: none">
+    <ul class="locations children panel-collapse collapse" id="region{$ region.id $}">
         <li ng-click="navigateToDetails(region)" ng-if="!region.hidden">
             <span class="location-left">{% trans "View info for" %}:</span>
             <span class="location-center"><region-name region="region"></region-name></span>

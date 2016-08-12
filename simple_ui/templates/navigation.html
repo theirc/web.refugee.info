@@ -25,22 +25,20 @@
                     <div>
                         <img id="logo-bar" class="theme" ng-src="/static/images/logo-bar-{$ baseController.theme() $}.png" style="max-height: 25px"/><br>
                     </div>
-                    <div ng-show="!!location">
-                        <a href="" ui-sref="locationDetails.aboutUs({slug: location.slug})">
-                            <span class="underline">About us</span>
+                    <div style="padding-top: 3px;">
+                        <a href="" class="about-us" ui-sref="locationDetails.aboutUs({slug: location.slug})">About us
                         </a>
                     </div>
                 </div>
                 <ul class="nav navbar-nav navbar-right">
                     {% language 'en' %}
                         <li>
-                            <a href="" ng-click="vm.changeLanguage('en')">{% trans "English" %}</a>
+                            <a href="" class="border-language" ng-click="vm.changeLanguage('en')">{% trans "English" %}</a>
                         </li>
                     {% endlanguage %}
-
                     {% language 'ar' %}
                         <li>
-                            <a href="" ng-click="vm.changeLanguage('ar')">{% trans "Arabic" %}</a>
+                            <a href="" class="border-language" ng-click="vm.changeLanguage('ar')">{% trans "Arabic" %}</a>
                         </li>
                     {% endlanguage %}
                     {% language 'fa' %}
