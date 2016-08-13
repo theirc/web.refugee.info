@@ -1,7 +1,7 @@
 {% load i18n %}
 <div ng-cloak>
     <location-map theme="baseController.theme()"></location-map>
-    <div class="col-xs-12 col-md-8 col-md-offset-2 view-container">
+    <div class="col-xs-12 col-md-8 col-md-offset-2 view-container view-container-padded">
         <div ng-show="!!ctrl.data.closest">
             <h3 class="header-center">{% trans "Closest location:" %}</h3>
             <ul class="locations highlighted">
@@ -11,7 +11,6 @@
                         {$ ctrl.data.closest.title || ctrl.data.closest.metadata.page_title || ctrl.data.closest.name || '' $}
                         <span ng-if="ctrl.data.closest.distance" style="direction: ltr">({$ ctrl.data.closest.distance | number: 2 $} km)</span>
                     </span>
-
                 </li>
             </ul>
         </div>

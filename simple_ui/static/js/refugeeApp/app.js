@@ -67,6 +67,11 @@ angular.module('refugeeApp', ['ui.router', 'ngCookies', 'ngSanitize', 'djng.rmi'
                         return LocationService.getServiceType(service).then(function (response) {
                             return response.data.vector_icon;
                         });
+                    },
+                    serviceType: function(LocationService, service) {
+                        return LocationService.getServiceType(service).then(function (response) {
+                            return response.data.name;
+                        });
                     }
                 }
             })

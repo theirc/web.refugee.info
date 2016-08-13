@@ -5,30 +5,30 @@
 {% load marktags %}
 {% cookie 'theme' as theme %}
 
-<div class="col-xs-12 col-md-8 col-md-offset-2 view-container">
+<div class="col-xs-12 col-md-8 col-md-offset-2 view-container view-container-padded">
 
     <div class="row buttons">
         <div class="col-sm-6 text-center">
             <a ui-sref="locationDetails.importantInformation({slug: ctrl.slug})" class="grey-button-medium">
-                <i class="fa fa-info small" aria-hidden="true"></i>
-                Important Information</a>
+                <i class="fa fa-info important-info-icon" aria-hidden="true"></i>Important Information</a>
         </div>
         <div class="col-sm-6 text-center">
             <a ui-sref="locationDetails.services({slug: ctrl.slug})" class="grey-button-medium">
-                <i class="fa fa-wrench small" aria-hidden="true"></i> Services</a>
+                <i class="fa fa-wrench services-icon" aria-hidden="true"></i>Services</a>
         </div>
     </div>
-    <div class="row border important-information" ng-repeat="info in location.important_information | filter: {hidden: false}">
-        <button class="button-transparent">{$ info.title_en $}</button>
+    <div class="important-information-container">
+        <div class="important-information-item" ng-repeat="info in location.important_information | filter: {hidden: false}">
+            <div class="important-information-item-inner">{$ info.title_en $}</div>
+        </div>
     </div>
+    <div class="important-information divider"></div>
     <div class="row location-bar-header">
-        <div class="col-xs-4 center">
-        </div>
-        <div class="col-xs-4 text-center font-bold">
+        <div class="location-bar-center">
             Your location:
         </div>
-        <div class="col-xs-4 text-center">
-            <a ui-sref="location" class="change-location-button">CHANGE LOCATION <i class="material-icons">my_location</i></a>
+        <div class="location-bar-right">
+            <a ui-sref="location" class="change-location-button">Change location<i class="material-icons">my_location</i></a>
         </div>
     </div>
     <div class="row location-bar">
