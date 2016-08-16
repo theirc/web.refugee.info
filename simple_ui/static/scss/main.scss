@@ -460,6 +460,18 @@ $screen-md-max: ($screen-lg-min - 1);
   .location-flex {
     display: flex;
     justify-content: flex-start;
+    @media (max-width: $screen-xs-max) {
+      width: 100%;
+      justify-content: flex-start;
+      region-flag {
+        border-right: 1px solid $divider-color;
+        position: absolute;
+      }
+      region-name {
+        width: 100%;
+        text-align: center;
+      }
+    }
   }
   .region-flag {
     height: 24px;
@@ -1028,6 +1040,31 @@ $screen-md-max: ($screen-lg-min - 1);
   }
   .sk-fading-circle .sk-circle:before {
     background-color: $text-color-muted;
+  }
+  .cookie-policy-container {
+    position: fixed;
+    bottom: 15px;
+    width: 90%;
+    margin: 0 5%;
+    background-color: $primary-color-3;
+    border: 1px solid $divider-color;
+    font-size: 12px;
+    padding: 10px;
+    @media (min-width: $screen-md-min) {
+      width: 50%;
+      right: 0;
+    }
+    .cookie-policy-button {
+      color: white;
+      text-transform: uppercase;
+      float: right;
+      padding: 6px 12px;
+      background-color: $green-accent-color;
+      cursor: pointer;
+      &:hover {
+        background-color: $green-accent-color-2;
+      }
+    }
   }
 }
 
