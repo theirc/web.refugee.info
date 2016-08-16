@@ -1,4 +1,4 @@
-angular.module('refugeeApp').factory('LocationService', function ($http, apiUrl) {
+angular.module('refugeeApp').factory('LocationService', function ($http, apiUrl, staticUrl) {
     return {
         getLocationBySlug: function (locationSlug) {
             return $http({
@@ -42,6 +42,12 @@ angular.module('refugeeApp').factory('LocationService', function ($http, apiUrl)
             return $http({
                 method: 'GET',
                 url: service.type
+            });
+        },
+        getCountriesJson: function() {
+            return $http({
+                method: 'GET',
+                url: staticUrl + 'data/countries.json'
             });
         }
     };
