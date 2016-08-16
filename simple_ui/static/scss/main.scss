@@ -442,7 +442,6 @@ $screen-md-max: ($screen-lg-min - 1);
 
   ul.locations li.open ul {
     display: block;
-    //visibility: visible;
     opacity: 1;
   }
   .location-left {
@@ -644,7 +643,7 @@ $screen-md-max: ($screen-lg-min - 1);
     display: flex;
     align-items: center;
     justify-content: center;
-    color: white;
+    color: $text-color;
     width: 100%;
     text-align: center;
     cursor: pointer;
@@ -755,7 +754,8 @@ $screen-md-max: ($screen-lg-min - 1);
 
   .location-bar-header {
     display: flex;
-    justify-content: flex-end;
+    width: 100%;
+    justify-content: center;
     margin-bottom: 10px;
     margin-top: 30px;
     align-items: center;
@@ -765,11 +765,15 @@ $screen-md-max: ($screen-lg-min - 1);
       text-align: left;
     }
     text-align: center;
-    width: 100%;
     font-size: 14px;
   }
   .location-bar-right {
-    position: absolute;
+    @media (max-width: $screen-xs-max) {
+      font-size: 11px;
+    }
+      a {
+        float: right;
+      }
   }
 
   .location-bar {
