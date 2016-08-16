@@ -1,6 +1,6 @@
 {% load i18n %}
 <div ng-cloak>
-    <location-map theme="baseController.theme()"></location-map>
+    <location-map theme="baseController.theme()" closest="ctrl.data.closest" regions="ctrl.data.regions" countries="ctrl.countries"></location-map>
     <div class="col-xs-12 col-md-8 col-md-offset-2 view-container view-container-padded">
         <div ng-show="!!ctrl.data.closest">
             <h3 class="header-center">{% trans "Closest location:" %}</h3>
@@ -16,7 +16,7 @@
         </div>
         <div>
             <h3 class="header-center" style="margin-top: 30px">{% trans "Where are you?" %}</h3>
-            <div ng-repeat="region in ctrl.data.regions | filter: !(region.children || !r.hidden)">
+            <div ng-repeat="region in ctrl.data.regions">
                 <region-choice region="region"></region-choice>
             </div>
         </div>

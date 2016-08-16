@@ -19,6 +19,11 @@ angular.module('refugeeApp', ['ui.router', 'ngCookies', 'ngSanitize', 'djng.rmi'
                         return djangoRMI.location_json_view.get_regions({}).then(function(response) {
                             return response.data;
                         });
+                    },
+                    countriesJson: function(LocationService) {
+                        return LocationService.getCountriesJson().then(function(response) {
+                            return response.data;
+                        });
                     }
                 }
             })

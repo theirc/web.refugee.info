@@ -25,6 +25,7 @@
     "leaflet.vector-markers": "https://github.com/jfsebastian/Leaflet.vector-markers.git#7a0c707c2cf2f758f57329772ca6f26a1de27452",
     "is-loading": "^1.0.6",
     "leaflet.markercluster": "#leaflet-0.7",
-    "leaflet-plugins": "^1.9.0"
+    "leaflet-plugins": "^1.9.0",
+    "Leaflet.label": "^0.2.1"
   }
 }
