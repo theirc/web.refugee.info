@@ -28,8 +28,15 @@ angular.module('refugeeApp').directive('locationMap', function (leafletData) {
             regions: '=?',
             countries: '=?'
         },
-        controller: function ($scope, $filter) {
+        controller: function ($scope, $filter, $state) {
+            $scope.countryNames = {};
+            $scope.regions.forEach(function(region){
+                $scope.countryNames[region.code] = region.title || region.name;
+            });
             $scope.closestCountry = $filter('filter')($scope.regions, {id: $scope.closest.parent || $scope.closest.id})[0];
+            $scope.navigateTo = function(slug) {
+                $state.go('locationDetails.index', {slug: slug});
+            };
         },
         link: {
             pre: function (scope) {
@@ -58,6 +65,43 @@ angular.module('refugeeApp').directive('locationMap', function (leafletData) {
                 scope.tile = scope.tiles[scope.theme];
             },
             post: function (scope) {
+                var markers = new L.layerGroup();
+
+                function onMarkerClick(e) {
+                    scope.navigateTo(e.target.options.location.slug);
+                }
+
+                function clickFeature(e) {
+                    markers.clearLayers();
+                    var layer = e.target;
+                    leafletData.getMap().then(function (map) {
+                        var featureCode = layer.feature.properties.iso_a2;
+                        var country = scope.regions.filter(function (region) {
+                            return region.code == featureCode;
+                        })[0];
+                        var cities = country.children;
+                        if (cities.length > 0) {
+                            cities.forEach(function (city) {
+                                buildMarker(city);
+                            });
+                        }
+                        else {
+                            buildMarker(country);
+                        }
+                        markers.addTo(map);
+                        map.fitBounds(layer.getBounds());
+                    });
+                }
+
+                var buildMarker = function (location) {
+                    var polygon = L.geoJson(location.envelope);
+                    var latLng = polygon.getBounds().getCenter();
+                    L.marker(latLng, {location: location})
+                        .addTo(markers)
+                        .on('click', onMarkerClick)
+                        .bindLabel(location.title || location.name);
+                };
+
                 var refreshMap = function () {
                     angular.extend(scope, {
                         geojson: {
@@ -86,7 +130,10 @@ angular.module('refugeeApp').directive('locationMap', function (leafletData) {
                                 }
                             },
                             onEachFeature: function (feature, layer) {
-                                layer.bindLabel(feature.properties.name);
+                                layer.on({
+                                    click: clickFeature
+                                });
+                                layer.bindLabel(scope.countryNames[feature.properties.iso_a2]);
                             }
                         }
                     });
