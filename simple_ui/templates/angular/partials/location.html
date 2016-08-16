@@ -5,7 +5,7 @@
         <div ng-show="!!ctrl.data.closest">
             <h3 class="header-center">{% trans "Closest location:" %}</h3>
             <ul class="locations highlighted">
-                <li ng-click="ctrl.navigateTo('/{$ ctrl.data.closest.slug $}/{{ LANGUAGE_CODE }}/')">
+                <li ng-click="ctrl.navigateTo(ctrl.data.closest.slug)">
                     <span class="location-left">{% trans "View info for" %}:</span>
                     <span class="location-center">
                         {$ ctrl.data.closest.title || ctrl.data.closest.metadata.page_title || ctrl.data.closest.name || '' $}
