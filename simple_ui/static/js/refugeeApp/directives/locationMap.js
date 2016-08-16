@@ -29,7 +29,7 @@ angular.module('refugeeApp').directive('locationMap', function (leafletData) {
             countries: '=?'
         },
         controller: function ($scope, $filter) {
-            $scope.closestCountry = $filter('filter')($scope.regions, {id: $scope.closest.parent})[0];
+            $scope.closestCountry = $filter('filter')($scope.regions, {id: $scope.closest.parent || $scope.closest.id})[0];
         },
         link: {
             pre: function (scope) {
@@ -72,9 +72,11 @@ angular.module('refugeeApp').directive('locationMap', function (leafletData) {
                             },
                             theme: scope.theme,
                             style: function (feature) {
-                                var featureCode = feature.properties.iso_a2;
-                                if (featureCode == scope.closestCountry.code) {
-                                    return closestCountryStyle;
+                                if (scope.closestCountry) {
+                                    var featureCode = feature.properties.iso_a2;
+                                    if (featureCode == scope.closestCountry.code) {
+                                        return closestCountryStyle;
+                                    }
                                 }
                                 if (scope.theme == 'dark') {
                                     return darkStyle;
@@ -94,7 +96,6 @@ angular.module('refugeeApp').directive('locationMap', function (leafletData) {
                     var polygon = L.geoJson(scope.geojson.data);
                     map.fitBounds(polygon.getBounds());
                 });
-
                 scope.$watch('theme', function (newValue, oldValue) {
                     if (oldValue === newValue) {
                         return;
