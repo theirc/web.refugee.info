@@ -1,6 +1,7 @@
 angular.module('refugeeApp').controller('BaseController', function($scope, $rootScope, $cookies, LoadingOverlayService) {
     var vm = this;
     vm.isDark = $cookies.get('theme') === 'dark';
+    vm.isCookiePolicyAccepted = $cookies.get('cookiePolicy');
 
     $scope.$watch(function() {
         return vm.isDark;
@@ -35,5 +36,12 @@ angular.module('refugeeApp').controller('BaseController', function($scope, $root
         } else {
             return 'light';
         }
+    };
+
+    vm.acceptCookiePolicy = function() {
+        var now = new Date();
+        var exp = new Date(now.getFullYear()+1, now.getMonth(), now.getDate());
+        vm.isCookiePolicyAccepted = true;
+        $cookies.put('cookiePolicy', 'true', {'expires': exp});
     };
 });
