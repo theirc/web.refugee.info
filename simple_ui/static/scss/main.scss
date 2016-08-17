@@ -423,7 +423,9 @@ $screen-md-max: ($screen-lg-min - 1);
     padding: 0;
     height: 40px;
     display: flex;
-    justify-content: center;
+    @media (max-width: $screen-xs-max) {
+      justify-content: center;
+    }
     align-items: center;
     &:hover {
       background-color: $primary-color-6;
@@ -471,6 +473,9 @@ $screen-md-max: ($screen-lg-min - 1);
         width: 100%;
         text-align: center;
       }
+    }
+    @media (min-width: $screen-sm-min) {
+      margin-left: 40%;
     }
   }
   .region-flag {
@@ -620,6 +625,16 @@ $screen-md-max: ($screen-lg-min - 1);
     @media (min-width: $screen-sm-min) {
       border-right: 1px solid $divider-color-2;
       height: 45px;
+    }
+  }
+  .important-information-content {
+    margin: 10px 0;
+    border-top: 1px solid $divider-color-2;
+    border-bottom: 1px solid $divider-color-2;
+    padding: 10px;
+    font-size: 12px;
+    img {
+      max-width: 100%;
     }
   }
   .divider {
@@ -1039,7 +1054,7 @@ $screen-md-max: ($screen-lg-min - 1);
     padding: 0 10px;
   }
   .sk-fading-circle .sk-circle:before {
-    background-color: $text-color-muted;
+    background-color: #CCCCCC;
   }
   .cookie-policy-container {
     position: fixed;
@@ -1135,7 +1150,7 @@ i.fa {
           $divider-color-2: #BABABA,
           $divider-color-3: #F2F2F2,
           $text-color: #000000,
-          $text-color-muted: #373737,
+          $text-color-muted: #454545,
           $background-image: '../images/white-background.jpg'
   );
 }

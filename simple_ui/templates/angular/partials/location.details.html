@@ -18,9 +18,20 @@
         </div>
     </div>
     <div class="important-information-container">
-        <div class="important-information-item" ng-repeat="info in location.important_information | filter: {hidden: false}">
-            <div class="important-information-item-inner">{$ info.title_en $}</div>
+        <div class="important-information-item"
+             ng-repeat="info in ctrl.location.important_information | filter: {hidden: false}"
+             ng-click="ctrl.openImportantInfo(info.id)"
+        >
+            <div class="important-information-item-inner">{$ info.metadata.page_title $}</div>
         </div>
+    </div>
+    <div class="row hidden important-information-content-container"
+         ng-repeat="info in ctrl.location.important_information | filter: {hidden: false}"
+         id="info-{$ info.id $}"
+    >
+        <div class="important-information-content"
+             ng-repeat="item in info.content"
+             ng-bind-html="item.section"></div>
     </div>
     <div class="important-information divider"></div>
     <location-bar></location-bar>
