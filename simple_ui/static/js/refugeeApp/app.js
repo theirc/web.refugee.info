@@ -14,6 +14,9 @@ angular.module('refugeeApp', ['ui.router', 'ngCookies', 'ngSanitize', 'djng.rmi'
                 url: '/location',
                 templateUrl: 'partials/location.html',
                 controller: 'LocationChoiceController as ctrl',
+                params: {
+                    force: false
+                },
                 resolve: {
                     locationData: function(djangoRMI) {
                         return djangoRMI.location_json_view.get_regions({}).then(function(response) {
@@ -99,6 +102,6 @@ angular.module('refugeeApp', ['ui.router', 'ngCookies', 'ngSanitize', 'djng.rmi'
                     };
                 },
                 controllerAs: 'ctrl'
-            })
-        ;
+            });
+
     });
