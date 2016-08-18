@@ -462,6 +462,7 @@ $screen-md-max: ($screen-lg-min - 1);
   .location-flex {
     display: flex;
     justify-content: flex-start;
+    white-space: nowrap;
     @media (max-width: $screen-xs-max) {
       width: 100%;
       justify-content: flex-start;
@@ -813,7 +814,7 @@ $screen-md-max: ($screen-lg-min - 1);
       font-size: 11px;
     }
     a {
-      justify-content: flex-end;
+      float : right;
     }
   }
 
