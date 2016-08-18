@@ -28,13 +28,6 @@ angular.module('refugeeApp', ['ui.router', 'ngCookies', 'ngSanitize', 'djng.rmi'
                             return response.data;
                         });
                     }
-                },
-                onEnter: function($rootScope, $state, $stateParams, $cookies) {
-                    var locationSlug = $cookies.get('locationSlug');
-                    if (locationSlug && !$stateParams.force) {
-                        $rootScope.$broadcast('$stateChangeSuccess');
-                        $state.go('locationDetails.index', {slug: locationSlug});
-                    }
                 }
             })
             .state('locationDetails', {
