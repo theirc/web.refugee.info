@@ -78,6 +78,12 @@ $screen-md-max: ($screen-lg-min - 1);
         -webkit-filter: brightness(140%);
       }
     }
+    .navbar-left{
+      .logo-bar-container{
+        text-align: center;
+        display: inline-block;
+      }
+    }
     .navbar-right {
       padding: 0;
       li {
@@ -109,7 +115,10 @@ $screen-md-max: ($screen-lg-min - 1);
     }
     .about-us {
       text-decoration: underline;
-      padding-top: 2px;
+      padding-right: 2px;
+    }
+    .give-feedback {
+      text-decoration: underline;
     }
   }
 
@@ -151,16 +160,6 @@ $screen-md-max: ($screen-lg-min - 1);
   /*
   Styles for the content pages
   */
-
-  .logo-bar-container {
-    margin: 0;
-    padding: 0;
-    margin-top: 5px;
-  }
-
-  .logo-bar-container hr {
-    margin-top: 3px;
-  }
 
   .line {
     border: 0;
