@@ -2,7 +2,8 @@ angular.module('refugeeApp').directive('regionChoice', function($state) {
     return {
         restrict: 'E',
         scope: {
-            region: '='
+            region: '=',
+            direction: '@'
         },
         templateUrl: '/partials/directives/region-choice.html',
         link: function(scope) {

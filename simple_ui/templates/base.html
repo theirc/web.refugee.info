@@ -4,8 +4,11 @@
 {% load marktags %}
 {% cookie 'theme' as theme %}
 <!DOCTYPE html>
-<html>
-<head lang="en">
+<html ng-app="refugeeApp"
+      ng-controller="BaseController as baseController"
+      dir="{$ baseController.direction() $}"
+      lang="{$ baseController.language $}">
+<head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta content="width=device-width" name="viewport">
@@ -41,7 +44,6 @@
         <script type="text/javascript" src='{% static 'js/refugeeApp/controllers/LocationChoiceController.js' %}'></script>
         <script type="text/javascript" src='{% static 'js/refugeeApp/controllers/LocationDetailsController.js' %}'></script>
         <script type="text/javascript" src='{% static 'js/refugeeApp/controllers/LocationServicesController.js' %}'></script>
-        <script type="text/javascript" src='{% static 'js/refugeeApp/controllers/NavigationController.js' %}'></script>
         <script type="text/javascript" src='{% static 'js/refugeeApp/controllers/ServiceDetailsController.js' %}'></script>
 
         <script type="text/javascript" src='{% static 'js/refugeeApp/directives/regionChoice.js' %}'></script>
@@ -93,7 +95,7 @@
 
     <title>{% block title %}RefugeeInfo{% endblock title %}</title>
 </head>
-<body ng-app="refugeeApp" ng-controller="BaseController as baseController" class="{$ baseController.theme() $}-theme">
+<body class="{$ baseController.theme() $}-theme">
 {% csrf_token %}
 {% block body %}
     {% include 'navigation.html' %}
