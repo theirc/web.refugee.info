@@ -5,13 +5,29 @@
             <i class="material-icons">location_on</i>{$ ctrl.service.address $}</h1>
     </div>
     <div class="col-xs-12 col-sm-10 col-sm-offset-1 no-padding">
+        <img ng-if="!!ctrl.service.image" class="service-image" ng-src="{$ ctrl.service.image $}" />
+
         <h2 class="service-description-title">
             Description
         </h2>
         <p class="service-description-body">{$ ctrl.service.description $}</p>
+
+        <div ng-if="ctrl.showOpeningHours()">
+            <h2 class="service-description-title">Opening hours</h2>
+            <table class="service-opening-hours-table">
+                <tr ng-repeat="day in ctrl.days">
+                    <td>{$ day $}</td>
+                    <td>{$ ctrl.open[$index] $}</td>
+                    <td>-</td>
+                    <td>{$ ctrl.close[$index] $}</td>
+                </tr>
+            </table>
+        </div>
+
         <div class="button-container">
             <a ng-click="ctrl.getDirections()" class="button button-green">Get directions</a>
-            <a class="button button-black">Call</a>
+            <a ng-if="!!ctrl.service.phone_number" class="button button-black"
+            ><i class="fa fa-phone" aria-hidden="true"></i>{$ ctrl.service.phone_number $}</a>
             <a class="button button-white">Share</a>
         </div>
     </div>

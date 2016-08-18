@@ -8,9 +8,26 @@ angular.module('refugeeApp').directive('serviceDetails', function () {
         },
         controller: function ($window) {
             var vm = this;
+            vm.days = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'];
+            vm.open = [];
+            vm.close = [];
 
             vm.getDirections = function () {
                 $window.open('https://maps.google.com?daddr=' + vm.service.address, '_blank');
+            };
+
+            vm.showOpeningHours = function () {
+                for (var i = 0; i <= vm.days.length; i++) {
+                    if (vm.service[vm.days[i] + '_open']) {
+                        vm.open[i] = vm.service[vm.days[i] + '_open'];
+                    }
+                    if (vm.service[vm.days[i] + '_open']) {
+                        vm.close[i] = vm.service[vm.days[i] + '_close'];
+                    }
+                }
+                if (vm.open.length || vm.close.length ) {
+                    return true;
+                }
             };
         },
         controllerAs: 'ctrl'

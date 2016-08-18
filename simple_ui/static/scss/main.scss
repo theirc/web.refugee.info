@@ -985,21 +985,42 @@ $screen-md-max: ($screen-lg-min - 1);
       font-size: 12px;
       color: $text-color-muted !important;
     }
+    .service-image {
+      max-width: 100%;
+      margin: 8px 0;
+    }
+    .service-opening-hours-table {
+      font-size: 12px;
+      color: $text-color-muted !important;
+      tr {
+        border-bottom: 1px solid $divider-color-2;
+        &:last-of-type {
+          border-bottom: 0;
+        }
+      }
+      td {
+        padding: 5px 10px;
+      }
+    }
   }
   .button-container {
     margin: 40px 0;
   }
   .button {
+    height: 44px;
     width: 100%;
-    font-size: 12px;
-    padding: 12px 0;
-    display: block;
-    text-align: center;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     margin-bottom: 8px;
     border-radius: 3px;
     cursor: pointer;
     &:hover {
       text-decoration: none;
+    }
+    i {
+      font-size: 20px;
     }
   }
   .button-green {
@@ -1014,6 +1035,10 @@ $screen-md-max: ($screen-lg-min - 1);
     color: #FFFFFF;
     &:hover {
       background-color: #303030;
+    }
+    i.fa {
+      color: #FFFFFF;
+      padding: 0 10px;
     }
   }
   .button-white {
