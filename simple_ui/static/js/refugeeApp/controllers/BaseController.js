@@ -73,4 +73,12 @@ angular.module('refugeeApp').controller('BaseController', function($scope, $root
         vm.isCookiePolicyAccepted = true;
         $cookies.put('cookiePolicy', 'true', {'expires': exp});
     };
+
+    vm.getThemeColor = function() {
+        if (vm.isDark) {
+            return '#181818';
+        } else {
+            return '#FFFFFF';
+        }
+    };
 });
