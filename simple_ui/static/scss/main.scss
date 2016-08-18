@@ -620,9 +620,6 @@ $screen-md-max: ($screen-lg-min - 1);
     &:hover {
       background-color: $primary-color-5;
     }
-    .important-information-item-inner.ltr {
-        border-right: 1px solid $divider-color-2;
-    }
     &:last-of-type {
       .important-information-item-inner.ltr {
         border-right: 0;
@@ -816,9 +813,9 @@ $screen-md-max: ($screen-lg-min - 1);
     @media (max-width: $screen-xs-max) {
       font-size: 11px;
     }
-      a {
-        float: right;
-      }
+    a {
+      justify-content: flex-end;
+    }
   }
 
   .location-bar {
