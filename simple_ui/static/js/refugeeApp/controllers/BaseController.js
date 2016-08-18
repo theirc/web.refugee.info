@@ -3,7 +3,7 @@ angular.module('refugeeApp').controller('BaseController', function($scope, $root
     vm.isDark = $cookies.get('theme') === 'dark';
     vm.isCookiePolicyAccepted = $cookies.get('cookiePolicy');
     vm.language = $cookies.get('django_language');
-    vm.isRTL = vm.language !== 'en';
+    vm.isRTL = vm.language && vm.language !== 'en';
 
     $scope.$watch(function() {
         return vm.isDark;
