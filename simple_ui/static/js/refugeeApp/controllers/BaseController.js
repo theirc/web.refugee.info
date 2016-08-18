@@ -48,6 +48,17 @@ angular.module('refugeeApp').controller('BaseController', function($scope, $root
         }
     };
 
+    vm.feedbackUrl = function () {
+        switch (vm.language) {
+        case 'ar':
+            return 'https://docs.google.com/forms/d/16KxtpLbQbdj7ohkpAxws65aZuWfeQa8jjgCBvcptfkk/viewform?entry.1237329743=';
+        case 'fa':
+            return 'https://docs.google.com/forms/d/1Kn2L3mEEFAGgn1YrRpaA7bHNTrKXrw8-zp0w6xfz5o0/viewform?entry.1237329743=';
+        default:
+            return 'https://docs.google.com/forms/d/1gc-hN_p5pqC3DoPXxTfCAmlIiCEd1mOIdQMWeAz2n_U/viewform?entry.1237329743=';
+        }
+    };
+
     vm.changeLanguage = function (value) {
         vm.isRTL = !(value === 'en');
         vm.language = value;

@@ -22,12 +22,18 @@
 
             <div class="navbar-collapse collapse">
                 <div class="nav navbar-nav navbar-left">
-                    <div>
-                        <img id="logo-bar" class="theme" ng-src="/static/images/logo-bar-{$ baseController.theme() $}.png" style="max-height: 25px"/><br>
-                    </div>
-                    <div style="padding-top: 3px;">
-                        <a href="" class="about-us" ui-sref="locationDetails.aboutUs({slug: location.slug})">About us
-                        </a>
+                    <div class="logo-bar-container">
+                        <div>
+                            <img id="logo-bar" class="theme" ng-src="/static/images/logo-bar-{$ baseController.theme() $}.png" style="max-height: 25px"/><br>
+                        </div>
+                        <div style="padding-top: 3px;">
+                            <a href="" class="about-us" ui-sref="locationDetails.aboutUs({slug: location.slug})">
+                                About us
+                            </a>
+                            <a ng-href="{$ baseController.feedbackUrl() $}" class="give-feedback">
+                                Give Feedback
+                            </a>
+                        </div>
                     </div>
                 </div>
                 <ul class="nav navbar-nav navbar-right">
