@@ -79,6 +79,7 @@ $screen-md-max: ($screen-lg-min - 1);
       }
     }
     .navbar-right {
+      padding: 0;
       li {
         padding: 12px 0;
         a {
@@ -474,14 +475,26 @@ $screen-md-max: ($screen-lg-min - 1);
         text-align: center;
       }
     }
-    @media (min-width: $screen-sm-min) {
-      margin-left: 40%;
-    }
   }
-  .region-flag {
-    height: 24px;
-    width: 54px;
-    padding: 0 15px;
+  .location-flex.ltr {
+      @media (min-width: $screen-sm-min) {
+        margin-left: 40%;
+      }
+    }
+    .location-flex.rtl {
+      @media (min-width: $screen-sm-min) {
+        margin-right: 40%;
+      }
+    }
+
+  region-flag {
+    display: flex;
+    align-items: center;
+    img {
+      height: 24px;
+      width: 54px;
+      padding: 0 15px;
+    }
   }
   .banner {
     border: 1px white solid;
@@ -558,8 +571,8 @@ $screen-md-max: ($screen-lg-min - 1);
 
   .refugee-page-header {
     height: 80px;
-    line-height: 80px;
-    text-align: left;
+    display: flex;
+    align-items: center;
     background-color: $primary-color-2;
     font-size: 20px;
     font-weight: bold;
@@ -607,9 +620,17 @@ $screen-md-max: ($screen-lg-min - 1);
     &:hover {
       background-color: $primary-color-5;
     }
+    .important-information-item-inner.ltr {
+        border-right: 1px solid $divider-color-2;
+    }
     &:last-of-type {
-      .important-information-item-inner {
-        border-right: 0 !important;
+      .important-information-item-inner.ltr {
+        border-right: 0;
+      }
+    }
+    &:first-of-type {
+      .important-information-item-inner.rtl {
+        border-right: 0;
       }
     }
   }
@@ -923,8 +944,8 @@ $screen-md-max: ($screen-lg-min - 1);
       text-transform: uppercase;
     }
     .service-location {
+      display: flex;
       font-size: 13px;
-      text-align: right;
       color: $green-accent-color;
       .material-icons {
         font-size: 15px;
@@ -946,8 +967,10 @@ $screen-md-max: ($screen-lg-min - 1);
     }
     .service-details-bar {
       border-bottom: 1px solid $divider-color;
-      display: flex;
-      justify-content: space-between;
+      @media (min-width: $screen-sm-min) {
+        display: flex;
+        justify-content: space-between;
+      }
     }
     .service-rate-link {
       text-decoration: underline;
@@ -1037,8 +1060,6 @@ $screen-md-max: ($screen-lg-min - 1);
   .refugee-page-header-icon {
     padding: 0 15px;
     font-size: 30px;
-    position: relative;
-    top: 3px;
     @media (max-width: $screen-xs-max) {
       font-size: 26px;
     }
