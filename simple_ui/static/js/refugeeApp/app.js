@@ -14,6 +14,9 @@ angular.module('refugeeApp', ['ui.router', 'ngCookies', 'ngSanitize', 'djng.rmi'
                 url: '/location',
                 templateUrl: 'partials/location.html',
                 controller: 'LocationChoiceController as ctrl',
+                params: {
+                    force: false
+                },
                 resolve: {
                     locationData: function(djangoRMI) {
                         return djangoRMI.location_json_view.get_regions({}).then(function(response) {
@@ -24,6 +27,13 @@ angular.module('refugeeApp', ['ui.router', 'ngCookies', 'ngSanitize', 'djng.rmi'
                         return LocationService.getCountriesJson().then(function(response) {
                             return response.data;
                         });
+                    }
+                },
+                onEnter: function($rootScope, $state, $stateParams, $cookies) {
+                    var locationSlug = $cookies.get('locationSlug');
+                    if (locationSlug && !$stateParams.force) {
+                        $rootScope.$broadcast('$stateChangeSuccess');
+                        $state.go('locationDetails.index', {slug: locationSlug});
                     }
                 }
             })
@@ -99,6 +109,6 @@ angular.module('refugeeApp', ['ui.router', 'ngCookies', 'ngSanitize', 'djng.rmi'
                     };
                 },
                 controllerAs: 'ctrl'
-            })
-        ;
+            });
+
     });

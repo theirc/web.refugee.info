@@ -1,4 +1,4 @@
-angular.module('refugeeApp').controller('LocationChoiceController', function($rootScope, $state, locationData, countriesJson) {
+angular.module('refugeeApp').controller('LocationChoiceController', function($rootScope, $state, $cookies, locationData, countriesJson) {
     var vm = this;
     vm.countries = countriesJson;
     vm.data = locationData;
@@ -8,6 +8,7 @@ angular.module('refugeeApp').controller('LocationChoiceController', function($ro
     $rootScope.location = null;
 
     vm.navigateTo = function(slug) {
+        $cookies.put('locationSlug', slug);
         $state.go('locationDetails.index', {slug: slug});
     };
 });
