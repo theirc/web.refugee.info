@@ -1,5 +1,5 @@
 {% load i18n %}
-<div ng-cloak ng-hide="ctrl.locationSlug && !ctrl.slug">
+<div ng-cloak ng-hide="ctrl.locationSlug && !ctrl.force">
     <location-map theme="baseController.theme()" closest="ctrl.data.closest" regions="ctrl.data.regions" countries="ctrl.countries"></location-map>
     <div class="col-xs-12 col-md-8 col-md-offset-2 view-container view-container-padded">
         <div ng-show="!!ctrl.data.closest">
