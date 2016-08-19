@@ -14,8 +14,8 @@
     <div class="row">
         <services-map region="ctrl.location.envelope" services="ctrl.services"></services-map>
     </div>
-    <search-bar search="ctrl.search"></search-bar>
+    <search-bar search="ctrl.search" direction="baseController.direction()"></search-bar>
     <div class="row">
-        <services-list filter="ctrl.search" location-slug="ctrl.slug"></services-list>
+        <services-list></services-list>
     </div>
 </div>

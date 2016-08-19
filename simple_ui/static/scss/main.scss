@@ -772,7 +772,7 @@ $screen-md-max: ($screen-lg-min - 1);
     }
   }
 
- .service-list-item-icon-container {
+  .service-list-item-icon-container {
     width: 50px;
     height: 50px;
     background-color: $green-accent-color !important;
@@ -780,6 +780,22 @@ $screen-md-max: ($screen-lg-min - 1);
     display: flex;
     align-items: center;
     justify-content: center;
+  }
+
+  .services-filter-list.ltr{
+    left: auto;
+    right: 0;
+  }
+
+  .services-filter-list.rtl{
+    right: auto;
+    left: 0;
+  }
+
+  .services-filter-list-icon-container{
+    display: inline-block;
+    margin-top: 3px;
+    margin-bottom: 3px;
   }
 
   .service-icon {
@@ -816,9 +832,24 @@ $screen-md-max: ($screen-lg-min - 1);
       box-shadow: none !important;
     }
 
+    .input-group-btn,
+    button {
+      background-color: $primary-color-2;
+      border: none;
+      padding-left: 5px;
+      outline: none;
+      box-shadow: none !important;
+    }
+
     i.fa {
       color: $text-color;
     }
+    ul{
+        background-color: $primary-color-3;
+      }
+    a{
+        color: $text-color;
+      }
   }
   .service-details-map {
     height: 400px;
