@@ -703,7 +703,10 @@ $screen-md-max: ($screen-lg-min - 1);
       justify-content: flex-start;
       @media (max-width: $screen-xs-max) {
         width: 100%;
-
+      }
+      a {
+        text-decoration: none;
+        color: $text-color;
       }
     }
     i {
