@@ -27,7 +27,7 @@
         <div class="general-info-box" ng-repeat="b in ctrl.location.metadata.banners" ng-bind-html="b"></div>
 
         <div class="general-info-divider" ng-if="ctrl.location.content"></div>
-        <div class="general-info-item" ng-repeat="p in ctrl.location.content | filter: {important: true, hide_from_toc: false}">
+        <div class="general-info-item" ng-show="!p.hide_from_toc" ng-repeat="p in ctrl.location.content | filter: {important: true}">
             <div class="general-info-item-header" data-toggle="collapse" data-target="#info{$ p.index $}">
                 <div class="general-info-item-header-inner">
                     <i class="fa {$ p.vector_icon $}"></i><a name="{$ p.anchor_name || 'Anchor_' + p.index $}" collapse-on-anchor-scroll>{$ p.title $}</a>
@@ -35,10 +35,10 @@
             </div>
             <div class="general-info-item-content collapse" ng-class='{in:$first}' id="info{$ p.index $}" ng-bind-html="p.section"></div>
         </div>
-        <div class="general-info-item" ng-repeat="p in ctrl.location.content | filter: {important: false, hide_from_toc: false}">
+        <div class="general-info-item" ng-show="!p.hide_from_toc" ng-repeat="p in ctrl.location.content | filter: {important: false}">
             <div class="general-info-item-header" data-toggle="collapse" data-target="#info{$ p.index $}">
                 <div class="general-info-item-header-inner">
-                    <i class="fa {$ p.vector_icon $}"></i><a name="{$ p.anchor_name || 'Anchor_' + p.index $}" target="#info{$ p.index $}" collapse-on-anchor-scroll>{$ p.title $}</a>
+                    <i class="fa {$ p.vector_icon $}"></i><a name="{$ p.anchor_name || 'Anchor_' + p.index $}" target="#info{$ p.index $}" item="p" collapse-on-anchor-scroll>{$ p.title $}</a>
                 </div>
             </div>
             <div class="general-info-item-content collapse" id="info{$ p.index $}" ng-bind-html="p.section"></div>
@@ -49,5 +49,21 @@
             {% trans "Last updated on:" %} {$ ctrl.localized_date $} UTC
         </p>
 
+    </div>
+
+    <div id="contentModal" class="modal modal-fullscreen fade" tabindex="-1" role="dialog" aria-labelledby="content-modal" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content" style="overflow: scroll">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title"></h4>
+                </div>
+                <div class="modal-body">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Back</button>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
