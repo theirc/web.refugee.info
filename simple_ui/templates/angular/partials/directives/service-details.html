@@ -16,7 +16,7 @@
             <h2 class="service-description-title">Opening hours</h2>
             <table class="service-opening-hours-table">
                 <tr ng-repeat="day in ctrl.days">
-                    <td>{$ day $}</td>
+                    <td class="day-of-week">{$ day $}</td>
                     <td>{$ ctrl.open[$index] $}</td>
                     <td>-</td>
                     <td>{$ ctrl.close[$index] $}</td>
