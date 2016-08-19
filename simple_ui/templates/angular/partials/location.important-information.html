@@ -27,7 +27,7 @@
         <div class="general-info-box" ng-repeat="b in ctrl.location.metadata.banners" ng-bind-html="b"></div>
 
         <div class="general-info-divider" ng-if="ctrl.location.content"></div>
-        <div class="general-info-item" ng-repeat="p in ctrl.location.content | filter: {important: true}">
+        <div class="general-info-item" ng-repeat="p in ctrl.location.content | filter: {important: true, hide_from_toc: false}">
             <div class="general-info-item-header" data-toggle="collapse" data-target="#info{$ p.index $}">
                 <div class="general-info-item-header-inner">
                     <i class="fa {$ p.vector_icon $}"></i>{$ p.title $}
@@ -35,7 +35,7 @@
             </div>
             <div class="general-info-item-content collapse" ng-class='{in:$first}' id="info{$ p.index $}" ng-bind-html="p.section"></div>
         </div>
-        <div class="general-info-item" ng-repeat="p in ctrl.location.content | filter: {important: false}">
+        <div class="general-info-item" ng-repeat="p in ctrl.location.content | filter: {important: false, hide_from_toc: false}">
             <div class="general-info-item-header" data-toggle="collapse" data-target="#info{$ p.index $}">
                 <div class="general-info-item-header-inner">
                     <i class="fa {$ p.vector_icon $}"></i>{$ p.title $}
