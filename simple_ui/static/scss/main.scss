@@ -1311,3 +1311,16 @@ i.fa {
 .leaflet-map-pane{
     z-index: 100;
 }
+
+.modal-fullscreen {
+  .modal-dialog {
+    width: 100%;
+    height: 100%;
+    padding: 0;
+  }
+
+  .modal-content {
+    height: 100%;
+    border-radius: 0;
+  }
+}
