@@ -2,7 +2,7 @@ angular.module('refugeeApp').directive('serviceMap', function (leafletData) {
     return {
         restrict: 'E',
         scope: {
-            service: '=',
+            service: '='
         },
         link: {
             pre: function (scope) {
@@ -51,6 +51,6 @@ angular.module('refugeeApp').directive('serviceMap', function (leafletData) {
                 refreshMap();
             }
         },
-        template: '<leaflet markers="markers" defaults="defaults" layers="layers" style="height: 400px"></leaflet>'
+        template: '<leaflet markers="markers" defaults="defaults" layers="layers" class="service-details-map"></leaflet>'
     };
 });

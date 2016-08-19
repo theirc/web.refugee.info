@@ -28,7 +28,13 @@ directives_patterns = [
         name='services-list'),
     url(r'^service-details.html$',
         TemplateView.as_view(template_name='angular/partials/directives/service-details.html'),
-        name='service-details')
+        name='service-details'),
+    url(r'^location-buttons.html$',
+        TemplateView.as_view(template_name='angular/partials/directives/location-buttons.html'),
+        name='location-buttons'),
+    url(r'^location-bar.html$',
+        TemplateView.as_view(template_name='angular/partials/directives/location-bar.html'),
+        name='location-bar')
 ]
 
 partial_patterns = [

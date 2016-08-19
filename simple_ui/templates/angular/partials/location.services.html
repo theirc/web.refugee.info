@@ -5,21 +5,8 @@
 {% load marktags %}
 {% cookie 'theme' as theme %}
 
-<div class="col-xs-12 col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2 view-container">
-
-    <div class="row refugee-page-header">
-        <i class="fa fa-wrench refugee-page-header-icon" aria-hidden="true"></i>Services
-    </div>
-    <div class="row buttons">
-        <div class="col-sm-6 text-center">
-            <a ui-sref="locationDetails.importantInformation({slug: ctrl.slug})" class="grey-button-medium">
-                <i class="fa fa-info important-info-icon" aria-hidden="true"></i>Important Information</a>
-        </div>
-        <div class="col-sm-6 text-center">
-            <a ui-sref="locationDetails.services({slug: ctrl.slug})" class="grey-button-medium">
-                <i class="fa fa-wrench services-icon" aria-hidden="true"></i>Services</a>
-        </div>
-    </div>
+<div class="col-xs-12 col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2 view-container view-container-padded">
+    <location-buttons></location-buttons>
     <location-bar></location-bar>
     <div class="row location-bar">
         <region-name region="ctrl.location"></region-name>
