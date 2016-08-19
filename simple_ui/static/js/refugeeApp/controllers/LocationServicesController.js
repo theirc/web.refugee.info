@@ -14,8 +14,8 @@ angular.module('refugeeApp').controller('LocationServicesController', function($
     vm.services = [];
     vm.serviceTypes = {};
     vm.slug = $stateParams.slug;
-
     vm.location = location;
+    vm.filterTypes = [];
 
     LocationService.getServiceTypes().then(function (response) {
         response.data.forEach(function (serviceType) {
@@ -37,6 +37,17 @@ angular.module('refugeeApp').controller('LocationServicesController', function($
         vm.getNextPage();
     });
 
+    $scope.$watchCollection(function () {
+        return vm.filterTypes;
+    }, function(newValue) {
+        vm.filterTypes = newValue;
+        vm.services = [];
+        vm.chunkedServicesList = [];
+        vm.noMoreData = false;
+        page = 1;
+        vm.getNextPage();
+    });
+
     vm.getServiceIcon = function (url) {
         var serviceType = vm.serviceTypes[url];
         if (!serviceType) {
@@ -53,7 +64,14 @@ angular.module('refugeeApp').controller('LocationServicesController', function($
         vm.busy = true;
         LocationService.getServices(vm.location, page, vm.search).then(function (response) {
             response.data.results.forEach(function (service) {
-                vm.services.push(service);
+                if(vm.filterTypes.length > 0) {
+                    if(vm.filterTypes.indexOf(service.type) !== -1) {
+                        vm.services.push(service);
+                    }
+                }
+                else{
+                    vm.services.push(service);
+                }
             });
             vm.chunkedServicesList = chunk(vm.services, 3);
             page++;
