@@ -85,7 +85,7 @@ angular.module('refugeeApp', ['ui.router', 'ngCookies', 'ngSanitize', 'djng.rmi'
             })
             .state('locationDetails.aboutUs', {
                 url:'/about/',
-                template: '<div class="col-xs-12 col-md-8 col-md-offset-2 view-container">' +
+                template: '<div class="col-xs-12 col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2 view-container">' +
                           '<h3>About Us</h3><div ng-bind-html="ctrl.getContent()"></div></div>',
                 controller: function(location) {
                     var vm = this;
