@@ -61,7 +61,7 @@ angular.module('refugeeApp', ['ui.router', 'ngCookies', 'ngSanitize', 'djng.rmi'
                 templateUrl: 'partials/location.services.html',
                 controller: 'LocationServicesController as ctrl'
             })
-            .state('locationDetails.serviceDetails', {
+            .state('locationDetails.services.details', {
                 url: '/services/:serviceId',
                 templateUrl: 'partials/location.service-details.html',
                 controller: 'ServiceDetailsController as ctrl',

@@ -1,21 +1,16 @@
-{% load static %}
-{% load i18n %}
-{% load tz %}
-{% load l10n %}
-{% load marktags %}
-{% cookie 'theme' as theme %}
-
 <div class="col-xs-12 col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2 view-container view-container-padded">
     <location-buttons></location-buttons>
     <location-bar></location-bar>
     <div class="row location-bar">
         <region-name region="ctrl.location"></region-name>
     </div>
-    <div class="row">
-        <services-map region="ctrl.location.envelope" services="ctrl.services"></services-map>
-    </div>
-    <search-bar search="ctrl.search" direction="baseController.direction()"></search-bar>
-    <div class="row">
-        <services-list></services-list>
-    </div>
+    <ui-view>
+        <div class="row">
+            <services-map region="ctrl.location.envelope" services="ctrl.services"></services-map>
+        </div>
+        <search-bar search="ctrl.search" direction="baseController.direction()"></search-bar>
+        <div class="row">
+            <services-list></services-list>
+        </div>
+    </ui-view>
 </div>
