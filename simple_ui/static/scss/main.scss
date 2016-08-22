@@ -486,6 +486,7 @@ $screen-md-max: ($screen-lg-min - 1);
       font-size: 10px;
       color: $text-color-muted;
       margin: 0;
+      max-width: 200px;
     }
     &.active {
       background-color: $green-accent-color;

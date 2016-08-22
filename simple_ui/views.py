@@ -221,8 +221,8 @@ def acknowledgements(request):
 def find_language(request, language=None):
     if language:
         user_language = language[0:2]
-    elif 'django_language' in request.COOKIES:
-        user_language = request.COOKIES['django_language']
+    elif 'NG_TRANSLATE_LANG_KEY' in request.COOKIES:
+        user_language = request.COOKIES['NG_TRANSLATE_LANG_KEY'][3:-3]
     elif 'HTTP_ACCEPT_LANGUAGE' in request.META:
         accept_language = request.META['HTTP_ACCEPT_LANGUAGE'].split(',')
         user_language = accept_language[0].split('-')
