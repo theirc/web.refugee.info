@@ -3,8 +3,9 @@
         <a ui-sref="locationDetails.importantInformation({slug: ctrl.slug})" class="navigation-button" ui-sref-active="active">
             <i class="fa fa-info important-info-icon" aria-hidden="true"></i>
             <div>
-                <p>Important Information</p>
-                <p class="help-text">Click here to find more information<br>about the location selected</p>
+                <p>{$ 'IMPORTANT_INFORMATION' | translate $}</p>
+                    <p class="help-text">{$ 'IMPORTANT_INFORMATION_CLICK_HERE' | translate $}</p>
+
             </div>
         </a>
     </div>
@@ -12,8 +13,8 @@
         <a ui-sref="locationDetails.services({slug: ctrl.slug})" class="navigation-button" ui-sref-active="active">
             <i class="fa fa-wrench services-icon" aria-hidden="true"></i>
             <div>
-                <p>Services</p>
-                <p class="help-text">Click here to find service<br>in the location selected</p>
+                <p>{$ 'SERVICES' | translate $}</p>
+                    <p class="help-text">{$ 'SERVICES_CLICK_HERE' | translate $}</p>
             </div>
         </a>
     </div>

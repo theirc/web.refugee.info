@@ -7,7 +7,7 @@
 
 <div class="col-xs-12 col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2 view-container view-container-padded">
     <location-buttons></location-buttons>
-    <h1 class="quick-links">Quick links:</h1>
+    <h1 class="quick-links">{$ 'QUICK_LINKS' | translate $}:</h1>
     <div class="important-information-container">
         <div class="important-information-item"
              ng-repeat="info in ctrl.location.important_information | filter: {hidden: false}"
