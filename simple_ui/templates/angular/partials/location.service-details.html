@@ -1,23 +1,6 @@
-{% load static %}
-{% load i18n %}
-{% load tz %}
-{% load l10n %}
-{% load marktags %}
-{% cookie 'theme' as theme %}
-
-<div class="col-xs-12 col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2 view-container">
-    <div class="row refugee-page-header">
-        <i class="fa {$ ctrl.serviceIcon $} refugee-page-header-icon" aria-hidden="true"></i>{$ ctrl.serviceType $}
-    </div>
-    <location-buttons></location-buttons>
-    <location-bar></location-bar>
-    <div class="row location-bar">
-        <region-name region="ctrl.location"></region-name>
-    </div>
-    <div class="row">
-        <service-map service="ctrl.service"></service-map>
-    </div>
-    <div class="row">
-        <service-details service="ctrl.service"></service-details>
-    </div>
+<div class="row">
+    <service-map service="ctrl.service"></service-map>
+</div>
+<div class="row">
+    <service-details service="ctrl.service"></service-details>
 </div>

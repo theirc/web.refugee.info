@@ -81,8 +81,4 @@ angular.module('refugeeApp').controller('LocationServicesController', function($
             vm.busy = false;
         });
     };
-
-    vm.navigateToDetails = function (service) {
-        $state.go('locationDetails.serviceDetails', {slug: $stateParams.slug, serviceId: service.id});
-    };
 });
