@@ -25,7 +25,7 @@
         </div>
 
         <div class="button-container">
-            <a ng-click="ctrl.getDirections()" class="button button-green">Get directions</a>
+            <a  ng-if="!!ctrl.service.address" ng-click="ctrl.getDirections()" class="button button-green">Get directions</a>
             <a ng-if="!!ctrl.service.phone_number" class="button button-black"
             ><i class="fa fa-phone" aria-hidden="true"></i>{$ ctrl.service.phone_number $}</a>
             <a class="button button-white">Share</a>

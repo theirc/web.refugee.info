@@ -1,5 +1,7 @@
 $green-accent-color: #00BA50;
-$green-accent-color-2: #27a442;
+$green-accent-color-dark: #27a442;
+$green-accent-color-light: #59c06c;
+
 $yellow-accent-color: #FFDF0C;
 
 // bootstrap responsive layout breakpoints
@@ -16,6 +18,14 @@ $screen-md-max: ($screen-lg-min - 1);
   -ms-transition: $property #{$duration}s;
   -o-transition: $property #{$duration}s;
   -transition: $property #{$duration}s;
+}
+
+@mixin flexbox() {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
 }
 
 @mixin theme(
@@ -234,7 +244,7 @@ $screen-md-max: ($screen-lg-min - 1);
     text-decoration: none;
     padding: 12px;
     &:hover {
-      background-color: $green-accent-color-2;
+      background-color: $green-accent-color-dark;
     }
   }
 
@@ -277,7 +287,7 @@ $screen-md-max: ($screen-lg-min - 1);
     color: white;
     text-decoration: none;
     &:hover {
-      background-color: $green-accent-color-2;
+      background-color: $green-accent-color-dark;
     }
   }
 
@@ -293,7 +303,7 @@ $screen-md-max: ($screen-lg-min - 1);
     text-decoration: none;
     padding: 0;
     height: 40px;
-    display: flex;
+    @include flexbox();
     @media (max-width: $screen-xs-max) {
       justify-content: center;
     }
@@ -331,7 +341,7 @@ $screen-md-max: ($screen-lg-min - 1);
     display: block;
   }
   .location-flex {
-    display: flex;
+    @include flexbox();
     justify-content: flex-start;
     white-space: nowrap;
     @media (max-width: $screen-xs-max) {
@@ -359,7 +369,7 @@ $screen-md-max: ($screen-lg-min - 1);
     }
 
   region-flag {
-    display: flex;
+    @include flexbox();
     align-items: center;
     img {
       height: 24px;
@@ -416,7 +426,7 @@ $screen-md-max: ($screen-lg-min - 1);
 
   }
 
-  .grey-button-medium {
+  .navigation-button {
     border: 1px solid $divider-color;
     color: $text-color;
     background-color: $primary-color;
@@ -424,7 +434,7 @@ $screen-md-max: ($screen-lg-min - 1);
     height: 80px;
     text-align: center;
     font-size: 16px;
-    display: flex;
+    @include flexbox();
     align-items: center;
     justify-content: center;
     flex-direction: row;
@@ -445,6 +455,20 @@ $screen-md-max: ($screen-lg-min - 1);
       color: $text-color-muted;
       margin: 0;
     }
+    &.active {
+      background-color: $green-accent-color;
+      border-color: $green-accent-color-dark;
+      color: #FFFFFF;
+      i {
+        color: #FFFFFF;
+      }
+      .help-text {
+        color: #e9e9e9;
+      }
+      &:hover {
+        background-color: $green-accent-color-light;
+      }
+    }
   }
   .quick-links {
     font-size: 20px;
@@ -453,7 +477,7 @@ $screen-md-max: ($screen-lg-min - 1);
   }
   .refugee-page-header {
     height: 80px;
-    display: flex;
+    @include flexbox();
     align-items: center;
     background-color: $primary-color-2;
     font-size: 20px;
@@ -484,13 +508,13 @@ $screen-md-max: ($screen-lg-min - 1);
     @media (min-width: $screen-sm-min) {
       border-top: 1px solid $divider-color-2;
       border-bottom: 1px solid $divider-color-2;
-      display: flex;
+      @include flexbox();
       height: 70px;
     }
   }
   .important-information-item {
     flex: 1;
-    display: flex;
+    @include flexbox();
     align-items: center;
     justify-content: center;
     color: $text-color-muted;
@@ -514,7 +538,7 @@ $screen-md-max: ($screen-lg-min - 1);
   }
   .important-information-item-inner {
     width: 100%;
-    display: flex;
+    @include flexbox();
     align-items: center;
     justify-content: center;
     @media (max-width: $screen-xs-max) {
@@ -566,7 +590,7 @@ $screen-md-max: ($screen-lg-min - 1);
   }
   .general-info-item-header {
     height: 46px;
-    display: flex;
+    @include flexbox();
     align-items: center;
     justify-content: center;
     color: $text-color;
@@ -580,7 +604,7 @@ $screen-md-max: ($screen-lg-min - 1);
       background-color: $primary-color-5;
     }
     .general-info-item-header-inner {
-      display: flex;
+      @include flexbox();
       justify-content: flex-start;
       @media (max-width: $screen-xs-max) {
         width: 100%;
@@ -650,14 +674,14 @@ $screen-md-max: ($screen-lg-min - 1);
     background-color: transparent;
     color: $green-accent-color !important;
     text-decoration: none;
-    display: flex;
+    @include flexbox();
     align-items: center;
     text-transform: uppercase;
     i {
       padding-left: 10px;
     }
     &:hover {
-      color: $green-accent-color-2 !important;
+      color: $green-accent-color-dark !important;
     }
   }
 
@@ -678,7 +702,7 @@ $screen-md-max: ($screen-lg-min - 1);
     margin-bottom: 0;
   }
   .service-list-item {
-    display: flex;
+    @include flexbox();
     flex-wrap: wrap;
     height: 80px;
     align-items: center;
@@ -774,7 +798,7 @@ $screen-md-max: ($screen-lg-min - 1);
     height: 50px;
     background-color: $green-accent-color !important;
     border-radius: 10px;
-    display: flex;
+    @include flexbox();
     align-items: center;
     justify-content: center;
   }
@@ -790,7 +814,7 @@ $screen-md-max: ($screen-lg-min - 1);
       }
     }
     @media (min-width: $screen-sm-min) {
-      display: flex;
+      @include flexbox();
       height: 70px;
     }
     align-items: center;
@@ -839,7 +863,7 @@ $screen-md-max: ($screen-lg-min - 1);
       text-transform: uppercase;
     }
     .service-location {
-      display: flex;
+      @include flexbox();
       font-size: 13px;
       color: $green-accent-color;
       .material-icons {
@@ -853,7 +877,7 @@ $screen-md-max: ($screen-lg-min - 1);
     .service-details-bar {
       border-bottom: 1px solid $divider-color;
       @media (min-width: $screen-sm-min) {
-        display: flex;
+        @include flexbox();
         justify-content: space-between;
       }
     }
@@ -901,7 +925,7 @@ $screen-md-max: ($screen-lg-min - 1);
     height: 44px;
     width: 100%;
     font-size: 14px;
-    display: flex;
+    @include flexbox();
     align-items: center;
     justify-content: center;
     margin-bottom: 8px;
@@ -918,7 +942,7 @@ $screen-md-max: ($screen-lg-min - 1);
     background-color: $green-accent-color;
     color: #FFFFFF;
     &:hover {
-      background-color: $green-accent-color-2;
+      background-color: $green-accent-color-dark;
     }
   }
   .button-black {
@@ -944,7 +968,7 @@ $screen-md-max: ($screen-lg-min - 1);
     width: 100%;
     border-bottom: 1px solid $divider-color-2;
     @media (max-width: $screen-xs-max) {
-      display: none;
+      height: 250px;
     }
   }
   .view-container {
@@ -963,6 +987,22 @@ $screen-md-max: ($screen-lg-min - 1);
     }
     @media (min-width: $screen-sm-min) {
       padding: 30px;
+    }
+  }
+  .get-app-container {
+    @include flexbox();
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    h1 {
+      font-size: 20px;
+      margin: 0;
+      @media (max-width: $screen-xs-max) {
+        font-size: 14px;
+      }
+    }
+    a img.google-play {
+      max-height: 80px;
     }
   }
   .header-center {
@@ -1011,7 +1051,7 @@ $screen-md-max: ($screen-lg-min - 1);
       background-color: $green-accent-color;
       cursor: pointer;
       &:hover {
-        background-color: $green-accent-color-2;
+        background-color: $green-accent-color-dark;
       }
     }
   }
@@ -1127,7 +1167,7 @@ i.fa {
 // flex helper classes
 
 .flex {
-  display: flex;
+  @include flexbox();
 }
 
 .flex-center {

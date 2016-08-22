@@ -1,7 +1,8 @@
 <div class="service-list" ng-show="ctrl.loaded">
-    <div infinite-scroll="ctrl.getNextPage()" infinite-scroll-disabled='ctrl.busy' infinite-scroll-container="'.service-list'">
+    <div infinite-scroll="ctrl.getNextPage()" infinite-scroll-disabled='ctrl.busy'>
         <div class="row service-list-row" ng-repeat="rows in ctrl.chunkedServicesList">
-            <div class="col-sm-4 no-padding service-list-item" ng-repeat="item in rows" ng-click="ctrl.navigateToDetails(item)">
+            <div class="col-sm-4 no-padding service-list-item" ng-repeat="item in rows"
+                 ui-sref="locationDetails.services.details({slug: ctrl.slug, serviceId: item.id})">
                 <div class="col-xs-3 service-list-divider">
                     <div class="service-list-item-icon-container">
                         <span class="fa {$ ctrl.getServiceIcon(item.type) $} fa-2x service-icon"></span>

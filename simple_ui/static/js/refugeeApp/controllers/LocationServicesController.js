@@ -14,7 +14,6 @@ angular.module('refugeeApp').controller('LocationServicesController', function($
     vm.services = [];
     vm.serviceTypes = {};
     vm.slug = $stateParams.slug;
-
     vm.location = location;
 
     LocationService.getServiceTypes().then(function (response) {
@@ -62,9 +61,5 @@ angular.module('refugeeApp').controller('LocationServicesController', function($
             }
             vm.busy = false;
         });
-    };
-
-    vm.navigateToDetails = function (service) {
-        $state.go('locationDetails.serviceDetails', {slug: $stateParams.slug, serviceId: service.id});
     };
 });
