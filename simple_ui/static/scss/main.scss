@@ -782,17 +782,17 @@ $screen-md-max: ($screen-lg-min - 1);
     justify-content: center;
   }
 
-  .services-filter-list.ltr{
+  .services-filter-list.ltr {
     left: auto;
     right: 0;
   }
 
-  .services-filter-list.rtl{
+  .services-filter-list.rtl {
     right: auto;
     left: 0;
   }
 
-  .services-filter-list-icon-container{
+  .services-filter-list-icon-container {
     display: inline-block;
     margin-top: 3px;
     margin-bottom: 3px;

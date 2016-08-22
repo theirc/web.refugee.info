@@ -6,7 +6,6 @@ angular.module('refugeeApp').directive('servicesMap', function(leafletData) {
             region: '=',
             services: '='
         },
-
         link: {
             pre: function(scope) {
                 angular.extend(scope, {
@@ -35,14 +34,13 @@ angular.module('refugeeApp').directive('servicesMap', function(leafletData) {
                         });
                     }
                 });
-
                 var markerClick = function onClick(e) {
                     ctrl.navigateToDetails(e.target.options.service);
                 };
 
                 var drawServices = function(map, services) {
                     markers.clearLayers();
-                    services.forEach(function(service){
+                    services.forEach(function(service) {
                         var lat = service.location.coordinates[1];
                         var lng = service.location.coordinates[0];
                         var icon = L.divIcon({
@@ -57,8 +55,10 @@ angular.module('refugeeApp').directive('servicesMap', function(leafletData) {
                         marker.on('click', markerClick);
                         markers.addLayer(marker);
                     });
-                    map.addLayer(markers);
-                    map.fitBounds(markers.getBounds());
+                    if (services.length > 0) {
+                        map.addLayer(markers);
+                        map.fitBounds(markers.getBounds());
+                    }
                 };
 
                 scope.$watch('region', function (newValue, oldValue) {
