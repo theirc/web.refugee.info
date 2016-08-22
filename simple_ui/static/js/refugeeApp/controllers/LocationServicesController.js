@@ -64,12 +64,12 @@ angular.module('refugeeApp').controller('LocationServicesController', function($
         vm.busy = true;
         LocationService.getServices(vm.location, page, vm.search).then(function (response) {
             response.data.results.forEach(function (service) {
-                if(vm.filterTypes.length > 0) {
+                if (vm.filterTypes.length > 0) {
                     if(vm.filterTypes.indexOf(service.type) !== -1) {
                         vm.services.push(service);
                     }
                 }
-                else{
+                else {
                     vm.services.push(service);
                 }
             });

@@ -1,0 +1,27 @@
+<div class="search-bar row">
+    <div class="col-sm-6">
+        <p class="form-control-static title">Nearest Services To Your Location</p>
+    </div>
+    <div class="col-sm-6">
+        <div class="input-group">
+            <div class="input-group-addon">
+                <i class="fa fa-search"></i>
+            </div>
+            <input ng-model-options="{ debounce: 500 }" ng-model="search" type="text" class="form-control" placeholder="Search">
+            <div class="input-group-btn" ng-class="{open: open}">
+                <button class="btn dropdown-toggle" ng-click="open=!open">
+                    <i class="fa fa-filter"></i>
+                </button>
+                <ul class="dropdown-menu services-filter-list" ng-class="baseController.direction()" aria-labelledby="dropdownMenu" style="width: -moz-max-content">
+                    <li class="dropdown-header">Filter services by type</li>
+                    <li class="line" data-ng-repeat="type in ctrl.serviceTypes" style="cursor: pointer;">
+                        <a data-ng-click="setSelectedType()" style="white-space: normal">
+                        <div class="services-filter-list-icon-container">
+                        <i class="fa {$ type.vector_icon $}"></i>
+                        </div> {$ type.name $} <i ng-class="isChecked(type.url) ? 'fa fa-check' : ''"></i></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
