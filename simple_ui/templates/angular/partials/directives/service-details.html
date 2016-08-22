@@ -8,12 +8,12 @@
         <img ng-if="!!ctrl.service.image" class="service-image" ng-src="{$ ctrl.service.image $}" />
 
         <h2 class="service-description-title">
-            Description
+            {$ 'DESCRIPTION' | translate $}
         </h2>
         <p class="service-description-body">{$ ctrl.service.description $}</p>
 
         <div ng-if="ctrl.showOpeningHours()">
-            <h2 class="service-description-title">Opening hours</h2>
+            <h2 class="service-description-title">{$ 'OPENING_HOURS' | translate $}</h2>
             <table class="service-opening-hours-table">
                 <tr ng-repeat="day in ctrl.days">
                     <td class="day-of-week">{$ day $}</td>
@@ -25,10 +25,10 @@
         </div>
 
         <div class="button-container">
-            <a  ng-if="!!ctrl.service.address" ng-click="ctrl.getDirections()" class="button button-green">Get directions</a>
+            <a  ng-if="!!ctrl.service.address" ng-click="ctrl.getDirections()" class="button button-green">{$ 'GET_DIRECTIONS' | translate $}</a>
             <a ng-if="!!ctrl.service.phone_number" class="button button-black"
             ><i class="fa fa-phone" aria-hidden="true"></i>{$ ctrl.service.phone_number $}</a>
-            <a class="button button-white">Share</a>
+            <a class="button button-white">{$ 'SHARE' | translate $}</a>
         </div>
     </div>
 </div>

@@ -1,4 +1,4 @@
-angular.module('refugeeApp').factory('LocationService', function ($http, apiUrl, staticUrl, $cookies) {
+angular.module('refugeeApp').factory('LocationService', function ($http, apiUrl, staticUrl, $cookies, $translate) {
     return {
         getServices: function (location, page, search) {
             page = page || 1;
@@ -15,28 +15,28 @@ angular.module('refugeeApp').factory('LocationService', function ($http, apiUrl,
                     page_size: 12,
                     search: search
                 },
-                headers: {'Accept-Language': $cookies.get('django_language')}
+                headers: {'Accept-Language': $translate.use() || $translate.preferredLanguage()}
             });
         },
         getServiceTypes: function () {
             return $http({
                 method: 'GET',
                 url: apiUrl + '/v1/servicetypes/',
-                headers: {'Accept-Language': $cookies.get('django_language')}
+                headers: {'Accept-Language': $translate.use() || $translate.preferredLanguage()}
             });
         },
         getService: function (serviceId) {
             return $http({
                 method: 'GET',
                 url: apiUrl + '/v1/services/search/?format=json&id=' + serviceId,
-                headers: {'Accept-Language': $cookies.get('django_language')}
+                headers: {'Accept-Language': $translate.use() || $translate.preferredLanguage()}
             });
         },
         getServiceType: function (service) {
             return $http({
                 method: 'GET',
                 url: service.type,
-                headers: {'Accept-Language': $cookies.get('django_language')}
+                headers: {'Accept-Language': $translate.use() || $translate.preferredLanguage()}
             });
         },
         getCountriesJson: function() {

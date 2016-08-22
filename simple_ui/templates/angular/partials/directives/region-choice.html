@@ -10,11 +10,11 @@
     </ul>
     <ul class="locations children panel-collapse collapse" id="region{$ region.id $}">
         <li ng-click="navigateToDetails(region)" ng-if="!region.hidden">
-            <span class="location-left">{% trans "View info for" %}:</span>
+            <span class="location-left">{$ 'VIEW_INFO_FOR' | translate $}:</span>
             <span class="location-center"><region-name region="region"></region-name></span>
         </li>
         <li ng-repeat="child in region.children" ng-click="navigateToDetails(child)">
-            <span class="location-left">{% trans "View info for" %}:</span>
+            <span class="location-left">{$ 'VIEW_INFO_FOR' | translate $}:</span>
             <span class="location-center"><region-name region="child"></region-name></span>
         </li>
     </ul>

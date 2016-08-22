@@ -1,6 +1,6 @@
 angular.module('refugeeApp', ['ui.router', 'ngCookies', 'ngSanitize', 'djng.rmi', 'leaflet-directive',
-                              'infinite-scroll'])
-    .config(function($stateProvider, $urlRouterProvider, $interpolateProvider, $httpProvider) {
+                              'infinite-scroll', 'pascalprecht.translate'])
+    .config(function($stateProvider, $urlRouterProvider, $interpolateProvider, $httpProvider, $translateProvider, staticUrl) {
         $interpolateProvider.startSymbol('{$');
         $interpolateProvider.endSymbol('$}');
 
@@ -9,6 +9,13 @@ angular.module('refugeeApp', ['ui.router', 'ngCookies', 'ngSanitize', 'djng.rmi'
 
         $urlRouterProvider.otherwise('/location');
 
+        $translateProvider.useStaticFilesLoader({
+            'prefix': staticUrl + 'locale/',
+            'suffix': '.json'
+        })
+        .useCookieStorage()
+        .preferredLanguage('en')
+        .fallbackLanguage('en');
         $stateProvider
             .state('location', {
                 url: '/location',

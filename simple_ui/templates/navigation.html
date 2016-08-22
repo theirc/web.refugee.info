@@ -28,30 +28,24 @@
                         </div>
                         <div style="padding-top: 3px;">
                             <a href="" class="about-us" ui-sref="locationDetails.aboutUs({slug: location.slug})">
-                                About us
+                                {$ 'ABOUT_US' | translate $}
                             </a>
                             <a ng-href="{$ baseController.feedbackUrl() $}" class="give-feedback">
-                                Give Feedback
+                                {$ 'GIVE_FEEDBACK' | translate $}
                             </a>
                         </div>
                     </div>
                 </div>
                 <ul class="nav navbar-nav navbar-right">
-                    {% language 'en' %}
-                        <li>
-                            <a href="" class="border-language" ng-click="baseController.changeLanguage('en')">{% trans "English" %}</a>
-                        </li>
-                    {% endlanguage %}
-                    {% language 'ar' %}
-                        <li>
-                            <a href="" class="border-language" ng-click="baseController.changeLanguage('ar')">{% trans "Arabic" %}</a>
-                        </li>
-                    {% endlanguage %}
-                    {% language 'fa' %}
-                        <li>
-                            <a href="" ng-click="baseController.changeLanguage('fa')">{% trans "Farsi" %}</a>
-                        </li>
-                    {% endlanguage %}
+                    <li>
+                        <a href="" class="border-language" ng-click="baseController.changeLanguage('en')">{$ 'ENGLISH' | translate $}</a>
+                    </li>
+                    <li>
+                        <a href="" class="border-language" ng-click="baseController.changeLanguage('ar')">{$ 'ARABIC' | translate $}</a>
+                    </li>
+                    <li>
+                        <a href="" ng-click="baseController.changeLanguage('fa')">{$ 'FARSI' | translate $}</a>
+                    </li>
                 </ul>
             </div>
         </div>

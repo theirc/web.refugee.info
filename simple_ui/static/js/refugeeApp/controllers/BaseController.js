@@ -1,10 +1,9 @@
-angular.module('refugeeApp').controller('BaseController', function($scope, $rootScope, $cookies, $templateCache, $state, LoadingOverlayService) {
+angular.module('refugeeApp').controller('BaseController', function($scope, $rootScope, $cookies, $templateCache, $state, LoadingOverlayService, $translate) {
     var vm = this;
     vm.isDark = $cookies.get('theme') === 'dark';
     vm.isCookiePolicyAccepted = $cookies.get('cookiePolicy');
-    vm.language = $cookies.get('django_language');
+    vm.language = $translate.use() || $translate.preferredLanguage();
     vm.isRTL = vm.language && vm.language !== 'en';
-
     $scope.$watch(function() {
         return vm.isDark;
     }, function(newValue, oldValue) {
@@ -62,10 +61,11 @@ angular.module('refugeeApp').controller('BaseController', function($scope, $root
     vm.changeLanguage = function (value) {
         vm.isRTL = !(value === 'en');
         vm.language = value;
-        $cookies.put('django_language', value);
+        $translate.use(value);
         $templateCache.removeAll();
         $state.reload();
     };
+
 
     vm.acceptCookiePolicy = function() {
         var now = new Date();
