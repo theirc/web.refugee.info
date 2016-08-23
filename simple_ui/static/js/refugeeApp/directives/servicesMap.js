@@ -84,6 +84,6 @@ angular.module('refugeeApp').directive('servicesMap', function(leafletData, $sta
                 }, true);
             }
         },
-        template: '<leaflet geojson="geojson" layers="layers" defaults="defaults" style="height: 400px"></leaflet>'
+        template: '<leaflet geojson="geojson" layers="layers" defaults="defaults" class="services-map"></leaflet>'
     };
 });
