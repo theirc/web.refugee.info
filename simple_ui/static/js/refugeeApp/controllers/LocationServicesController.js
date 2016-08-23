@@ -75,11 +75,11 @@ angular.module('refugeeApp').controller('LocationServicesController', function (
             });
             vm.chunkedServicesList = chunk(vm.services, 3);
             page++;
+            vm.busy = false;
             if (!response.data.next) {
                 vm.noMoreData = true;
             }
             else {
-                vm.busy = false;
                 vm.getNextPage();
             }
         });

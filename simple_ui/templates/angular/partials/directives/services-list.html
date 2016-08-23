@@ -1,5 +1,5 @@
 <div class="service-list" ng-show="ctrl.loaded">
-    <div infinite-scroll="ctrl.getNextPage()" infinite-scroll-disabled='ctrl.busy'>
+    <div>
         <div class="row service-list-row" ng-repeat="rows in ctrl.chunkedServicesList">
             <div class="col-sm-4 no-padding service-list-item" ng-repeat="item in rows"
                  ui-sref="locationDetails.services.details({slug: ctrl.slug, serviceId: item.id})">
