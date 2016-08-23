@@ -17,7 +17,6 @@ from django.conf.urls import url, patterns, include
 from django.views.generic import TemplateView
 
 from simple_ui.views import LocationJSONView, LandingPageView
-from . import views
 
 directives_patterns = [
     url(r'^region-choice.html$',
@@ -57,12 +56,7 @@ partial_patterns = [
 ]
 
 urlpatterns = [
-    url(r'acknowledgements/$', views.acknowledgements, ),
     url(r'^locations$', LocationJSONView.as_view(), name='location_json_view'),
-
-    url(r'^(?P<slug>[a-zA-Z\-0-9]+)/?$', views.content, ),
-    url(r'^(?P<slug>[a-zA-Z\-0-9]+)/(?P<language>[a-zA-Z\-0-9]+)/?$', views.content, ),
     url(r'^partials/', include(partial_patterns, namespace='partials')),
-
     url(r'$', LandingPageView.as_view())
 ]
