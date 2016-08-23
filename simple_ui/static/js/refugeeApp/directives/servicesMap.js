@@ -1,4 +1,4 @@
-angular.module('refugeeApp').directive('servicesMap', function(leafletData) {
+angular.module('refugeeApp').directive('servicesMap', function(leafletData, $state) {
 
     return {
         restrict: 'E',
@@ -35,7 +35,7 @@ angular.module('refugeeApp').directive('servicesMap', function(leafletData) {
                     }
                 });
                 var markerClick = function onClick(e) {
-                    ctrl.navigateToDetails(e.target.options.service);
+                    $state.go('locationDetails.services.details',{slug: ctrl.slug, serviceId: e.target.options.service.id});
                 };
 
                 var drawServices = function(map, services) {
@@ -45,12 +45,16 @@ angular.module('refugeeApp').directive('servicesMap', function(leafletData) {
                         var lng = service.location.coordinates[0];
                         var icon = L.divIcon({
                             className: 'service-list-item-icon-container',
-                            html:'<span class="fa ' + ctrl.getServiceIcon(service.type) + ' fa-2x service-icon"></span>',
-                            iconSize:null
+                            html: '<span class="fa ' + ctrl.getServiceIcon(service.type) + ' fa-2x service-icon"></span>',
+                            iconSize: null,
+                            labelAnchor: [6, 0]
                         });
                         var marker = L.marker([lat, lng], {
                             icon: icon,
-                            service: service
+                            service: service,
+                            riseOnHover: true
+                        }).bindLabel(service.name + '<br>' + service.description, {
+                            direction: 'auto'
                         });
                         marker.on('click', markerClick);
                         markers.addLayer(marker);
