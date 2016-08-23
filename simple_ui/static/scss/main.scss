@@ -1539,6 +1539,11 @@ i.fa {
   z-index: 100;
 }
 
+.leaflet-service-label {
+  white-space: normal;
+  min-width: 150px;
+}
+
 .leaflet-right {
   display: none !important;
 }
@@ -1548,6 +1553,7 @@ i.fa {
     margin-top: 50px;
   }
 }
+
 .leaflet-marker-icon {
   border: 1px solid #FFFFFF;
 }

@@ -54,7 +54,8 @@ angular.module('refugeeApp').directive('servicesMap', function(leafletData, $sta
                             service: service,
                             riseOnHover: true
                         }).bindLabel(service.name + '<br>' + service.description, {
-                            direction: 'auto'
+                            direction: 'auto',
+                            className: 'leaflet-service-label'
                         });
                         marker.on('click', markerClick);
                         markers.addLayer(marker);
