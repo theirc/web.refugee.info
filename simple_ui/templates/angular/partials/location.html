@@ -1,12 +1,17 @@
 {% load i18n %}
 <div ng-cloak ng-hide="ctrl.locationSlug && !ctrl.force">
     <location-map theme="baseController.theme()" closest="ctrl.data.closest" regions="ctrl.data.regions" countries="ctrl.countries"></location-map>
-    <div class="view-container view-container-padded">
-        <div class="get-app-container">
-            <h1>{$ 'APP_STORES' | translate $}</h1>
-            <a href='https://play.google.com/store/apps/details?id=info.refugee.app&utm_source=global_co&utm_medium=prtnr&utm_content=Mar2515&utm_campaign=PartBadge&pcampaignid=MKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'>
-                <img class="google-play" alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png'/>
-            </a>
+    <div class="col-xs-12 col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2 view-container view-container-padded">
+        <div class="row get-app-container">
+            <div class="col-xs-12 col-md-4">
+                <h1>{$ 'APP_STORES' | translate $}</h1>
+            </div>
+            <div class="col-xs-6 col-md-4"></div>
+            <div class="col-xs-6 col-md-4">
+                <a href='https://play.google.com/store/apps/details?id=info.refugee.app&utm_source=global_co&utm_medium=prtnr&utm_content=Mar2515&utm_campaign=PartBadge&pcampaignid=MKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'>
+                    <img class="google-play" alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png'/>
+                </a>
+            </div>
         </div>
         <div ng-show="!!ctrl.data.closest">
             <h3 class="header-center">{$ 'CLOSEST_LOCATION' | translate $}</h3>
