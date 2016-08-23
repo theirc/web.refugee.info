@@ -1446,6 +1446,11 @@ i.fa {
   z-index: 100;
 }
 
+.leaflet-service-label {
+  white-space: normal;
+  min-width: 150px;
+}
+
 .modal-fullscreen {
   .modal-dialog {
     width: 100%;
