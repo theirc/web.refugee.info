@@ -10,7 +10,7 @@ angular.module('refugeeApp').directive('servicesMap', function(leafletData) {
             pre: function(scope) {
                 angular.extend(scope, {
                     defaults: {
-                        scrollWheelZoom: false
+                        scrollWheelZoom: true
                     },
                     layers: {
                         baselayers: {
