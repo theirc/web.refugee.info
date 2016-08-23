@@ -93,6 +93,7 @@ $screen-md-max: ($screen-lg-min - 1);
     border: 0;
     border-bottom: 1px solid $divider-color-2;
     border-radius: 0;
+    z-index: 1001;
     @media (max-width: $screen-xs-max) {
       padding: 0 10px;
     }
@@ -828,6 +829,9 @@ $screen-md-max: ($screen-lg-min - 1);
   }
 
   .service-list {
+    @media (max-width: $screen-sm-max) {
+      padding-top: 50px;
+    }
     .service-list-divider {
       border-right: 1px solid $divider-color;
     }
@@ -891,6 +895,9 @@ $screen-md-max: ($screen-lg-min - 1);
       border: none;
       outline: none;
       box-shadow: none !important;
+      @media (max-width: $screen-sm-max) {
+        background-color: #FFFFFF;
+      }
     }
 
     .input-group-btn,
@@ -900,10 +907,16 @@ $screen-md-max: ($screen-lg-min - 1);
       padding-left: 5px;
       outline: none;
       box-shadow: none !important;
+      @media (max-width: $screen-sm-max) {
+        background-color: #FFFFFF;
+      }
     }
 
     i.fa {
       color: $text-color;
+      @media (max-width: $screen-sm-max) {
+        color: #515151;
+      }
     }
     ul {
       background-color: $primary-color-3;
@@ -912,10 +925,90 @@ $screen-md-max: ($screen-lg-min - 1);
       color: $text-color;
     }
   }
+  .floating-action-button {
+    @include flexbox();
+    @include align-items(center);
+    @include justify-content(center);
+    border-radius: 80px;
+    height: 80px;
+    width: 80px;
+    position: fixed;
+    bottom: 40px;
+    right: 30px;
+    z-index: 2;
+    background-color: $green-accent-color;
+    color: #FFFFFF;
+    cursor: pointer;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.4);
+    @media (min-width: $screen-md-min) {
+      display: none;
+    }
+    i {
+      font-size: 40px;
+    }
+    &:hover {
+      background-color: $green-accent-color-light;
+    }
+  }
+  .mobile-search-bar {
+    @media (max-width: $screen-sm-max) {
+      position: absolute;
+      top: -5px;
+      left: 0;
+      .search-bar {
+        background-color: transparent;
+      }
+      .form-control-static {
+        display: none;
+      }
+      .col-md-6 {
+        padding: 0;
+      }
+      .input-group {
+        z-index: 1000;
+        box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.4);
+      }
+    }
+    @media (max-width: $screen-sm-max) and (min-width: $screen-sm-min) {
+      .input-group {
+        width: 60%;
+        margin: 0 auto;
+
+      }
+    }
+  }
+  .mobile-service-map-container {
+    @media (max-width: $screen-sm-max) {
+      height: calc(100% - 80px);
+      width: 100%;
+      position: absolute;
+      top: 80px;
+      left: 0;
+      z-index: 2;
+      margin: 0 !important;
+      padding: 0 !important;
+    }
+    @media (max-width: $screen-xs-max) {
+      height: calc(100% - 50px);
+      top: 50px;
+    }
+  }
+  .services-map {
+    height: 400px;
+    @media (max-width: $screen-sm-max) {
+      height: 100%;
+    }
+  }
   .service-details-map {
     height: 400px;
     @media (max-height: $screen-xs-max) {
       height: 250px;
+    }
+  }
+  .hidden-sm-down {
+    // bootstrap 4 class
+    @media (max-width: $screen-sm-max) {
+      display: none;
     }
   }
   .service-details {
@@ -1444,6 +1537,19 @@ i.fa {
 
 .leaflet-map-pane {
   z-index: 100;
+}
+
+.leaflet-right {
+  display: none !important;
+}
+
+.leaflet-left .leaflet-control {
+  @media (max-width: $screen-sm-max) {
+    margin-top: 50px;
+  }
+}
+.leaflet-marker-icon {
+  border: 1px solid #FFFFFF;
 }
 
 .modal-fullscreen {

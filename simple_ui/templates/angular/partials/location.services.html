@@ -1,16 +1,20 @@
-<div class="col-xs-12 col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2 view-container view-container-padded">
-    <location-buttons></location-buttons>
-    <location-bar></location-bar>
-    <div class="row location-bar">
-        <region-name region="ctrl.location"></region-name>
-    </div>
-    <ui-view>
-        <div class="row">
-            <services-map region="ctrl.location.envelope" services="ctrl.services"></services-map>
+<ui-view>
+    <div class="col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2 view-container view-container-padded mobile-service-map-container">
+        <location-buttons class="hidden-sm-down"></location-buttons>
+        <location-bar class="hidden-sm-down"></location-bar>
+        <div class="row location-bar hidden-sm-down">
+            <region-name region="ctrl.location"></region-name>
         </div>
-        <search-bar search="ctrl.search" direction="baseController.direction()"></search-bar>
-        <div class="row">
+        <services-map region="ctrl.location.envelope"
+                      services="ctrl.services"
+                      ng-show="ctrl.mapView || !ctrl.isMobile()"></services-map>
+        <search-bar class="mobile-search-bar" search="ctrl.search" direction="baseController.direction()"></search-bar>
+        <div ng-show="!ctrl.mapView || !ctrl.isMobile()" class="row">
             <services-list></services-list>
         </div>
-    </ui-view>
-</div>
+    </div>
+        <div class="floating-action-button" ng-click="ctrl.switchView()">
+            <i ng-if="ctrl.mapView" class="material-icons">&#xE896;</i>
+            <i ng-if="!ctrl.mapView" class="material-icons">&#xE55B;</i>
+        </div>
+</ui-view>
