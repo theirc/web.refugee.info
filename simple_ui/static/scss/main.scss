@@ -29,9 +29,8 @@ $screen-md-max: ($screen-lg-min - 1);
 }
 
 @mixin align-items($value) {
-  -webkit-flex-align: $value;
-  -webkit-box-pack: $value;
   -ms-flex-align: $value;
+  -webkit-box-align: $value;
   align-items: $value;
   -webkit-align-items: $value;
 }
@@ -46,6 +45,7 @@ $screen-md-max: ($screen-lg-min - 1);
 @mixin justify-content($value) {
   justify-content: $value;
   -webkit-justify-content: $value;
+  -webkit-box-pack: $value;
 }
 
 @mixin flex-direction($value) {
@@ -372,12 +372,13 @@ $screen-md-max: ($screen-lg-min - 1);
     display: block;
   }
   .location-flex {
+    @include flex(1);
     @include flexbox();
     @include justify-content(flex-start);
+    @include align-items(center);
     white-space: nowrap;
     @media (max-width: $screen-xs-max) {
       width: 100%;
-      @include justify-content(flex-start);
       region-flag {
         border-right: 1px solid $divider-color;
         position: absolute;
@@ -385,6 +386,7 @@ $screen-md-max: ($screen-lg-min - 1);
       region-name {
         width: 100%;
         text-align: center;
+        display: block;
       }
     }
   }
@@ -458,6 +460,9 @@ $screen-md-max: ($screen-lg-min - 1);
   }
 
   .navigation-button {
+    @include flexbox();
+    @include align-items(center);
+    @include justify-content(center);
     border: 1px solid $divider-color;
     color: $text-color;
     background-color: $primary-color;
@@ -465,15 +470,12 @@ $screen-md-max: ($screen-lg-min - 1);
     height: 80px;
     text-align: center;
     font-size: 16px;
-    @include flexbox();
-    @include align-items(center);
-    @include justify-content(center);
-    @include flex-direction(row);
-    flex-direction: row;
     padding: 0 10%;
+    @media (max-width: $screen-xs-max) {
+      height: 70px;
+    }
     i {
       color: #528d57;
-
     }
     &:hover {
       text-decoration: none;
@@ -574,6 +576,7 @@ $screen-md-max: ($screen-lg-min - 1);
     @include flexbox();
     @include align-items(center);
     @include justify-content(center);
+    @include flex-direction(row);
     @media (max-width: $screen-xs-max) {
       border-top: 1px solid $divider-color-2;
       height: 60px;
@@ -705,16 +708,21 @@ $screen-md-max: ($screen-lg-min - 1);
   }
 
   .change-location-button {
-    float: right;
-    border: 0;
-    background-color: transparent;
-    color: $green-accent-color !important;
-    text-decoration: none;
+    @include flex(1);
     @include flexbox();
     @include align-items(center);
+    @include justify-content(center);
+    @include flex-direction(row);
+    float: right;
+    color: $green-accent-color !important;
+    text-decoration: none;
     text-transform: uppercase;
     i {
+      display: block;
       padding-left: 10px;
+    }
+    span {
+      display: block;
     }
     &:hover {
       color: $green-accent-color-dark !important;
@@ -764,10 +772,6 @@ $screen-md-max: ($screen-lg-min - 1);
     @media (max-width: $screen-xs-max) {
       font-size: 11px;
     }
-    //a {
-    //  width: 100%;
-    //float: right;
-    //}
   }
 
   .location-bar {
@@ -931,6 +935,7 @@ $screen-md-max: ($screen-lg-min - 1);
     }
     .service-location {
       @include flexbox();
+
       font-size: 13px;
       color: $green-accent-color;
       .material-icons {
@@ -1057,10 +1062,6 @@ $screen-md-max: ($screen-lg-min - 1);
     }
   }
   .get-app-container {
-    @include flexbox();
-    @include align-items(center);
-    justify-content: space-between;
-    margin-bottom: 10px;
     h1 {
       font-size: 20px;
       margin: 0;
@@ -1069,7 +1070,7 @@ $screen-md-max: ($screen-lg-min - 1);
       }
     }
     a img.google-play {
-      max-height: 80px;
+      max-width: 100%;
     }
   }
   .header-center {
@@ -1236,12 +1237,7 @@ i.fa {
 .flex {
   @include flexbox();
 }
-.center {
-  @include flexbox();
-  @include justify-content(center);
-  @include align-items(center);
-  @include flex-direction(column);
-}
+
 // loader overlay
 
 .isloading-wrapper.isloading-right {
