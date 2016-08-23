@@ -2,8 +2,9 @@ angular.module('refugeeApp').controller('BaseController', function($scope, $root
     var vm = this;
     vm.isDark = $cookies.get('theme') === 'dark';
     vm.isCookiePolicyAccepted = $cookies.get('cookiePolicy');
-    vm.language = $translate.use() || $translate.preferredLanguage();
+    vm.language = $translate.proposedLanguage() || $translate.use();
     vm.isRTL = vm.language && vm.language !== 'en';
+
     $scope.$watch(function() {
         return vm.isDark;
     }, function(newValue, oldValue) {

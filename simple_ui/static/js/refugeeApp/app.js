@@ -25,8 +25,11 @@ angular.module('refugeeApp', ['ui.router', 'ngCookies', 'ngSanitize', 'djng.rmi'
                     force: false
                 },
                 resolve: {
-                    locationData: function(djangoRMI) {
-                        return djangoRMI.location_json_view.get_regions({}).then(function(response) {
+                    locationData: function(djangoRMI, $translate) {
+                        return djangoRMI.location_json_view.get_regions({
+                            language: $translate.proposedLanguage() || $translate.use()
+                        })
+                        .then(function(response) {
                             return response.data;
                         });
                     },
@@ -93,7 +96,7 @@ angular.module('refugeeApp', ['ui.router', 'ngCookies', 'ngSanitize', 'djng.rmi'
             .state('locationDetails.aboutUs', {
                 url:'/about/',
                 template: '<div class="col-xs-12 col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2 view-container">' +
-                          '<h3>About Us</h3><div ng-bind-html="ctrl.getContent()"></div></div>',
+                          '<h3>{$ \'ABOUT_US\' | translate $}</h3><div ng-bind-html="ctrl.getContent()"></div></div>',
                 controller: function(location) {
                     var vm = this;
 

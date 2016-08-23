@@ -18,7 +18,6 @@ from django.conf.urls import url, include
 from django.conf.urls.static import static
 
 urlpatterns = [
-                  url(r'^imaging/', include('imaging.urls')),
                   url(r'^', include('rss_ui.urls')),
                   url(r'^', include('simple_ui.urls')),
               ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
