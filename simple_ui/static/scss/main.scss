@@ -1165,6 +1165,9 @@ $screen-md-max: ($screen-lg-min - 1);
     a img.google-play {
       max-width: 100%;
     }
+    img.app-store {
+      max-width: 100%;
+    }
   }
   .header-center {
     font-size: 18px;
@@ -1554,7 +1557,7 @@ i.fa {
   }
 }
 
-.leaflet-marker-icon {
+.leaflet-marker-icon.service-list-item-icon-container {
   border: 1px solid #FFFFFF;
 }
 

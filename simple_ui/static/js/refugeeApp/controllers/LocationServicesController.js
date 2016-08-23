@@ -86,7 +86,7 @@ angular.module('refugeeApp').controller('LocationServicesController', function (
     };
 
     vm.switchView = function () {
-        this.mapView = !this.mapView;
+        vm.mapView = !vm.mapView;
     };
 
     vm.isMobile = function () {
