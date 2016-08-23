@@ -23,7 +23,6 @@ angular.module('refugeeApp').controller('LocationServicesController', function($
         });
         vm.loaded = true;
     });
-
     var page = 1;
 
     $scope.$watch(function () {
@@ -78,7 +77,10 @@ angular.module('refugeeApp').controller('LocationServicesController', function($
             if (!response.data.next) {
                 vm.noMoreData = true;
             }
-            vm.busy = false;
+            else {
+                vm.busy = false;
+                vm.getNextPage();
+            }
         });
     };
 });
