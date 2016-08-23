@@ -42,19 +42,19 @@ angular.module('refugeeApp').directive('locationMap', function (leafletData) {
             pre: function (scope) {
                 angular.extend(scope, {
                     defaults: {
-                        scrollWheelZoom: false,
+                        scrollWheelZoom: true
                     },
                     tiles: {
                         dark: {
                             url: "http://{s}.basemaps.cartocdn.com/dark_nolabels/{z}/{x}/{y}.png",
                             options: {
-                                attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+                                attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                             }
                         },
                         light: {
                             url: "http://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}.png",
                             options: {
-                                attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+                                attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                             }
                         }
                     }

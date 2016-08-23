@@ -18,7 +18,7 @@ angular.module('refugeeApp').directive('regionMap', function() {
             pre: function(scope) {
                 angular.extend(scope, {
                     defaults: {
-                        scrollWheelZoom: false
+                        scrollWheelZoom: true
                     },
                     layers: {
                         baselayers: {
