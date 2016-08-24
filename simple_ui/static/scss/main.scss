@@ -756,7 +756,17 @@ $screen-md-max: ($screen-lg-min - 1);
       background-color: $primary-color-5;
     }
   }
-
+  .service-list-message {
+    text-align: center;
+    margin-top: 10px;
+  }
+  .location-selected {
+    background-color: $primary-color-2;
+    color: $text-color;
+    font-size: 20px;
+    padding: 10px 15px;
+    margin-bottom: 15px;
+  }
   .location-bar-header {
     margin-bottom: 10px;
     margin-top: 30px;
@@ -831,6 +841,9 @@ $screen-md-max: ($screen-lg-min - 1);
   .service-list {
     @media (max-width: $screen-sm-max) {
       padding-top: 50px;
+    }
+    @media (max-width: $screen-xs-max) {
+      padding-top: 10px;
     }
     .service-list-divider {
       border-right: 1px solid $divider-color;
@@ -925,6 +938,22 @@ $screen-md-max: ($screen-lg-min - 1);
       color: $text-color;
     }
   }
+  .above {
+    @media (max-width: $screen-sm-max) {
+      position: absolute;
+      top: 0;
+      background-color: $primary-color-4;
+      z-index: 1000;
+      width: 100%;
+      min-height: 100%;
+      padding-top: 80px;
+    }
+  }
+  .below {
+    @media (max-width: $screen-sm-max) {
+      display: none;
+    }
+  }
   .floating-action-button {
     @include flexbox();
     @include align-items(center);
@@ -934,12 +963,19 @@ $screen-md-max: ($screen-lg-min - 1);
     width: 80px;
     position: fixed;
     bottom: 40px;
-    right: 30px;
+    right: 40px;
     z-index: 2;
     background-color: $green-accent-color;
     color: #FFFFFF;
     cursor: pointer;
     box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.4);
+    @media (max-width: $screen-xs-max) {
+      height: 64px;
+      width: 64px;
+      border-radius: 64px;
+      bottom: 25px;
+      right: 25px;
+    }
     @media (min-width: $screen-md-min) {
       display: none;
     }
@@ -953,8 +989,9 @@ $screen-md-max: ($screen-lg-min - 1);
   .mobile-search-bar {
     @media (max-width: $screen-sm-max) {
       position: absolute;
-      top: -5px;
+      top: 75px;
       left: 0;
+      z-index: 1001;
       .search-bar {
         background-color: transparent;
       }
@@ -969,6 +1006,9 @@ $screen-md-max: ($screen-lg-min - 1);
         box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.4);
       }
     }
+    @media (max-width: $screen-xs-max) {
+      top: 45px;
+    }
     @media (max-width: $screen-sm-max) and (min-width: $screen-sm-min) {
       .input-group {
         width: 60%;
@@ -979,18 +1019,17 @@ $screen-md-max: ($screen-lg-min - 1);
   }
   .mobile-service-map-container {
     @media (max-width: $screen-sm-max) {
-      height: calc(100% - 80px);
+      height: 100%;
       width: 100%;
       position: absolute;
-      top: 80px;
+      top: 0;
       left: 0;
       z-index: 2;
       margin: 0 !important;
-      padding: 0 !important;
-    }
-    @media (max-width: $screen-xs-max) {
-      height: calc(100% - 50px);
-      top: 50px;
+      padding: 80px 0 0 0 !important;
+      @media (max-width: $screen-xs-max) {
+        padding: 50px 0 0 0 !important;
+      }
     }
   }
   .services-map {
@@ -1160,6 +1199,12 @@ $screen-md-max: ($screen-lg-min - 1);
       margin: 0;
       @media (max-width: $screen-xs-max) {
         font-size: 14px;
+      }
+      @media (max-width: $screen-sm-max) {
+        font-size: 16px;
+      }
+      @media (min-width: $screen-sm-min) {
+        padding-top: 20px;
       }
     }
     a img.google-play {

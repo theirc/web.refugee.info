@@ -6,7 +6,7 @@ function chunk(arr, size) {
     return newArr;
 }
 
-angular.module('refugeeApp').controller('LocationServicesController', function ($scope, $state, $stateParams, $window, LocationService, location) {
+angular.module('refugeeApp').controller('LocationServicesController', function ($scope, $state, $stateParams, LocationService, location) {
     var vm = this;
     vm.busy = false;
     vm.noMoreData = false;
@@ -87,9 +87,5 @@ angular.module('refugeeApp').controller('LocationServicesController', function (
 
     vm.switchView = function () {
         vm.mapView = !vm.mapView;
-    };
-
-    vm.isMobile = function () {
-        return $window.innerWidth < 992;
     };
 });
