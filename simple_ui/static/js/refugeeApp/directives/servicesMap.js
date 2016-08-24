@@ -26,6 +26,7 @@ angular.module('refugeeApp').directive('servicesMap', function(leafletData, $sta
             post: function(scope) {
                 var ctrl = scope.$parent.ctrl;
                 var markers = new L.markerClusterGroup({
+                    zoomToBoundsOnClick: false,
                     iconCreateFunction: function(cluster) {
                         return L.divIcon({
                             className: 'service-list-item-icon-container',
@@ -40,6 +41,10 @@ angular.module('refugeeApp').directive('servicesMap', function(leafletData, $sta
 
                 var drawServices = function(map, services) {
                     markers.clearLayers();
+                    markers.on('clusterclick', function (a) {
+                        var bounds = a.layer.getBounds().pad(0.05);
+                        map.fitBounds(bounds);
+                    });
                     services.forEach(function(service) {
                         var lat = service.location.coordinates[1];
                         var lng = service.location.coordinates[0];
@@ -62,7 +67,7 @@ angular.module('refugeeApp').directive('servicesMap', function(leafletData, $sta
                     });
                     if (services.length > 0) {
                         map.addLayer(markers);
-                        map.fitBounds(markers.getBounds());
+                        map.fitBounds(markers.getBounds(), {padding: [25, 25]});
                     }
                 };
 
