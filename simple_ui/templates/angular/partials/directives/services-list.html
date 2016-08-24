@@ -21,8 +21,8 @@
                 </div>
             </div>
         </div>
-        <div ng-show="ctrl.busy">{$ 'LOADING' | translate $}</div>
+        <div class="service-list-message" ng-show="ctrl.busy">{$ 'LOADING' | translate $}</div>
         <div style='clear: both;'></div>
     </div>
-    <div ng-show="ctrl.services.length === 0 && !ctrl.busy">{$ 'NO_SERVICES' | translate $}</div>
+    <div class="service-list-message" ng-show="ctrl.services.length === 0 && !ctrl.busy">{$ 'NO_SERVICES' | translate $}</div>
 </div>

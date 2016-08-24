@@ -4,7 +4,8 @@ angular.module('refugeeApp').directive('servicesMap', function(leafletData, $sta
         restrict: 'E',
         scope: {
             region: '=',
-            services: '='
+            services: '=',
+            mapView: '='
         },
         link: {
             pre: function(scope) {
@@ -65,6 +66,16 @@ angular.module('refugeeApp').directive('servicesMap', function(leafletData, $sta
                         map.fitBounds(markers.getBounds());
                     }
                 };
+
+                scope.$watch('mapView', function (newValue, oldValue) {
+                    if (oldValue === newValue) {
+                        return;
+                    }
+                    leafletData.getMap().then(function(map) {
+                        map.fitBounds(markers.getBounds());
+                    });
+
+                }, true);
 
                 scope.$watch('region', function (newValue, oldValue) {
                     if (oldValue === newValue) {

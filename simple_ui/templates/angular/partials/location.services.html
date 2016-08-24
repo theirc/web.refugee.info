@@ -1,5 +1,6 @@
 <ui-view>
     <div class="col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2 view-container view-container-padded mobile-service-map-container">
+        <location-selected region="location" class="hidden-sm-down"></location-selected>
         <location-buttons class="hidden-sm-down"></location-buttons>
         <location-bar class="hidden-sm-down"></location-bar>
         <div class="row location-bar hidden-sm-down">
@@ -7,14 +8,14 @@
         </div>
         <services-map region="ctrl.location.envelope"
                       services="ctrl.services"
-                      ng-show="ctrl.mapView || !ctrl.isMobile()"></services-map>
+                      map-view="ctrl.mapView"></services-map>
         <search-bar class="mobile-search-bar" search="ctrl.search" direction="baseController.direction()"></search-bar>
-        <div ng-show="!ctrl.mapView || !ctrl.isMobile()" class="row">
+        <div ng-class="{'above': !ctrl.mapView, 'below': ctrl.mapView}">
             <services-list></services-list>
         </div>
     </div>
-        <div class="floating-action-button" ng-click="ctrl.switchView()">
-            <i ng-if="ctrl.mapView" class="material-icons">&#xE896;</i>
-            <i ng-if="!ctrl.mapView" class="material-icons">&#xE55B;</i>
-        </div>
+    <div class="floating-action-button" ng-click="ctrl.switchView()">
+        <i ng-if="ctrl.mapView" class="material-icons">&#xE896;</i>
+        <i ng-if="!ctrl.mapView" class="material-icons">&#xE55B;</i>
+    </div>
 </ui-view>
