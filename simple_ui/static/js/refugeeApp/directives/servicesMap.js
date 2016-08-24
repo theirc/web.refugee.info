@@ -82,6 +82,14 @@ angular.module('refugeeApp').directive('servicesMap', function(leafletData, $sta
                         drawServices(map, scope.services);
                     });
                 }, true);
+
+                scope.$watch('$stateChangeSuccess', function () {
+                    if (scope.services){
+                        leafletData.getMap().then(function(map) {
+                            drawServices(map, scope.services);
+                        });
+                    }
+                });
             }
         },
         template: '<leaflet geojson="geojson" layers="layers" defaults="defaults" class="services-map"></leaflet>'
