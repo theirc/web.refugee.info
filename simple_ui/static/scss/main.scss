@@ -860,6 +860,12 @@ $screen-md-max: ($screen-lg-min - 1);
     @include justify-content(center);
   }
 
+  .services-filter-list {
+    overflow-y: scroll;
+    width: 200px;
+    max-height: 250px;
+  }
+
   .services-filter-list.ltr {
     left: auto;
     right: 0;
