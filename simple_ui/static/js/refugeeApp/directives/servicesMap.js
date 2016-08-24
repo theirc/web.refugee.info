@@ -1,4 +1,4 @@
-angular.module('refugeeApp').directive('servicesMap', function(leafletData, $state) {
+angular.module('refugeeApp').directive('servicesMap', function(leafletData, $state, $filter) {
 
     return {
         restrict: 'E',
@@ -42,7 +42,7 @@ angular.module('refugeeApp').directive('servicesMap', function(leafletData, $sta
                 var drawServices = function(map, services) {
                     markers.clearLayers();
                     markers.on('clusterclick', function (a) {
-                        var bounds = a.layer.getBounds().pad(0.05);
+                        var bounds = a.layer.getBounds().pad(0.1);
                         map.fitBounds(bounds);
                     });
                     services.forEach(function(service) {
@@ -58,7 +58,7 @@ angular.module('refugeeApp').directive('servicesMap', function(leafletData, $sta
                             icon: icon,
                             service: service,
                             riseOnHover: true
-                        }).bindLabel(service.name + '<br>' + service.description, {
+                        }).bindLabel(service.name + '<br>' + $filter('limitTo')(service.description, 200), {
                             direction: 'auto',
                             className: 'leaflet-service-label'
                         });
