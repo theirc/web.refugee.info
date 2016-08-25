@@ -13,7 +13,16 @@
             <span class="location-left">{$ 'VIEW_INFO_FOR' | translate $}:</span>
             <span class="location-center"><region-name region="region"></region-name></span>
         </li>
-        <li ng-repeat="child in region.children" ng-click="navigateToDetails(child)">
+
+        <li class="country" ng-repeat="child in region.children | filter: {level: 1}" ng-click="navigateToDetails(child)">
+            <span class="location-left">{$ 'VIEW_INFO_FOR' | translate $}:</span>
+            <span class="location-center"><region-name region="child"></region-name></span>
+        </li>
+        <li class="region" ng-repeat="child in region.children | filter: {level: 2}" ng-click="navigateToDetails(child)">
+            <span class="location-left">{$ 'VIEW_INFO_FOR' | translate $}:</span>
+            <span class="location-center"><region-name region="child"></region-name></span>
+        </li>
+        <li class="camp" ng-repeat="child in region.children | filter: {level: 3}" ng-click="navigateToDetails(child)">
             <span class="location-left">{$ 'VIEW_INFO_FOR' | translate $}:</span>
             <span class="location-center"><region-name region="child"></region-name></span>
         </li>

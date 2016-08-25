@@ -429,7 +429,7 @@ $screen-md-max: ($screen-lg-min - 1);
     }
     @include align-items(center);
     &:hover {
-      background-color: $primary-color-6;
+      background-color: darken($primary-color, 5%);
     }
   }
 
@@ -439,7 +439,26 @@ $screen-md-max: ($screen-lg-min - 1);
     color: $text-color;
     text-decoration: none;
     &:hover {
-      background-color: $primary-color-6;
+      background-color: darken($primary-color-5, 5%);
+    }
+  }
+
+  ul.locations.children li.country {
+    background-color: $primary-color-5;
+    &:hover {
+      background-color: darken($primary-color-5, 5%);
+    }
+  }
+  ul.locations.children li.region {
+    background-color: $divider-color;
+    &:hover {
+      background-color: darken($divider-color, 5%);
+    }
+  }
+  ul.locations.children li.camp {
+    background-color: $divider-color-3;
+    &:hover {
+      background-color: darken($divider-color-3, 5%);
     }
   }
 
@@ -1424,9 +1443,9 @@ i.fa {
           $primary-color-4: #FFFFFF,
           $primary-color-5: #DDDDDD,
           $primary-color-6: #CCCCCC,
-          $divider-color: #E2E2E2,
+          $divider-color: #EBEBEB,
           $divider-color-2: #BABABA,
-          $divider-color-3: #f6f6f6,
+          $divider-color-3: #f5f5f5,
           $text-color: #000000,
           $text-color-muted: #454545,
           $background-image: '../images/white-background.jpg'
