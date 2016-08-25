@@ -21,9 +21,6 @@ angular.module('refugeeApp', ['ui.router', 'ngCookies', 'ngSanitize', 'djng.rmi'
                 url: '/location',
                 templateUrl: 'partials/location.html',
                 controller: 'LocationChoiceController as ctrl',
-                params: {
-                    force: false
-                },
                 resolve: {
                     locationData: function(djangoRMI, $translate) {
                         return djangoRMI.location_json_view.get_regions({
