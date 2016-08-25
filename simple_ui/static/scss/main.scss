@@ -74,7 +74,7 @@ $screen-md-max: ($screen-lg-min - 1);
   $background-image: '../images/black-background.jpg'
 ) {
 
-  & {
+  &, .snap-content {
     background-color: $primary-color-3;
     background-image: url($background-image);
     background-repeat: no-repeat;
@@ -86,7 +86,74 @@ $screen-md-max: ($screen-lg-min - 1);
     background-size: cover;
     color: $text-color;
   }
-
+  .snap-content {
+    @media (min-width: $screen-sm-min) {
+      transform: none !important;
+    }
+  }
+  drawer {
+    @media (min-width: $screen-sm-min) {
+      display: none;
+    }
+  }
+  #drawer {
+    border-left: 1px solid $divider-color-2;
+    background-color: $primary-color-3;
+    font-size: 12px;
+    .drawer-contents {
+      background-color: $primary-color-3;
+      color: $text-color;
+      padding: 30px 10px;
+      img {
+        height: 40px;
+      }
+      .current-location-container {
+        @include flexbox();
+        @include align-items(center);
+        @include justify-content(flex-start);
+        text-transform: uppercase;
+        padding: 20px 0;
+        i {
+          padding: 0 5px;
+          color: $green-accent-color;
+          font-size: 22px;
+        }
+      }
+      .section-header {
+        padding-top: 20px;
+        height: 50px;
+        text-transform: uppercase;
+        color: $green-accent-color;
+        border-bottom: 1px solid $divider-color-2;
+      }
+      .navigation-link {
+        @include flexbox ();
+        @include align-items(center);
+        text-decoration: none;
+        height: 50px;
+        border-bottom: 1px solid $divider-color-3;
+        &.active {
+          color: $text-color-muted;
+        }
+        &:active {
+          background-color: $primary-color-6;
+        }
+        i {
+          color: $text-color;
+          text-align: center;
+          font-size: 20px;
+          padding: 10px;
+          width: 45px;
+        }
+        span {
+          color: $text-color
+        }
+      }
+      .padded {
+        padding: 0 5px;
+      }
+    }
+  }
   .navbar-refugee {
     background-color: $primary-color-3;
     color: $text-color !important;
@@ -109,6 +176,18 @@ $screen-md-max: ($screen-lg-min - 1);
     }
     margin: 0;
 
+    .drawer-controls i.material-icons {
+      position: fixed;
+      top: 10px;
+      right: 15px;
+      font-size: 24px;
+      padding: 3px 0;
+      color: $yellow-accent-color;
+      @media (min-width: $screen-sm-min) {
+        display: none;
+      }
+    }
+
     .brand-logo img {
       @media (max-width: $screen-xs-max) {
         padding-top: 7px;
@@ -121,9 +200,18 @@ $screen-md-max: ($screen-lg-min - 1);
       }
     }
     .navbar-left {
+      i.fa {
+        display: none;
+      }
       .logo-bar-container {
         text-align: center;
         display: inline-block;
+      }
+      @media (max-width: $screen-xs-max) {
+
+        #logo-bar {
+          display: none;
+        }
       }
     }
     .navbar-right {
@@ -1050,6 +1138,12 @@ $screen-md-max: ($screen-lg-min - 1);
       height: 250px;
     }
   }
+  .hidden-sm-up {
+    // bootstrap 4 class
+    @media (min-width: $screen-sm-min) {
+      display: none;
+    }
+  }
   .hidden-sm-down {
     // bootstrap 4 class
     @media (max-width: $screen-sm-max) {
@@ -1177,17 +1271,20 @@ $screen-md-max: ($screen-lg-min - 1);
     height: 400px;
     width: 100%;
     border-bottom: 1px solid $divider-color-2;
+    margin-top: 80px;
     @media (max-width: $screen-xs-max) {
       height: 250px;
+      margin-top: 50px;
     }
   }
   .view-container {
-    margin-top: 20px;
     @media (max-width: $screen-xs-max) {
       padding: 0 10px 10px 10px;
+      margin-top: 70px;
     }
     @media (min-width: $screen-sm-min) {
       padding: 0 30px 30px 30px;
+      margin-top: 100px;
     }
     background-color: $primary-color-4;
   }
@@ -1284,15 +1381,11 @@ html, body {
   margin-bottom: 20px;
 }
 
-.navbar {
-  position: relative;
-}
-
 .brand {
   position: absolute;
   left: 50%;
   @media (max-width: $screen-xs-max) {
-    margin-left: -62px !important;
+    left: 10px;
   }
   @media (min-width: $screen-sm-min) {
     margin-left: -85px !important;
@@ -1314,7 +1407,7 @@ i.fa {
           $primary-color-6: #525252,
           $divider-color: #6E6E6E,
           $divider-color-2: #373737,
-          $divider-color-3: #BBBBBB,
+          $divider-color-3: #202020,
           $text-color: #FFFFFF,
           $text-color-muted: #cbcbcb,
           $background-image: '../images/black-background.jpg'
@@ -1331,7 +1424,7 @@ i.fa {
           $primary-color-6: #CCCCCC,
           $divider-color: #E2E2E2,
           $divider-color-2: #BABABA,
-          $divider-color-3: #F2F2F2,
+          $divider-color-3: #f6f6f6,
           $text-color: #000000,
           $text-color-muted: #454545,
           $background-image: '../images/white-background.jpg'

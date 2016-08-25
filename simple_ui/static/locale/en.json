@@ -1,6 +1,8 @@
 {
+  "REFUGEE_INFO": "Refugee Info",
   "ABOUT_US": "About us",
   "GIVE_FEEDBACK": "Give Feedback",
+  "CHANGE_LANGUAGE": "Change language",
   "ENGLISH": "English",
   "ARABIC": "العربيـة",
   "FARSI": "فارسی",
@@ -34,5 +36,6 @@
   "WITH_PARTNERS": "with partners",
   "POWERED_BY": "Powered by",
   "COPYLEFT": "Copyleft",
-  "APP_STORES": "Available on Play store for Android and App store for iOS."
+  "APP_STORES": "Available on Play store for Android and App store for iOS.",
+  "NO_LOCATION": "Please choose location first!"
 }

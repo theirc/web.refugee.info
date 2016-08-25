@@ -6,7 +6,6 @@
 <!DOCTYPE html>
 <html ng-app="refugeeApp"
       ng-controller="BaseController as baseController"
-      dir="{$ baseController.direction() $}"
       lang="{$ baseController.language $}">
 <head>
     <meta charset="UTF-8">
@@ -46,6 +45,8 @@
     <script type="text/javascript" src='{% static 'angular-translate/angular-translate.min.js' %}'></script>
     <script type="text/javascript" src='{% static 'angular-translate-loader-static-files/angular-translate-loader-static-files.js' %}'></script>
     <script type="text/javascript" src='{% static 'angular-translate-storage-cookie/angular-translate-storage-cookie.min.js' %}'></script>
+    <script type="text/javascript" src='{% static 'snapjs/snap.min.js' %}'></script>
+    <script type="text/javascript" src='{% static 'angular-snap/angular-snap.min.js' %}'></script>
 
     {% compress js %}
         <script type="text/javascript" src='{% static 'js/refugeeApp/app.js' %}'></script>
@@ -75,6 +76,7 @@
         <script type="text/javascript" src='{% static 'js/refugeeApp/directives/locationBar.js' %}'></script>
         <script type="text/javascript" src='{% static 'js/refugeeApp/directives/locationButtons.js' %}'></script>
         <script type="text/javascript" src='{% static 'js/refugeeApp/directives/locationSelected.js' %}'></script>
+        <script type="text/javascript" src='{% static 'js/refugeeApp/directives/drawer.js' %}'></script>
         <script type="text/javascript" src='{% static 'js/refugeeApp/directives/quickLinks.js' %}'></script>
 
     {% endcompress %}
@@ -92,6 +94,7 @@
     <link rel="stylesheet" href='{% static 'leaflet/dist/leaflet.css' %}' />
     <link rel="stylesheet" href="{% static 'leaflet.vector-markers/dist/leaflet-vector-markers.css' %}">
     <link rel="stylesheet" href="{% static 'Leaflet.label/dist/leaflet.label.css' %}">
+    <link rel="stylesheet" href="{% static 'angular-snap/angular-snap.min.css' %}">
 
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet">
 
@@ -115,10 +118,14 @@
 </head>
 <body class="{$ baseController.theme() $}-theme">
 {% csrf_token %}
-{% block body %}
-    {% include 'navigation.html' %}
-    {% block content %}{% endblock content %}
-    {% include 'footer.html' %}
-{% endblock body %}
+<drawer></drawer>
+
+<snap-content dir="{$ baseController.direction() $}" snap-options="{$ baseController.drawerOptions $}">
+    {% block body %}
+        {% include 'navigation.html' %}
+        {% block content %}{% endblock content %}
+        {% include 'footer.html' %}
+    {% endblock body %}
+    </snap-content>
 </body>
 </html>

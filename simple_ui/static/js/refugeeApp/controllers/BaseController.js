@@ -1,13 +1,13 @@
-angular.module('refugeeApp').controller('BaseController', function($scope, $rootScope, $cookies, $templateCache, $state, LoadingOverlayService, $translate) {
+angular.module('refugeeApp').controller('BaseController', function ($scope, $rootScope, $cookies, $templateCache, $state, LoadingOverlayService, $translate) {
     var vm = this;
     vm.isDark = $cookies.get('theme') === 'dark';
     vm.isCookiePolicyAccepted = $cookies.get('cookiePolicy');
     vm.language = $translate.proposedLanguage() || $translate.use();
     vm.isRTL = vm.language && vm.language !== 'en';
 
-    $scope.$watch(function() {
+    $scope.$watch(function () {
         return vm.isDark;
-    }, function(newValue, oldValue) {
+    }, function (newValue, oldValue) {
         if (newValue === oldValue) {
             return;
         }
@@ -19,20 +19,20 @@ angular.module('refugeeApp').controller('BaseController', function($scope, $root
         }
     });
 
-    var deregisterStateChangeStartHandler = $rootScope.$on('$stateChangeStart', function() {
+    var deregisterStateChangeStartHandler = $rootScope.$on('$stateChangeStart', function () {
         LoadingOverlayService.start();
     });
 
-    var deregisterStateChangeEndHandler = $rootScope.$on('$stateChangeSuccess', function() {
+    var deregisterStateChangeEndHandler = $rootScope.$on('$stateChangeSuccess', function () {
         LoadingOverlayService.stop();
     });
 
-    $rootScope.$on('$destroy', function() {
+    $rootScope.$on('$destroy', function () {
         deregisterStateChangeStartHandler();
         deregisterStateChangeEndHandler();
     });
 
-    vm.theme = function() {
+    vm.theme = function () {
         if (vm.isDark) {
             return 'dark';
         } else {
@@ -40,7 +40,7 @@ angular.module('refugeeApp').controller('BaseController', function($scope, $root
         }
     };
 
-    vm.direction = function() {
+    vm.direction = function () {
         if (vm.isRTL) {
             return 'rtl';
         } else {
@@ -68,18 +68,22 @@ angular.module('refugeeApp').controller('BaseController', function($scope, $root
     };
 
 
-    vm.acceptCookiePolicy = function() {
+    vm.acceptCookiePolicy = function () {
         var now = new Date();
-        var exp = new Date(now.getFullYear()+1, now.getMonth(), now.getDate());
+        var exp = new Date(now.getFullYear() + 1, now.getMonth(), now.getDate());
         vm.isCookiePolicyAccepted = true;
         $cookies.put('cookiePolicy', 'true', {'expires': exp});
     };
 
-    vm.getThemeColor = function() {
+    vm.getThemeColor = function () {
         if (vm.isDark) {
             return '#181818';
         } else {
             return '#FFFFFF';
         }
+    };
+
+    vm.getDrawerIcon = function () {
+        return '\uE5D2';
     };
 });

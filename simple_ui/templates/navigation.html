@@ -3,31 +3,30 @@
 {% load marktags %}
 {% cookie 'theme' as theme %}
 
-<div class="navbar navbar-default navbar-refugee" role="navigation">
+<div class="navbar navbar-default navbar-fixed-top navbar-refugee" role="navigation">
+
+    <div class="navbar-header flex">
+        <a class="brand brand-logo img-responsive" style="margin: 0; float: none;" href="#">
+            <img id="logo" class="theme" ng-src="/static/images/logo-{$ baseController.theme() $}.png"/>
+        </a>
+        <div class="drawer-controls">
+            <div snap-toggle="right"><i class="material-icons">{$ baseController.getDrawerIcon() $}</i>
+        </div>
+    </div>
+    </div>
+
     <div class="container">
-
         <div class="navbar-inner">
-            <div class="navbar-header flex">
-                <button type="button" class="pull-left navbar-toggle collapsed" data-toggle="collapse"
-                        data-target=".navbar-collapse" aria-expanded="false">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="brand brand-logo img-responsive" style="margin: 0; float: none;" href="#">
-                    <img id="logo" class="theme"  ng-src="/static/images/logo-{$ baseController.theme() $}.png"/>
-                </a>
-            </div>
-
             <div class="navbar-collapse collapse">
                 <div class="nav navbar-nav navbar-left">
                     <div class="logo-bar-container">
                         <div>
-                            <img id="logo-bar" class="theme" ng-src="/static/images/logo-bar-{$ baseController.theme() $}.png" style="max-height: 25px"/><br>
+                            <img id="logo-bar" class="theme"
+                                 ng-src="/static/images/logo-bar-{$ baseController.theme() $}.png"
+                                 style="max-height: 25px"/>
                         </div>
-                        <div style="padding-top: 3px;">
-                            <a href="" class="about-us" ui-sref="locationDetails.aboutUs({slug: location.slug})">
+                        <div style="padding-top: 3px;" class="navbar-mobile-menu-container">
+                            <a class="about-us" ui-sref="locationDetails.aboutUs({slug: location.slug})">
                                 {$ 'ABOUT_US' | translate $}
                             </a>
                             <a ng-href="{$ baseController.feedbackUrl() $}" class="give-feedback">
@@ -38,13 +37,19 @@
                 </div>
                 <ul class="nav navbar-nav navbar-right">
                     <li>
-                        <a href="" class="border-language" ng-click="baseController.changeLanguage('en')">{$ 'ENGLISH' | translate $}</a>
+                        <a href="" class="border-language" ng-click="baseController.changeLanguage('en')">
+                            {$ 'ENGLISH' | translate $}
+                        </a>
                     </li>
                     <li>
-                        <a href="" class="border-language" ng-click="baseController.changeLanguage('ar')">{$ 'ARABIC' | translate $}</a>
+                        <a href="" class="border-language" ng-click="baseController.changeLanguage('ar')">
+                            {$ 'ARABIC' | translate $}
+                        </a>
                     </li>
                     <li>
-                        <a href="" ng-click="baseController.changeLanguage('fa')">{$ 'FARSI' | translate $}</a>
+                        <a href="" ng-click="baseController.changeLanguage('fa')">
+                            {$ 'FARSI' | translate $}
+                        </a>
                     </li>
                 </ul>
             </div>

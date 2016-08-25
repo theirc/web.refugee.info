@@ -40,6 +40,9 @@ directives_patterns = [
     url(r'^location-selected.html$',
         TemplateView.as_view(template_name='angular/partials/directives/location-selected.html'),
         name='location-selected'),
+    url(r'^drawer.html$',
+        TemplateView.as_view(template_name='angular/partials/directives/drawer.html'),
+        name='drawer'),
     url(r'^quick-links.html$',
         TemplateView.as_view(template_name='angular/partials/directives/quick-links.html'),
         name='quick-links')
