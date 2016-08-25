@@ -17,6 +17,10 @@ angular.module('refugeeApp').directive('collapseOnAnchorScroll', function($docum
                     $(scope.target).collapse('show');
                 }
             });
+            scope.$on('$stateChangeStart', function() {
+                $('body').removeClass('modal-open');
+                $('.modal-backdrop').remove();
+            });
         }
     };
 });

@@ -7,9 +7,8 @@ angular.module('refugeeApp').controller('LocationChoiceController', function($ro
     });
     $rootScope.location = null;
 
-    vm.force = $stateParams.force;
     vm.locationSlug = $cookies.get('locationSlug');
-    if (vm.locationSlug && !$stateParams.force) {
+    if (vm.locationSlug) {
         $rootScope.$broadcast('$stateChangeSuccess');
         $state.go('locationDetails.index', {slug: vm.locationSlug});
     }
