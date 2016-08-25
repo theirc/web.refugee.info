@@ -1617,6 +1617,9 @@ i.fa {
     width: 100%;
     height: 100%;
     padding: 0;
+    @media (max-width: $screen-xs-max) {
+      margin: 0;
+    }
   }
 
   .modal-content {
