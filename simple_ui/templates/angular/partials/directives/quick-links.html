@@ -1,0 +1,20 @@
+<h1 class="quick-links">{$ 'QUICK_LINKS' | translate $}:</h1>
+<div class="important-information-container">
+    <div class="important-information-item"
+         ng-repeat="info in ctrl.location.important_information | filter: {hidden: false}"
+         ng-click="ctrl.openImportantInfo(info.id)"
+    >
+        <div class="important-information-item-inner" ng-class="ctrl.direction">{$
+            info.metadata.page_title $}
+        </div>
+    </div>
+</div>
+<div class="row important-information-content-container"
+     ng-repeat="info in ctrl.location.important_information | filter: {hidden: false}"
+     id="info-{$ info.id $}" ng-show="info.id == ctrl.infoId"
+>
+    <div class="important-information-content"
+         ng-repeat="item in info.content"
+         ng-bind-html="item.section"></div>
+</div>
+<div class="important-information divider"></div>

@@ -55,7 +55,7 @@ angular.module('refugeeApp', ['ui.router', 'ngCookies', 'ngSanitize', 'djng.rmi'
             })
             .state('locationDetails.index', {
                 url: '/',
-                templateUrl: 'partials/location.details.html',
+                templateUrl: 'partials/location.important-information.html',
                 controller: 'LocationDetailsController as ctrl'
             })
             .state('locationDetails.importantInformation', {
