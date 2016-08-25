@@ -7,9 +7,6 @@ angular.module('refugeeApp').directive('serviceMap', function (leafletData) {
         link: {
             pre: function (scope) {
                 angular.extend(scope, {
-                    defaults: {
-                        scrollWheelZoom: false
-                    },
                     layers: {
                         baselayers: {
                             googleRoadmap: {
@@ -51,6 +48,6 @@ angular.module('refugeeApp').directive('serviceMap', function (leafletData) {
                 refreshMap();
             }
         },
-        template: '<leaflet markers="markers" defaults="defaults" layers="layers" class="service-details-map"></leaflet>'
+        template: '<leaflet markers="markers" layers="layers" class="service-details-map"></leaflet>'
     };
 });

@@ -10,9 +10,6 @@ angular.module('refugeeApp').directive('servicesMap', function(leafletData, $sta
         link: {
             pre: function(scope) {
                 angular.extend(scope, {
-                    defaults: {
-                        scrollWheelZoom: false
-                    },
                     layers: {
                         baselayers: {
                             googleRoadmap: {
@@ -108,6 +105,6 @@ angular.module('refugeeApp').directive('servicesMap', function(leafletData, $sta
                 });
             }
         },
-        template: '<leaflet geojson="geojson" layers="layers" defaults="defaults" class="services-map"></leaflet>'
+        template: '<leaflet geojson="geojson" layers="layers" class="services-map"></leaflet>'
     };
 });

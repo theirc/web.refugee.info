@@ -41,9 +41,6 @@ angular.module('refugeeApp').directive('locationMap', function (leafletData) {
         link: {
             pre: function (scope) {
                 angular.extend(scope, {
-                    defaults: {
-                        scrollWheelZoom: false,
-                    },
                     tiles: {
                         dark: {
                             url: "http://{s}.basemaps.cartocdn.com/dark_nolabels/{z}/{x}/{y}.png",
@@ -153,6 +150,6 @@ angular.module('refugeeApp').directive('locationMap', function (leafletData) {
                 }, true);
             }
         },
-        template: '<leaflet geojson="geojson" tiles="tile" defaults="defaults" class="map-container"></leaflet>'
+        template: '<leaflet geojson="geojson" tiles="tile" class="map-container"></leaflet>'
     };
 });
