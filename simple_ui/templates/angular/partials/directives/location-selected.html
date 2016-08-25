@@ -1,3 +1,4 @@
 <div class="row location-selected">
+    <region-flag ng-if="region.code" region="region"></region-flag>
     {$ region.title || region.metadata.page_title || region.name || "" $}
 </div>
