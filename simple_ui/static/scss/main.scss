@@ -849,6 +849,8 @@ $screen-md-max: ($screen-lg-min - 1);
     margin-top: 10px;
   }
   .location-selected {
+    @include flexbox();
+    @include align-items(center);
     background-color: $primary-color-2;
     color: $text-color;
     font-size: 20px;
