@@ -29,6 +29,10 @@
     "Leaflet.label": "^0.2.1",
     "angular-translate": "^2.11.0",
     "angular-translate-loader-static-files": "^2.11.1",
-    "angular-translate-storage-cookie": "^2.11.1"
+    "angular-translate-storage-cookie": "^2.11.1",
+    "angular-snap": "^1.8.5"
+  },
+  "resolutions": {
+    "angular": "^1.5.8"
   }
 }

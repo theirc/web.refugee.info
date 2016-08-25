@@ -1,6 +1,7 @@
 angular.module('refugeeApp', ['ui.router', 'ngCookies', 'ngSanitize', 'djng.rmi', 'leaflet-directive',
-                              'infinite-scroll', 'pascalprecht.translate'])
-    .config(function($stateProvider, $urlRouterProvider, $interpolateProvider, $httpProvider, $translateProvider, staticUrl) {
+                              'infinite-scroll', 'pascalprecht.translate', 'snap'])
+    .config(function($stateProvider, $urlRouterProvider, $interpolateProvider, $httpProvider, $translateProvider,
+                     staticUrl, snapRemoteProvider) {
         $interpolateProvider.startSymbol('{$');
         $interpolateProvider.endSymbol('$}');
 
@@ -113,5 +114,8 @@ angular.module('refugeeApp', ['ui.router', 'ngCookies', 'ngSanitize', 'djng.rmi'
                 },
                 controllerAs: 'ctrl'
             });
+        snapRemoteProvider.globalOptions = {
+            disable: 'left'
+        };
 
     });

@@ -39,7 +39,10 @@ directives_patterns = [
         name='search-bar'),
     url(r'^location-selected.html$',
         TemplateView.as_view(template_name='angular/partials/directives/location-selected.html'),
-        name='location-selected')
+        name='location-selected'),
+    url(r'^drawer.html$',
+        TemplateView.as_view(template_name='angular/partials/directives/drawer.html'),
+        name='drawer'),
 ]
 
 partial_patterns = [

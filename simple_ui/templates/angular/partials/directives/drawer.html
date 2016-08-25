@@ -1,0 +1,62 @@
+<div snap-drawer="right" id="drawer">
+    <div class="drawer-contents" dir="{$ baseController.direction() $}">
+        <img class="theme" ng-src="/static/images/logo-{$ baseController.theme() $}.png"/>
+        <div ng-if="!location">
+            <div class="current-location-container">
+                <i class="material-icons">&#xE55C;</i>
+                <span>{$ 'NO_LOCATION' | translate $}</span>
+            </div>
+        </div>
+        <div ng-if="location">
+            <div class="current-location-container">
+                <i class="material-icons">&#xE55C;</i>
+                <span><region-name region="location"></region-name></span>
+            </div>
+
+            <div class="section-header">
+                {$ 'REFUGEE_INFO' | translate $}
+            </div>
+            <a ui-sref="locationDetails.importantInformation({slug: location.slug})"
+               ui-sref-active="active" class="navigation-link" snap-close>
+                <i class="fa fa-info" aria-hidden="true"></i>
+                <span>{$ 'IMPORTANT_INFORMATION' | translate $}</span>
+            </a>
+            <a ui-sref="locationDetails.services({slug: location.slug})"
+               ui-sref-active="active" class="navigation-link" snap-close>
+                <i class="fa fa-wrench" aria-hidden="true"></i>
+                <span>{$ 'SERVICES' | translate $}</span>
+            </a>
+            <a ui-sref="locationDetails.aboutUs({slug: location.slug})"
+               ui-sref-active="active" class="navigation-link" snap-close>
+                <i class="fa fa-question" aria-hidden="true"></i>
+                <span>{$ 'ABOUT_US' | translate $}</span>
+            </a>
+            <a ng-href="{$ baseController.feedbackUrl() $}" class="navigation-link" snap-close>
+                <i class="fa fa-comment" aria-hidden="true"></i>
+                <span>{$ 'GIVE_FEEDBACK' | translate $}</span>
+            </a>
+
+            <div class="section-header">
+                {$ 'QUICK_LINKS' | translate $}
+            </div>
+            <a class="navigation-link" ng-repeat="info in location.important_information | filter: {hidden: false}"
+               snap-close>
+                <span class="padded">{$ info.metadata.page_title $}</span>
+            </a>
+
+            <div class="section-header">
+                {$ 'CHANGE_LANGUAGE' | translate $}
+            </div>
+            <a class="navigation-link" ng-click="baseController.changeLanguage('en')">
+                <span class="padded">{$ 'ENGLISH' | translate $}</span>
+            </a>
+            <a class="navigation-link" ng-click="baseController.changeLanguage('ar')">
+                <span class="padded">{$ 'ARABIC' | translate $}</span>
+            </a>
+            <a class="navigation-link" ng-click="baseController.changeLanguage('fa')">
+                <span class="padded">{$ 'FARSI' | translate $}</span>
+            </a>
+        </div>
+    </div>
+
+</div>
