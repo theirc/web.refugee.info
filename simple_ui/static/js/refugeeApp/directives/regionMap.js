@@ -17,9 +17,6 @@ angular.module('refugeeApp').directive('regionMap', function() {
         link: {
             pre: function(scope) {
                 angular.extend(scope, {
-                    defaults: {
-                        scrollWheelZoom: false
-                    },
                     layers: {
                         baselayers: {
                             googleRoadmap: {
@@ -64,6 +61,6 @@ angular.module('refugeeApp').directive('regionMap', function() {
                 refreshMap();
             }
         },
-        template: '<leaflet geojson="geojson" lf-center="center" markers="markers" defaults="defaults" layers="layers" style="height: 400px"></leaflet>'
+        template: '<leaflet geojson="geojson" lf-center="center" markers="markers" layers="layers" style="height: 400px"></leaflet>'
     };
 });
