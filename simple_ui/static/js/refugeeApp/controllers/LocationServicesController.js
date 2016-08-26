@@ -16,7 +16,7 @@ angular.module('refugeeApp').controller('LocationServicesController', function (
     vm.slug = $stateParams.slug;
     vm.location = location;
     vm.filterTypes = [];
-    vm.mapView = true;
+    vm.mapView = false;
 
     LocationService.getServiceTypes().then(function (response) {
         response.data.forEach(function (serviceType) {

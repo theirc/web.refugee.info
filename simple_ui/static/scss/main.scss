@@ -90,6 +90,16 @@ $screen-md-max: ($screen-lg-min - 1);
     @media (min-width: $screen-sm-min) {
       transform: none !important;
     }
+    //hacky way to fix positon fixed with transform
+    transform: none;
+    -webkit-transform: none;
+    -moz-transform: none;
+    -o-transform: none;
+    &[style*="transform: translate3d(-266px, 0px, 0px);"] {
+      div.floating-action-button {
+        display: none;
+      }
+    }
   }
   drawer {
     @media (min-width: $screen-sm-min) {
@@ -112,7 +122,7 @@ $screen-md-max: ($screen-lg-min - 1);
         @include align-items(center);
         @include justify-content(flex-start);
         text-transform: uppercase;
-        padding: 20px 0;
+        padding-top: 20px;
         i {
           padding: 0 5px;
           color: $green-accent-color;
@@ -141,13 +151,27 @@ $screen-md-max: ($screen-lg-min - 1);
         i {
           color: $text-color;
           text-align: center;
-          font-size: 20px;
+          font-size: 18px;
           padding: 10px;
           width: 45px;
         }
         span {
           color: $text-color
         }
+      }
+      .change-location-link {
+        @include flexbox ();
+        @include align-items(center);
+        text-decoration: none;
+        height: 40px;
+        text-transform: uppercase;
+        padding: 0 32px;
+        color: $green-accent-color;
+        //color: $text-color;
+        &:active {
+          color: $green-accent-color-dark;
+        }
+
       }
       .padded {
         padding: 0 5px;
@@ -158,9 +182,9 @@ $screen-md-max: ($screen-lg-min - 1);
     background-color: $primary-color-3;
     color: $text-color !important;
     border: 0;
-    border-bottom: 1px solid $divider-color-2;
     border-radius: 0;
     z-index: 1001;
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
     @media (max-width: $screen-xs-max) {
       padding: 0 10px;
     }
@@ -1103,10 +1127,11 @@ $screen-md-max: ($screen-lg-min - 1);
   }
   .mobile-search-bar {
     @media (max-width: $screen-sm-max) {
-      position: absolute;
+      position: fixed;
       top: 75px;
       left: 0;
       z-index: 1001;
+      width: 100%;
       .search-bar {
         background-color: transparent;
       }
@@ -1118,7 +1143,7 @@ $screen-md-max: ($screen-lg-min - 1);
       }
       .input-group {
         z-index: 1000;
-        box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.4);
+        box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4);
       }
     }
     @media (max-width: $screen-xs-max) {
@@ -1168,6 +1193,11 @@ $screen-md-max: ($screen-lg-min - 1);
   .hidden-sm-down {
     // bootstrap 4 class
     @media (max-width: $screen-sm-max) {
+      display: none;
+    }
+  }
+  .hidden-xs {
+    @media (max-width: $screen-xs-max) {
       display: none;
     }
   }
@@ -1301,7 +1331,7 @@ $screen-md-max: ($screen-lg-min - 1);
   .view-container {
     @media (max-width: $screen-xs-max) {
       padding: 0 10px 10px 10px;
-      margin-top: 70px;
+      margin-top: 50px;
     }
     @media (min-width: $screen-sm-min) {
       padding: 0 30px 30px 30px;
@@ -1372,6 +1402,8 @@ $screen-md-max: ($screen-lg-min - 1);
     border: 1px solid $divider-color;
     font-size: 12px;
     padding: 10px;
+    z-index: 2;
+    box-shadow: 1px 1px 4px rgba(0,0,0, 0.3);
     @media (min-width: $screen-md-min) {
       width: 50%;
       right: 0;

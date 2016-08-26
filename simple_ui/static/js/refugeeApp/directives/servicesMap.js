@@ -80,7 +80,9 @@ angular.module('refugeeApp').directive('servicesMap', function(leafletData, $sta
                         return;
                     }
                     leafletData.getMap().then(function(map) {
-                        map.fitBounds(markers.getBounds());
+                        if (scope.services.length > 0) {
+                            map.fitBounds(markers.getBounds());
+                        }
                     });
 
                 }, true);
