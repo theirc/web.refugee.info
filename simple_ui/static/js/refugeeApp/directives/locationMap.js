@@ -137,6 +137,7 @@ angular.module('refugeeApp').directive('locationMap', function (leafletData) {
                 };
                 refreshMap();
                 leafletData.getMap().then(function (map) {
+                    map.sleep.sleepNote.hidden = true;
                     var polygon = L.geoJson(scope.geojson.data);
                     map.fitBounds(polygon.getBounds());
                 });
