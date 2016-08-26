@@ -61,6 +61,8 @@ partial_patterns = [
     url(r'^location.service-details.html$', TemplateView.as_view(
         template_name='angular/partials/location.service-details.html'
     ), name='service_details'),
+    url(r'^general-info.html$', TemplateView.as_view(template_name='angular/partials/general-info.html'),
+        name='general_info'),
     url(r'^directives/', include(directives_patterns, namespace='directives'))
 ]
 
