@@ -1,5 +1,19 @@
 angular.module('refugeeApp', ['ui.router', 'ngCookies', 'ngSanitize', 'djng.rmi', 'leaflet-directive',
                               'infinite-scroll', 'pascalprecht.translate', 'snap'])
+    .run(function($rootScope, $state) {
+        var unregister = $rootScope.$on('$stateChangeSuccess',  function(event, toState, toParams, fromState, fromParams) {
+            $rootScope.previousStateName = fromState.name;
+            $rootScope.previousStateParams = fromParams;
+        });
+
+        $rootScope.$on('$destroy', function() {
+            unregister();
+        });
+
+        $rootScope.backToPreviousState = function() {
+            $state.go($rootScope.previousStateName, $rootScope.previousStateParams);
+        };
+    })
     .config(function($stateProvider, $urlRouterProvider, $interpolateProvider, $httpProvider, $translateProvider,
                      staticUrl, snapRemoteProvider) {
         $interpolateProvider.startSymbol('{$');
@@ -108,6 +122,41 @@ angular.module('refugeeApp', ['ui.router', 'ngCookies', 'ngSanitize', 'djng.rmi'
                             return '';
                         }
                     };
+                },
+                controllerAs: 'ctrl'
+            })
+            .state('generalInfoContent', {
+                url: '/:hash',
+                templateUrl: 'partials/general-info.html',
+                resolve: {
+                    content: function($cookies, $q, $stateParams, djangoRMI) {
+                        var locationSlug = $cookies.get('locationSlug');
+                        if (locationSlug) {
+                            return djangoRMI.location_json_view.get_details({slug: locationSlug}).then(function(response) {
+                                var result = response.data.location.content.filter(function(x) {
+                                    return x.anchor_name === $stateParams.hash;
+                                });
+
+                                if (result.length > 0) {
+                                    return result[0];
+                                } else {
+                                    return {};
+                                }
+                            });
+                        } else {
+                            return $q.defer().resolve({});
+                        }
+                    }
+                },
+                controller: function($state, $stateParams, $cookies, content) {
+                    var vm = this;
+                    var locationSlug = $cookies.get('locationSlug');
+
+                    if (!locationSlug) {
+                        $state.go('/location');
+                    }
+                    vm.back = $stateParams.backUrl;
+                    vm.info = content;
                 },
                 controllerAs: 'ctrl'
             });
