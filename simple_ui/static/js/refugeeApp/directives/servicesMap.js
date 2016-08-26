@@ -98,6 +98,7 @@ angular.module('refugeeApp').directive('servicesMap', function(leafletData, $sta
                     }
                     scope.services = newValue;
                     leafletData.getMap().then(function(map) {
+                        map.sleep.sleepNote.hidden = true;
                         drawServices(map, scope.services);
                     });
                 }, true);
@@ -105,6 +106,7 @@ angular.module('refugeeApp').directive('servicesMap', function(leafletData, $sta
                 scope.$watch('$stateChangeSuccess', function () {
                     if (scope.services){
                         leafletData.getMap().then(function(map) {
+                            map.sleep.sleepNote.hidden = true;
                             drawServices(map, scope.services);
                         });
                     }

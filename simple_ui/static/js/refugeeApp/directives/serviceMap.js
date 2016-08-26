@@ -31,6 +31,7 @@ angular.module('refugeeApp').directive('serviceMap', function (leafletData) {
                         }
                     });
                     leafletData.getMap().then(function(map) {
+                        map.sleep.sleepNote.hidden = true;
                         var zoom = 16;
                         map._onResize();
                         map.setView([lat, lng], zoom);
