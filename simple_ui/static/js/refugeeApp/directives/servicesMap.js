@@ -23,6 +23,12 @@ angular.module('refugeeApp').directive('servicesMap', function(leafletData, $sta
             },
             post: function(scope) {
                 var ctrl = scope.$parent.ctrl;
+
+                leafletData.getMap().then(function (map) {
+                    var polygon = L.geoJson(scope.region);
+                    map.fitBounds(polygon.getBounds());
+                });
+
                 var markers = new L.markerClusterGroup({
                     zoomToBoundsOnClick: false,
                     iconCreateFunction: function(cluster) {
