@@ -3,5 +3,6 @@ angular.module('refugeeApp').controller('LocationDetailsController', function ($
     vm.data = {};
     vm.loaded = false;
     vm.slug = $stateParams.slug;
+    vm.infoSlug = $stateParams.infoSlug;
     vm.location = location;
 });

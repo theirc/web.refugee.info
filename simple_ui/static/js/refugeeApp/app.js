@@ -70,6 +70,11 @@ angular.module('refugeeApp', ['ui.router', 'ngCookies', 'ngSanitize', 'djng.rmi'
             })
             .state('locationDetails.index', {
                 url: '/',
+                templateUrl: 'partials/location.home.html',
+                controller: 'LocationDetailsController as ctrl'
+            })
+            .state('locationDetails.info', {
+                url: '/info/:infoSlug',
                 templateUrl: 'partials/location.important-information.html',
                 controller: 'LocationDetailsController as ctrl'
             })
@@ -79,7 +84,7 @@ angular.module('refugeeApp', ['ui.router', 'ngCookies', 'ngSanitize', 'djng.rmi'
                 controller: 'LocationServicesController as ctrl'
             })
             .state('locationDetails.services.details', {
-                url: '/services/:serviceId',
+                url: ':serviceId',
                 templateUrl: 'partials/location.service-details.html',
                 controller: 'ServiceDetailsController as ctrl',
                 resolve: {

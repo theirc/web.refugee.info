@@ -13,7 +13,7 @@
                 <span><region-name region="location"></region-name></span>
             </div>
 
-            <a ui-sref="location"
+            <a ng-click="baseController.changeLocation()"
                class="change-location-link" snap-close>
                 <span>{$ 'CHANGE_LOCATION' | translate $}</span>
             </a>
@@ -44,7 +44,8 @@
             <div class="section-header">
                 {$ 'QUICK_LINKS' | translate $}
             </div>
-            <a ui-sref="locationDetails.index({slug: location.slug})"
+            <a ui-sref="locationDetails.info({slug: location.slug, infoSlug: info.slug, '#': 'info'})"
+               ui-sref-active="active"
                ng-repeat="info in location.important_information | filter: {hidden: false}"
                class="navigation-link" snap-close>
                 <span class="padded">{$ info.metadata.page_title $}</span>

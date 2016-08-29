@@ -86,4 +86,10 @@ angular.module('refugeeApp').controller('BaseController', function ($scope, $roo
     vm.getDrawerIcon = function () {
         return '\uE5D2';
     };
+
+    vm.changeLocation = function () {
+        $cookies.remove('locationSlug');
+        $state.go('location');
+    };
+
 });
