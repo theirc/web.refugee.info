@@ -12,12 +12,13 @@ $screen-sm-max: ($screen-md-min - 1);
 $screen-lg-min: 1200px;
 $screen-md-max: ($screen-lg-min - 1);
 
-@mixin transition-mixin($property, $duration) {
-  -webkit-transiton: $property #{$duration}s;
-  -moz-transition: $property #{$duration}s;
-  -ms-transition: $property #{$duration}s;
-  -o-transition: $property #{$duration}s;
-  -transition: $property #{$duration}s;
+@mixin transition-mixin($property, $duration, $ease) {
+  -webkit-transiton: $property #{$duration}s $ease;
+  -moz-transition: $property #{$duration}s $ease;
+  -ms-transition: $property #{$duration}s $ease;
+  -o-transition: $property #{$duration}s $ease;
+  -transition: $property #{$duration}s $ease;
+  transition: $property #{$duration}s $ease;
 }
 
 @mixin flexbox() {
@@ -143,7 +144,7 @@ $screen-md-max: ($screen-lg-min - 1);
         height: 50px;
         border-bottom: 1px solid $divider-color-3;
         &.active {
-          color: $text-color-muted;
+          background-color: $primary-color;
         }
         &:active {
           background-color: $primary-color-6;
@@ -595,6 +596,7 @@ $screen-md-max: ($screen-lg-min - 1);
     @include flexbox();
     @include align-items(center);
     @include justify-content(center);
+    @include transition-mixin(background-color, 0.2, ease-out);
     border: 1px solid $divider-color;
     color: $text-color;
     background-color: $primary-color;
@@ -684,6 +686,7 @@ $screen-md-max: ($screen-lg-min - 1);
     @include flexbox();
     @include align-items(center);
     @include justify-content(center);
+    @include transition-mixin(background-color, 0.2, ease-out);
     color: $text-color-muted;
     background-color: transparent;
     margin: 0 !important;
@@ -702,6 +705,9 @@ $screen-md-max: ($screen-lg-min - 1);
         border-right: 0;
       }
     }
+    &.active {
+      background-color: $primary-color;
+    }
   }
   .important-information-item-inner {
     width: 100%;
@@ -711,7 +717,7 @@ $screen-md-max: ($screen-lg-min - 1);
     @include flex-direction(row);
     @media (max-width: $screen-xs-max) {
       border-top: 1px solid $divider-color-2;
-      height: 60px;
+      height: 50px;
     }
     @media (min-width: $screen-sm-min) {
       border-right: 1px solid $divider-color-2;
@@ -726,6 +732,13 @@ $screen-md-max: ($screen-lg-min - 1);
     font-size: 12px;
     img {
       max-width: 100%;
+    }
+    @media (max-width: $screen-xs-max) {
+      padding: 10px 0;
+      ul {
+        -webkit-padding-start: 20px;
+        -moz-padding-start: 20px;
+      }
     }
   }
   .divider {
@@ -894,6 +907,7 @@ $screen-md-max: ($screen-lg-min - 1);
   .location-selected {
     @include flexbox();
     @include align-items(center);
+    white-space: nowrap;
     background-color: $primary-color-2;
     color: $text-color;
     font-size: 20px;
@@ -1427,7 +1441,11 @@ html, body {
   margin: 0;
   font-family: 'Montserrat', Helvetica, Arial, sans-serif;
 }
-
+#info {
+  // fixed header anchor hack
+  padding-top: 50px;
+  margin-top: -50px;
+}
 .row {
   margin-left: auto;
   margin-right: auto;
