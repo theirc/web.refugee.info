@@ -127,6 +127,11 @@
         {% block content %}{% endblock content %}
         {% include 'footer.html' %}
     {% endblock body %}
-    </snap-content>
+</snap-content>
+<div class="cookie-policy-container" ng-if="!baseController.isCookiePolicyAccepted">
+    <p>{$ 'COOKIE_POLICY' | translate $}</p>
+    <div class="cookie-policy-button" ng-click="baseController.acceptCookiePolicy()">{$ 'ACCEPT' | translate $}</div>
+</div>
+
 </body>
 </html>

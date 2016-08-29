@@ -13,17 +13,22 @@
                 <span><region-name region="location"></region-name></span>
             </div>
 
+            <a ui-sref="location"
+               class="change-location-link" snap-close>
+                <span>{$ 'CHANGE_LOCATION' | translate $}</span>
+            </a>
+
             <div class="section-header">
                 {$ 'REFUGEE_INFO' | translate $}
             </div>
-            <a ui-sref="locationDetails.importantInformation({slug: location.slug})"
+            <a ui-sref="locationDetails.index({slug: location.slug})"
                ui-sref-active="active" class="navigation-link" snap-close>
                 <i class="fa fa-info" aria-hidden="true"></i>
                 <span>{$ 'IMPORTANT_INFORMATION' | translate $}</span>
             </a>
             <a ui-sref="locationDetails.services({slug: location.slug})"
                ui-sref-active="active" class="navigation-link" snap-close>
-                <i class="fa fa-wrench" aria-hidden="true"></i>
+                <i class="fa fa-list" aria-hidden="true"></i>
                 <span>{$ 'SERVICES' | translate $}</span>
             </a>
             <a ui-sref="locationDetails.aboutUs({slug: location.slug})"
@@ -31,7 +36,7 @@
                 <i class="fa fa-question" aria-hidden="true"></i>
                 <span>{$ 'ABOUT_US' | translate $}</span>
             </a>
-            <a ng-href="{$ baseController.feedbackUrl() $}" class="navigation-link" snap-close>
+            <a ng-href="{$ baseController.feedbackUrl() $}" class="navigation-link">
                 <i class="fa fa-comment" aria-hidden="true"></i>
                 <span>{$ 'GIVE_FEEDBACK' | translate $}</span>
             </a>
@@ -39,8 +44,9 @@
             <div class="section-header">
                 {$ 'QUICK_LINKS' | translate $}
             </div>
-            <a class="navigation-link" ng-repeat="info in location.important_information | filter: {hidden: false}"
-               snap-close>
+            <a ui-sref="locationDetails.index({slug: location.slug})"
+               ng-repeat="info in location.important_information | filter: {hidden: false}"
+               class="navigation-link" snap-close>
                 <span class="padded">{$ info.metadata.page_title $}</span>
             </a>
 

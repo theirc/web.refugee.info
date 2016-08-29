@@ -1,5 +1,5 @@
 <div class="row buttons">
-    <div class="col-sm-6 text-center">
+    <div class="col-sm-6 text-center hidden-xs">
         <a ui-sref="locationDetails.index({slug: ctrl.slug})" class="navigation-button" ui-sref-active="active">
             <i class="fa fa-info important-info-icon" aria-hidden="true"></i>
             <div>
@@ -10,7 +10,7 @@
     </div>
     <div class="col-sm-6 text-center">
         <a ui-sref="locationDetails.services({slug: ctrl.slug})" class="navigation-button" ui-sref-active="active">
-            <i class="fa fa-wrench services-icon" aria-hidden="true"></i>
+            <i class="fa fa-list services-icon" aria-hidden="true"></i>
             <div>
                 <p>{$ 'SERVICES' | translate $}</p>
                     <p class="help-text"  style="max-width: 150px">{$ 'SERVICES_CLICK_HERE' | translate $}</p>
