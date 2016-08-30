@@ -769,11 +769,12 @@ $screen-md-max: ($screen-lg-min - 1);
     width: 100%;
     border-top: 1px solid $divider-color-2;
   }
+
   .general-info-item-header {
     height: 46px;
     @include flexbox();
     @include align-items(center);
-    @include justify-content(center);
+    @include justify-content(flex-start);
     color: $text-color;
     width: 100%;
     text-align: center;
@@ -795,13 +796,23 @@ $screen-md-max: ($screen-lg-min - 1);
         color: $text-color;
       }
     }
+    .general-info-item-header-inner.ltr {
+      @media (min-width: $screen-sm-min) {
+        margin-left: 40%;
+      }
+    }
+    .general-info-item-header-inner.rtl {
+      @media (min-width: $screen-sm-min) {
+        margin-right: 40%;
+      }
+    }
     i {
       padding: 0 10px;
       font-size: 20px;
       width: 50px;
     }
-
   }
+
   .general-info-item-content {
     padding: 10px 0;
     color: $text-color-muted;
