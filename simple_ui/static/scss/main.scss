@@ -1758,11 +1758,12 @@ i.fa {
 }
 
 .leaflet-service-label {
+  position: relative;
   white-space: normal;
   min-width: 250px;
 }
 
-.leaflet-right {
+.leaflet-control-layers {
   display: none !important;
 }
 
@@ -1774,6 +1775,16 @@ i.fa {
 
 .leaflet-marker-icon.service-list-item-icon-container {
   border: 1px solid #FFFFFF;
+}
+
+.service-info-control {
+    margin: 5px 5px 0 0;
+    padding: 6px 8px;
+    background: white;
+    background: rgba(255,255,255,0.8);
+    box-shadow: 0 0 15px rgba(0,0,0,0.2);
+    border-radius: 5px;
+    max-width: 400px;
 }
 
 .modal-fullscreen {

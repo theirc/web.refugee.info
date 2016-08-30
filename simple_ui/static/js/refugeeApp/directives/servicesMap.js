@@ -23,10 +23,30 @@ angular.module('refugeeApp').directive('servicesMap', function(leafletData, $sta
             },
             post: function(scope) {
                 var ctrl = scope.$parent.ctrl;
+                var infoDiv = L.control();
+
+                infoDiv.onAdd = function () {
+                    this._div = L.DomUtil.create('div', 'hidden');
+                    return this._div;
+                };
+
+                infoDiv.update = function (service) {
+                    this._div.innerHTML = ('<b>' + service.name + '</b><br/>' +  $filter('limitTo')(service.description, 250));
+                    this._div.className = 'service-info-control';
+                };
+
+                function showDetails(e) {
+                    infoDiv.update(e.target.options.service);
+                }
+
+                function hideDiv() {
+                    infoDiv._div.className = 'hidden';
+                }
 
                 leafletData.getMap().then(function (map) {
                     var polygon = L.geoJson(scope.region);
                     map.fitBounds(polygon.getBounds());
+                    infoDiv.addTo(map);
                 });
 
                 var markers = new L.markerClusterGroup({
@@ -56,17 +76,17 @@ angular.module('refugeeApp').directive('servicesMap', function(leafletData, $sta
                             className: 'service-list-item-icon-container',
                             html: '<span class="fa ' + ctrl.getServiceIcon(service.type) + ' fa-2x service-icon"></span>',
                             iconSize: null,
-                            labelAnchor: [6, 0]
                         });
                         var marker = L.marker([lat, lng], {
                             icon: icon,
                             service: service,
                             riseOnHover: true
-                        }).bindLabel(service.name + '<br>' + $filter('limitTo')(service.description, 200), {
-                            direction: 'auto',
-                            className: 'leaflet-service-label'
                         });
-                        marker.on('click', markerClick);
+                        marker.on({
+                            mouseover: showDetails,
+                            mouseout: hideDiv,
+                            click: markerClick
+                        });
                         markers.addLayer(marker);
                     });
                     if (services.length > 0) {

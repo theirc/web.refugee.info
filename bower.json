@@ -26,7 +26,6 @@
     "is-loading": "^1.0.6",
     "leaflet.markercluster": "#leaflet-0.7",
     "leaflet-plugins": "^1.9.0",
-    "Leaflet.label": "^0.2.1",
     "angular-translate": "^2.11.0",
     "angular-translate-loader-static-files": "^2.11.1",
     "angular-translate-storage-cookie": "^2.11.1",
