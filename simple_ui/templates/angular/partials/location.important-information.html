@@ -2,11 +2,13 @@
     <location-selected region="location"></location-selected>
     <location-buttons></location-buttons>
     <quick-links location="ctrl.location" direction="baseController.direction()"></quick-links>
-    <location-bar></location-bar>
-    <div class="row location-bar">
-        <region-name region="ctrl.location"></region-name>
+    <div class="row location-bar-header">
+        <change-location-button></change-location-button>
     </div>
     <div id="info" ng-repeat="info in ctrl.location.important_information | filter: {slug: ctrl.infoSlug}">
+        <div class="row green-bar">
+            {$ info.metadata.page_title $}
+        </div>
         <div class="important-information-content"
              ng-repeat="item in info.content"
              ng-bind-html="item.section"></div>
