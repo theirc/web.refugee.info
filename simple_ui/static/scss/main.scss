@@ -938,12 +938,13 @@ $screen-md-max: ($screen-lg-min - 1);
     font-size: 14px;
   }
   .location-bar-right {
+    float: right;
     @media (max-width: $screen-xs-max) {
       font-size: 11px;
     }
   }
 
-  .location-bar {
+  .green-bar {
     background-color: $green-accent-color;
     font-weight: bold;
     text-align: center;
