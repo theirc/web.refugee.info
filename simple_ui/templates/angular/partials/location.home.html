@@ -19,7 +19,7 @@
         <div class="general-info-divider" ng-if="ctrl.location.content"></div>
         <div class="general-info-item" ng-show="!p.hide_from_toc" ng-repeat="p in ctrl.location.content | filter: {important: true}">
             <div class="general-info-item-header" data-toggle="collapse" data-target="#info{$ p.index $}">
-                <div class="general-info-item-header-inner">
+                <div class="general-info-item-header-inner" ng-class="baseController.direction()">
                     <i class="fa {$ p.vector_icon $}"></i><a name="{$ p.anchor_name || 'Anchor_' + p.index $}" collapse-on-anchor-scroll>{$ p.title $}</a>
                 </div>
             </div>
@@ -27,7 +27,7 @@
         </div>
         <div class="general-info-item" ng-show="!p.hide_from_toc" ng-repeat="p in ctrl.location.content | filter: {important: false}">
             <div class="general-info-item-header" data-toggle="collapse" data-target="#info{$ p.index $}">
-                <div class="general-info-item-header-inner">
+                <div class="general-info-item-header-inner" ng-class="baseController.direction()">
                     <i class="fa {$ p.vector_icon $}"></i><a name="{$ p.anchor_name || 'Anchor_' + p.index $}" target="#info{$ p.index $}" item="p" collapse-on-anchor-scroll>{$ p.title $}</a>
                 </div>
             </div>
