@@ -902,13 +902,14 @@ $screen-md-max: ($screen-lg-min - 1);
     margin-bottom: 0;
   }
   .service-list-item {
+    @include transition-mixin(background-color, 0.15, linear);
     @include flexbox();
     flex-wrap: wrap;
     height: 80px;
     @include align-items(center);
     cursor: pointer;
     &:hover {
-      background-color: $primary-color-5;
+      background-color: $primary-color-2;
     }
   }
   .service-list-message {
@@ -1320,15 +1321,19 @@ $screen-md-max: ($screen-lg-min - 1);
     }
   }
   .button-green {
+    @include transition-mixin(background-color, 0.15, linear);
     background-color: $green-accent-color;
     color: #FFFFFF;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.33);
     &:hover {
       background-color: $green-accent-color-dark;
     }
   }
   .button-black {
+    @include transition-mixin(background-color, 0.15, linear);
     background-color: #000000;
     color: #FFFFFF;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.33);
     &:hover {
       background-color: #303030;
     }
@@ -1338,7 +1343,9 @@ $screen-md-max: ($screen-lg-min - 1);
     }
   }
   .button-white {
+    @include transition-mixin(background-color, 0.15, linear);
     background-color: #FFFFFF;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.33);
     color: #000000 !important;
     &:hover {
       background-color: #e2e2e2;
@@ -1364,6 +1371,8 @@ $screen-md-max: ($screen-lg-min - 1);
       margin-top: 100px;
     }
     background-color: $primary-color-4;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
+
   }
   .view-container-padded {
     @media (max-width: $screen-xs-max) {
