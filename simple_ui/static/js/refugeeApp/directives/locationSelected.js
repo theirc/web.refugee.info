@@ -1,9 +1,7 @@
 angular.module('refugeeApp').directive('locationSelected', function () {
     return {
         restrict: 'E',
-        scope: {
-            region: '='
-        },
+        scope: false,
         templateUrl: '/partials/directives/location-selected.html'
     };
 });

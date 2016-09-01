@@ -59,7 +59,12 @@ $screen-md-max: ($screen-lg-min - 1);
   -ms-flex-direction: $value;
   flex-direction: $value;
 }
+@mixin flex-wrap($value) {
+  flex-wrap: $value;
+  -webkit-flex-wrap: $value;
+  -ms-flex-wrap: $value;
 
+}
 @mixin theme(
   $primary-color,
   $primary-color-2,
@@ -798,12 +803,12 @@ $screen-md-max: ($screen-lg-min - 1);
     }
     .general-info-item-header-inner.ltr {
       @media (min-width: $screen-sm-min) {
-        margin-left: 40%;
+        margin-left: 35%;
       }
     }
     .general-info-item-header-inner.rtl {
       @media (min-width: $screen-sm-min) {
-        margin-right: 40%;
+        margin-right: 35%;
       }
     }
     i {
@@ -862,20 +867,27 @@ $screen-md-max: ($screen-lg-min - 1);
       background-color: $primary-color-5;
     }
   }
-
-  .change-location-button {
+  .location-name {
     @include flex(1);
+  }
+  change-location-button {
+    @media (max-width: $screen-xs-max) {
+      @include flex(1);
+    }
+  }
+  .change-location-button {
     @include flexbox();
     @include align-items(center);
-    @include justify-content(center);
+    @include justify-content(flex-end);
     @include flex-direction(row);
-    float: right;
     color: $green-accent-color !important;
     text-decoration: none;
     text-transform: uppercase;
+    font-size: 14px;
+    cursor: pointer;
     i {
       display: block;
-      padding-left: 10px;
+      padding: 0 10px;
     }
     span {
       display: block;
@@ -925,6 +937,10 @@ $screen-md-max: ($screen-lg-min - 1);
     font-size: 20px;
     padding: 10px 15px;
     margin-bottom: 15px;
+    @media (max-width: $screen-xs-max) {
+     padding: 10px 5px;
+      flex-wrap: wrap;
+    }
   }
   .location-bar-header {
     margin-bottom: 10px;
@@ -1150,6 +1166,10 @@ $screen-md-max: ($screen-lg-min - 1);
     }
     &:hover {
       background-color: $green-accent-color-light;
+    }
+    &.rtl {
+      left: 40px;
+      right: auto;
     }
   }
   .mobile-search-bar {
