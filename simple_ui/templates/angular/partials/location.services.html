@@ -1,12 +1,8 @@
 <ui-view>
     <div class="col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2 view-container view-container-padded mobile-service-map-container">
-        <location-selected region="location" class="hidden-sm-down"></location-selected>
+        <location-selected class="hidden-sm-down"></location-selected>
         <location-buttons class="hidden-sm-down"></location-buttons>
         <quick-links class="hidden-sm-down" location="ctrl.location" direction="baseController.direction()"></quick-links>
-        <location-bar class="hidden-sm-down"></location-bar>
-        <div class="row green-bar hidden-sm-down">
-            <region-name region="ctrl.location"></region-name>
-        </div>
         <services-map region="ctrl.location.envelope"
                       services="ctrl.services"
                       map-view="ctrl.mapView"></services-map>
@@ -15,7 +11,7 @@
             <services-list></services-list>
         </div>
     </div>
-    <div class="floating-action-button" ng-click="ctrl.switchView()">
+    <div class="floating-action-button" ng-click="ctrl.switchView()" ng-class="baseController.direction()">
         <i ng-if="ctrl.mapView" class="material-icons">&#xE896;</i>
         <i ng-if="!ctrl.mapView" class="material-icons">&#xE55B;</i>
     </div>

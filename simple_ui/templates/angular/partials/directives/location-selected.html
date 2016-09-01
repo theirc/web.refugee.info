@@ -1,4 +1,5 @@
 <div class="row location-selected">
-    <region-flag ng-if="region.code" region="region"></region-flag>
-    {$ region.title || region.metadata.page_title || region.name || "" $}
+    <region-flag ng-if="location.code" region="location"></region-flag>
+    <span class="location-name">{$ location.title || location.metadata.page_title || location.name || "" $}</span>
+    <change-location-button></change-location-button>
 </div>

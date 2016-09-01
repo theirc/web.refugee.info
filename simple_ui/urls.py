@@ -54,8 +54,6 @@ directives_patterns = [
 partial_patterns = [
     url(r'^location.html$', TemplateView.as_view(template_name='angular/partials/location.html'),
         name='location'),
-    url(r'^location.details.html$', TemplateView.as_view(template_name='angular/partials/location.details.html'),
-        name='location_details'),
     url(r'^location.home.html$',
         TemplateView.as_view(template_name='angular/partials/location.home.html'),
         name='location_home'),

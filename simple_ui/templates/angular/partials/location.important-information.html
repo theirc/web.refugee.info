@@ -1,12 +1,9 @@
 <div class="col-xs-12 col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2 view-container view-container-padded">
-    <location-selected region="location"></location-selected>
+    <location-selected></location-selected>
     <location-buttons></location-buttons>
     <quick-links location="ctrl.location" direction="baseController.direction()"></quick-links>
-    <div class="row location-bar-header">
-        <change-location-button></change-location-button>
-    </div>
     <div id="info" ng-repeat="info in ctrl.location.important_information | filter: {slug: ctrl.infoSlug}">
-        <div class="row green-bar">
+        <div class="row green-bar" style="margin-top: 10px">
             {$ info.metadata.page_title $}
         </div>
         <div class="important-information-content"
