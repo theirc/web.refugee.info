@@ -872,7 +872,7 @@ $screen-md-max: ($screen-lg-min - 1);
   }
   change-location-button {
     @media (max-width: $screen-xs-max) {
-      @include flex(1);
+      display: none;
     }
   }
   .change-location-button {
