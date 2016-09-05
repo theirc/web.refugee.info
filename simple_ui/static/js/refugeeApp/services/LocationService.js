@@ -1,6 +1,6 @@
 angular.module('refugeeApp').factory('LocationService', function ($http, apiUrl, staticUrl, $cookies, $translate) {
     return {
-        getServices: function (location, page, search) {
+        getServices: function (location, page, search, typeNumbers) {
             page = page || 1;
             var coords = location.centroid.coordinates;
 
@@ -12,7 +12,8 @@ angular.module('refugeeApp').factory('LocationService', function ($http, apiUrl,
                     closest: coords[0] + ',' + coords[1],
                     page: page,
                     page_size: 12,
-                    search: search
+                    search: search,
+                    type_numbers: typeNumbers.join()
                 },
                 headers: {'Accept-Language': $translate.proposedLanguage() || $translate.use()}
             });

@@ -79,9 +79,10 @@ angular.module('refugeeApp', ['ui.router', 'ngCookies', 'ngSanitize', 'djng.rmi'
                 controller: 'LocationDetailsController as ctrl'
             })
             .state('locationDetails.services', {
-                url: '/services',
+                url: '/services/?query&type',
                 templateUrl: 'partials/location.services.html',
-                controller: 'LocationServicesController as ctrl'
+                controller: 'LocationServicesController as ctrl',
+                reloadOnSearch: false
             })
             .state('locationDetails.services.details', {
                 url: ':serviceId',
