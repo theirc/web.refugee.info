@@ -5,7 +5,7 @@ angular.module('refugeeApp').directive('searchBar', function() {
         templateUrl: '/partials/directives/search-bar.html',
         controller: function ($scope) {
             $scope.setSelectedType = function () {
-                var type = this.type.url;
+                var type = this.type.number;
                 var index = $scope.ctrl.filterTypes.indexOf(type);
                 if (index > -1) {
                     $scope.ctrl.filterTypes.splice(index, 1);
