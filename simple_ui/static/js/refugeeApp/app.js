@@ -130,8 +130,8 @@ angular.module('refugeeApp', ['ui.router', 'ngCookies', 'ngSanitize', 'djng.rmi'
                 url: '/:hash',
                 templateUrl: 'partials/general-info.html',
                 resolve: {
-                    content: function($cookies, $q, $stateParams, djangoRMI) {
-                        var locationSlug = $cookies.get('locationSlug');
+                    content: function($cookies, $q, $stateParams, djangoRMI, $rootScope) {
+                        var locationSlug = $rootScope.location.slug || $cookies.get('locationSlug');
                         if (locationSlug) {
                             return djangoRMI.location_json_view.get_details({slug: locationSlug}).then(function(response) {
                                 var result = response.data.location.content.filter(function(x) {
@@ -149,9 +149,9 @@ angular.module('refugeeApp', ['ui.router', 'ngCookies', 'ngSanitize', 'djng.rmi'
                         }
                     }
                 },
-                controller: function($state, $stateParams, $cookies, content) {
+                controller: function($state, $stateParams, $cookies, content, $rootScope) {
                     var vm = this;
-                    var locationSlug = $cookies.get('locationSlug');
+                    var locationSlug = $rootScope.location.slug || $cookies.get('locationSlug');
 
                     if (!locationSlug) {
                         $state.go('/location');
