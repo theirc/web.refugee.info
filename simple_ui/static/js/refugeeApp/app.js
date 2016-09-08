@@ -15,14 +15,13 @@ angular.module('refugeeApp', ['ui.router', 'ngCookies', 'ngSanitize', 'djng.rmi'
         };
     })
     .config(function($stateProvider, $urlRouterProvider, $interpolateProvider, $httpProvider, $translateProvider,
-                     staticUrl, snapRemoteProvider) {
+                     staticUrl, snapRemoteProvider, $locationProvider) {
         $interpolateProvider.startSymbol('{$');
         $interpolateProvider.endSymbol('$}');
-
         $httpProvider.defaults.xsrfCookieName = 'csrftoken';
         $httpProvider.defaults.xsrfHeaderName = 'X-CSRFToken';
 
-        $urlRouterProvider.otherwise('/location');
+        $urlRouterProvider.otherwise('/');
 
         $translateProvider.useStaticFilesLoader({
             'prefix': staticUrl + 'locale/',
@@ -33,7 +32,7 @@ angular.module('refugeeApp', ['ui.router', 'ngCookies', 'ngSanitize', 'djng.rmi'
         .fallbackLanguage('en');
         $stateProvider
             .state('location', {
-                url: '/location',
+                url: '/',
                 templateUrl: 'partials/location.html',
                 controller: 'LocationChoiceController as ctrl',
                 resolve: {
@@ -54,7 +53,7 @@ angular.module('refugeeApp', ['ui.router', 'ngCookies', 'ngSanitize', 'djng.rmi'
             })
             .state('locationDetails', {
                 abstract: true,
-                url: '/location/:slug',
+                url: '/:slug',
                 template: '<ui-view/>',
                 resolve: {
                     location: function($stateParams, djangoRMI) {
@@ -154,7 +153,7 @@ angular.module('refugeeApp', ['ui.router', 'ngCookies', 'ngSanitize', 'djng.rmi'
                     var locationSlug = $rootScope.location.slug || $cookies.get('locationSlug');
 
                     if (!locationSlug) {
-                        $state.go('/location');
+                        $state.go('/');
                     }
                     vm.back = $stateParams.backUrl;
                     vm.info = content;
@@ -164,5 +163,9 @@ angular.module('refugeeApp', ['ui.router', 'ngCookies', 'ngSanitize', 'djng.rmi'
         snapRemoteProvider.globalOptions = {
             disable: 'left'
         };
+        $locationProvider.html5Mode({
+            enabled: true,
+            requireBase: false
+        });
 
     });
