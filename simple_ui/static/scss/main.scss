@@ -59,12 +59,14 @@ $screen-md-max: ($screen-lg-min - 1);
   -ms-flex-direction: $value;
   flex-direction: $value;
 }
+
 @mixin flex-wrap($value) {
   flex-wrap: $value;
   -webkit-flex-wrap: $value;
   -ms-flex-wrap: $value;
 
 }
+
 @mixin theme(
   $primary-color,
   $primary-color-2,
@@ -419,12 +421,25 @@ $screen-md-max: ($screen-lg-min - 1);
   }
 
   ul.locations li {
-    display: block;
+    @include flex(1);
+    @include flexbox();
+    @include justify-content(flex-start);
+    @include align-items(center);
     background: #000;
     color: #fff;
     cursor: pointer;
-    padding: 10px 15px;
-    text-overflow: clip
+    padding: 0 15px;
+    text-overflow: clip;
+    height: 40px;
+    position: relative;
+    @media (max-width: $screen-xs-max) {
+      padding: 0;
+      .location-label-name {
+        width: 100%;
+        text-align: center;
+        display: block;
+      }
+    }
   }
 
   ul.locations li a {
@@ -497,15 +512,34 @@ $screen-md-max: ($screen-lg-min - 1);
     opacity: 1;
   }
   .location-left {
+    display: block;
     font-size: 12px;
-    padding-top: 2px;
     position: absolute;
     text-transform: uppercase;
     @media (max-width: $screen-xs-max) {
       display: none
     }
   }
+  .location-helper {
+    width: 40%;
+    display: block;
+    font-size: 12px;
+    text-transform: uppercase;
+    @media (max-width: $screen-xs-max) {
+      display: none
+    }
+  }
+  .location-icon {
+    height: 24px;
+    width: 54px;
+    padding: 0 15px;
+    @media (max-width: $screen-xs-max) {
+      position: absolute;
+      top: 8px;
+    }
+  }
   .location-center {
+    width: 100%;
     text-align: center;
     display: block;
   }
@@ -515,7 +549,9 @@ $screen-md-max: ($screen-lg-min - 1);
     @include justify-content(flex-start);
     @include align-items(center);
     white-space: nowrap;
+    padding: 0 15px;
     @media (max-width: $screen-xs-max) {
+      padding: 0;
       width: 100%;
       region-flag {
         border-right: 1px solid $divider-color;
@@ -526,16 +562,6 @@ $screen-md-max: ($screen-lg-min - 1);
         text-align: center;
         display: block;
       }
-    }
-  }
-  .location-flex.ltr {
-    @media (min-width: $screen-sm-min) {
-      margin-left: 40%;
-    }
-  }
-  .location-flex.rtl {
-    @media (min-width: $screen-sm-min) {
-      margin-right: 40%;
     }
   }
 
@@ -938,7 +964,7 @@ $screen-md-max: ($screen-lg-min - 1);
     padding: 10px 15px;
     margin-bottom: 15px;
     @media (max-width: $screen-xs-max) {
-     padding: 10px 5px;
+      padding: 10px 5px;
       flex-wrap: wrap;
     }
   }
@@ -1458,7 +1484,7 @@ $screen-md-max: ($screen-lg-min - 1);
     font-size: 12px;
     padding: 10px;
     z-index: 2;
-    box-shadow: 1px 1px 4px rgba(0,0,0, 0.3);
+    box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.3);
     @media (min-width: $screen-md-min) {
       width: 50%;
       right: 0;
@@ -1482,11 +1508,13 @@ html, body {
   margin: 0;
   font-family: 'Montserrat', Helvetica, Arial, sans-serif;
 }
+
 #info {
   // fixed header anchor hack
   padding-top: 50px;
   margin-top: -50px;
 }
+
 .row {
   margin-left: auto;
   margin-right: auto;
@@ -1819,13 +1847,13 @@ i.fa {
 }
 
 .service-info-control {
-    margin: 5px 5px 0 0;
-    padding: 6px 8px;
-    background: white;
-    background: rgba(255,255,255,0.8);
-    box-shadow: 0 0 15px rgba(0,0,0,0.2);
-    border-radius: 5px;
-    max-width: 400px;
+  margin: 5px 5px 0 0;
+  padding: 6px 8px;
+  background: white;
+  background: rgba(255, 255, 255, 0.8);
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+  max-width: 400px;
 }
 
 .modal-fullscreen {

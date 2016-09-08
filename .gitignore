@@ -2,7 +2,6 @@ __pycache__
 .DS_Store
 .idea
 *.sqlite[3]
-*.py[co]
 node_modules/
 bower_components/
 localsettings.py

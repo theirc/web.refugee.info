@@ -141,20 +141,9 @@ STATICFILES_FINDERS = [
     'compressor.finders.CompressorFinder'
 ]
 
-LOCALE_PATHS = (
-    os.path.join(BASE_DIR, 'locale'),
-)
-
 API_URL = os.environ.get('API_URL', 'http://api.refugee.info')
 BLUE_PAGES = os.environ.get('BLUE_PAGES', 'serbia').split(';')
 
-
-FEEDBACK_URL = os.environ.get("FEEDBACK_URL", "en;https://docs.google.com/forms/d/1gc-hN_p5pqC3DoPXxTfCAmlIiCEd1mOIdQMWeAz2n_U/viewform?entry.1237329743={}&entry.76257945&entry.197209127&entry.2029928797&entry.1325640830|")
-
-if '|' in FEEDBACK_URL:
-    FEEDBACK_URL = dict([a.split(';') for a in FEEDBACK_URL.split('|') if a])
-else:
-    FEEDBACK_URL = {}
 
 if 'MEMCACHED_URL' in os.environ:
     from urllib.parse import urlparse
