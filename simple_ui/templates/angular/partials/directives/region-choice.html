@@ -1,8 +1,10 @@
 {% load i18n %}
+{% load static %}
 <div>
     <ul id="locations-{$ region.id $}" class="locations country">
         <li data-toggle="collapse" data-target="#region{$ region.id $}">
-            <div class="location-flex" ng-class="direction">
+            <div class="location-flex">
+                <span class="location-helper"></span>
                 <region-flag region="region"></region-flag>
                 <region-name region="region"></region-name>
             </div>
@@ -10,21 +12,19 @@
     </ul>
     <ul class="locations children panel-collapse collapse" id="region{$ region.id $}">
         <li ng-click="navigateToDetails(region)" ng-if="!region.hidden">
-            <span class="location-left">{$ 'VIEW_INFO_FOR' | translate $}:</span>
-            <span class="location-center"><region-name region="region"></region-name></span>
-        </li>
-
-        <li class="country" ng-repeat="child in region.children | filter: {level: 1}" ng-click="navigateToDetails(child)">
-            <span class="location-left">{$ 'VIEW_INFO_FOR' | translate $}:</span>
-            <span class="location-center"><region-name region="child"></region-name></span>
+            <span class="location-helper">{$ 'VIEW_INFO_FOR' | translate $}:</span>
+            <img class="location-icon" src="{% static 'images/level-country.png' %}"/>
+            <span class="location-label-name"><region-name region="region"></region-name></span>
         </li>
         <li class="region" ng-repeat="child in region.children | filter: {level: 2}" ng-click="navigateToDetails(child)">
-            <span class="location-left">{$ 'VIEW_INFO_FOR' | translate $}:</span>
-            <span class="location-center"><region-name region="child"></region-name></span>
+            <span class="location-helper">{$ 'VIEW_INFO_FOR' | translate $}:</span>
+            <img class="location-icon" src="{% static 'images/level-region.png' %}"/>
+            <span class="location-label-name"><region-name region="child"></region-name></span>
         </li>
         <li class="camp" ng-repeat="child in region.children | filter: {level: 3}" ng-click="navigateToDetails(child)">
-            <span class="location-left">{$ 'VIEW_INFO_FOR' | translate $}:</span>
-            <span class="location-center"><region-name region="child"></region-name></span>
+            <span class="location-helper">{$ 'VIEW_INFO_FOR' | translate $}:</span>
+            <img class="location-icon" src="{% static 'images/level-camp.png' %}"/>
+            <span class="location-label-name"><region-name region="child"></region-name></span>
         </li>
     </ul>
 </div>
