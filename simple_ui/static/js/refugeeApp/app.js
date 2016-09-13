@@ -125,7 +125,7 @@ angular.module('refugeeApp', ['ui.router', 'ngCookies', 'ngSanitize', 'djng.rmi'
                 },
                 controllerAs: 'ctrl'
             })
-            .state('generalInfoContent', {
+            .state('locationDetails.generalInfoContent', {
                 url: '/:hash',
                 templateUrl: 'partials/general-info.html',
                 resolve: {

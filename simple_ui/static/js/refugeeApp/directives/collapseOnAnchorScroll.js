@@ -1,4 +1,4 @@
-angular.module('refugeeApp').directive('collapseOnAnchorScroll', function($document) {
+angular.module('refugeeApp').directive('collapseOnAnchorScroll', function ($document, $stateParams, $location) {
     return {
         restrict: 'A',
         scope: {
@@ -6,8 +6,9 @@ angular.module('refugeeApp').directive('collapseOnAnchorScroll', function($docum
             target: '@',
             item: '='
         },
-        link: function(scope) {
-            $($document[0].body).on('click', 'a[href="#' + scope.name +'"]', function() {
+        link: function (scope) {
+
+            var openModal = function () {
                 var $modal = $('#contentModal');
                 if (scope.item.hide_from_toc) {
                     $modal.find('.modal-title').text(scope.item.title);
@@ -16,8 +17,16 @@ angular.module('refugeeApp').directive('collapseOnAnchorScroll', function($docum
                 } else {
                     $(scope.target).collapse('show');
                 }
+            };
+
+            if (scope.item && scope.item.anchor_name === $location.hash()) {
+                openModal();
+            }
+            $($document[0].body).on('click', 'a[href="#' + scope.name + '"]', function () {
+                openModal();
             });
-            scope.$on('$stateChangeStart', function() {
+
+            scope.$on('$stateChangeStart', function () {
                 $('body').removeClass('modal-open');
                 $('.modal-backdrop').remove();
             });
