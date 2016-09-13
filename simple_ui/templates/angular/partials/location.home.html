@@ -10,7 +10,7 @@
     <quick-links class="hidden-xs" location="ctrl.location" direction="baseController.direction()"></quick-links>
     <div class="general-info-container">
 
-        <div class="general-info-box" ng-repeat="b in ctrl.location.metadata.banners" ng-bind-html="b"></div>
+        <div class="general-info-box hidden-xs" ng-repeat="b in ctrl.location.metadata.banners" ng-bind-html="b"></div>
 
         <div class="general-info-divider" ng-if="ctrl.location.content"></div>
         <div class="general-info-item" ng-show="!p.hide_from_toc" ng-repeat="p in ctrl.location.content | filter: {important: true}">
