@@ -18,8 +18,7 @@ angular.module('refugeeApp').directive('collapseOnAnchorScroll', function ($docu
                     $(scope.target).collapse('show');
                 }
             };
-
-            if (scope.item && scope.item.anchor_name === $location.hash()) {
+            if (scope.item && $location.hash() && scope.item.anchor_name === $location.hash()) {
                 openModal();
             }
             $($document[0].body).on('click', 'a[href="#' + scope.name + '"]', function () {
