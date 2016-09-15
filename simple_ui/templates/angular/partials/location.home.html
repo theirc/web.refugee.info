@@ -19,7 +19,7 @@
                     <i class="fa {$ p.vector_icon $}"></i><a name="{$ p.anchor_name || 'Anchor_' + p.index $}" collapse-on-anchor-scroll>{$ p.title $}</a>
                 </div>
             </div>
-            <div class="general-info-item-content collapse" ng-class='{in:$first}' id="info{$ p.index $}" ng-bind-html="p.section"></div>
+            <div class="general-info-item-content collapse" id="info{$ p.index $}" ng-bind-html="p.section"></div>
         </div>
         <div class="general-info-item" ng-show="!p.hide_from_toc" ng-repeat="p in ctrl.location.content | filter: {important: false}">
             <div class="general-info-item-header collapsed" data-toggle="collapse" data-target="#info{$ p.index $}">
