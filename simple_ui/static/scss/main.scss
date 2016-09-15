@@ -402,6 +402,7 @@ $screen-md-max: ($screen-lg-min - 1);
 
   a.link-button-reversed {
     background-color: white !important;
+    border: 1px $green-accent-color solid !important;
     color:  $green-accent-color !important;
     display: block;
     font-size: 14px;
