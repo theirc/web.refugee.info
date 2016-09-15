@@ -810,7 +810,6 @@ $screen-md-max: ($screen-lg-min - 1);
     @include justify-content(flex-start);
     color: $text-color;
     width: 100%;
-    text-align: center;
     cursor: pointer;
     background-color: transparent;
     border-top: 1px solid $divider-color-2;
@@ -831,13 +830,16 @@ $screen-md-max: ($screen-lg-min - 1);
     }
     .general-info-item-header-inner.ltr {
       @media (min-width: $screen-sm-min) {
-        margin-left: 35%;
+        margin-left: 25%;
       }
+      
+      text-align: left;
     }
     .general-info-item-header-inner.rtl {
       @media (min-width: $screen-sm-min) {
-        margin-right: 35%;
+        margin-right: 25%;
       }
+      text-align: right;
     }
     i {
       padding: 0 10px;
