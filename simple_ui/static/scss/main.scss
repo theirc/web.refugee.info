@@ -829,16 +829,9 @@ $screen-md-max: ($screen-lg-min - 1);
       }
     }
     .general-info-item-header-inner.ltr {
-      @media (min-width: $screen-sm-min) {
-        margin-left: 25%;
-      }
-      
       text-align: left;
     }
     .general-info-item-header-inner.rtl {
-      @media (min-width: $screen-sm-min) {
-        margin-right: 25%;
-      }
       text-align: right;
     }
     i {
