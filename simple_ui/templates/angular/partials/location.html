@@ -2,7 +2,9 @@
 {% load static %}
 
 <div ng-cloak ng-hide="ctrl.locationSlug && !ctrl.force">
-    <location-map theme="baseController.theme()" closest="ctrl.data.closest" regions="ctrl.data.regions" countries="ctrl.countries"></location-map>
+    <div class="col-xs-12 col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2">
+        <img id="img-location" class="img-centered" src="{% static 'images/refugees.jpg' %}" />
+    </div>
     <div class="col-xs-12 col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2 view-container view-container-padded" style="margin-top: 20px">
         <div class="row get-app-container">
             <div class="col-xs-12 col-sm-4">

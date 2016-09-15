@@ -1,6 +1,5 @@
-angular.module('refugeeApp').controller('LocationChoiceController', function($rootScope, $state, $stateParams, $cookies, locationData, countriesJson) {
+angular.module('refugeeApp').controller('LocationChoiceController', function($rootScope, $state, $stateParams, $cookies, locationData) {
     var vm = this;
-    vm.countries = countriesJson;
     vm.data = locationData;
     vm.data.regions = vm.data.regions.filter(function (region) {
         return (region.children.length > 0 || !region.hidden);
