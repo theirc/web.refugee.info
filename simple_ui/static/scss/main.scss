@@ -1898,6 +1898,8 @@ hr.branded-line
 .img-centered {
     display: block;
     margin: auto;
+    max-width: 100%;
+    clear: both;
 }
 
 .img-left {
