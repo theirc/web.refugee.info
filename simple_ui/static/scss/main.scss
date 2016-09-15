@@ -820,6 +820,9 @@ $screen-md-max: ($screen-lg-min - 1);
     .general-info-item-header-inner {
       @include flexbox();
       @include justify-content(flex-start);
+      
+      align-items: center;
+      
       @media (max-width: $screen-xs-max) {
         width: 100%;
       }
