@@ -1498,6 +1498,11 @@ $screen-md-max: ($screen-lg-min - 1);
       }
     }
   }
+  #img-location{
+    @media (min-width: $screen-lg-min) {
+      margin-bottom: -250px;
+    }
+  }
 }
 
 html, body {
@@ -1891,16 +1896,16 @@ hr.branded-line
 }
 
 .img-centered {
-    display: block;
-    margin: auto;
-    max-width: 100%;
-    clear: both;
+  display: block;
+  margin: auto;
+  max-width: 100%;
+  clear: both;
 }
 
 .img-left {
-    float: left;
+  float: left;
 }
 
 .img-right {
-    float: right;
+  float: right;
 }
