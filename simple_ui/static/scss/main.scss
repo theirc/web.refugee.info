@@ -1916,3 +1916,16 @@ hr.branded-line
 .table-responsive {
   border: 0px!important;
 }
+
+.facebook-container{
+  @include flexbox();
+  margin-top: 10px;
+  vertical-align: middle;
+  i {
+    color: #3b5998;
+  }
+  .fb-like{
+    padding: 0 5px;
+    margin-top: 4px
+  }
+}
