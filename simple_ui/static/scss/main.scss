@@ -1931,6 +1931,7 @@ hr.branded-line
 
 .facebook-container{
   @include flexbox();
+  max-width: 100%;
   margin-top: 10px;
   vertical-align: middle;
   i {
