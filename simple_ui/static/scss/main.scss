@@ -1905,6 +1905,18 @@ hr.branded-line
   clear: both;
 }
 
+.logo-centered {
+  display: block;
+  margin: auto;
+  @media (min-width: $screen-sm-min) {
+    max-width: 250px;
+  }
+  @media (max-width: $screen-sm-min) {
+    max-width: 100%;
+  }
+  clear: both;
+}
+
 .img-left {
   float: left;
 }
