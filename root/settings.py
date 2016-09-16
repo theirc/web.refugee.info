@@ -144,8 +144,7 @@ STATICFILES_FINDERS = [
 API_URL = os.environ.get('API_URL', 'http://api.refugee.info')
 BLUE_PAGES = os.environ.get('BLUE_PAGES', 'serbia').split(';')
 
-
-if 'MEMCACHED_URL' in os.environ:
+`if 'MEMCACHED_URL' in os.environ:
     from urllib.parse import urlparse
 
     memcached = urlparse(os.environ.get('MEMCACHED_URL'))
@@ -166,12 +165,32 @@ else:
 
 TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
 
-COMPRESS_ENABLED = True
-COMPRESS_OFFLINE = True
+COMPRESS_ENABLED = False
+COMPRESS_OFFLINE = False
 
 COMPRESS_PRECOMPILERS = (
     ('text/x-scss', 'sass --scss {infile} {outfile}'),
 )
+
+if 'AWS_ACCESS_KEY_ID' in os.environ:
+    AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID', '')
+    AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY', '')
+    AWS_STORAGE_BUCKET_NAME = os.environ.get('AWS_STORAGE_BUCKET_NAME', 'new-refugee-info')
+
+    CLOUDFRONT_URL = os.environ.get('CLOUDFRONT_URL', 'https://new-refugee-info.s3.amazonaws.com/')
+
+    # Static files location
+    STATICFILES_STORAGE = 'root.storages.StaticFilesStorage'
+
+    # Default File storage
+    MEDIAFILES_LOCATION = 'media'
+    STATICFILES_LOCATION = 'static'
+
+    MEDIA_URL = "%s%s/" % (CLOUDFRONT_URL, MEDIAFILES_LOCATION,)
+    COMPRESS_URL = STATIC_URL = CLOUDFRONT_URL
+    COMPRESS_STORAGE = 'root.storages.S3BotoStorage'
+
+
 
 try:
     from .localsettings import *

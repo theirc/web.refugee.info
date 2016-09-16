@@ -1,5 +1,4 @@
 {% load static %}
-{% load compress %}
 {% load djng_tags %}
 {% load marktags %}
 {% cookie 'theme' as theme %}
@@ -49,7 +48,6 @@
     <script type="text/javascript" src='{% static 'angular-snap/angular-snap.min.js' %}'></script>
     <script type="text/javascript" src='{% static 'Leaflet.label/dist/leaflet.label.js' %}'></script>
 
-    {% compress js %}
         <script type="text/javascript" src='{% static 'js/refugeeApp/app.js' %}'></script>
 
         <script type="text/javascript" src='{% static 'js/refugeeApp/services/LocationService.js' %}'></script>
@@ -80,7 +78,6 @@
         <script type="text/javascript" src='{% static 'js/refugeeApp/directives/quickLinks.js' %}'></script>
         <script type="text/javascript" src='{% static 'js/refugeeApp/directives/changeLocationButton.js' %}'></script>
 
-    {% endcompress %}
 
     <script type="text/javascript">
         angular.module('refugeeApp').constant('apiUrl', '{{ API_URL }}');
@@ -99,9 +96,7 @@
 
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet">
 
-    {% compress css %}
-    <link rel="stylesheet" type="text/x-scss" href="{% static 'scss/main.scss' %}">
-    {% endcompress %}
+    <link rel="stylesheet" href="{% static 'scss/main.css' %}">
 
 
     {% block additional-requirements %}{% endblock %}
