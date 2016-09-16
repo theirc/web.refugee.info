@@ -10,3 +10,4 @@ wheel==0.24.0
 python-dateutil
 django_compressor
 django-angular
+django-storages
