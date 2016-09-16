@@ -144,7 +144,7 @@ STATICFILES_FINDERS = [
 API_URL = os.environ.get('API_URL', 'http://api.refugee.info')
 BLUE_PAGES = os.environ.get('BLUE_PAGES', 'serbia').split(';')
 
-`if 'MEMCACHED_URL' in os.environ:
+if 'MEMCACHED_URL' in os.environ:
     from urllib.parse import urlparse
 
     memcached = urlparse(os.environ.get('MEMCACHED_URL'))
