@@ -1410,11 +1410,9 @@ $screen-md-max: ($screen-lg-min - 1);
   .view-container {
     @media (max-width: $screen-xs-max) {
       padding: 0 10px 10px 10px;
-      margin-top: 50px;
     }
     @media (min-width: $screen-sm-min) {
       padding: 0 30px 30px 30px;
-      margin-top: 100px;
     }
     background-color: $primary-color-4;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
@@ -1501,9 +1499,13 @@ $screen-md-max: ($screen-lg-min - 1);
       }
     }
   }
-  #img-location{
+  #img-location {
+    width: 100%;
     @media (min-width: $screen-lg-min) {
       margin-bottom: -250px;
+    }
+    @media (max-width: $screen-xs-max) {
+      margin-top: 30px;
     }
   }
 }
@@ -1884,8 +1886,7 @@ i.fa {
   margin-bottom: 5px;
 }
 
-hr.branded-line 
-{
+hr.branded-line {
     border-color: $green-accent-color;
     /* 
     Leaving this here so we can copy and paste this code into the mobile app as well
@@ -1894,6 +1895,7 @@ hr.branded-line
     width: 30%;
     border-width: 2px;
 }
+
 .text-center {
   text-align: center;
 }
@@ -1929,7 +1931,7 @@ hr.branded-line
   border: 0px!important;
 }
 
-.facebook-container{
+.facebook-container {
   @include flexbox();
   max-width: 100%;
   margin-top: 10px;
@@ -1937,7 +1939,7 @@ hr.branded-line
   i {
     color: #3b5998;
   }
-  .fb-like{
+  .fb-like {
     padding: 0 5px;
     margin-top: 4px
   }
