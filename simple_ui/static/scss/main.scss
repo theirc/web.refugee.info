@@ -796,7 +796,9 @@ $screen-md-max: ($screen-lg-min - 1);
     text-align: center;
   }
   .general-info-item {
-
+    a {
+      text-decoration: none !important;
+    }
   }
   .general-info-divider {
     width: 100%;
