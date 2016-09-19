@@ -124,41 +124,6 @@ angular.module('refugeeApp', ['ui.router', 'ngCookies', 'ngSanitize', 'djng.rmi'
                     };
                 },
                 controllerAs: 'ctrl'
-            })
-            .state('locationDetails.generalInfoContent', {
-                url: '/:hash',
-                templateUrl: 'partials/general-info.html',
-                resolve: {
-                    content: function($cookies, $q, $stateParams, djangoRMI, $rootScope) {
-                        var locationSlug = $rootScope.location.slug || $cookies.get('locationSlug');
-                        if (locationSlug) {
-                            return djangoRMI.location_json_view.get_details({slug: locationSlug}).then(function(response) {
-                                var result = response.data.location.content.filter(function(x) {
-                                    return x.anchor_name === $stateParams.hash;
-                                });
-
-                                if (result.length > 0) {
-                                    return result[0];
-                                } else {
-                                    return {};
-                                }
-                            });
-                        } else {
-                            return $q.defer().resolve({});
-                        }
-                    }
-                },
-                controller: function($state, $stateParams, $cookies, content, $rootScope) {
-                    var vm = this;
-                    var locationSlug = $rootScope.location.slug || $cookies.get('locationSlug');
-
-                    if (!locationSlug) {
-                        $state.go('/');
-                    }
-                    vm.back = $stateParams.backUrl;
-                    vm.info = content;
-                },
-                controllerAs: 'ctrl'
             });
         snapRemoteProvider.globalOptions = {
             disable: 'left'
