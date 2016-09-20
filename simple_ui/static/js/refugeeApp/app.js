@@ -1,5 +1,5 @@
 angular.module('refugeeApp', ['ui.router', 'ngCookies', 'ngSanitize', 'djng.rmi', 'leaflet-directive',
-                              'infinite-scroll', 'pascalprecht.translate', 'snap'])
+                              'infinite-scroll', 'pascalprecht.translate', 'snap', 'angular-bind-html-compile'])
     .run(function($rootScope, $state) {
         var unregister = $rootScope.$on('$stateChangeSuccess',  function(event, toState, toParams, fromState, fromParams) {
             $rootScope.previousStateName = fromState.name;

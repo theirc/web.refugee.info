@@ -14,6 +14,9 @@ angular.module('refugeeApp').directive('collapseOnAnchorScroll', function ($docu
                     $modal.find('.modal-title').text(scope.item.title);
                     $modal.find('.modal-body').html(scope.item.section);
                     $modal.modal('show');
+                    if (angular.isDefined(FB) && FB !== null) {
+                        FB.XFBML.parse();
+                    }
                 } else {
                     $(scope.target).collapse('show');
                 }
@@ -35,7 +38,6 @@ angular.module('refugeeApp').directive('collapseOnAnchorScroll', function ($docu
                     }
                 });
             }
-
             $($document[0].body).on('click', 'a[href="#' + scope.name + '"]', function () {
                 openModal();
             });

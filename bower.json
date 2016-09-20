@@ -31,7 +31,8 @@
     "angular-translate-storage-cookie": "^2.11.1",
     "angular-snap": "^1.8.5",
     "leaflet-sleep": "^0.5.1",
-    "Leaflet.label": "^0.2.1"
+    "Leaflet.label": "^0.2.1",
+    "angular-bind-html-compile": "^1.2.1"
   },
   "resolutions": {
     "angular": "^1.5.8"
