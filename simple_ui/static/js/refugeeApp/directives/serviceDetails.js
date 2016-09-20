@@ -19,10 +19,10 @@ angular.module('refugeeApp').directive('serviceDetails', function () {
             vm.showOpeningHours = function () {
                 for (var i = 0; i <= vm.days.length; i++) {
                     if (vm.service[vm.days[i] + '_open']) {
-                        vm.open[i] = vm.service[vm.days[i] + '_open'];
+                        vm.open[i] = vm.service[vm.days[i] + '_open'].slice(0, -3);
                     }
                     if (vm.service[vm.days[i] + '_open']) {
-                        vm.close[i] = vm.service[vm.days[i] + '_close'];
+                        vm.close[i] = vm.service[vm.days[i] + '_close'].slice(0, -3);
                     }
                 }
                 if (vm.open.length || vm.close.length ) {
