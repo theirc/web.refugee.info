@@ -1952,3 +1952,16 @@ hr.branded-line {
     margin-top: 4px
   }
 }
+
+
+
+.border-table {
+ .country-cell {
+  white-space: nowrap;
+  min-width: 200px;
+ }
+ .country-flag {
+  width: 25px;
+  margin-right: 5px;
+ }
+}
