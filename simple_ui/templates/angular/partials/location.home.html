@@ -43,7 +43,7 @@
                     </div>
                 </div>
             </a>
-            <div class="general-info-item-content collapse" id="info{$ p.index $}" ng-bind-html="p.section"></div>
+            <div class="general-info-item-content collapse" id="info{$ p.index $}" bind-html-compile="p.section"></div>
         </div>
         <div class="general-info-item" ng-show="!p.hide_from_toc" ng-repeat="p in ctrl.location.content | filter: {important: false}" id="{$ p.anchor_name || 'Anchor_' + p.index $}">
             <a href="#info{$ p.index $}">
@@ -53,14 +53,13 @@
                     </div>
                 </div>
             </a>
-            <div class="general-info-item-content collapse" id="info{$ p.index $}" ng-bind-html="p.section"></div>
+            <div class="general-info-item-content collapse" id="info{$ p.index $}" bind-html-compile="p.section"></div>
         </div>
         <div class="general-info-divider" ng-if="ctrl.location.content"></div>
 
         <p class="general-info-date" data-date="{$ ctrl.publication_date $}" ng-if="!!ctrl.publication_date">
             {$ 'LAST_UPDATE_ON' | translate $} {$ ctrl.localized_date $} UTC
         </p>
-
         <div class="facebook-container">
             <a href="https://www.facebook.com/refugee.info/">
                 <i class="fa fa-2x fa-facebook-square"></i>

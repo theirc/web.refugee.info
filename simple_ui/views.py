@@ -3,6 +3,7 @@ from urllib.parse import quote_plus
 
 import requests
 from django.conf import settings
+from django.contrib.sites.shortcuts import get_current_site
 from django.http import Http404
 from django.template.defaultfilters import date
 from django.templatetags.l10n import localize
@@ -162,6 +163,13 @@ class LocationJSONView(JSONResponseMixin, View):
         region_en = regions_en[0] if regions_en else information_en[0] if information_en else {}
 
         region = region if 'content' in region and region['content'] else region_en
+
+        base_url = request.build_absolute_uri('/') + slug
+        for content in region['content']:
+            site_address = base_url + '/#{}'.format(content["anchor_name"]) if content["anchor_name"] \
+                else '/#info{}'.format(content["index"])
+            content['section'] += '<div class="fb-share-button" ' \
+                                  'data-href="' + site_address + '" data-layout="button"></div>'
 
         feedback_url = ""
         try:

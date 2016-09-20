@@ -6,7 +6,8 @@
     "extends": "eslint:recommended",
     "globals": {
         "L": true,
-        "theme": true
+        "theme": true,
+        "FB": true
     },
     "rules": {
         "indent": [
