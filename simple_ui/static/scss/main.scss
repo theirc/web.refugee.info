@@ -1506,13 +1506,13 @@ $screen-md-max: ($screen-lg-min - 1);
   #img-location {
     width: 100%;
     @media (min-width: $screen-lg-min) {
-      margin-bottom: -250px;
+      margin-bottom: -300px;
     }
     @media (max-width: $screen-xs-max) {
       margin-top: 30px;
       margin-bottom: -50px;
     }
-    @media (max-width: $screen-sm-max) {
+    @media (max-width: $screen-md-max) {
       margin-bottom: -100px;
     }
   }
