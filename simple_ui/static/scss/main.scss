@@ -1412,9 +1412,11 @@ $screen-md-max: ($screen-lg-min - 1);
   .view-container {
     @media (max-width: $screen-xs-max) {
       padding: 0 10px 10px 10px;
+      margin-top: 50px;
     }
     @media (min-width: $screen-sm-min) {
       padding: 0 30px 30px 30px;
+      margin-top: 100px;
     }
     background-color: $primary-color-4;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
@@ -1508,6 +1510,10 @@ $screen-md-max: ($screen-lg-min - 1);
     }
     @media (max-width: $screen-xs-max) {
       margin-top: 30px;
+      margin-bottom: -50px;
+    }
+    @media (max-width: $screen-sm-max) {
+      margin-bottom: -100px;
     }
   }
 }
