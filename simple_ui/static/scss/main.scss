@@ -802,7 +802,7 @@ $screen-md-max: ($screen-lg-min - 1);
   }
   .general-info-divider {
     width: 100%;
-    border-top: 1px solid $divider-color-2;
+    border-top: 1px solid $divider-color;
   }
 
   .general-info-item-header {
@@ -814,8 +814,7 @@ $screen-md-max: ($screen-lg-min - 1);
     width: 100%;
     cursor: pointer;
     background-color: transparent;
-    border-top: 1px solid $divider-color-2;
-    border-bottom: 1px solid $divider-color-2;
+    border-bottom: 1px solid $divider-color;
     &:hover {
       background-color: $primary-color-5;
     }
@@ -849,8 +848,6 @@ $screen-md-max: ($screen-lg-min - 1);
   .general-info-item-content {
     padding: 10px 0;
     color: $text-color-muted;
-    border-top: 1px solid $divider-color-2;
-    border-bottom: 1px solid $divider-color-2;
     img {
       max-width: 100%;
     }
@@ -874,6 +871,9 @@ $screen-md-max: ($screen-lg-min - 1);
           margin: 0
         }
       }
+    }
+    &.collapse.in {
+      border-bottom: 1px solid $divider-color;
     }
   }
   .general-info-date {
@@ -1248,6 +1248,7 @@ $screen-md-max: ($screen-lg-min - 1);
     }
   }
   .services-map {
+    margin-top: 15px;
     height: 400px;
     @media (max-width: $screen-sm-max) {
       height: 100%;
@@ -1524,11 +1525,6 @@ html, body {
   font-family: 'Montserrat', Helvetica, Arial, sans-serif;
 }
 
-#info {
-  // fixed header anchor hack
-  padding-top: 50px;
-  margin-top: -50px;
-}
 
 .row {
   margin-left: auto;

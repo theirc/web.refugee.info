@@ -55,7 +55,6 @@
             </a>
             <div class="general-info-item-content collapse" id="info{$ p.index $}" ng-bind-html="p.section"></div>
         </div>
-        <div class="general-info-divider" ng-if="ctrl.location.content"></div>
 
         <p class="general-info-date" data-date="{$ ctrl.publication_date $}" ng-if="!!ctrl.publication_date">
             {$ 'LAST_UPDATE_ON' | translate $} {$ ctrl.localized_date $} UTC
