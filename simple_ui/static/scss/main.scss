@@ -220,15 +220,20 @@ $screen-md-max: ($screen-lg-min - 1);
       }
     }
 
-    .brand-logo img {
-      @media (max-width: $screen-xs-max) {
-        padding-top: 7px;
-        max-height: 40px;
-      }
-      max-height: 45px;
-      &:hover {
-        filter: brightness(140%);
-        -webkit-filter: brightness(140%);
+    .brand-logo {
+      margin: 0;
+      float: none;
+      cursor: pointer;
+      img {
+        @media (max-width: $screen-xs-max) {
+          padding-top: 7px;
+          max-height: 40px;
+        }
+        max-height: 45px;
+        &:hover {
+          filter: brightness(140%);
+          -webkit-filter: brightness(140%);
+        }
       }
     }
     .navbar-left {
