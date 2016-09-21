@@ -1,0 +1,12 @@
+angular.module('refugeeApp').directive('fbLike', function () {
+    return {
+        restrict: 'E',
+        template: '<div class="facebook-container">\
+            <a href="https://www.facebook.com/refugee.info/">\
+                <i class="fa fa-2x fa-facebook-square"></i>\
+            </a>\
+            <div id="fb-root"></div>\
+            <div class="fb-like" data-href="https://www.facebook.com/refugee.info/" data-layout="button" data-action="like" data-size="small"></div>\
+        </div>'
+    };
+});
