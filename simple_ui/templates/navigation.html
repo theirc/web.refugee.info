@@ -6,7 +6,7 @@
 <div class="navbar navbar-default navbar-fixed-top navbar-refugee" role="navigation">
 
     <div class="navbar-header flex">
-        <a class="brand brand-logo img-responsive" style="margin: 0; float: none;" ui-sref="locationDetails.index({slug: location.slug})">
+        <a class="brand brand-logo img-responsive" ng-click="baseController.navigationRedirect()">
             <img id="logo" class="theme" ng-src="/static/images/logo-{$ baseController.theme() $}.png"/>
         </a>
         <div class="drawer-controls">

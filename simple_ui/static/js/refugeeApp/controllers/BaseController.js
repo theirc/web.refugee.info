@@ -67,4 +67,14 @@ angular.module('refugeeApp').controller('BaseController', function ($scope, $roo
         $cookies.remove('locationSlug');
         $state.go('location');
     };
+
+    vm.navigationRedirect = function () {
+        var slug = $rootScope.location ? $rootScope.location.slug : null;
+        if (slug) {
+            $state.go('locationDetails.index', {slug: slug});
+        }
+        else {
+            $state.go('location', {}, {reload: true});
+        }
+    };
 });
