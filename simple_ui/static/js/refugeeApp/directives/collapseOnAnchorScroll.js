@@ -1,4 +1,4 @@
-angular.module('refugeeApp').directive('collapseOnAnchorScroll', function ($document, $stateParams, $location, $timeout, $anchorScroll) {
+angular.module('refugeeApp').directive('collapseOnAnchorScroll', function ($document, $stateParams, $location, $timeout, $anchorScroll, $window) {
     var anchorInfo;
     return {
         restrict: 'A',
@@ -14,6 +14,7 @@ angular.module('refugeeApp').directive('collapseOnAnchorScroll', function ($docu
                     $modal.find('.modal-title').text(scope.item.title);
                     $modal.find('.modal-body').html(scope.item.section);
                     $modal.modal('show');
+                    $window.FB.XFBML.parse();
                 } else {
                     $(scope.target).collapse('show');
                 }
