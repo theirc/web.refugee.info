@@ -222,20 +222,15 @@ $screen-md-max: ($screen-lg-min - 1);
       }
     }
 
-    .brand-logo {
-      margin: 0;
-      float: none;
-      cursor: pointer;
-      img {
-        @media (max-width: $screen-xs-max) {
-          padding-top: 7px;
-          max-height: 40px;
-        }
-        max-height: 45px;
-        &:hover {
-          filter: brightness(140%);
-          -webkit-filter: brightness(140%);
-        }
+    .brand-logo img {
+      @media (max-width: $screen-xs-max) {
+        padding-top: 7px;
+        max-height: 40px;
+      }
+      max-height: 45px;
+      &:hover {
+        filter: brightness(140%);
+        -webkit-filter: brightness(140%);
       }
     }
     .navbar-left {
@@ -1533,6 +1528,7 @@ html, body {
   font-family: 'Montserrat', Helvetica, Arial, sans-serif;
 }
 
+
 .row {
   margin-left: auto;
   margin-right: auto;
@@ -1907,13 +1903,13 @@ i.fa {
 }
 
 hr.branded-line {
-    border-color: $green-accent-color;
-    /* 
-    Leaving this here so we can copy and paste this code into the mobile app as well
-    border-color: #4cae4e; 
-    */
-    width: 30%;
-    border-width: 2px;
+  border-color: $green-accent-color;
+  /*
+  Leaving this here so we can copy and paste this code into the mobile app as well
+  border-color: #4cae4e;
+  */
+  width: 30%;
+  border-width: 2px;
 }
 
 .text-center {
