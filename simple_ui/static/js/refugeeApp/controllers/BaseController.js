@@ -82,9 +82,9 @@ angular.module('refugeeApp').controller('BaseController', function ($scope, $roo
         refreshFacebookSdk();
     });
 
-    var refreshFacebookSdk = function(){
+    var refreshFacebookSdk = function () {
         $window.FB = null;
-        (function(d, s, id) {
+        (function (d, s, id) {
             var js, fjs = d.getElementsByTagName(s)[0];
             var lang;
             switch (vm.language) {
@@ -97,7 +97,8 @@ angular.module('refugeeApp').controller('BaseController', function ($scope, $roo
             default:
                 lang = 'en_US';
             }
-            js = d.createElement(s); js.id = id;
+            js = d.createElement(s);
+            js.id = id;
             js.src = "//connect.facebook.net/" + lang + "/sdk.js#xfbml=1&version=v2.7";
             fjs.parentNode.insertBefore(js, fjs);
         }(document, 'script', 'facebook-jssdk'));
