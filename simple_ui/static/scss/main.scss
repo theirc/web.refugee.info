@@ -84,15 +84,17 @@ $screen-md-max: ($screen-lg-min - 1);
 
   &, .snap-content {
     background-color: $primary-color-3;
-    background-image: url($background-image);
-    background-repeat: no-repeat;
-    background-position: center center;
-    background-attachment: fixed;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
     color: $text-color;
+    @media (min-width: $screen-md-min) {
+      background-image: url($background-image);
+      background-repeat: no-repeat;
+      background-position: center center;
+      background-attachment: fixed;
+      -webkit-background-size: cover;
+      -moz-background-size: cover;
+      -o-background-size: cover;
+      background-size: cover;
+    }
   }
   .snap-content {
     @media (min-width: $screen-sm-min) {
@@ -288,7 +290,7 @@ $screen-md-max: ($screen-lg-min - 1);
 
   .powered-by {
     font-size: 70%;
-    margin-top: 30px;
+    margin-top: 50px;
     margin-bottom: 5px;
     color: $text-color;
     font-family: 'Courier New', Courier, monospace
@@ -403,7 +405,7 @@ $screen-md-max: ($screen-lg-min - 1);
   a.link-button-reversed {
     background-color: white !important;
     border: 1px $green-accent-color solid !important;
-    color:  $green-accent-color !important;
+    color: $green-accent-color !important;
     display: block;
     font-size: 14px;
     text-align: center;
@@ -725,6 +727,7 @@ $screen-md-max: ($screen-lg-min - 1);
     margin: 0 !important;
     cursor: pointer;
     font-size: 12px;
+    text-align: center;
     &:hover {
       background-color: $primary-color-5;
     }
@@ -821,9 +824,9 @@ $screen-md-max: ($screen-lg-min - 1);
     .general-info-item-header-inner {
       @include flexbox();
       @include justify-content(flex-start);
-      
+
       align-items: center;
-      
+
       @media (max-width: $screen-xs-max) {
         width: 100%;
       }
@@ -1525,7 +1528,6 @@ html, body {
   font-family: 'Montserrat', Helvetica, Arial, sans-serif;
 }
 
-
 .row {
   margin-left: auto;
   margin-right: auto;
@@ -1882,6 +1884,7 @@ i.fa {
     border-radius: 0;
   }
 }
+
 .modal-backdrop {
   position: relative;
 }
@@ -1891,13 +1894,13 @@ i.fa {
 }
 
 hr.branded-line {
-    border-color: $green-accent-color;
-    /* 
-    Leaving this here so we can copy and paste this code into the mobile app as well
-    border-color: #4cae4e; 
-    */
-    width: 30%;
-    border-width: 2px;
+  border-color: $green-accent-color;
+  /*
+  Leaving this here so we can copy and paste this code into the mobile app as well
+  border-color: #4cae4e;
+  */
+  width: 30%;
+  border-width: 2px;
 }
 
 .text-center {
@@ -1932,7 +1935,7 @@ hr.branded-line {
 }
 
 .table-responsive {
-  border: 0px!important;
+  border: 0px !important;
 }
 
 .facebook-container {
@@ -1949,15 +1952,13 @@ hr.branded-line {
   }
 }
 
-
-
 .border-table {
- .country-cell {
-  white-space: nowrap;
-  min-width: 200px;
- }
- .country-flag {
-  width: 25px;
-  margin-right: 5px;
- }
+  .country-cell {
+    white-space: nowrap;
+    min-width: 200px;
+  }
+  .country-flag {
+    width: 25px;
+    margin-right: 5px;
+  }
 }
