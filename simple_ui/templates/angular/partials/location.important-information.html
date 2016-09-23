@@ -10,7 +10,10 @@
              ng-repeat="item in info.content"
              ng-bind-html="item.section">
         </div>
+        <div class="share-thumbs-container">
+            <fb-share href="request.get_full_path"></fb-share>
+            <rating-thumbs class="rating-thumbs" slug="info.slug"></rating-thumbs>
+        </div>
 	</div>
-    <fb-share href="request.get_full_path"></fb-share>
     </div>
 </div>
