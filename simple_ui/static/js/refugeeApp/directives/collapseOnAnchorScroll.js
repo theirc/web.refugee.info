@@ -1,4 +1,4 @@
-angular.module('refugeeApp').directive('collapseOnAnchorScroll', function ($document, $stateParams, $location, $timeout, $anchorScroll, $window) {
+angular.module('refugeeApp').directive('collapseOnAnchorScroll', function ($document, $stateParams, $location, $timeout, $anchorScroll, $window, $compile) {
     var anchorInfo;
     return {
         restrict: 'A',
@@ -12,7 +12,7 @@ angular.module('refugeeApp').directive('collapseOnAnchorScroll', function ($docu
                 var $modal = $('#contentModal');
                 if (scope.item.hide_from_toc) {
                     $modal.find('.modal-title').text(scope.item.title);
-                    $modal.find('.modal-body').html(scope.item.section);
+                    $modal.find('.modal-body').html($compile(scope.item.section)(scope));
                     $modal.modal('show');
                     $window.FB.XFBML.parse();
                 } else {

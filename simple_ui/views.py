@@ -166,10 +166,16 @@ class LocationJSONView(JSONResponseMixin, View):
 
         base_url = request.build_absolute_uri('/') + slug
         for content in region['content']:
-            site_address = base_url + '/#{}'.format(content["anchor_name"]) if content["anchor_name"] \
+            site_address = base_url
+            site_address += '/#{}'.format(content["anchor_name"]) if content["anchor_name"] \
                 else '/#info{}'.format(content["index"])
-            content['section'] += '<div class="fb-share-button" ' \
-                                  'data-href="' + site_address + '" data-layout="button"></div>'
+
+            content['section'] += '<div class="share-thumbs-container">' \
+                                  '<div class="fb-share-button" data-href="' + site_address + '" ' \
+                                  'data-layout="button"></div>' \
+                                  '<rating-thumbs class="rating-thumbs" index="' + str(content["index"]) + '">' \
+                                  '</rating-thumbs>' \
+                                  '</div>'
 
         feedback_url = ""
         try:

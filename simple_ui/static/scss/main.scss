@@ -1970,15 +1970,30 @@ img.outside-buttons {
   }
 }
 
-
+.share-thumbs-container {
+  @include flexbox();
+  @include align-items(center);
+  .rating-thumbs {
+    @include flexbox();
+    @include justify-content(flex-end);
+    width: 100%;
+    i {
+      cursor: pointer;
+    }
+    span {
+      font-size: 20px;
+      margin: 4px;
+    }
+  }
+}
 
 .border-table {
- .country-cell {
-  white-space: nowrap;
-  min-width: 200px;
- }
- .country-flag {
-  width: 25px;
-  margin-right: 5px;
- }
+  .country-cell {
+    white-space: nowrap;
+    min-width: 200px;
+  }
+  .country-flag {
+    width: 25px;
+    margin-right: 5px;
+  }
 }
