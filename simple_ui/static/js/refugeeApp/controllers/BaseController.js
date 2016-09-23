@@ -1,4 +1,4 @@
-angular.module('refugeeApp').controller('BaseController', function ($scope, $rootScope, $cookies, $templateCache, $state, LoadingOverlayService, $translate) {
+angular.module('refugeeApp').controller('BaseController', function ($scope, $rootScope, $cookies, $templateCache, $state, LoadingOverlayService, $translate, $window) {
     var vm = this;
     vm.isCookiePolicyAccepted = $cookies.get('cookiePolicy');
     vm.language = $translate.proposedLanguage() || $translate.use();
@@ -66,5 +66,40 @@ angular.module('refugeeApp').controller('BaseController', function ($scope, $roo
     vm.changeLocation = function () {
         $cookies.remove('locationSlug');
         $state.go('location');
+    };
+
+    vm.navigationRedirect = function () {
+        var slug = $rootScope.location ? $rootScope.location.slug : null;
+        if (slug) {
+            $state.go('locationDetails.index', {slug: slug});
+        }
+        else {
+            $state.go('location', {}, {reload: true});
+        }
+    };
+
+    $scope.$on('$stateChangeSuccess', function () {
+        refreshFacebookSdk();
+    });
+
+    var refreshFacebookSdk = function(){
+        $window.FB = null;
+        (function(d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            var lang;
+            switch (vm.language) {
+            case 'ar':
+                lang = 'ar_AR';
+                break;
+            case 'fa':
+                lang = 'fa_IR';
+                break;
+            default:
+                lang = 'en_US';
+            }
+            js = d.createElement(s); js.id = id;
+            js.src = "//connect.facebook.net/" + lang + "/sdk.js#xfbml=1&version=v2.7";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
     };
 });

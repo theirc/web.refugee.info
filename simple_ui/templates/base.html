@@ -47,6 +47,7 @@
     <script type="text/javascript" src='{% static 'snapjs/snap.min.js' %}'></script>
     <script type="text/javascript" src='{% static 'angular-snap/angular-snap.min.js' %}'></script>
     <script type="text/javascript" src='{% static 'Leaflet.label/dist/leaflet.label.js' %}'></script>
+    <script type="text/javascript" src='{% static 'angular-bind-html-compile/angular-bind-html-compile.min.js' %}'></script>
 
         <script type="text/javascript" src='{% static 'js/refugeeApp/app.js' %}'></script>
 
@@ -77,7 +78,8 @@
         <script type="text/javascript" src='{% static 'js/refugeeApp/directives/drawer.js' %}'></script>
         <script type="text/javascript" src='{% static 'js/refugeeApp/directives/quickLinks.js' %}'></script>
         <script type="text/javascript" src='{% static 'js/refugeeApp/directives/changeLocationButton.js' %}'></script>
-
+        <script type="text/javascript" src='{% static 'js/refugeeApp/directives/fbLike.js' %}'></script>
+        <script type="text/javascript" src='{% static 'js/refugeeApp/directives/fbShare.js' %}'></script>
 
     <script type="text/javascript">
         angular.module('refugeeApp').constant('apiUrl', '{{ API_URL }}');

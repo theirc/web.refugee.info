@@ -220,15 +220,20 @@ $screen-md-max: ($screen-lg-min - 1);
       }
     }
 
-    .brand-logo img {
-      @media (max-width: $screen-xs-max) {
-        padding-top: 7px;
-        max-height: 40px;
-      }
-      max-height: 45px;
-      &:hover {
-        filter: brightness(140%);
-        -webkit-filter: brightness(140%);
+    .brand-logo {
+      margin: 0;
+      float: none;
+      cursor: pointer;
+      img {
+        @media (max-width: $screen-xs-max) {
+          padding-top: 7px;
+          max-height: 40px;
+        }
+        max-height: 45px;
+        &:hover {
+          filter: brightness(140%);
+          -webkit-filter: brightness(140%);
+        }
       }
     }
     .navbar-left {
@@ -764,7 +769,7 @@ $screen-md-max: ($screen-lg-min - 1);
     border-top: 1px solid $divider-color-2;
     border-bottom: 1px solid $divider-color-2;
     padding: 10px;
-    font-size: 12px;
+    font-size: 14px;
     img {
       max-width: 100%;
     }
@@ -804,7 +809,7 @@ $screen-md-max: ($screen-lg-min - 1);
   }
   .general-info-divider {
     width: 100%;
-    border-top: 1px solid $divider-color-2;
+    border-top: 1px solid $divider-color;
   }
 
   .general-info-item-header {
@@ -816,8 +821,7 @@ $screen-md-max: ($screen-lg-min - 1);
     width: 100%;
     cursor: pointer;
     background-color: transparent;
-    border-top: 1px solid $divider-color-2;
-    border-bottom: 1px solid $divider-color-2;
+    border-bottom: 1px solid $divider-color;
     &:hover {
       background-color: $primary-color-5;
     }
@@ -851,8 +855,6 @@ $screen-md-max: ($screen-lg-min - 1);
   .general-info-item-content {
     padding: 10px 0;
     color: $text-color-muted;
-    border-top: 1px solid $divider-color-2;
-    border-bottom: 1px solid $divider-color-2;
     img {
       max-width: 100%;
     }
@@ -876,6 +878,9 @@ $screen-md-max: ($screen-lg-min - 1);
           margin: 0
         }
       }
+    }
+    &.collapse.in {
+      border-bottom: 1px solid $divider-color;
     }
   }
   .general-info-date {
@@ -1250,6 +1255,7 @@ $screen-md-max: ($screen-lg-min - 1);
     }
   }
   .services-map {
+    margin-top: 15px;
     height: 400px;
     @media (max-width: $screen-sm-max) {
       height: 100%;
@@ -1526,11 +1532,6 @@ html, body {
   font-family: 'Montserrat', Helvetica, Arial, sans-serif;
 }
 
-#info {
-  // fixed header anchor hack
-  padding-top: 50px;
-  margin-top: -50px;
-}
 
 .row {
   margin-left: auto;
