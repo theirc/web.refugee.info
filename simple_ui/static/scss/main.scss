@@ -750,7 +750,7 @@ $screen-md-max: ($screen-lg-min - 1);
   .important-information-item-inner {
     width: 100%;
     @include flexbox();
-    @include align-items(center);A
+    @include align-items(center);
     @include justify-content(center);
     @include flex-direction(row);
 
