@@ -84,15 +84,17 @@ $screen-md-max: ($screen-lg-min - 1);
 
   &, .snap-content {
     background-color: $primary-color-3;
-    background-image: url($background-image);
-    background-repeat: no-repeat;
-    background-position: center center;
-    background-attachment: fixed;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
     color: $text-color;
+    @media (min-width: $screen-md-min) {
+      background-image: url($background-image);
+      background-repeat: no-repeat;
+      background-position: center center;
+      background-attachment: fixed;
+      -webkit-background-size: cover;
+      -moz-background-size: cover;
+      -o-background-size: cover;
+      background-size: cover;
+    }
   }
   .snap-content {
     @media (min-width: $screen-sm-min) {
@@ -293,7 +295,7 @@ $screen-md-max: ($screen-lg-min - 1);
 
   .powered-by {
     font-size: 70%;
-    margin-top: 30px;
+    margin-top: 50px;
     margin-bottom: 5px;
     color: $text-color;
     font-family: 'Courier New', Courier, monospace
@@ -408,7 +410,7 @@ $screen-md-max: ($screen-lg-min - 1);
   a.link-button-reversed {
     background-color: white !important;
     border: 1px $green-accent-color solid !important;
-    color:  $green-accent-color !important;
+    color: $green-accent-color !important;
     display: block;
     font-size: 14px;
     text-align: center;
@@ -730,6 +732,7 @@ $screen-md-max: ($screen-lg-min - 1);
     margin: 0 !important;
     cursor: pointer;
     font-size: 12px;
+    text-align: center;
     &:hover {
       background-color: $primary-color-5;
     }
@@ -753,8 +756,6 @@ $screen-md-max: ($screen-lg-min - 1);
     @include align-items(center);
     @include justify-content(center);
     @include flex-direction(row);
-
-    padding: 5px;
     @media (max-width: $screen-xs-max) {
       border-top: 1px solid $divider-color-2;
       height: 50px;
@@ -1532,7 +1533,6 @@ html, body {
   font-family: 'Montserrat', Helvetica, Arial, sans-serif;
 }
 
-
 .row {
   margin-left: auto;
   margin-right: auto;
@@ -1889,6 +1889,7 @@ i.fa {
     border-radius: 0;
   }
 }
+
 .modal-backdrop {
   position: relative;
 }
@@ -1953,7 +1954,7 @@ img.outside-buttons {
 }
 
 .table-responsive {
-  border: 0px!important;
+  border: 0px !important;
 }
 
 .facebook-container {
