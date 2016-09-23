@@ -21,14 +21,14 @@
                 <div class="nav navbar-nav navbar-left">
                     <div class="logo-bar-container">
                         <div>
-                            <a ui-sref="locationDetails.aboutUs({slug: location.slug})">
+                            <a ui-sref="aboutUs">
                                 <img id="logo-bar" class="theme"
                                      ng-src="/static/images/logo-bar-{$ baseController.theme() $}.png"
                                     style="max-height: 25px"/>
                             </a>
                         </div>
                         <div style="padding-top: 3px;" class="navbar-mobile-menu-container">
-                            <a class="about-us" ui-sref="locationDetails.aboutUs({slug: location.slug})">
+                            <a class="about-us" ui-sref="aboutUs">
                                 {$ 'ABOUT_US' | translate $}
                             </a>
                             <a ng-href="{$ baseController.feedbackUrl() $}" class="give-feedback">
