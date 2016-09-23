@@ -1927,7 +1927,9 @@ hr.branded-line {
 }
 
 img.outside-buttons {
-  max-width: 300px!important;
+  @media (min-width: $screen-sm-min) {
+    max-width: 250px!important;
+  }
 }
 
 .logo-centered {
