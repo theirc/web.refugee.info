@@ -748,6 +748,8 @@ $screen-md-max: ($screen-lg-min - 1);
     @include align-items(center);
     @include justify-content(center);
     @include flex-direction(row);
+
+    padding: 5px;
     @media (max-width: $screen-xs-max) {
       border-top: 1px solid $divider-color-2;
       height: 50px;
@@ -1892,6 +1894,14 @@ i.fa {
 
 .general-info-container li, .app li {
   margin-bottom: 5px;
+}
+
+.general-info-item, .important-information-content {
+  hr {
+    border-color: $green-accent-color;
+    width: 30%;
+    border-width: 2px;
+ }
 }
 
 hr.branded-line {
