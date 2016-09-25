@@ -3,29 +3,6 @@
 {% load tz %}
 {% load l10n %}
 
-<script>
-    FB = null;
-    (function(d, s, id) {
-        var $element = $('html');
-        var scope = angular.element($element).scope();
-        var js, fjs = d.getElementsByTagName(s)[0];
-        var lang;
-        switch (scope.baseController.language) {
-        case 'ar':
-            lang = 'ar_AR';
-            break;
-        case 'fa':
-            lang = 'fa_IR';
-            break;
-        default:
-            lang = 'en_US';
-        }
-        js = d.createElement(s); js.id = id;
-        js.src = "//connect.facebook.net/" + lang + "/sdk.js#xfbml=1&version=v2.7";
-        fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'facebook-jssdk'));
-</script>
-
 <div class="col-xs-12 col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2 view-container view-container-padded">
     <location-selected></location-selected>
     <location-buttons></location-buttons>
@@ -36,38 +13,35 @@
 
         <div class="general-info-divider" ng-if="ctrl.location.content"></div>
         <div class="general-info-item" ng-show="!p.hide_from_toc" ng-repeat="p in ctrl.location.content | filter: {important: true}">
-            <div class="general-info-item-header" data-toggle="collapse" data-target="#info{$ p.index $}">
-                <div class="general-info-item-header-inner" ng-class="baseController.direction()">
-                    <i class="fa {$ p.vector_icon $}"></i><a name="{$ p.anchor_name || 'Anchor_' + p.index $}" collapse-on-anchor-scroll>{$ p.title $}</a>
+            <a href="#info{$ p.index $}">
+                <div class="general-info-item-header" data-toggle="collapse" data-target="#info{$ p.index $}">
+                    <div class="general-info-item-header-inner" ng-class="baseController.direction()">
+                        <i class="fa {$ p.vector_icon $}"></i>{$ p.title $}<span name="{$ p.anchor_name || 'Anchor_' + p.index $}" item="p" collapse-on-anchor-scroll></span>
+                    </div>
                 </div>
-            </div>
-            <div class="general-info-item-content collapse" id="info{$ p.index $}" ng-bind-html="p.section"></div>
+            </a>
+            <div class="general-info-item-content collapse" id="info{$ p.index $}" bind-html-compile="p.section"></div>
         </div>
-        <div class="general-info-item" ng-show="!p.hide_from_toc" ng-repeat="p in ctrl.location.content | filter: {important: false}">
-            <div class="general-info-item-header collapsed" data-toggle="collapse" data-target="#info{$ p.index $}">
-                <div class="general-info-item-header-inner" ng-class="baseController.direction()">
-                    <i class="fa {$ p.vector_icon $}"></i><a name="{$ p.anchor_name || 'Anchor_' + p.index $}" target="#info{$ p.index $}" item="p" collapse-on-anchor-scroll>{$ p.title $}</a>
+        <div class="general-info-item" ng-show="!p.hide_from_toc" ng-repeat="p in ctrl.location.content | filter: {important: false}" id="{$ p.anchor_name || 'Anchor_' + p.index $}">
+            <a href="#info{$ p.index $}">
+                <div class="general-info-item-header collapsed" data-toggle="collapse" data-target="#info{$ p.index $}">
+                    <div class="general-info-item-header-inner" ng-class="baseController.direction()">
+                        <i class="fa {$ p.vector_icon $}"></i>{$ p.title $}<span name="{$ p.anchor_name || 'Anchor_' + p.index $}" item="p" collapse-on-anchor-scroll></span>
+                    </div>
                 </div>
-            </div>
-            <div class="general-info-item-content collapse" id="info{$ p.index $}" ng-bind-html="p.section"></div>
+            </a>
+            <div class="general-info-item-content collapse" id="info{$ p.index $}" bind-html-compile="p.section"></div>
         </div>
-        <div class="general-info-divider" ng-if="ctrl.location.content"></div>
 
         <p class="general-info-date" data-date="{$ ctrl.publication_date $}" ng-if="!!ctrl.publication_date">
             {$ 'LAST_UPDATE_ON' | translate $} {$ ctrl.localized_date $} UTC
         </p>
 
-        <div class="facebook-container">
-            <a href="https://www.facebook.com/refugee.info/">
-                <i class="fa fa-2x fa-facebook-square"></i>
-            </a>
-            <div id="fb-root"></div>
-            <div class="fb-like" data-href="https://www.facebook.com/refugee.info/" data-layout="standard" data-action="like" data-size="small"></div>
-        </div>
+        <fb-like></fb-like>
     </div>
 
     <div id="contentModal" class="modal modal-fullscreen fade" tabindex="-1" role="dialog" aria-labelledby="content-modal" aria-hidden="true">
-        <div class="modal-dialog">
+        <div class="modal-dialog general-info-item-content">
             <div class="modal-content" style="overflow: scroll">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>

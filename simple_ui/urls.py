@@ -48,7 +48,13 @@ directives_patterns = [
         name='quick-links'),
     url(r'^change-location-button.html$',
         TemplateView.as_view(template_name='angular/partials/directives/change-location-button.html'),
-        name='change-location-button')
+        name='change-location-button'),
+    url(r'^fb-like.html$',
+        TemplateView.as_view(template_name='angular/partials/directives/fb-like.html'),
+        name='fb-like'),
+    url(r'^rating-thumbs.html$',
+        TemplateView.as_view(template_name='angular/partials/directives/rating-thumbs.html'),
+        name='rating-thumbs')
 ]
 
 partial_patterns = [

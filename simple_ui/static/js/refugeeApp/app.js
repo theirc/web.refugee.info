@@ -1,5 +1,6 @@
 angular.module('refugeeApp', ['ui.router', 'ngCookies', 'ngSanitize', 'djng.rmi', 'leaflet-directive',
-                              'infinite-scroll', 'pascalprecht.translate', 'snap'])
+                              'infinite-scroll', 'pascalprecht.translate', 'snap', 'angular-bind-html-compile',
+                              'ngStorage'])
     .run(function($rootScope, $state) {
         var unregister = $rootScope.$on('$stateChangeSuccess',  function(event, toState, toParams, fromState, fromParams) {
             $rootScope.previousStateName = fromState.name;
@@ -15,14 +16,14 @@ angular.module('refugeeApp', ['ui.router', 'ngCookies', 'ngSanitize', 'djng.rmi'
         };
     })
     .config(function($stateProvider, $urlRouterProvider, $interpolateProvider, $httpProvider, $translateProvider,
-                     staticUrl, snapRemoteProvider, $locationProvider) {
+                     staticUrl, snapRemoteProvider, $locationProvider, $urlMatcherFactoryProvider) {
         $interpolateProvider.startSymbol('{$');
         $interpolateProvider.endSymbol('$}');
         $httpProvider.defaults.xsrfCookieName = 'csrftoken';
         $httpProvider.defaults.xsrfHeaderName = 'X-CSRFToken';
 
         $urlRouterProvider.otherwise('/');
-
+        $urlMatcherFactoryProvider.strictMode(false);
         $translateProvider.useStaticFilesLoader({
             'prefix': staticUrl + 'locale/',
             'suffix': '.json'
@@ -45,6 +46,40 @@ angular.module('refugeeApp', ['ui.router', 'ngCookies', 'ngSanitize', 'djng.rmi'
                         });
                     }
                 }
+            })
+            .state('aboutUs', {
+                url: '/about/',
+                resolve: {
+                    aboutUs: function ($stateParams, djangoRMI, $rootScope) {
+                        var location = $rootScope.location;
+                        var findAboutUs = function (location) {
+                            return location.important_information.filter(function (x) {
+                                return x.slug === 'about-us';
+                            });
+                        };
+                        if (location) {
+                            return findAboutUs(location);
+                        }
+                        else {
+                            return djangoRMI.location_json_view.get_details({slug: ''}).then(function (response) {
+                                return findAboutUs(response.data.location);
+                            });
+                        }
+                    }
+                },
+                template: '<div class="col-xs-12 col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2 view-container">' +
+                          '<h3>{$ \'ABOUT_US\' | translate $}</h3><div ng-bind-html="ctrl.getContent()"></div>',
+                controller: function(aboutUs) {
+                    var vm = this;
+                    vm.getContent = function() {
+                        if (aboutUs) {
+                            return aboutUs[0].content[0].section;
+                        } else {
+                            return '';
+                        }
+                    };
+                },
+                controllerAs: 'ctrl'
             })
             .state('locationDetails', {
                 abstract: true,
@@ -104,61 +139,6 @@ angular.module('refugeeApp', ['ui.router', 'ngCookies', 'ngSanitize', 'djng.rmi'
                         });
                     }
                 }
-            })
-            .state('locationDetails.aboutUs', {
-                url:'/about/',
-                template: '<div class="col-xs-12 col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2 view-container">' +
-                          '<h3>{$ \'ABOUT_US\' | translate $}</h3><div ng-bind-html="ctrl.getContent()"></div></div>',
-                controller: function(location) {
-                    var vm = this;
-
-                    vm.getContent = function() {
-                        var aboutUs = location.important_information.filter(function(x) {
-                            return x.slug === 'about-us';
-                        });
-                        if (aboutUs.length > 0) {
-                            return aboutUs[0].content[0].section;
-                        } else {
-                            return '';
-                        }
-                    };
-                },
-                controllerAs: 'ctrl'
-            })
-            .state('locationDetails.generalInfoContent', {
-                url: '/:hash',
-                templateUrl: 'partials/general-info.html',
-                resolve: {
-                    content: function($cookies, $q, $stateParams, djangoRMI, $rootScope) {
-                        var locationSlug = $rootScope.location.slug || $cookies.get('locationSlug');
-                        if (locationSlug) {
-                            return djangoRMI.location_json_view.get_details({slug: locationSlug}).then(function(response) {
-                                var result = response.data.location.content.filter(function(x) {
-                                    return x.anchor_name === $stateParams.hash;
-                                });
-
-                                if (result.length > 0) {
-                                    return result[0];
-                                } else {
-                                    return {};
-                                }
-                            });
-                        } else {
-                            return $q.defer().resolve({});
-                        }
-                    }
-                },
-                controller: function($state, $stateParams, $cookies, content, $rootScope) {
-                    var vm = this;
-                    var locationSlug = $rootScope.location.slug || $cookies.get('locationSlug');
-
-                    if (!locationSlug) {
-                        $state.go('/');
-                    }
-                    vm.back = $stateParams.backUrl;
-                    vm.info = content;
-                },
-                controllerAs: 'ctrl'
             });
         snapRemoteProvider.globalOptions = {
             disable: 'left'
