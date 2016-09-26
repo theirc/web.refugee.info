@@ -82,6 +82,7 @@
         <script type="text/javascript" src='{% static 'js/refugeeApp/directives/fbLike.js' %}'></script>
         <script type="text/javascript" src='{% static 'js/refugeeApp/directives/fbShare.js' %}'></script>
         <script type="text/javascript" src='{% static 'js/refugeeApp/directives/ratingThumbs.js' %}'></script>
+        <script type="text/javascript" src='{% static 'js/refugeeApp/directives/locationInfo.js' %}'></script>
 
     <script type="text/javascript">
         angular.module('refugeeApp').constant('apiUrl', '{{ API_URL }}');
@@ -101,7 +102,6 @@
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet">
 
     <link rel="stylesheet" href="{% static 'scss/main.css' %}">
-
 
     {% block additional-requirements %}{% endblock %}
 
