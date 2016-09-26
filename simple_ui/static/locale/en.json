@@ -36,8 +36,15 @@
   "WITH_PARTNERS": "with partners",
   "POWERED_BY": "Powered by",
   "COPYLEFT": "Copyleft",
-  "APP_STORES": "Available on Play store for Android and App store for iOS.",
+  "APP_STORES": "Refugee.Info is also available on Play store for Android and App store for iOS.",
   "NO_LOCATION": "Please choose location first!",
   "ANNOUNCEMENTS": "Announcements",
-  "LOCATION_INFO": "You have selected {$ location $} as your location. All the information on this page is specific to {$ location $} and your rights whilst staying there. Explore each of the green boxes below to learn more information."
+
+  "LANDING_1": "Welcome to Refugee.Info. Our mission is to provide every refugee making the journey across Europe with trustworthy and accurate information.",
+  "LANDING_2": "To give you the most relevant information for your situation, our website provides information specific to your location.",
+  "LANDING_3": "Select your location from the list of options below to begin:",
+
+  "LOCATION_INFO_1": "Welcome to Refugee.Info.",
+  "LOCATION_INFO_2": "You have selected {$ location $} as your location. All the information on this page is specific to {$ location $} and your rights whilst staying there.",
+  "LOCATION_INFO_3": "Explore each of the green boxes below to learn more information."
 }
