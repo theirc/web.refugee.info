@@ -1,12 +1,14 @@
-<h1 class="quick-links">{$ 'QUICK_LINKS' | translate $}:</h1>
-<div class="important-information-container">
-    <div class="important-information-item"
-         ng-repeat="info in ctrl.location.important_information | filter: {hidden: false}"
-         ui-sref="locationDetails.info({slug: ctrl.location.slug, infoSlug: info.slug})"
-         ui-sref-active="active"
-    >
-        <div class="important-information-item-inner" ng-class="ctrl.direction">
-            {$ info.metadata.page_title $}
+<div ng-if="ctrl.filteredImportantInfo.length > 0">
+    <h1 class="quick-links">{$ 'QUICK_LINKS' | translate $}:</h1>
+    <div class="important-information-container">
+        <div class="important-information-item"
+             ng-repeat="info in ctrl.filteredImportantInfo"
+             ui-sref="locationDetails.info({slug: ctrl.location.slug, infoSlug: info.slug})"
+             ui-sref-active="active"
+        >
+            <div class="important-information-item-inner" ng-class="ctrl.direction">
+                {$ info.metadata.page_title $}
+            </div>
         </div>
     </div>
 </div>
