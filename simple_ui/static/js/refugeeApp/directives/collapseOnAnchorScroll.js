@@ -1,4 +1,4 @@
-angular.module('refugeeApp').directive('collapseOnAnchorScroll', function ($document, $stateParams, $location, $timeout, $anchorScroll, $window, $compile) {
+angular.module('refugeeApp').directive('collapseOnAnchorScroll', function ($document, $stateParams, $location, $timeout, $uiViewScroll, $window, $compile) {
     var anchorInfo;
     return {
         restrict: 'A',
@@ -32,7 +32,7 @@ angular.module('refugeeApp').directive('collapseOnAnchorScroll', function ($docu
                     if (anchorInfo && $location.hash() && 'info' + anchorInfo.index === $location.hash()) {
                         var el = $('#info' + anchorInfo.index);
                         el.collapse('show');
-                        $anchorScroll();
+                        $uiViewScroll(el);
                     }
                 });
             }
