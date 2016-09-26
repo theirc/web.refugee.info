@@ -38,5 +38,6 @@
   "COPYLEFT": "Copyleft",
   "APP_STORES": "Available on Play store for Android and App store for iOS.",
   "NO_LOCATION": "Please choose location first!",
-  "ANNOUNCEMENTS": "Announcements"
+  "ANNOUNCEMENTS": "Announcements",
+  "LOCATION_INFO": "You have selected {$ location $} as your location. All the information on this page is specific to {$ location $} and your rights whilst staying there. Explore each of the green boxes below to learn more information."
 }
