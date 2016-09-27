@@ -1,5 +1,4 @@
 @import "mixins";
-@import "content";
 @import "overlay";
 
 .snap-content {
@@ -1499,3 +1498,6 @@ i.fa {
   margin: 0;
   padding: 10px 15px;
 }
+
+/* Content goes at the end */
+@import "content";
