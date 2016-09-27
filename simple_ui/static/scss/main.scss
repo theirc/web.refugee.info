@@ -1457,9 +1457,8 @@ i.fa {
 
 .general-info-item-content, .important-information-content {
   hr {
-    border-color: $green-accent-color;
     width: 30%;
-    border-width: 2px;
+    border-bottom: 2px solid $green-accent-color;
   }
 }
 
