@@ -1330,15 +1330,12 @@ nav {
 
 #img-location {
   width: 100%;
-  @media (min-width: $screen-lg-min) {
-    margin-bottom: -300px;
+  @media (min-width: $screen-sm-min) {
+    margin-bottom: -250px;
   }
-  @media (max-width: $screen-xs-max) {
+  @media (max-width: $screen-sm-max) {
     margin-top: 30px;
     margin-bottom: -50px;
-  }
-  @media (max-width: $screen-md-max) {
-    margin-bottom: -300px;
   }
 }
 
@@ -1457,9 +1454,8 @@ i.fa {
 
 .general-info-item-content, .important-information-content {
   hr {
-    border-color: $green-accent-color;
     width: 30%;
-    border-width: 2px;
+    border-bottom: 2px solid $green-accent-color;
   }
 }
 
