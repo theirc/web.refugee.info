@@ -6,11 +6,12 @@ angular.module('refugeeApp').directive('serviceDetails', function () {
         scope: {
             service: '='
         },
-        controller: function ($window) {
+        controller: function ($window, $location) {
             var vm = this;
             vm.days = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'];
             vm.open = [];
             vm.close = [];
+            vm.serviceUrl = $location.absUrl();
 
             vm.getDirections = function () {
                 $window.open('https://maps.google.com?daddr=' + vm.service.address, '_blank');
