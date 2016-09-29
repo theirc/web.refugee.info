@@ -1,4 +1,5 @@
 <div class="info-bar">
-    <p>{$ 'LOCATION_INFO_1' | translate: { location: ctrl.locationName } $} {$ 'LOCATION_INFO_2' | translate: { location: ctrl.locationName } $}</p>
-    <p>{$ 'LOCATION_INFO_3' | translate: { location: ctrl.locationName } $}</p>
+    <span>{$ 'LOCATION_INFO_1' | translate $}</span>
+    <span translate="{$ 'LOCATION_INFO_2' $}" translate-values="{ location: ctrl.locationName }"></span>
+    <p>{$ 'LOCATION_INFO_3' | translate $}</p>
 </div>
