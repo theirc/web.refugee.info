@@ -716,12 +716,6 @@ change-location-button {
   font-weight: bold;
 }
 
-.service-list-row {
-  @media (max-width: $screen-xs-max) {
-    margin: 0;
-  }
-}
-
 .service-list-item-name {
   font-weight: bold;
   font-size: 16px;
@@ -1349,6 +1343,11 @@ html, body {
   margin-left: auto;
   margin-right: auto;
   margin-bottom: 20px;
+  &.service-list-row {
+    @media (max-width: $screen-xs-max) {
+      margin-bottom: 0;
+    }
+  }
 }
 
 .brand {
