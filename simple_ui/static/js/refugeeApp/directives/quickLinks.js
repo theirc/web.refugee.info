@@ -7,8 +7,9 @@ angular.module('refugeeApp').directive('quickLinks', function () {
             direction: '='
         },
         templateUrl: '/partials/directives/quick-links.html',
-        controller: function(){
+        controller: function(filterFilter){
             var vm = this;
+            vm.filteredImportantInfo = filterFilter(vm.location.important_information, {hidden: false});
             vm.openImportantInfo = function (id) {
                 if (vm.infoId == id){
                     vm.infoId = null;

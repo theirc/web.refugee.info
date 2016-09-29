@@ -54,7 +54,10 @@ directives_patterns = [
         name='fb-like'),
     url(r'^rating-thumbs.html$',
         TemplateView.as_view(template_name='angular/partials/directives/rating-thumbs.html'),
-        name='rating-thumbs')
+        name='rating-thumbs'),
+    url(r'^location-info.html$',
+        TemplateView.as_view(template_name='angular/partials/directives/location-info.html'),
+        name='location-info'),
 ]
 
 partial_patterns = [

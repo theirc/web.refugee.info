@@ -3,22 +3,14 @@
 
 <div ng-cloak ng-hide="ctrl.locationSlug && !ctrl.force">
     <div class="col-xs-12 col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2 no-padding">
-        <img id="img-location" class="img-centered" src="{% static 'images/refugees.jpg' %}" />
+        <img id="img-location" class="img-centered" src="{% static 'images/refugees.jpg' %}"/>
     </div>
     <div class="col-xs-12 col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2 view-container view-container-padded">
-        <div class="row get-app-container">
-            <div class="col-xs-12 col-sm-4">
-                <h1>{$ 'APP_STORES' | translate $}</h1>
-            </div>
-            <div class="col-xs-6 col-sm-4">
-                <a href="https://itunes.apple.com/us/app/refugee-info/id1124983491?ls=1&mt=8">
-                <img class="app-store" src="{% static '/static/images/app-store.png' %}">
-                </a>
-            </div>
-            <div class="col-xs-6 col-sm-4">
-                <a href='https://play.google.com/store/apps/details?id=info.refugee.app&utm_source=global_co&utm_medium=prtnr&utm_content=Mar2515&utm_campaign=PartBadge&pcampaignid=MKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'>
-                    <img class="google-play" alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png'/>
-                </a>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12">
+                <p>{$ 'LANDING_1' | translate $}</p>
+                <p>{$ 'LANDING_2' | translate $}</p>
+                <p>{$ 'LANDING_3' | translate $}</p>
             </div>
         </div>
         <div ng-show="!!ctrl.data.closest">
@@ -37,6 +29,23 @@
             <h3 class="header-center" style="margin-top: 30px">{$ 'WHERE_ARE_YOU' | translate $}</h3>
             <div ng-repeat="region in ctrl.data.regions">
                 <region-choice region="region" direction="{$ baseController.direction() $}"></region-choice>
+            </div>
+        </div>
+        <div class="row get-app-container">
+            <div class="col-xs-12 col-sm-4">
+                <h5>{$ 'APP_STORES' | translate $}</h5>
+            </div>
+            <div class="col-xs-6 col-sm-4">
+                <a href="https://itunes.apple.com/us/app/refugee-info/id1124983491?ls=1&mt=8">
+                    <img class="app-store" src="{% static '/static/images/app-store.png' %}" style="max-height: 75px"/>
+                </a>
+            </div>
+            <div class="col-xs-6 col-sm-4">
+                <a href='https://play.google.com/store/apps/details?id=info.refugee.app&utm_source=global_co&utm_medium=prtnr&utm_content=Mar2515&utm_campaign=PartBadge&pcampaignid=MKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'>
+                    <img class="google-play" alt='Get it on Google Play'
+                         src='https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png'
+                         style="max-height: 75px"/>
+                </a>
             </div>
         </div>
         <fb-like></fb-like>

@@ -21,7 +21,6 @@ angular.module('refugeeApp', ['ui.router', 'ngCookies', 'ngSanitize', 'djng.rmi'
         $interpolateProvider.endSymbol('$}');
         $httpProvider.defaults.xsrfCookieName = 'csrftoken';
         $httpProvider.defaults.xsrfHeaderName = 'X-CSRFToken';
-
         $urlRouterProvider.otherwise('/');
         $urlMatcherFactoryProvider.strictMode(false);
         $translateProvider.useStaticFilesLoader({
@@ -84,10 +83,13 @@ angular.module('refugeeApp', ['ui.router', 'ngCookies', 'ngSanitize', 'djng.rmi'
             .state('locationDetails', {
                 abstract: true,
                 url: '/:slug',
-                template: '<ui-view/>',
+                template: '<ui-view autoscroll="true"/>',
                 resolve: {
-                    location: function($stateParams, djangoRMI) {
-                        return djangoRMI.location_json_view.get_details({slug: $stateParams.slug}).then(function(response) {
+                    location: function($stateParams, djangoRMI, $translate) {
+                        return djangoRMI.location_json_view.get_details({
+                            slug: $stateParams.slug,
+                            language: $translate.proposedLanguage() || $translate.use()
+                        }).then(function(response) {
                             return response.data.location;
                         });
                     }
