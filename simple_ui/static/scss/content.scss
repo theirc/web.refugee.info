@@ -150,8 +150,16 @@
 
   .border-table {
     .country-cell {
-      white-space: nowrap;
-      min-width: 200px;
+      @media (max-width: $screen-xs-max) {
+        img {
+          display: block;
+          margin: 0 auto;
+        }
+        text-align: center;
+      }
+      @media (min-width: $screen-sm-min) {
+        min-width: 200px;
+      }
     }
     .country-flag {
       width: 25px;
