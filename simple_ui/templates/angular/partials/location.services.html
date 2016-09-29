@@ -6,7 +6,8 @@
         <quick-links class="hidden-sm-down" location="ctrl.location" direction="baseController.direction()"></quick-links>
         <services-map region="ctrl.location.envelope"
                       services="ctrl.services"
-                      map-view="ctrl.mapView"></services-map>
+                      map-view="ctrl.mapView"
+                      is-mobile="baseController.isMobile()"></services-map>
         <search-bar class="mobile-search-bar" search="ctrl.search" direction="baseController.direction()"></search-bar>
         <div ng-class="{'above': !ctrl.mapView, 'below': ctrl.mapView}">
             <services-list></services-list>

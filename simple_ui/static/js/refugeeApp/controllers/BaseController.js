@@ -29,6 +29,10 @@ angular.module('refugeeApp').controller('BaseController', function ($scope, $roo
         }
     };
 
+    vm.isMobile = function () {
+        return $window.innerWidth <= 991;
+    };
+
     vm.feedbackUrl = function () {
         switch (vm.language) {
         case 'ar':
