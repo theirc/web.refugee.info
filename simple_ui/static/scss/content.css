@@ -16,6 +16,7 @@
   font-size: 24px;
   margin: 15px 0 10px 0; }
 .general-info-item-content table {
+  border-collapse: collapse;
   border: 2px solid #EBEBEB;
   margin-bottom: 10px; }
   .general-info-item-content table td {
@@ -90,12 +91,6 @@
     color: white !important; }
 .general-info-item-content li:before {
   color: #000000; }
-.general-info-item-content .border-table .country-cell {
-  white-space: nowrap;
-  min-width: 200px; }
-.general-info-item-content .border-table .country-flag {
-  width: 25px;
-  margin-right: 5px; }
 .general-info-item-content .img-left {
   float: left; }
 .general-info-item-content .img-right {
@@ -104,7 +99,7 @@
   border: 0 !important; }
 .general-info-item-content hr.branded-line {
   width: 30%;
-  border: 2px #00BA50; }
+  border-bottom: 2px solid #00BA50; }
 .general-info-item-content .text-center {
   text-align: center; }
 .general-info-item-content .img-centered {
@@ -125,3 +120,20 @@
   @media (max-width: 768px) {
     .general-info-item-content .logo-centered {
       max-width: 100%; } }
+
+.general-info-container li, .app li, .general-info-item-content li {
+  margin-bottom: 5px; }
+
+@media (max-width: 767px) {
+  .country-cell {
+    text-align: center; }
+    .country-cell img {
+      display: block;
+      margin: 0 auto; } }
+@media (min-width: 768px) {
+  .country-cell {
+    min-width: 200px; } }
+
+.country-flag {
+  width: 25px;
+  margin-right: 5px; }

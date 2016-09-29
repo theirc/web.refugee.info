@@ -150,22 +150,7 @@
   }
 
   .border-table {
-    .country-cell {
-      @media (max-width: $screen-xs-max) {
-        img {
-          display: block;
-          margin: 0 auto;
-        }
-        text-align: center;
-      }
-      @media (min-width: $screen-sm-min) {
-        min-width: 200px;
-      }
-    }
-    .country-flag {
-      width: 25px;
-      margin-right: 5px;
-    }
+
   }
 
   .img-left {
@@ -213,4 +198,26 @@
     }
     clear: both;
   }
+}
+
+.general-info-container li, .app li, .general-info-item-content li {
+  margin-bottom: 5px;
+}
+
+.country-cell {
+  @media (max-width: $screen-xs-max) {
+    img {
+      display: block;
+      margin: 0 auto;
+    }
+    text-align: center;
+  }
+  @media (min-width: $screen-sm-min) {
+    min-width: 200px;
+  }
+}
+
+.country-flag {
+  width: 25px;
+  margin-right: 5px;
 }
