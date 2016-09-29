@@ -1472,9 +1472,7 @@ i.fa {
   @include flexbox();
   @include align-items(center);
   .rating-thumbs {
-    @include flexbox();
-    @include justify-content(flex-end);
-    width: 100%;
+    @include flex(1);
     i {
       cursor: pointer;
     }
