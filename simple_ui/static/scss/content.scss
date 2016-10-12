@@ -117,34 +117,6 @@
     margin-bottom: 2px;
   }
 
-  a.link-button {
-    background-color: $green-accent-color;
-    color: white !important;
-    display: block;
-    font-size: 14px;
-    text-align: center;
-    text-decoration: none;
-    padding: 12px;
-    &:hover {
-      background-color: $green-accent-color-dark;
-    }
-  }
-
-  a.link-button-reversed {
-    background-color: white !important;
-    border: 1px $green-accent-color solid !important;
-    color: $green-accent-color !important;
-    display: block;
-    font-size: 14px;
-    text-align: center;
-    text-decoration: none;
-    padding: 12px;
-    &:hover {
-      background-color: $green-accent-color !important;
-      color: white !important;
-    }
-  }
-
   li:before {
     color: $text-color;
   }
@@ -214,6 +186,34 @@
   }
   @media (min-width: $screen-sm-min) {
     min-width: 200px;
+  }
+}
+
+a.link-button {
+  background-color: $green-accent-color;
+  color: white !important;
+  display: block;
+  font-size: 14px;
+  text-align: center;
+  text-decoration: none;
+  padding: 12px;
+  &:hover {
+    background-color: $green-accent-color-dark;
+  }
+}
+
+a.link-button-reversed {
+  background-color: white !important;
+  border: 1px $green-accent-color solid !important;
+  color: $green-accent-color !important;
+  display: block;
+  font-size: 14px;
+  text-align: center;
+  text-decoration: none;
+  padding: 12px;
+  &:hover {
+    background-color: $green-accent-color !important;
+    color: white !important;
   }
 }
 

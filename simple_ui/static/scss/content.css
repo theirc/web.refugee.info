@@ -67,28 +67,6 @@
 .general-info-item-content h3.anchor {
   margin-top: 2.5em;
   margin-bottom: 2px; }
-.general-info-item-content a.link-button {
-  background-color: #00BA50;
-  color: white !important;
-  display: block;
-  font-size: 14px;
-  text-align: center;
-  text-decoration: none;
-  padding: 12px; }
-  .general-info-item-content a.link-button:hover {
-    background-color: #27a442; }
-.general-info-item-content a.link-button-reversed {
-  background-color: white !important;
-  border: 1px #00BA50 solid !important;
-  color: #00BA50 !important;
-  display: block;
-  font-size: 14px;
-  text-align: center;
-  text-decoration: none;
-  padding: 12px; }
-  .general-info-item-content a.link-button-reversed:hover {
-    background-color: #00BA50 !important;
-    color: white !important; }
 .general-info-item-content li:before {
   color: #000000; }
 .general-info-item-content .img-left {
@@ -133,6 +111,30 @@
 @media (min-width: 768px) {
   .country-cell {
     min-width: 200px; } }
+
+a.link-button {
+  background-color: #00BA50;
+  color: white !important;
+  display: block;
+  font-size: 14px;
+  text-align: center;
+  text-decoration: none;
+  padding: 12px; }
+  a.link-button:hover {
+    background-color: #27a442; }
+
+a.link-button-reversed {
+  background-color: white !important;
+  border: 1px #00BA50 solid !important;
+  color: #00BA50 !important;
+  display: block;
+  font-size: 14px;
+  text-align: center;
+  text-decoration: none;
+  padding: 12px; }
+  a.link-button-reversed:hover {
+    background-color: #00BA50 !important;
+    color: white !important; }
 
 .country-flag {
   width: 25px;
