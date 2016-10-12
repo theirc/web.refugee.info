@@ -31,12 +31,16 @@ angular.module('refugeeApp').directive('servicesMap', function(leafletData, $sta
                 };
 
                 infoDiv.update = function (service) {
-                    this._div.innerHTML = ('<b>' + service.name + '</b><br/>' +  $filter('limitTo')(service.description, 250));
+                    if (!service) {
+                        this._div.innerHTML = ('<b>' + $filter('translate')('NO_SERVICES_INFO') + '</b>');
+                    } else {
+                        this._div.innerHTML = ('<b>' + service.name + '</b><br/>' +  $filter('limitTo')(service.description, 250));
+                    }
                     this._div.className = 'service-info-control';
                 };
 
-                function showDetails(e) {
-                    infoDiv.update(e.target.options.service);
+                function showInfo(e) {
+                    infoDiv.update(e ? e.target.options.service : null);
                 }
 
                 function hideDiv() {
@@ -83,7 +87,7 @@ angular.module('refugeeApp').directive('servicesMap', function(leafletData, $sta
                             riseOnHover: true
                         });
                         marker.on({
-                            mouseover: showDetails,
+                            mouseover: showInfo,
                             mouseout: hideDiv,
                             click: markerClick
                         });
@@ -119,6 +123,12 @@ angular.module('refugeeApp').directive('servicesMap', function(leafletData, $sta
                         return;
                     }
                     scope.services = newValue;
+                    if (!scope.services.length){
+                        showInfo();
+                    }
+                    else {
+                        hideDiv();
+                    }
                     leafletData.getMap().then(function(map) {
                         map.sleep.sleepNote.hidden = true;
                         drawServices(map, scope.services);
@@ -126,12 +136,15 @@ angular.module('refugeeApp').directive('servicesMap', function(leafletData, $sta
                 }, true);
 
                 scope.$watch('$stateChangeSuccess', function () {
-                    if (scope.services){
-                        leafletData.getMap().then(function(map) {
-                            map.sleep.sleepNote.hidden = true;
+                    leafletData.getMap().then(function(map) {
+                        map.sleep.sleepNote.hidden = true;
+                        if (scope.services.length) {
                             drawServices(map, scope.services);
-                        });
-                    }
+                        }
+                        else {
+                            showInfo();
+                        }
+                    });
                 });
             }
         },
