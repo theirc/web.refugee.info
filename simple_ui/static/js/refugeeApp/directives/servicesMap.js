@@ -5,7 +5,8 @@ angular.module('refugeeApp').directive('servicesMap', function(leafletData, $sta
         scope: {
             region: '=',
             services: '=',
-            mapView: '='
+            mapView: '=',
+            isMobile: '='
         },
         link: {
             pre: function(scope) {
@@ -24,7 +25,6 @@ angular.module('refugeeApp').directive('servicesMap', function(leafletData, $sta
             post: function(scope) {
                 var ctrl = scope.$parent.ctrl;
                 var infoDiv = L.control();
-
                 infoDiv.onAdd = function () {
                     this._div = L.DomUtil.create('div', 'hidden');
                     return this._div;
@@ -46,6 +46,12 @@ angular.module('refugeeApp').directive('servicesMap', function(leafletData, $sta
                 leafletData.getMap().then(function (map) {
                     var polygon = L.geoJson(scope.region);
                     map.fitBounds(polygon.getBounds());
+                    if (scope.isMobile){
+                        map.sleep.sleepNote.textContent = $filter('translate')('SLEEP_NOTE');
+                    }
+                    else {
+                        map.sleep.sleepNote.hidden = true;
+                    }
                     infoDiv.addTo(map);
                 });
 
@@ -120,15 +126,12 @@ angular.module('refugeeApp').directive('servicesMap', function(leafletData, $sta
                     }
                     scope.services = newValue;
                     leafletData.getMap().then(function(map) {
-                        map.sleep.sleepNote.hidden = true;
                         drawServices(map, scope.services);
                     });
                 }, true);
-
                 scope.$watch('$stateChangeSuccess', function () {
                     if (scope.services){
                         leafletData.getMap().then(function(map) {
-                            map.sleep.sleepNote.hidden = true;
                             drawServices(map, scope.services);
                         });
                     }
