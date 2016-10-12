@@ -14,7 +14,9 @@ angular.module('refugeeApp').directive('collapseOnAnchorScroll', function ($docu
                     $modal.find('.modal-title').text(scope.item.title);
                     $modal.find('.modal-body').html($compile(scope.item.section)(scope));
                     $modal.modal('show');
-                    $window.FB.XFBML.parse();
+                    if($window.FB) { // For AD Block fans
+                        $window.FB.XFBML.parse();
+                    }
                 } else {
                     $(scope.target).collapse('show');
                 }
