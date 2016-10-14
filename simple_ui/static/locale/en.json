@@ -46,7 +46,7 @@
 
   "LOCATION_INFO_1": "Welcome to Refugee.Info.",
   "LOCATION_INFO_2": "You have selected <strong>{$ location $}</strong> as your location. All the information on this page is specific to <strong>{$ location $}</strong> and your rights whilst staying there.",
-  "LOCATION_INFO_3": "Explore each of the green boxes below to learn more information.",
+  "LOCATION_INFO_3": "Explore each of the boxes below to learn more.",
 
   "NO_SERVICES_INFO": "There are no services currently mapped in your location. The Refugee.Info team is working hard to research and list all the services near you."
 }
