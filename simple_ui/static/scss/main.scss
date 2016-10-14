@@ -1407,13 +1407,15 @@ i.fa {
 }
 
 .service-info-control {
-  margin: 5px 5px 0 0;
+  margin: 10px;
   padding: 6px 8px;
-  background: white;
-  background: rgba(255, 255, 255, 0.8);
+  background: rgba(255, 255, 255, 0.9);
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
   border-radius: 5px;
   max-width: 400px;
+  @media (max-width: $screen-sm-max) {
+    margin-top: 40px;
+  }
 }
 
 .modal-fullscreen {
@@ -1472,7 +1474,9 @@ i.fa {
   @include flexbox();
   @include align-items(center);
   .rating-thumbs {
+    @include flexbox();
     @include flex(1);
+    @include justify-content(flex-end);
     i {
       cursor: pointer;
     }
@@ -1486,6 +1490,10 @@ i.fa {
 .info-bar {
   margin: 0;
   padding: 10px 15px;
+  .location-info-divider {
+    border-bottom: 1px solid $divider-color;
+    margin: 10px 0 10px;
+  }
 }
 
 /* Content goes at the end */
