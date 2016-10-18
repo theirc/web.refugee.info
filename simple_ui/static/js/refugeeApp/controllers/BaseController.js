@@ -2,8 +2,7 @@ angular.module('refugeeApp').controller('BaseController', function ($scope, $roo
     var vm = this;
     vm.isCookiePolicyAccepted = $cookies.get('cookiePolicy');
     vm.language = $location.search().language || $translate.proposedLanguage() || $translate.use();
-    vm.isRTL = vm.language && vm.language !== 'en';
-
+    vm.isRTL = vm.language && (vm.language == 'ar' || vm.language == 'fa');
     var deregisterStateChangeStartHandler = $rootScope.$on('$stateChangeStart', function () {
         LoadingOverlayService.start();
     });
@@ -41,7 +40,7 @@ angular.module('refugeeApp').controller('BaseController', function ($scope, $roo
     };
 
     vm.changeLanguage = function (value) {
-        vm.isRTL = !(value === 'en');
+        vm.isRTL = !!(value == 'ar' || value == 'fa');
         vm.language = value;
         $translate.use(value);
         addLanguageToUrl(value);
