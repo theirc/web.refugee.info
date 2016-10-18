@@ -3,7 +3,7 @@ angular.module('refugeeApp').directive('searchBar', function() {
         restrict: 'E',
         scope: false,
         templateUrl: '/partials/directives/search-bar.html',
-        controller: function ($scope) {
+        controller: function ($scope, $location) {
             $scope.setSelectedType = function () {
                 var type = this.type.number;
                 var index = $scope.ctrl.filterTypes.indexOf(type);
@@ -12,6 +12,7 @@ angular.module('refugeeApp').directive('searchBar', function() {
                 } else {
                     $scope.ctrl.filterTypes.push(type);
                 }
+                $location.search('type', $scope.ctrl.filterTypes);
             };
             $scope.isChecked = function (id) {
                 return $scope.ctrl.filterTypes.indexOf(id) !== -1;
