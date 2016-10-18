@@ -139,36 +139,42 @@ class LocationJSONView(JSONResponseMixin, View):
                     'x-requested-for': ip,
                 })
 
+        def check_status_codes(codes):
+            # Anything that is not a 200 in the API will become a 404 here
+            codes_list = [int(a / 100) for a in codes]
+            if 2 not in codes_list:
+                raise Http404
+
         r = __request(region_url, user_language, ip)
-        r_en = __request(region_url, 'en', ip)
         info_r = __request(information_url, user_language, ip)
-        info_r_en = __request(information_url, 'en', ip)
 
-        # Anything that is not a 200 in the API will become a 404 here
-        status_codes = [r.status_code, r_en.status_code, info_r.status_code, info_r_en.status_code]
-        status_codes = [int(a / 100) for a in status_codes]
-
-        if 2 not in status_codes:
-            raise Http404
-
+        status_codes = [r.status_code, info_r.status_code]
+        check_status_codes(status_codes)
         regions = sorted(r.json(), key=lambda j: j['parent'] or -1)
-        regions_en = sorted(r_en.json(), key=lambda j: j['parent'] or -1)
         information = sorted(info_r.json(), key=lambda j: j['region'] or -1)
-        information_en = sorted(info_r_en.json(), key=lambda j: j['region'] or -1)
 
-        if not regions and not regions_en and not information and not information_en:
+        if not regions and not information:
             raise Http404
 
         region = regions[0] if regions else information[0] if information else {}
-        region_en = regions_en[0] if regions_en else information_en[0] if information_en else {}
-
-        region = region if 'content' in region and region['content'] else region_en
+        if 'content' not in region and not region['content']:
+            r_en = __request(region_url, 'en', ip)
+            info_r_en = __request(information_url, 'en', ip)
+            status_codes = [r_en.status_code, info_r_en.status_code]
+            check_status_codes(status_codes)
+            information_en = sorted(info_r_en.json(), key=lambda j: j['region'] or -1)
+            regions_en = sorted(r_en.json(), key=lambda j: j['parent'] or -1)
+            if not regions_en and not information_en:
+                raise Http404
+            region_en = regions_en[0] if regions_en else information_en[0] if information_en else {}
+            region = region_en
 
         base_url = request.build_absolute_uri('/') + slug
         for content in region['content']:
             site_address = base_url
-            site_address += '/#{}'.format(content["anchor_name"]) if content["anchor_name"] \
-                else '/#info{}'.format(content["index"])
+            site_address += '/?language={}'.format(user_language) if user_language != 'en' else '/'
+            site_address += '#{}'.format(content["anchor_name"]) if content["anchor_name"] \
+                else '#info{}'.format(content["index"])
 
             content['section'] += '<div class="share-thumbs-container">' \
                                   '<div class="fb-share-button" data-href="' + site_address + '" ' \

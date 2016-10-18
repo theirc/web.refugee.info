@@ -18,14 +18,14 @@ angular.module('refugeeApp').controller('LocationServicesController', function (
     vm.mapView = false;
     vm.search = $stateParams.query;
     var getFilterTypesArr = function () {
-        if ($stateParams.type) {
-            if (angular.isArray($stateParams.type)) {
-                return $stateParams.type.map(function (x) {
+        if ($location.search().type) {
+            if (angular.isArray($location.search().type)) {
+                return $location.search().type.map(function (x) {
                     return parseInt(x, 10);
                 });
             }
             else {
-                return [parseInt($stateParams.type, 10)];
+                return [parseInt($location.search().type, 10)];
             }
         }
         else {
@@ -62,14 +62,9 @@ angular.module('refugeeApp').controller('LocationServicesController', function (
     });
 
     $scope.$watchCollection(function () {
-        return vm.filterTypes;
-    }, function (newValue) {
-        if (newValue) {
-            $location.search('type', newValue);
-        } else {
-            $location.search('type', null);
-        }
-        vm.filterTypes = newValue;
+        return $location.search().type;
+    }, function () {
+        vm.filterTypes = getFilterTypesArr();
         vm.services = [];
         vm.chunkedServicesList = [];
         vm.noMoreData = false;

@@ -1,9 +1,8 @@
-angular.module('refugeeApp').controller('BaseController', function ($scope, $rootScope, $cookies, $templateCache, $state, LoadingOverlayService, $translate, $window) {
+angular.module('refugeeApp').controller('BaseController', function ($scope, $rootScope, $cookies, $templateCache, $state, LoadingOverlayService, $translate, $window, $location) {
     var vm = this;
     vm.isCookiePolicyAccepted = $cookies.get('cookiePolicy');
-    vm.language = $translate.proposedLanguage() || $translate.use();
-    vm.isRTL = vm.language && vm.language !== 'en';
-
+    vm.language = $location.search().language || $translate.proposedLanguage() || $translate.use();
+    vm.isRTL = vm.language && (vm.language == 'ar' || vm.language == 'fa');
     var deregisterStateChangeStartHandler = $rootScope.$on('$stateChangeStart', function () {
         LoadingOverlayService.start();
     });
@@ -41,11 +40,14 @@ angular.module('refugeeApp').controller('BaseController', function ($scope, $roo
     };
 
     vm.changeLanguage = function (value) {
-        vm.isRTL = !(value === 'en');
+        vm.isRTL = !!(value == 'ar' || value == 'fa');
         vm.language = value;
         $translate.use(value);
-        $templateCache.removeAll();
-        $state.reload();
+        addLanguageToUrl(value);
+        if ($state.current.name != 'location') {
+            $templateCache.removeAll();
+            $state.reload();
+        }
     };
 
     vm.acceptCookiePolicy = function () {
@@ -80,7 +82,23 @@ angular.module('refugeeApp').controller('BaseController', function ($scope, $roo
 
     $scope.$on('$stateChangeSuccess', function () {
         refreshFacebookSdk();
+        addLanguageToUrl(vm.language);
     });
+
+    $scope.$on('$stateChangeStart', function () {
+        if ($location.search().language != $translate.proposedLanguage()) {
+            $translate.use($location.search().language);
+        }
+    });
+
+    var addLanguageToUrl = function (language) {
+        if (language != 'en') {
+            $location.search('language', language);
+        }
+        else {
+            $location.search('language', null);
+        }
+    };
 
     var refreshFacebookSdk = function () {
         $window.FB = null;
