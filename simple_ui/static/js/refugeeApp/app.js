@@ -32,7 +32,7 @@ angular.module('refugeeApp', ['ui.router', 'ngCookies', 'ngSanitize', 'djng.rmi'
         .fallbackLanguage('en');
         $stateProvider
             .state('location', {
-                url: '/',
+                url: '/?language',
                 templateUrl: 'partials/location.html',
                 controller: 'LocationChoiceController as ctrl',
                 resolve: {
@@ -49,7 +49,7 @@ angular.module('refugeeApp', ['ui.router', 'ngCookies', 'ngSanitize', 'djng.rmi'
             .state('aboutUs', {
                 url: '/about/',
                 resolve: {
-                    aboutUs: function ($stateParams, djangoRMI, $rootScope) {
+                    aboutUs: function ($stateParams, djangoRMI, $rootScope, $translate) {
                         var location = $rootScope.location;
                         var findAboutUs = function (location) {
                             return location.important_information.filter(function (x) {
@@ -60,7 +60,11 @@ angular.module('refugeeApp', ['ui.router', 'ngCookies', 'ngSanitize', 'djng.rmi'
                             return findAboutUs(location);
                         }
                         else {
-                            return djangoRMI.location_json_view.get_details({slug: ''}).then(function (response) {
+                            return djangoRMI.location_json_view.get_details({
+                                slug: '',
+                                language: $translate.proposedLanguage() || $translate.use()
+                            }).then(function (response) {
+
                                 return findAboutUs(response.data.location);
                             });
                         }
