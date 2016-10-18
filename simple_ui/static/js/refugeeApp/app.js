@@ -27,8 +27,17 @@ angular.module('refugeeApp', ['ui.router', 'ngCookies', 'ngSanitize', 'djng.rmi'
             'prefix': staticUrl + 'locale/',
             'suffix': '.json'
         })
+        .registerAvailableLanguageKeys(
+            ['en', 'ar', 'fa'],
+            {
+                'en*': 'en',
+                'ar*': 'ar',
+                'fa*': 'fa',
+                '*': 'en' // must be last!
+            }
+        )
         .useCookieStorage()
-        .preferredLanguage('en')
+        .determinePreferredLanguage()
         .fallbackLanguage('en');
         $stateProvider
             .state('location', {
