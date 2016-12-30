@@ -11,3 +11,4 @@ python-dateutil==2.5.3
 django_compressor==2.1
 django-angular==0.8.4
 django-storages==1.5.1
+beautifulsoup4
