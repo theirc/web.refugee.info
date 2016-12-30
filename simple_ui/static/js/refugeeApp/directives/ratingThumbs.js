@@ -6,7 +6,7 @@ angular.module('refugeeApp').directive('ratingThumbs', function (LocationService
             index: '=',
             slug: '='
         },
-        templateUrl: '/partials/directives/rating-thumbs.html',
+        templateUrl: 'partials/directives/rating-thumbs.html',
         controller: function ($scope) {
             var vm = this;
             var location = $scope.$root.location;

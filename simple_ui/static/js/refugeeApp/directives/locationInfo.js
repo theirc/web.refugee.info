@@ -9,7 +9,7 @@ angular.module('refugeeApp').directive('locationInfo', function () {
             var vm = this;
             vm.locationName = vm.location.title || vm.location.metadata.page_title || vm.location.name || '';
         },
-        templateUrl: '/partials/directives/location-info.html',
+        templateUrl: 'partials/directives/location-info.html',
         controllerAs: 'ctrl'
     };
 });
