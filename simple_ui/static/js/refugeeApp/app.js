@@ -162,4 +162,26 @@ angular.module('refugeeApp', ['ui.router', 'ngCookies', 'ngSanitize', 'djng.rmi'
             requireBase: false
         });
 
-    });
+    })
+
+    .run(['$rootScope', '$location', '$window', function ($rootScope, $location, $window) {
+        $rootScope
+            .$on('$stateChangeSuccess',
+                function (event, route, parameters) {
+
+                    if (!$window.ga)
+                        return;
+
+                    // Tracking pageviews in SPA
+                    $window.ga('send', 'pageview', {page: $location.path()});
+
+                    if ('infoSlug' in parameters) {
+                        $window.ga('send', 'event', 'info-page-view', parameters.infoSlug);
+                    } else if ('slug' in parameters) {
+                        $window.ga('send', 'event', 'page-view', parameters.slug);
+                    } else if ('serviceId' in parameters) {
+                        $window.ga('send', 'event', 'service-view', parameters.serviceId);
+                    }
+                });
+    }]);
+;
