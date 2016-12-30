@@ -6,7 +6,7 @@ angular.module('refugeeApp').directive('quickLinks', function () {
             location: '=',
             direction: '='
         },
-        templateUrl: '/partials/directives/quick-links.html',
+        templateUrl: 'partials/directives/quick-links.html',
         controller: function(filterFilter){
             var vm = this;
             vm.$onInit = function() {

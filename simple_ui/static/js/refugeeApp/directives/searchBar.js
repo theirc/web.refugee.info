@@ -2,7 +2,7 @@ angular.module('refugeeApp').directive('searchBar', function() {
     return {
         restrict: 'E',
         scope: false,
-        templateUrl: '/partials/directives/search-bar.html',
+        templateUrl: 'partials/directives/search-bar.html',
         controller: function ($scope, $location) {
             $scope.setSelectedType = function () {
                 var type = this.type.number;
