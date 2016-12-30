@@ -34,6 +34,12 @@
                 $(o).attr('src', $(o).attr('data-src'));
             });
         });
+
+        $('body').on('shown.bs.modal', function (e) {
+            $('img', e.target).each(function (i, o) {
+                $(o).attr('src', $(o).attr('data-src'));
+            });
+        });
     });
 
 
