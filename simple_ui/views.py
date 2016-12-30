@@ -176,12 +176,21 @@ class LocationJSONView(JSONResponseMixin, View):
             site_address += '#{}'.format(content["anchor_name"]) if content["anchor_name"] \
                 else '#info{}'.format(content["index"])
 
-            content['section'] += '<div class="share-thumbs-container">' \
-                                  '<div class="fb-share-button" data-href="' + site_address + '" ' \
-                                  'data-layout="button"></div>' \
-                                  '<rating-thumbs class="rating-thumbs" index="' + str(content["index"]) + '">' \
-                                  '</rating-thumbs>' \
-                                  '</div>'
+            from bs4 import BeautifulSoup
+            soup = BeautifulSoup(content['section'], 'html.parser')
+            images = soup.find_all('img')
+            for i in images:
+                i['data-src'] = i['src']
+                del i['src']
+
+
+            content['section'] = soup.prettify() + \
+                                 '<div class="share-thumbs-container">' \
+                                 '<div class="fb-share-button" data-href="' + site_address + '" ' \
+                                 'data-layout="button"></div>' \
+                                 '<rating-thumbs class="rating-thumbs" index="' + str(content["index"]) + '">' \
+                                 '</rating-thumbs>' \
+                                 '</div>'
 
         feedback_url = ""
         try:
