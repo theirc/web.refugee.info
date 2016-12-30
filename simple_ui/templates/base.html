@@ -12,6 +12,7 @@
     <meta content="width=device-width" name="viewport">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="mobile-web-app-capable" content="yes">
+
     <meta name="description" content="Important information for refugees."/>
 
     <link rel="apple-touch-icon" sizes="180x180" href="{% static 'images/favicons/apple-touch-icon.png' %}">
@@ -23,8 +24,10 @@
     <meta name="msapplication-config" content="{% static 'images/favicons/browserconfig.xml' %}">
     <meta name="theme-color" content="{$ baseController.getThemeColor() $}">
 
-    <script type="text/javascript" src='{% static 'jquery/dist/jquery.js' %}'></script>
-    <script type="text/javascript" src='{% static 'bootstrap/dist/js/bootstrap.min.js' %}'></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+            crossorigin="anonymous"></script>
 
     <script type="text/javascript" src='{% static 'angular/angular.min.js' %}'></script>
     <script type="text/javascript" src='{% static 'angular-ui-router/release/angular-ui-router.min.js' %}'></script>
@@ -32,25 +35,29 @@
     <script type="text/javascript" src='{% static 'angular-sanitize/angular-sanitize.min.js' %}'></script>
     <script type="text/javascript" src='{% static 'ngInfiniteScroll/build/ng-infinite-scroll.min.js' %}'></script>
     <script type="text/javascript" src="{% static 'djng/js/django-angular.js' %}"></script>
-    <script type="text/javascript" src='{% static 'leaflet/dist/leaflet.js' %}'></script>
+    <script src="https://unpkg.com/leaflet@1.0.2/dist/leaflet.js"></script>
     <script src="http://maps.google.com/maps/api/js?v=3&key=AIzaSyAFC16LPK856xag5svt3_IxTyy0KI4Bc_I"></script>
     <script type="text/javascript" src='{% static 'leaflet-plugins/layer/tile/Google.js' %}'></script>
     <script type="text/javascript" src='{% static 'leaflet-sleep/Leaflet.Sleep.js' %}'></script>
 
-    <script type="text/javascript" src='{% static 'angular-leaflet-directive/dist/angular-leaflet-directive.js' %}'></script>
+    <script type="text/javascript"
+            src='{% static 'angular-leaflet-directive/dist/angular-leaflet-directive.js' %}'></script>
     <script type="text/javascript" src='{% static 'leaflet.vector-markers/dist/leaflet-vector-markers.js' %}'></script>
     <script type="text/javascript" src='{% static 'is-loading/jquery.isloading.min.js' %}'></script>
     <script type="text/javascript" src='{% static 'leaflet.markercluster/dist/leaflet.markercluster.js' %}'></script>
     <script type="text/javascript" src='{% static 'angular-translate/angular-translate.min.js' %}'></script>
-    <script type="text/javascript" src='{% static 'angular-translate-loader-static-files/angular-translate-loader-static-files.js' %}'></script>
-    <script type="text/javascript" src='{% static 'angular-translate-storage-cookie/angular-translate-storage-cookie.min.js' %}'></script>
+    <script type="text/javascript"
+            src='{% static 'angular-translate-loader-static-files/angular-translate-loader-static-files.js' %}'></script>
+    <script type="text/javascript"
+            src='{% static 'angular-translate-storage-cookie/angular-translate-storage-cookie.min.js' %}'></script>
     <script type="text/javascript" src='{% static 'snapjs/snap.min.js' %}'></script>
     <script type="text/javascript" src='{% static 'angular-snap/angular-snap.min.js' %}'></script>
     <script type="text/javascript" src='{% static 'Leaflet.label/dist/leaflet.label.js' %}'></script>
-    <script type="text/javascript" src='{% static 'angular-bind-html-compile/angular-bind-html-compile.min.js' %}'></script>
+    <script type="text/javascript"
+            src='{% static 'angular-bind-html-compile/angular-bind-html-compile.min.js' %}'></script>
     <script type="text/javascript" src='{% static 'ngstorage/ngStorage.min.js' %}'></script>
 
-        <script type="text/javascript" src='{% static 'js/refugeeApp/app.built.js' %}'></script>
+    <script type="text/javascript" src='{% static 'js/refugeeApp/app.built.js' %}'></script>
 
 
     <script type="text/javascript">
@@ -60,10 +67,11 @@
     </script>
 
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-
-    <link rel="stylesheet" type="text/css" href="{% static 'bootstrap/dist/css/bootstrap.css' %}" media="screen,projection">
-    <link rel="stylesheet" type="text/css" href="{% static 'components-font-awesome/css/font-awesome.min.css' %}" media="screen,projection">
-    <link rel="stylesheet" href='{% static 'leaflet/dist/leaflet.css' %}' />
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="{% static 'components-font-awesome/css/font-awesome.min.css' %}"
+          media="screen,projection">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.2/dist/leaflet.css"/>
     <link rel="stylesheet" href="{% static 'leaflet.vector-markers/dist/leaflet-vector-markers.css' %}">
     <link rel="stylesheet" href="{% static 'angular-snap/angular-snap.min.css' %}">
     <link rel="stylesheet" href="{% static 'Leaflet.label/dist/leaflet.label.css' %}">
@@ -76,7 +84,7 @@
 
     <script type="text/javascript">
         var tags = {% djng_all_rmi %};
-        angular.module('refugeeApp').config(function(djangoRMIProvider) {
+        angular.module('refugeeApp').config(function (djangoRMIProvider) {
             djangoRMIProvider.configure(tags);
         });
     </script>
