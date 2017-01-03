@@ -14,4 +14,4 @@ test:
   override:
     - python manage.py test --with-xunit --xunit-file=$CIRCLE_TEST_REPORTS/django/nose.xml
     - mocha ./simple_ui/**/spec/*.js --reporter xunit --recursive > $CIRCLE_TEST_REPORTS/django/mocha.xml
-    - eslint ./**/static/ --quiet --ignore-pattern '*.spec.js' --format junit > $CIRCLE_TEST_REPORTS/django/eslint.xml
+    - eslint ./**/static/ --quiet --ignore-pattern '*.spec.js' --ignore-pattern 'app.built.js' --ignore-pattern 'templates.js' --format junit > $CIRCLE_TEST_REPORTS/django/eslint.xml

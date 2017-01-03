@@ -23,21 +23,21 @@ angular.module('refugeeApp', ['ui.router', 'ngCookies', 'ngSanitize', 'djng.rmi'
         $urlRouterProvider.otherwise('/');
         $urlMatcherFactoryProvider.strictMode(false);
         $translateProvider.useStaticFilesLoader({
-                'prefix': staticUrl + 'locale/',
-                'suffix': '.json'
-            })
-            .registerAvailableLanguageKeys(
-                ['en', 'ar', 'fa'],
-                {
-                    'en*': 'en',
-                    'ar*': 'ar',
-                    'fa*': 'fa',
-                    '*': 'en' // must be last!
-                }
-            )
-            .useCookieStorage()
-            .determinePreferredLanguage()
-            .fallbackLanguage('en');
+            'prefix': staticUrl + 'locale/',
+            'suffix': '.json'
+        })
+        .registerAvailableLanguageKeys(
+            ['en', 'ar', 'fa'],
+            {
+                'en*': 'en',
+                'ar*': 'ar',
+                'fa*': 'fa',
+                '*': 'en' // must be last!
+            }
+        )
+        .useCookieStorage()
+        .determinePreferredLanguage()
+        .fallbackLanguage('en');
         $stateProvider
             .state('location', {
                 url: '/?language',
@@ -46,11 +46,10 @@ angular.module('refugeeApp', ['ui.router', 'ngCookies', 'ngSanitize', 'djng.rmi'
                 resolve: {
                     locationData: function (djangoRMI, $translate) {
                         return djangoRMI.location_json_view.get_regions({
-                                language: $translate.proposedLanguage() || $translate.use()
-                            })
-                            .then(function (response) {
-                                return response.data;
-                            });
+                            language: $translate.proposedLanguage() || $translate.use()
+                        }).then(function (response) {
+                            return response.data;
+                        });
                     }
                 }
             })
@@ -186,4 +185,3 @@ angular.module('refugeeApp', ['ui.router', 'ngCookies', 'ngSanitize', 'djng.rmi'
                     }
                 });
     }]);
-;
