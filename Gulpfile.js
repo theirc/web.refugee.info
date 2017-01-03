@@ -1,10 +1,8 @@
 /**
  * Created by reyrodrigues on 12/30/16.
  */
-var gulp = require('gulp')
-    , rename = require('gulp-rename')
-
-    ;
+/*eslint no-undef:0*/
+var gulp = require('gulp');
 
 var del = require('del');
 var templateCache = require('gulp-angular-templatecache');
