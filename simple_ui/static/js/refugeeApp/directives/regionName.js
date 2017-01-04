@@ -4,6 +4,6 @@ angular.module('refugeeApp').directive('regionName', function() {
         scope: {
             region: '='
         },
-        template: '{$ region.title || region.metadata.page_title || region.name || "" $}'
+        template: '{$ region.name || "" $}'
     };
 });

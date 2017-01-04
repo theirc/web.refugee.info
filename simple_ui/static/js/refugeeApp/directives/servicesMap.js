@@ -8,7 +8,7 @@ angular.module('refugeeApp').directive('servicesMap', function(leafletData, $sta
             mapView: '='
         },
         link: {
-            pre: function(scope) {
+            pre: function (scope) {
                 angular.extend(scope, {
                     layers: {
                         baselayers: {
@@ -21,7 +21,7 @@ angular.module('refugeeApp').directive('servicesMap', function(leafletData, $sta
                     }
                 });
             },
-            post: function(scope) {
+            post: function (scope) {
                 var ctrl = scope.$parent.ctrl;
                 var infoDiv = L.control();
 
@@ -32,9 +32,9 @@ angular.module('refugeeApp').directive('servicesMap', function(leafletData, $sta
 
                 infoDiv.update = function (service) {
                     if (!service) {
-                        this._div.innerHTML = ('<b>' + $filter('translate')('NO_SERVICES_INFO') + '</b>');
+                        this._div.innerHTML = '<b>' + $filter('translate')('NO_SERVICES_INFO') + '</b>';
                     } else {
-                        this._div.innerHTML = ('<b>' + service.name + '</b><br/>' +  $filter('limitTo')(service.description, 250));
+                        this._div.innerHTML = '<b>' + service.name + '</b><br/>' + $filter('limitTo')(service.description, 250);
                     }
                     this._div.className = 'service-info-control';
                 };
@@ -59,12 +59,12 @@ angular.module('refugeeApp').directive('servicesMap', function(leafletData, $sta
                         return L.divIcon({
                             className: 'service-list-item-icon-container',
                             html: '<span class="service-icon">' + cluster.getChildCount() + '</span>',
-                            iconSize:null
+                            iconSize: null
                         });
                     }
                 });
                 var markerClick = function onClick(e) {
-                    $state.go('locationDetails.services.details',{slug: ctrl.slug, serviceId: e.target.options.service.id});
+                    $state.go('locationDetails.services.details', {slug: ctrl.slug, serviceId: e.target.options.service.id});
                 };
 
                 var drawServices = function(map, services) {
@@ -79,7 +79,7 @@ angular.module('refugeeApp').directive('servicesMap', function(leafletData, $sta
                         var icon = L.divIcon({
                             className: 'service-list-item-icon-container',
                             html: '<span class="fa ' + ctrl.getServiceIcon(service.type) + ' fa-2x service-icon"></span>',
-                            iconSize: null,
+                            iconSize: null
                         });
                         var marker = L.marker([lat, lng], {
                             icon: icon,
@@ -99,53 +99,25 @@ angular.module('refugeeApp').directive('servicesMap', function(leafletData, $sta
                     }
                 };
 
-                scope.$watch('mapView', function (newValue, oldValue) {
-                    if (oldValue === newValue) {
-                        return;
-                    }
-                    leafletData.getMap().then(function(map) {
-                        if (scope.services.length > 0) {
-                            map.fitBounds(markers.getBounds());
-                        }
-                    });
-
-                }, true);
-
-                scope.$watch('region', function (newValue, oldValue) {
-                    if (oldValue === newValue) {
-                        return;
-                    }
-                    scope.region = newValue;
-                }, true);
-
-                scope.$watch('services', function (newValue, oldValue) {
-                    if (oldValue === newValue) {
-                        return;
-                    }
-                    scope.services = newValue;
-                    if (!scope.services.length){
-                        showInfo();
-                    }
-                    else {
-                        hideDiv();
-                    }
-                    leafletData.getMap().then(function(map) {
+                var refreshMap = function(){
+                    leafletData.getMap().then(function (map) {
                         map.sleep.sleepNote.hidden = true;
                         drawServices(map, scope.services);
                     });
-                }, true);
+                };
 
-                scope.$watch('$stateChangeSuccess', function () {
-                    leafletData.getMap().then(function(map) {
-                        map.sleep.sleepNote.hidden = true;
-                        if (scope.services.length) {
-                            drawServices(map, scope.services);
-                        }
-                        else {
+                scope.$watch('services', function (newValue) {
+                    if (angular.isDefined(newValue)) {
+                        scope.services = newValue;
+                        if (!scope.services.length) {
                             showInfo();
                         }
-                    });
-                });
+                        else {
+                            hideDiv();
+                        }
+                        refreshMap();
+                    }
+                }, true);
             }
         },
         template: '<leaflet geojson="geojson" layers="layers" class="services-map"></leaflet>'
