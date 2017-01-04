@@ -118,8 +118,8 @@ class LocationJSONView(JSONResponseMixin, View):
             ip = request.META.get('REMOTE_ADDR')
 
         # Url is actually a filter in the regions for the slug we are looking for
-        region_url = "{}?slug={}".format(os.path.join(settings.API_URL, 'v1/region/'), slug)
-        information_url = "{}?slug={}".format(os.path.join(settings.API_URL, 'v1/important-information/'), slug)
+        region_url = "{}?slug={}&language={}".format(os.path.join(settings.API_URL, 'v2/region/'), slug, user_language)
+        information_url = "{}?slug={}".format(os.path.join(settings.API_URL, 'v2/important-information/'), slug)
 
         def __request(url, language, ip):
             return requests.get(
@@ -141,8 +141,8 @@ class LocationJSONView(JSONResponseMixin, View):
 
         status_codes = [r.status_code, info_r.status_code]
         check_status_codes(status_codes)
-        regions = sorted(r.json(), key=lambda j: j['parent'] or -1)
-        information = sorted(info_r.json(), key=lambda j: j['region'] or -1)
+        regions = sorted(r.json(), key=lambda j: j.get('parent') or -1)
+        information = sorted(info_r.json(), key=lambda j: j.get('region') or -1)
 
         if not regions and not information:
             raise Http404
@@ -164,22 +164,20 @@ class LocationJSONView(JSONResponseMixin, View):
         for content in region['content']:
             site_address = base_url
             site_address += '/?language={}'.format(user_language) if user_language != 'en' else '/'
-            site_address += '#{}'.format(content["anchor_name"]) if content["anchor_name"] \
-                else '#info{}'.format(content["index"])
+            site_address += '#{}'.format(content['slug'])
 
             from bs4 import BeautifulSoup
-            soup = BeautifulSoup(content['section'], 'html.parser')
+            soup = BeautifulSoup(content['html'], 'html.parser')
             images = soup.find_all('img')
             for i in images:
                 i['data-src'] = i['src']
                 del i['src']
 
-
-            content['section'] = soup.prettify() + \
+            content['html'] = soup.prettify() + \
                                  '<div class="share-thumbs-container">' \
                                  '<div class="fb-share-button" data-href="' + site_address + '" ' \
                                  'data-layout="button"></div>' \
-                                 '<rating-thumbs class="rating-thumbs" index="' + str(content["index"]) + '">' \
+                                 '<rating-thumbs class="rating-thumbs" index="' + str(content["slug"]) + '">' \
                                  '</rating-thumbs>' \
                                  '</div>'
 
@@ -208,7 +206,7 @@ class LocationJSONView(JSONResponseMixin, View):
                 'publication_date': publication_date,
                 'localized_date': localized_date,
                 'is_blue': is_blue,
-                'has_important': True if [r for r in region['content'] if r['important']] else False,
+                'has_important': True if [r for r in region['important']] else False,
             }
         )
         return context

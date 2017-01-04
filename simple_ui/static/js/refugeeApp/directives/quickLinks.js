@@ -7,10 +7,10 @@ angular.module('refugeeApp').directive('quickLinks', function () {
             direction: '='
         },
         templateUrl: 'partials/directives/quick-links.html',
-        controller: function(filterFilter){
+        controller: function(){
             var vm = this;
             vm.$onInit = function() {
-                vm.filteredImportantInfo = filterFilter(vm.location.important_information, {hidden: false});
+                vm.filteredImportantInfo = vm.location.important;
             };
 
             vm.openImportantInfo = function (id) {

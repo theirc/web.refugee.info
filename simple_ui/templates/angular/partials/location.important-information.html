@@ -3,22 +3,19 @@
     <location-buttons></location-buttons>
     <location-info location="ctrl.location"></location-info>
     <quick-links class="hidden-xs" location="ctrl.location" direction="baseController.direction()"></quick-links>
-    <div id="info" ng-repeat="info in ctrl.location.important_information | filter: {slug: ctrl.infoSlug}">
-        <div class="row green-bar" style="margin-top: 10px">
-            {$ info.metadata.page_title $}
-        </div>
-        <div class="important-information-content"
-             ng-repeat-start="item in info.content"
-             ng-bind-html="item.section"
-             ng-show="!item.hide_from_toc"
-             name="{$ item.anchor_name || 'Anchor_' + item.index $}"
-             item="item" collapse-on-anchor-scroll>
-        </div>
-        <div ng-repeat-end="" class="share-thumbs-container"
-             ng-show="!item.hide_from_toc">
-            <fb-share href="request.get_full_path"></fb-share>
-            <rating-thumbs class="rating-thumbs" slug="info.slug"></rating-thumbs>
-        </div>
+    <div id="info" ng-repeat="info in ctrl.location.important | filter: {slug: ctrl.infoSlug}">
+            <div class="row green-bar" style="margin-top: 10px">
+                {$ info.title $}
+            </div>
+            <div class="important-information-content"
+                 ng-bind-html="info.html"
+                 name="{$ 'Anchor_' + info.slug $}"
+                 item="info" collapse-on-anchor-scroll>
+            </div>
+            <div class="share-thumbs-container">
+                <fb-share href="request.get_full_path"></fb-share>
+                <rating-thumbs class="rating-thumbs" slug="info.slug"></rating-thumbs>
+            </div>
     </div>
 
 
