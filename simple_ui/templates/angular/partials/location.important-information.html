@@ -3,7 +3,7 @@
     <location-buttons></location-buttons>
     <location-info location="ctrl.location"></location-info>
     <quick-links class="hidden-xs" location="ctrl.location" direction="baseController.direction()"></quick-links>
-    <div id="info" ng-repeat="info in ctrl.location.important | filter: {slug: ctrl.infoSlug}">
+    <div id="info" ng-repeat="info in ctrl.location.important | filter: {slug: ctrl.infoSlug}" ng-show="!info.pop_up">
             <div class="row green-bar" style="margin-top: 10px">
                 {$ info.title $}
             </div>
