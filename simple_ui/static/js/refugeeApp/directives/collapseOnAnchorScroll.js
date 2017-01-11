@@ -23,7 +23,7 @@ angular.module('refugeeApp').directive('collapseOnAnchorScroll', function ($docu
             };
             if (scope.item && $location.hash()) {
                 if (scope.item.slug === $location.hash()) {
-                    if(scope.item.pop_up) {
+                    if(scope.item.pop_up || !('pop_up' in scope.item)) {
                         openModal();
                     }
                 }
@@ -46,7 +46,7 @@ angular.module('refugeeApp').directive('collapseOnAnchorScroll', function ($docu
                 });
             }
             $($document[0].body).on('click', 'a[href="#' + scope.item.slug + '"]', function () {
-                if(scope.item.pop_up) {
+                if(scope.item.pop_up || !('pop_up' in scope.item)) {
                     openModal();
                 }
             });
