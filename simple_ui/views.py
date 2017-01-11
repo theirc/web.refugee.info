@@ -177,7 +177,7 @@ class LocationJSONView(JSONResponseMixin, View):
                                  '<div class="share-thumbs-container">' \
                                  '<div class="fb-share-button" data-href="' + site_address + '" ' \
                                  'data-layout="button"></div>' \
-                                 '<rating-thumbs class="rating-thumbs" index="' + str(content["slug"]) + '">' \
+                                 '<rating-thumbs class="rating-thumbs" index="' + str(content["slug"]) + '" item="p">' \
                                  '</rating-thumbs>' \
                                  '</div>'
 

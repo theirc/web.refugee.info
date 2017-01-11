@@ -3,44 +3,46 @@ angular.module('refugeeApp').directive('ratingThumbs', function (LocationService
         restrict: 'E',
         bindToController: true,
         scope: {
-            index: '=',
-            slug: '='
+            item: '='
         },
         templateUrl: 'partials/directives/rating-thumbs.html',
         controller: function ($scope) {
             var vm = this;
-            var location = $scope.$root.location;
-            $scope.$storage = $localStorage;
-            vm.thumbs_up = 0;
-            vm.thumbs_down = 0;
-            var ratingId = 'rating_' + location.slug + '_';
-            ratingId += vm.slug ? vm.slug : vm.index;
-            LocationService.getRating(location, vm.index, vm.slug).then(function (response) {
-                vm.thumbs_up = response.data.thumbs_up;
-                vm.thumbs_down = response.data.thumbs_down;
-                vm.rating = $scope.$storage[ratingId];
-            });
+            $scope.$storage = $localStorage
+            this.$onInit = function() {
+                vm.thumbs_up = vm.item.thumbs_up;
+                vm.thumbs_down = vm.item.thumbs_down;
 
-            vm.rate = function (rating) {
-                var result = $scope.$storage[ratingId];
-                vm.rating = rating;
-                if (!result) {
-                    LocationService.setRating($scope.$root.location, vm.index, vm.slug, rating).then(function (response) {
-                        vm.thumbs_up = response.data.thumbs_up;
-                        vm.thumbs_down = response.data.thumbs_down;
-                    });
-                    $scope.$storage[ratingId] = rating;
+                var ratingId = 'rating_' + vm.item.slug;
+                var r = $scope.$storage[ratingId]
+                if (r && 'rate' in r) {
+                    vm.rating = r['rate'];
                 }
-                if (result && (result != rating)) {
-                    LocationService.setRating(location, vm.index, vm.slug, rating).then(function () {
-                        var removeRating = rating == 'up' ? 'down' : 'up';
-                        LocationService.removeRating(location, vm.index, vm.slug, removeRating).then(function (response) {
+
+                vm.rate = function (rating) {
+                    var result = $scope.$storage[ratingId];
+                    vm.rating = rating;
+                    if (!result) {
+                        LocationService.setRating(vm.item.slug, rating).then(function (response) {
                             vm.thumbs_up = response.data.thumbs_up;
                             vm.thumbs_down = response.data.thumbs_down;
+                            $scope.$storage[ratingId] = {
+                                'rating_id': response.data.rating_id,
+                                'rate': rating
+                            };
                         });
-                    });
-                    $scope.$storage[ratingId] = rating;
-                }
+                    }
+                    if (result && (result['rate'] != rating)) {
+                        LocationService.setRating(vm.item.slug, rating, result['rating_id']).then(function (response) {
+                            vm.thumbs_up = response.data.thumbs_up;
+                            vm.thumbs_down = response.data.thumbs_down;
+                            $scope.$storage[ratingId] = {
+                                'rating_id': response.data.rating_id,
+                                'rate': rating
+                            };
+                        });
+                    }
+                };
             };
         },
         controllerAs: 'ctrl'
