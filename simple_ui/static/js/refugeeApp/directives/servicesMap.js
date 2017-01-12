@@ -32,7 +32,7 @@ angular.module('refugeeApp').directive('servicesMap', function(leafletData, $sta
 
                 infoDiv.update = function (service) {
                     if (!service) {
-                        this._div.innerHTML = ('<b>' + $filter('translate')('NO_SERVICES_INFO') + '</b>');
+                        this._div.innerHTML = ('<b>' + $filter('translate')('NO_SERVICES_INFO', { siteName: scope.$root.translatedSiteName }) + '</b>');
                     } else {
                         this._div.innerHTML = ('<b>' + service.name + '</b><br/>' +  $filter('limitTo')(service.description, 250));
                     }
