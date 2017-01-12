@@ -2,6 +2,7 @@ import os
 from urllib.parse import quote_plus
 
 import requests
+import logging
 from django.conf import settings
 from django.http import Http404
 from django.template.defaultfilters import date
@@ -11,6 +12,8 @@ from django.utils.translation import activate
 from dateutil import parser
 from django.views.generic.base import View, TemplateView
 from djng.views.mixins import JSONResponseMixin, allow_remote_invocation
+
+logger = logging.getLogger(__name__)
 
 
 def find_language(request, language=None):
@@ -40,62 +43,66 @@ class LocationJSONView(JSONResponseMixin, View):
 
     @allow_remote_invocation
     def get_regions(self, in_data):
-        request = self.request
-        language = in_data.get('language')
-        user_language = find_language(request, language=language)
+        try:
+            request = self.request
+            language = in_data.get('language')
+            user_language = find_language(request, language=language)
 
-        activate(user_language)
+            activate(user_language)
 
-        x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
-        if x_forwarded_for:
-            ip = x_forwarded_for.split(',')[0]
-        else:
-            ip = request.META.get('REMOTE_ADDR')
+            x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
+            if x_forwarded_for:
+                ip = x_forwarded_for.split(',')[0]
+            else:
+                ip = request.META.get('REMOTE_ADDR')
 
-        url = "{}".format(os.path.join(settings.API_URL, 'v2/region/?no_content&hidden=False&language=%s'
-                                       % user_language))
+            url = "{}".format(os.path.join(settings.API_URL, 'v2/region/?no_content&hidden=False&language=%s'
+                                           % user_language))
 
-        r = requests.get(
-            url,
-            headers={
-                'accept-language': user_language,
-                'accept': 'application/json',
-                'x-requested-for': ip,
-            })
-        regions = r.json()
+            r = requests.get(
+                url,
+                headers={
+                    'accept-language': user_language,
+                    'accept': 'application/json',
+                    'x-requested-for': ip,
+                })
+            regions = r.json()
 
-        parents = [r for r in regions if ('parent' not in r or not r['parent'])]
-        for p in parents:
-            p['children'] = [r for r in regions if
-                             r['id'] != p['id'] and
-                             r['full_slug'].startswith(p['slug']) and
-                             r['level'] != 2]
+            parents = [r for r in regions if ('parent' not in r or not r['parent'])]
+            for p in parents:
+                p['children'] = [r for r in regions if
+                                 r['id'] != p['id'] and
+                                 r['full_slug'].startswith(p['slug']) and
+                                 r['level'] != 2]
 
-        if is_alkhadamat(self.request):
-            parents = [x for x in parents if x['code'] == 'LB']
-            closest_url = "{}".format(
-                os.path.join(settings.API_URL, 'v1/region/closest/?no_content=true&hidden=False&is_child_of=%s' % parents[0]['id']))
-        else:
-            closest_url = "{}".format(
-                os.path.join(settings.API_URL, 'v2/region/closest/?no_content=true&hidden=False&language=%s'
-                             % user_language))
-        r = requests.get(
-            closest_url,
-            headers={
-                'accept-language': user_language,
-                'accept': 'application/json',
-                'x-requested-for': ip,
-            })
-        closest = r.json()
-        if closest:
-            closest = closest[0]
-
-        return {
-            'national_languages': [(k, v) for k, v in settings.LANGUAGES if k not in ('ar', 'fa', 'en')],
-            'regions': parents,
-            'closest': closest,
-            'API_URL': settings.API_URL,
-        }
+            if is_alkhadamat(self.request):
+                parents = [x for x in parents if x['code'] == 'LB']
+                closest_url = "{}".format(
+                    os.path.join(settings.API_URL,
+                                 'v2/region/closest/?no_content=true&hidden=False&language=%s&is_child_of=%s'
+                                 % (user_language, parents[0]['id'])))
+            else:
+                closest_url = "{}".format(
+                    os.path.join(settings.API_URL, 'v2/region/closest/?no_content=true&hidden=False&language=%s'
+                                 % user_language))
+            r = requests.get(
+                closest_url,
+                headers={
+                    'accept-language': user_language,
+                    'accept': 'application/json',
+                    'x-requested-for': ip,
+                })
+            closest = r.json()
+            if closest:
+                closest = closest[0]
+            return {
+                'national_languages': [(k, v) for k, v in settings.LANGUAGES if k not in ('ar', 'fa', 'en')],
+                'regions': parents,
+                'closest': closest,
+                'API_URL': settings.API_URL,
+            }
+        except Exception:
+            logger.exception('Error while getting regions.', exc_info=True)
 
     @allow_remote_invocation
     def get_details(self, in_data):
