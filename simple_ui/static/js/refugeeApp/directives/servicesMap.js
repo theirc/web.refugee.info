@@ -8,7 +8,7 @@ angular.module('refugeeApp').directive('servicesMap', function(leafletData, $sta
             mapView: '='
         },
         link: {
-            pre: function(scope) {
+            pre: function (scope) {
                 angular.extend(scope, {
                     layers: {
                         baselayers: {
@@ -59,12 +59,12 @@ angular.module('refugeeApp').directive('servicesMap', function(leafletData, $sta
                         return L.divIcon({
                             className: 'service-list-item-icon-container',
                             html: '<span class="service-icon">' + cluster.getChildCount() + '</span>',
-                            iconSize:null
+                            iconSize: null
                         });
                     }
                 });
                 var markerClick = function onClick(e) {
-                    $state.go('locationDetails.services.details',{slug: ctrl.slug, serviceId: e.target.options.service.id});
+                    $state.go('locationDetails.services.details', {slug: ctrl.slug, serviceId: e.target.options.service.id});
                 };
 
                 var drawServices = function(map, services) {
@@ -79,7 +79,7 @@ angular.module('refugeeApp').directive('servicesMap', function(leafletData, $sta
                         var icon = L.divIcon({
                             className: 'service-list-item-icon-container',
                             html: '<span class="fa ' + ctrl.getServiceIcon(service.type) + ' fa-2x service-icon"></span>',
-                            iconSize: null,
+                            iconSize: null
                         });
                         var marker = L.marker([lat, lng], {
                             icon: icon,

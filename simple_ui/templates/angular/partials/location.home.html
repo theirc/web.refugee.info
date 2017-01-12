@@ -1,38 +1,34 @@
-{% load static %}
-{% load i18n %}
-{% load tz %}
-{% load l10n %}
-
 <div class="col-xs-12 col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2 view-container view-container-padded">
     <location-selected></location-selected>
     <location-buttons></location-buttons>
-    <img src="{% static 'images/refugees-in-sid.png' %}" style="width: 100%">
+    <img src="/static/images/refugees-in-sid.png" style="width: 100%">
     <location-info location="ctrl.location"></location-info>
     <quick-links class="hidden-xs" location="ctrl.location" direction="baseController.direction()"></quick-links>
     <div class="general-info-container">
 
-        <div class="general-info-box hidden-xs" ng-repeat="b in ctrl.location.metadata.banners" ng-bind-html="b"></div>
+        <div class="general-info-box hidden-xs" ng-repeat="b in ctrl.location.banners" ng-bind-html="b.html"></div>
 
         <div class="general-info-divider" ng-if="ctrl.location.content"></div>
-        <div class="general-info-item" ng-show="!p.hide_from_toc" ng-repeat="p in ctrl.location.content | filter: {important: true}">
-            <a href="#info{$ p.index $}">
-                <div class="general-info-item-header" data-toggle="collapse" data-target="#info{$ p.index $}">
+        <div class="general-info-item" ng-repeat="p in ctrl.location.content" id="{$ 'Anchor_' + p.slug $}" ng-show="!p.pop_up">
+            <a href="#{$ p.slug $}">
+                <div class="general-info-item-header collapsed" data-toggle="collapse" data-target="#{$ p.slug $}">
                     <div class="general-info-item-header-inner" ng-class="baseController.direction()">
-                        <i class="fa {$ p.vector_icon $}"></i>{$ p.title $}<span name="{$ p.anchor_name || 'Anchor_' + p.index $}" item="p" collapse-on-anchor-scroll></span>
+                        <i class="fa {$ p.icon $}"></i>{$ p.title $}<span name="{$ 'Anchor_' + p.slug $}" item="p" collapse-on-anchor-scroll></span>
                     </div>
                 </div>
             </a>
-            <div class="general-info-item-content collapse" id="info{$ p.index $}" bind-html-compile="p.section"></div>
-        </div>
-        <div class="general-info-item" ng-show="!p.hide_from_toc" ng-repeat="p in ctrl.location.content | filter: {important: false}" id="{$ p.anchor_name || 'Anchor_' + p.index $}">
-            <a href="#info{$ p.index $}">
-                <div class="general-info-item-header collapsed" data-toggle="collapse" data-target="#info{$ p.index $}">
-                    <div class="general-info-item-header-inner" ng-class="baseController.direction()">
-                        <i class="fa {$ p.vector_icon $}"></i>{$ p.title $}<span name="{$ p.anchor_name || 'Anchor_' + p.index $}" item="p" collapse-on-anchor-scroll></span>
+            <div class="general-info-item-content collapse" ng-if="!p.pop_up" id="{$ p.slug $}" bind-html-compile="p.html"></div>
+
+            <div class="genral-info-item" ng-repeat="sub in p.subsections" id="{$ 'Anchor_' + sub.slug $}" ng-show="false">
+                <a href="#{$ sub.slug $}">
+                    <div class="general-info-item-header collapsed" data-toggle="collapse" data-target="#{$ sub.slug $}">
+                        <div class="general-info-item-header-inner" ng-class="baseController.direction()">
+                            <i class="fa {$ sub.icon $}"></i>{$ sub.title $}<span name="{$ 'Anchor_' + sub.slug $}" item="sub" collapse-on-anchor-scroll></span>
+                        </div>
                     </div>
-                </div>
-            </a>
-            <div class="general-info-item-content collapse" id="info{$ p.index $}" bind-html-compile="p.section"></div>
+                </a>
+                <div class="general-info-item-content collapse" ng-if="false" id="{$ sub.slug $}" bind-html-compile="sub.html"></div>
+            </div>
         </div>
 
         <p class="general-info-date" data-date="{$ ctrl.publication_date $}" ng-if="!!ctrl.publication_date">

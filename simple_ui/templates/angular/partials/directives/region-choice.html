@@ -1,5 +1,3 @@
-{% load i18n %}
-{% load static %}
 <div>
     <ul id="locations-{$ region.id $}" class="locations country">
         <li data-toggle="collapse" data-target="#region{$ region.id $}">
@@ -13,17 +11,18 @@
     <ul class="locations children panel-collapse collapse" id="region{$ region.id $}">
         <li ng-click="navigateToDetails(region)" ng-if="!region.hidden">
             <span class="location-helper">{$ 'VIEW_INFO_FOR' | translate $}:</span>
-            <img class="location-icon" src="{% static 'images/level-country.png' %}"/>
+            <img class="location-icon" src="/static/images/level-country.png"/>
             <span class="location-label-name"><region-name region="region"></region-name></span>
         </li>
-        <li class="region" ng-repeat="child in region.children | filter: {level: 2}" ng-click="navigateToDetails(child)">
+        <li class="region" ng-repeat="child in region.children | filter: {level: 2}"
+            ng-click="navigateToDetails(child)">
             <span class="location-helper">{$ 'VIEW_INFO_FOR' | translate $}:</span>
-            <img class="location-icon" src="{% static 'images/level-region.png' %}"/>
+            <img class="location-icon" src="/static/images/level-region.png"/>
             <span class="location-label-name"><region-name region="child"></region-name></span>
         </li>
         <li class="camp" ng-repeat="child in region.children | filter: {level: 3}" ng-click="navigateToDetails(child)">
             <span class="location-helper">{$ 'VIEW_INFO_FOR' | translate $}:</span>
-            <img class="location-icon" src="{% static 'images/level-camp.png' %}"/>
+            <img class="location-icon" src="/static/images/level-camp.png"/>
             <span class="location-label-name"><region-name region="child"></region-name></span>
         </li>
     </ul>
