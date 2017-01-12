@@ -46,6 +46,7 @@ angular.module('refugeeApp').controller('BaseController', function ($scope, $roo
         vm.language = value;
         $translate.use(value);
         addLanguageToUrl(value);
+        refreshSiteName();
         if ($state.current.name != 'location') {
             $templateCache.removeAll();
             $state.reload();
@@ -124,6 +125,12 @@ angular.module('refugeeApp').controller('BaseController', function ($scope, $roo
         }(document, 'script', 'facebook-jssdk'));
     };
 
+    var refreshSiteName = function () {
+        vm.getTranslatedSiteName().then(function (data) {
+            $rootScope.translatedSiteName = data;
+        });
+    };
+
     vm.isAlkhadamat = function () {
         return isAlkhadamat == 'True';
     };
@@ -140,7 +147,5 @@ angular.module('refugeeApp').controller('BaseController', function ($scope, $roo
         }
     };
 
-    vm.getTranslatedSiteName().then(function (data) {
-        $rootScope.translatedSiteName = data;
-    });
+
 });
