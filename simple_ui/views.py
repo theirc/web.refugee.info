@@ -30,6 +30,13 @@ def find_language(request, language=None):
     return user_language
 
 
+def is_alkhadamat(request):
+    if 'alkhadamat' in request.META.get('HTTP_HOST', ''):
+        return True
+    else:
+        return False
+
+
 class LocationJSONView(JSONResponseMixin, View):
 
     @allow_remote_invocation
@@ -49,9 +56,6 @@ class LocationJSONView(JSONResponseMixin, View):
         # Url is actually a filter in the regions for the slug we are looking for
         url = "{}".format(os.path.join(settings.API_URL, 'v1/region/?no_content=true'))
 
-        closest_url = "{}".format(
-            os.path.join(settings.API_URL, 'v1/region/closest/?no_content=true&hidden=False'))
-
         r = requests.get(
             url,
             headers={
@@ -61,20 +65,7 @@ class LocationJSONView(JSONResponseMixin, View):
             })
         regions = r.json()
 
-        r = requests.get(
-            closest_url,
-            headers={
-                'accept-language': user_language,
-                'accept': 'application/json',
-                'x-requested-for': ip,
-            })
-        closest = r.json()
         language_key = 'title_{}'.format(user_language)
-
-        if closest:
-            closest = closest[0]
-            closest['title'] = closest[language_key] if language_key in closest else closest['title_en']
-
         for r in regions:
             r['title'] = r[language_key] if language_key in r else r['title_en']
 
@@ -86,6 +77,24 @@ class LocationJSONView(JSONResponseMixin, View):
                              r['level'] != 2 and
                              ('hidden' not in r or not r['hidden'])
                              ]
+        if is_alkhadamat(self.request):
+            parents = [x for x in parents if x['code'] == 'LB']
+            closest_url = "{}".format(
+                os.path.join(settings.API_URL, 'v1/region/closest/?no_content=true&hidden=False&is_child_of=%s' % parents[0]['id']))
+        else:
+            closest_url = "{}".format(
+            os.path.join(settings.API_URL, 'v1/region/closest/?no_content=true&hidden=False'))
+        r = requests.get(
+            closest_url,
+            headers={
+                'accept-language': user_language,
+                'accept': 'application/json',
+                'x-requested-for': ip,
+            })
+        closest = r.json()
+        if closest:
+            closest = closest[0]
+            closest['title'] = closest[language_key] if language_key in closest else closest['title_en']
 
         return {
             'national_languages': [(k, v) for k, v in settings.LANGUAGES if k not in ('ar', 'fa', 'en')],
@@ -220,4 +229,5 @@ class LandingPageView(TemplateView):
 
     def get_context_data(self, **kwargs):
         kwargs['API_URL'] = settings.API_URL
+        kwargs['IS_ALKHADAMAT'] = is_alkhadamat(self.request)
         return super(LandingPageView, self).get_context_data(**kwargs)

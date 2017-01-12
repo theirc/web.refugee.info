@@ -1,4 +1,6 @@
-angular.module('refugeeApp').controller('BaseController', function ($scope, $rootScope, $cookies, $templateCache, $state, LoadingOverlayService, $translate, $window, $location) {
+angular.module('refugeeApp').controller('BaseController', function ($scope, $rootScope, $cookies, $templateCache,
+                                                                    $state, LoadingOverlayService, $translate, $window,
+                                                                    $location, isAlkhadamat) {
     var vm = this;
     vm.isCookiePolicyAccepted = $cookies.get('cookiePolicy');
     vm.language = $location.search().language || $translate.proposedLanguage() || $translate.use();
@@ -121,4 +123,24 @@ angular.module('refugeeApp').controller('BaseController', function ($scope, $roo
             fjs.parentNode.insertBefore(js, fjs);
         }(document, 'script', 'facebook-jssdk'));
     };
+
+    vm.isAlkhadamat = function () {
+        return isAlkhadamat == 'True';
+    };
+
+    vm.getTranslatedSiteName = function () {
+        if (vm.isAlkhadamat()){
+            return $translate('ALKHADAMAT_INFO').then(function (anotherOne) {
+                return anotherOne;
+            });
+        } else {
+            return $translate('REFUGEE_INFO').then(function (anotherOne) {
+                return anotherOne;
+            });
+        }
+    };
+
+    vm.getTranslatedSiteName().then(function (data) {
+        $rootScope.translatedSiteName = data;
+    });
 });

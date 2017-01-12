@@ -8,12 +8,12 @@
     <div class="col-xs-12 col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2 view-container view-container-padded">
         <div class="row">
             <div class="col-xs-12 col-sm-12">
-                <p>{$ 'LANDING_1' | translate $}</p>
+                <p>{$ 'LANDING_1' | translate: { siteName: $root.translatedSiteName } $}</p>
                 <p>{$ 'LANDING_2' | translate $}</p>
                 <p>{$ 'LANDING_3' | translate $}</p>
             </div>
         </div>
-        <div ng-show="!!ctrl.data.closest">
+        <div ng-if="ctrl.data.closest.length != 0">
             <h3 class="header-center">{$ 'CLOSEST_LOCATION' | translate $}</h3>
             <ul class="locations highlighted">
                 <li ng-click="ctrl.navigateTo(ctrl.data.closest.slug)">
