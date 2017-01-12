@@ -3,6 +3,7 @@ from urllib.parse import quote_plus
 
 import requests
 from django.conf import settings
+from django.contrib.sites.shortcuts import get_current_site
 from django.http import Http404
 from django.template.defaultfilters import date
 from django.templatetags.l10n import localize
@@ -29,6 +30,13 @@ def find_language(request, language=None):
     return user_language
 
 
+def is_alkhadamat(request):
+    if 'alkhadamat' in request.META.get('HTTP_HOST', ''):
+        return True
+    else:
+        return False
+
+
 class LocationJSONView(JSONResponseMixin, View):
 
     @allow_remote_invocation
@@ -37,17 +45,16 @@ class LocationJSONView(JSONResponseMixin, View):
         language = in_data.get('language')
         user_language = find_language(request, language=language)
 
+        activate(user_language)
+
         x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
         if x_forwarded_for:
             ip = x_forwarded_for.split(',')[0]
         else:
             ip = request.META.get('REMOTE_ADDR')
 
-        url = "{}".format(os.path.join(settings.API_URL, 'v2/region/?no_content&hidden=False&language=%s'
-                                       % user_language))
-        closest_url = "{}".format(
-            os.path.join(settings.API_URL, 'v2/region/closest/?no_content&hidden=False&language=%s'
-                         % user_language))
+        # Url is actually a filter in the regions for the slug we are looking for
+        url = "{}".format(os.path.join(settings.API_URL, 'v1/region/?no_content=true'))
 
         r = requests.get(
             url,
@@ -58,6 +65,25 @@ class LocationJSONView(JSONResponseMixin, View):
             })
         regions = r.json()
 
+        language_key = 'title_{}'.format(user_language)
+        for r in regions:
+            r['title'] = r[language_key] if language_key in r else r['title_en']
+
+        parents = [r for r in regions if ('parent' not in r or not r['parent'])]
+        for p in parents:
+            p['children'] = [r for r in regions if
+                             r['id'] != p['id'] and
+                             r['full_slug'].startswith(p['slug']) and
+                             r['level'] != 2 and
+                             ('hidden' not in r or not r['hidden'])
+                             ]
+        if is_alkhadamat(self.request):
+            parents = [x for x in parents if x['code'] == 'LB']
+            closest_url = "{}".format(
+                os.path.join(settings.API_URL, 'v1/region/closest/?no_content=true&hidden=False&is_child_of=%s' % parents[0]['id']))
+        else:
+            closest_url = "{}".format(
+            os.path.join(settings.API_URL, 'v1/region/closest/?no_content=true&hidden=False'))
         r = requests.get(
             closest_url,
             headers={
@@ -66,17 +92,9 @@ class LocationJSONView(JSONResponseMixin, View):
                 'x-requested-for': ip,
             })
         closest = r.json()
-
         if closest:
             closest = closest[0]
-
-        parents = [r for r in regions if ('parent' not in r or not r['parent'])]
-        for p in parents:
-            p['children'] = [r for r in regions if
-                             r['id'] != p['id'] and
-                             r['full_slug'].startswith(p['slug']) and
-                             r['level'] != 2
-                             ]
+            closest['title'] = closest[language_key] if language_key in closest else closest['title_en']
 
         return {
             'national_languages': [(k, v) for k, v in settings.LANGUAGES if k not in ('ar', 'fa', 'en')],
@@ -118,8 +136,8 @@ class LocationJSONView(JSONResponseMixin, View):
             ip = request.META.get('REMOTE_ADDR')
 
         # Url is actually a filter in the regions for the slug we are looking for
-        region_url = "{}?slug={}&language={}".format(os.path.join(settings.API_URL, 'v2/region/'), slug, user_language)
-        information_url = "{}?slug={}".format(os.path.join(settings.API_URL, 'v2/important-information/'), slug)
+        region_url = "{}?slug={}".format(os.path.join(settings.API_URL, 'v1/region/'), slug)
+        information_url = "{}?slug={}".format(os.path.join(settings.API_URL, 'v1/important-information/'), slug)
 
         def __request(url, language, ip):
             return requests.get(
@@ -141,8 +159,8 @@ class LocationJSONView(JSONResponseMixin, View):
 
         status_codes = [r.status_code, info_r.status_code]
         check_status_codes(status_codes)
-        regions = sorted(r.json(), key=lambda j: j.get('parent') or -1)
-        information = sorted(info_r.json(), key=lambda j: j.get('region') or -1)
+        regions = sorted(r.json(), key=lambda j: j['parent'] or -1)
+        information = sorted(info_r.json(), key=lambda j: j['region'] or -1)
 
         if not regions and not information:
             raise Http404
@@ -164,22 +182,15 @@ class LocationJSONView(JSONResponseMixin, View):
         for content in region['content']:
             site_address = base_url
             site_address += '/?language={}'.format(user_language) if user_language != 'en' else '/'
-            site_address += '#{}'.format(content['slug'])
+            site_address += '#{}'.format(content["anchor_name"]) if content["anchor_name"] \
+                else '#info{}'.format(content["index"])
 
-            from bs4 import BeautifulSoup
-            soup = BeautifulSoup(content['html'], 'html.parser')
-            images = soup.find_all('img')
-            for i in images:
-                i['data-src'] = i['src']
-                del i['src']
-
-            content['html'] = soup.prettify() + \
-                                 '<div class="share-thumbs-container">' \
-                                 '<div class="fb-share-button" data-href="' + site_address + '" ' \
-                                 'data-layout="button"></div>' \
-                                 '<rating-thumbs class="rating-thumbs" index="' + str(content["slug"]) + '" item="p">' \
-                                 '</rating-thumbs>' \
-                                 '</div>'
+            content['section'] += '<div class="share-thumbs-container">' \
+                                  '<div class="fb-share-button" data-href="' + site_address + '" ' \
+                                  'data-layout="button"></div>' \
+                                  '<rating-thumbs class="rating-thumbs" index="' + str(content["index"]) + '">' \
+                                  '</rating-thumbs>' \
+                                  '</div>'
 
         feedback_url = ""
         try:
@@ -206,7 +217,7 @@ class LocationJSONView(JSONResponseMixin, View):
                 'publication_date': publication_date,
                 'localized_date': localized_date,
                 'is_blue': is_blue,
-                'has_important': True if [r for r in region['important']] else False,
+                'has_important': True if [r for r in region['content'] if r['important']] else False,
             }
         )
         return context
@@ -218,4 +229,5 @@ class LandingPageView(TemplateView):
 
     def get_context_data(self, **kwargs):
         kwargs['API_URL'] = settings.API_URL
+        kwargs['IS_ALKHADAMAT'] = is_alkhadamat(self.request)
         return super(LandingPageView, self).get_context_data(**kwargs)
