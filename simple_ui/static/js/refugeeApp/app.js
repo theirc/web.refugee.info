@@ -56,25 +56,18 @@ angular.module('refugeeApp', ['ui.router', 'ngCookies', 'ngSanitize', 'djng.rmi'
             .state('aboutUs', {
                 url: '/about/',
                 resolve: {
-                    aboutUs: function ($stateParams, djangoRMI, $rootScope, $translate) {
-                        var location = $rootScope.location;
-                        var findAboutUs = function (location) {
-                            return location.important_information.filter(function (x) {
-                                return x.slug === 'about-us';
+                    aboutUs: function ($http, $location, apiUrl, $translate) {
+                        var language = $location.search().language || $translate.proposedLanguage() || $translate.use();
+
+                        var getAboutUs = function(language) {
+                            return $http({
+                                method: 'GET',
+                                url: apiUrl + '/v2/about/' + language + '/'
                             });
                         };
-                        if (location) {
-                            return findAboutUs(location);
-                        }
-                        else {
-                            return djangoRMI.location_json_view.get_details({
-                                slug: '',
-                                language: $translate.proposedLanguage() || $translate.use()
-                            }).then(function (response) {
-
-                                return findAboutUs(response.data.location);
-                            });
-                        }
+                        return getAboutUs(language).then(function (response) {
+                            return response.data;
+                        });
                     }
                 },
                 template: '<div class="col-xs-12 col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2 view-container">' +
@@ -83,7 +76,7 @@ angular.module('refugeeApp', ['ui.router', 'ngCookies', 'ngSanitize', 'djng.rmi'
                     var vm = this;
                     vm.getContent = function () {
                         if (aboutUs) {
-                            return aboutUs[0].content[0].section;
+                            return aboutUs.html;
                         } else {
                             return '';
                         }
