@@ -155,8 +155,9 @@ angular.module('refugeeApp', ['ui.router', 'ngCookies', 'ngSanitize', 'djng.rmi'
         });
 
     })
-
+    // eslint-disable-next-line angular/di
     .run(['$rootScope', '$location', '$window', function ($rootScope, $location, $window) {
+        // eslint-disable-next-line angular/on-watch
         $rootScope
             .$on('$stateChangeSuccess',
                 function (event, route, parameters) {
