@@ -5,7 +5,7 @@
             <i class="material-icons">&#xE0C8;</i><span style="display: block">{$ ctrl.service.address $}</span></h1>
     </div>
     <div class="col-xs-12 col-sm-10 col-sm-offset-1 no-padding">
-        <img ng-if="!!ctrl.service.image" class="service-image" ng-src="{$ ctrl.service.image $}" />
+        <img ng-if="!!ctrl.service.image" class="service-image" ng-src="{$ ctrl.service.image $}"/>
 
         <h2 class="service-description-title">
             {$ 'DESCRIPTION' | translate $}
@@ -25,11 +25,12 @@
         </div>
 
         <div class="button-container">
-            <a  ng-if="!!ctrl.service.address" ng-click="ctrl.getDirections()" class="button button-green">{$ 'GET_DIRECTIONS' | translate $}</a>
+            <a ng-if="!!ctrl.service.address" ng-click="ctrl.getDirections()" class="button button-green">
+                {$ 'GET_DIRECTIONS' | translate $}</a>
             <a ng-if="!!ctrl.service.phone_number" class="button button-black"
             ><i class="fa fa-phone" aria-hidden="true"></i>{$ ctrl.service.phone_number $}</a>
-            <a class="button button-white" href="https://www.facebook.com/sharer/sharer.php?u={$ ctrl.serviceUrl $}" target="_blank">
-                {$ 'SHARE' | translate $}
+            <a class="button button-white" href="https://www.facebook.com/sharer/sharer.php?u={$ ctrl.serviceUrl $}"
+               target="_blank">{$ 'SHARE' | translate $}
             </a>
         </div>
     </div>
