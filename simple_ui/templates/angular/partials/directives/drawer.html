@@ -1,6 +1,7 @@
 <div snap-drawer="right" id="drawer">
     <div class="drawer-contents" dir="{$ baseController.direction() $}">
-        <img class="theme" ng-if="!baseController.isAlkhadamat()" ng-src="/static/images/logo-{$ baseController.theme() $}.png"/>
+        <img class="theme" ng-if="!baseController.isAlkhadamat()"
+             ng-src="/static/images/logo-{$ baseController.theme() $}.png"/>
         <img class="theme" ng-if="baseController.isAlkhadamat()" ng-src="/static/images/logo-arabic.png"/>
         <div ng-if="!location">
             <div class="current-location-container">

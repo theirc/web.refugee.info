@@ -114,8 +114,6 @@ class LocationJSONView(JSONResponseMixin, View):
 
         activate(user_language)
 
-        is_blue = slug in settings.BLUE_PAGES
-
         # Handling Meraki:
         context = {}
 
@@ -207,24 +205,12 @@ class LocationJSONView(JSONResponseMixin, View):
         except:
             pass
 
-        publication_date = None
-        localized_date = None
-        try:
-            if 'metadata' in region and 'last_updated' in region['metadata']:
-                publication_date = date(utc(parser.parse(region['metadata']['last_updated'])), 'c')
-                localized_date = localize(utc(parser.parse(region['metadata']['last_updated'])))
-        except:
-            pass
-
         context.update(
             {
                 'national_languages': [(k, v) for k, v in settings.LANGUAGES if 'languages_available' in region and
                                        k in region['languages_available'] and k not in ['en', 'ar', 'fa']],
                 'feedback_url': feedback_url,
                 'location': region,
-                'publication_date': publication_date,
-                'localized_date': localized_date,
-                'is_blue': is_blue,
                 'has_important': True if [r for r in region['important']] else False,
             }
         )
