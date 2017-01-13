@@ -147,5 +147,5 @@ angular.module('refugeeApp').controller('BaseController', function ($scope, $roo
         }
     };
 
-
+    refreshSiteName();
 });
