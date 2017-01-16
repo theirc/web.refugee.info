@@ -86,6 +86,7 @@ angular.module('refugeeApp').controller('BaseController', function ($scope, $roo
     $scope.$on('$stateChangeSuccess', function () {
         refreshFacebookSdk();
         addLanguageToUrl(vm.language);
+        refreshSiteName();
     });
 
     $scope.$on('$stateChangeStart', function () {
@@ -146,6 +147,4 @@ angular.module('refugeeApp').controller('BaseController', function ($scope, $roo
             });
         }
     };
-
-    refreshSiteName();
 });
