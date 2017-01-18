@@ -11,6 +11,9 @@
     -o-background-size: cover;
     background-size: cover;
   }
+  @media print {
+    overflow: visible !important;
+  }
 }
 
 .snap-content {
@@ -39,6 +42,9 @@ drawer {
   border-left: 1px solid $divider-color-2;
   background-color: $primary-color-3;
   font-size: 12px;
+  @media print {
+    display: none;
+  }
   .drawer-contents {
     background-color: $primary-color-3;
     color: $text-color;
@@ -122,6 +128,10 @@ drawer {
     height: 80px;
     padding: 24px 10px 0 10px;
   }
+  @media print {
+    display: none;
+  }
+
   a {
     color: $text-color;
     &:hover {
@@ -213,6 +223,9 @@ drawer {
   }
   a {
     color: $text-color !important;
+  }
+  @media print {
+    display: none;
   }
 }
 
@@ -446,6 +459,9 @@ region-flag {
   @media (max-width: $screen-xs-max) {
     height: 70px;
   }
+  @media print {
+    display: none;
+  }
   i {
     color: #528d57;
   }
@@ -626,6 +642,11 @@ region-flag {
   cursor: pointer;
   background-color: transparent;
   border-bottom: 1px solid $divider-color;
+  &.collapsed {
+    @media print {
+      display: none;
+    }
+  }
   &:hover {
     background-color: $primary-color-5;
   }
@@ -1335,6 +1356,18 @@ html, body {
   font-family: 'Montserrat', Helvetica, Arial, sans-serif;
 }
 
+p {
+  @media print {
+    page-break-inside: auto !important;
+  }
+}
+
+a:after {
+  @media print {
+    content: '' !important;
+  }
+}
+
 .row {
   margin-left: auto;
   margin-right: auto;
@@ -1432,6 +1465,13 @@ i.fa {
     height: 100%;
     border-radius: 0;
   }
+  .modal-footer {
+    display: flex;
+    justify-content: flex-end;
+    .print-container {
+      margin-top: 2px;
+    }
+  }
 }
 
 .modal-backdrop {
@@ -1447,12 +1487,73 @@ i.fa {
     &.collapse.in {
       border-bottom: 1px solid $divider-color;
     }
+    @media print {
+      p {
+        page-break-after: always;
+      }
+    }
   }
+
+#contentModal {
+  @media print {
+    position: absolute !important;
+    overflow: visible !important;
+  }
+}
+
+.modal-open {
+  @media print {
+    .general-info-item-content {
+      display: none;
+    }
+    .general-info-item-header {
+      display: none;
+    }
+    .home-img {
+      display: none;
+    }
+    .location-selected {
+      display: none;
+    }
+    .row.green-bar {
+      display: none;
+    }
+    .important-information-content {
+      display: none;
+    }
+    .modal-dialog {
+      &.general-info-item-content {
+        display: block;
+      }
+    }
+    .modal-header {
+      border-bottom: none;
+    }
+    .modal-content {
+      border: none;
+      overflow: visible !important;
+      p {
+        page-break-before: always;
+      }
+    }
+    .modal-footer {
+      display: none;
+    }
+  }
+}
 
 .general-info-item-content, .important-information-content {
   hr {
     width: 30%;
     border-bottom: 2px solid $green-accent-color;
+  }
+}
+
+.footer-container {
+  display: flex;
+  justify-content: space-between;
+  @media print {
+    display: none;
   }
 }
 
@@ -1467,6 +1568,17 @@ i.fa {
   .fb-like {
     padding: 0 5px;
     margin-top: 4px
+  }
+}
+
+.print-container {
+  @include flexbox();
+  max-width: 100%;
+  margin-top: 10px;
+  vertical-align: middle;
+  button {
+    border: none;
+    background: transparent;
   }
 }
 
@@ -1485,6 +1597,12 @@ i.fa {
       margin: 4px;
     }
   }
+  .print-container {
+    margin-top: auto;
+  }
+  @media print {
+    display: none;
+  }
 }
 
 .info-bar {
@@ -1494,199 +1612,9 @@ i.fa {
     border-bottom: 1px solid $divider-color;
     margin: 10px 0 10px;
   }
-}
-
-.toggle-box {
-  display: none;
-  + label {
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    font-weight: bold;
-    line-height: 30px;
-    background-color: #F2F2F2;
-    margin: 0;
-    p {
-      margin: 0;
-      padding: 5px 0;
-    }
-    + div {
-      display: none;
-      margin-bottom: 10px;
-    }
+  @media print {
+    display: none;
   }
-  &:checked {
-    + label + div {
-      display: block;
-    }
-    + label:before {
-      content: "\2212";
-    }
-  }
-  + label:before {
-    background-color: $green-accent-color;
-    -webkit-border-radius: 10px;
-    -moz-border-radius: 10px;
-    border-radius: 10px;
-    color: #FFFFFF;
-    content: "+";
-    display: block;
-    float: left;
-    font-weight: bold;
-    height: 20px;
-    width: 20px;
-    line-height: 20px;
-    margin: 10px;
-    text-align: center;
-  }
-}
-
-div.answer {
-  padding: 10px;
-  background-color: #FAFAFA;
-}
-
-.video {
-  position: relative;
-  display: block;
-  margin: 10px auto;
-  &:before {
-    transition: opacity 0.2s ease-out;
-    content: "";
-    position: absolute;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 100;
-    background: transparent url(../images/play_button.png) no-repeat center;
-    pointer-events: none;
-    opacity: 0.66;
-  }
-  &:hover {
-    &:before {
-      opacity: 1;
-    }
-  }
-  img {
-    display: block;
-    margin: 0 auto;
-  }
-}
-
-div.video-container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.footnotes_list label {
-  max-height: 100px;
-  overflow: auto;
-  word-break: break-all;
-}
-
-.fb-container {
-  justify-content: center;
-  display: flex;
-  padding-bottom: 15px;
-}
-
-.fb-post {
-  padding: 10px;
-  display: inline-block;
-  overflow: hidden;
-  box-shadow: 0 0 3px rgba(0, 0, 0, 0.4);
-  @media (max-width: $screen-xs-max) {
-    width: 100%;
-  }
-  @media (min-width: $screen-sm-min) {
-    width: 600px;
-  }
-}
-
-.fb-post-header {
-  display: flex;
-  justify-content: space-between;
-  padding-bottom: 10px;
-}
-
-.fb-post-header-left {
-  display: flex;
-}
-
-.fb-post-body {
-  display: block;
-}
-
-.fb-post-img {
-  padding-right: 1px;
-  padding-bottom: 5px;
-  padding-top: 1px;
-}
-
-.fb-post-video {
-  padding-bottom: 5px;
-  position: relative;
-  display: block;
-  margin: 10px auto;
-  &:before {
-    transition: opacity 0.2s ease-out;
-    content: "";
-    position: absolute;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 100;
-    background: transparent url(../images/fb_play_button.png) no-repeat center;
-    pointer-events: none;
-    opacity: 0.66;
-  }
-  &:hover {
-    &:before {
-      opacity: 1;
-    }
-  }
-  img {
-    width: 100%;
-    display: block;
-    margin: 0 auto;
-  }
-}
-
-.fb-post-info {
-  padding: 0 10px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  a:first-of-type {
-    font-weight: bold;
-  }
-  a:last-of-type {
-    font-size: 12px;
-  }
-  a {
-    text-decoration: none !important;
-  }
-}
-
-.fb-post-link {
-  margin-left: auto;
-  padding-right: 1px;
-}
-
-.fb-user-cover {
-  a {
-    height: 100%;
-    img {
-      width: 50px;
-      height: 50px;
-    }
-  }
-}
-
-.link-content {
-  position: relative;
-  height: 46px;
 }
 
 .link {

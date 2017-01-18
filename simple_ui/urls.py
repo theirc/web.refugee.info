@@ -58,6 +58,9 @@ directives_patterns = [
     url(r'^location-info.html$',
         TemplateView.as_view(template_name='angular/partials/directives/location-info.html'),
         name='location-info'),
+    url(r'^print-page.html$',
+        TemplateView.as_view(template_name='angular/partials/directives/print-page.html'),
+        name='print-like'),
 ]
 
 partial_patterns = [
