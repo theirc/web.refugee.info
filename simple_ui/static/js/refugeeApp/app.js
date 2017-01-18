@@ -64,7 +64,10 @@ angular.module('refugeeApp', ['ui.router', 'ngCookies', 'ngSanitize', 'djng.rmi'
                         var getAboutUs = function(language) {
                             return $http({
                                 method: 'GET',
-                                url: apiUrl + '/v2/about/' + language + '/'
+                                url: apiUrl + '/v2/content/about-us/' + language,
+                                params: {
+                                    status: 'production'
+                                }
                             });
                         };
                         return getAboutUs(language).then(function (response) {
