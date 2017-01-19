@@ -26,6 +26,9 @@ angular.module('refugeeApp').directive('collapseOnAnchorScroll', function ($docu
                     if(scope.item.pop_up || !('pop_up' in scope.item)) {
                         openModal();
                     }
+                    else {
+                        anchorInfo = scope.item;
+                    }
                 }
                 if (scope.item.slug === $location.hash()) {
                     anchorInfo = scope.item;
@@ -48,6 +51,13 @@ angular.module('refugeeApp').directive('collapseOnAnchorScroll', function ($docu
             $($document[0].body).on('click', 'a[href="#' + scope.item.slug + '"]', function () {
                 if(scope.item.pop_up || !('pop_up' in scope.item)) {
                     openModal();
+                }
+                else {
+                        var el = $('#' + scope.item.slug);
+                        if (el) {
+                            el.collapse('show');
+                            $uiViewScroll(el);
+                        }
                 }
             });
 
