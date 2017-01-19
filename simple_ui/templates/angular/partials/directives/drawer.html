@@ -53,9 +53,9 @@
             </div>
             <a ui-sref="locationDetails.info({slug: location.slug, infoSlug: info.slug, '#': 'info'})"
                ui-sref-active="active"
-               ng-repeat="info in location.important_information | filter: {hidden: false}"
+               ng-repeat="info in location.important"
                class="navigation-link" snap-close>
-                <span class="padded">{$ info.metadata.page_title $}</span>
+                <span class="padded">{$ info.title $}</span>
             </a>
         </div>
 

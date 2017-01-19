@@ -53,11 +53,11 @@ angular.module('refugeeApp').directive('collapseOnAnchorScroll', function ($docu
                     openModal();
                 }
                 else {
-                        var el = $('#' + scope.item.slug);
-                        if (el) {
-                            el.collapse('show');
-                            $uiViewScroll(el);
-                        }
+                    var el = $('#' + scope.item.slug);
+                    if (el) {
+                        el.collapse('show');
+                        $uiViewScroll(el);
+                    }
                 }
             });
 
