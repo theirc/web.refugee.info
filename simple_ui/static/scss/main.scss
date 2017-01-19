@@ -1707,5 +1707,11 @@ i.fa {
   }
 }
 
+.about-us {
+  img {
+    max-width: 100%;
+  }
+}
+
 /* Content goes at the end */
 @import "content";
