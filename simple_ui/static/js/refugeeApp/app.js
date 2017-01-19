@@ -24,7 +24,8 @@ angular.module('refugeeApp', ['ui.router', 'ngCookies', 'ngSanitize', 'djng.rmi'
         $httpProvider.defaults.xsrfHeaderName = 'X-CSRFToken';
         $urlRouterProvider.otherwise('/');
         $urlMatcherFactoryProvider.strictMode(false);
-        $translateProvider.useStaticFilesLoader({
+        $translateProvider.useSanitizeValueStrategy('escapeParameters')
+        .useStaticFilesLoader({
             'prefix': staticUrl + 'locale/',
             'suffix': '.json'
         })

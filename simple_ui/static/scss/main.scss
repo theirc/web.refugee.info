@@ -433,6 +433,9 @@ region-flag {
       margin-bottom: 5px;
     }
   }
+  @media print {
+    display: none;
+  }
 }
 
 .service-information-choice {
@@ -497,7 +500,6 @@ region-flag {
 .quick-links {
   font-size: 20px;
   margin: 0 0 5px 0;
-
 }
 
 .refugee-page-header {
@@ -625,6 +627,9 @@ region-flag {
   padding: 10px;
   margin-bottom: 10px;
   text-align: center;
+  @media print {
+    display: none;
+  }
 }
 
 .general-info-divider {
@@ -1245,6 +1250,9 @@ nav {
     padding: 0 30px 30px 30px;
     margin-top: 100px;
   }
+  @media print {
+    margin-top: 0px;
+  }
   background-color: $primary-color-4;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
 
@@ -1358,7 +1366,13 @@ html, body {
 
 p {
   @media print {
-    page-break-inside: auto !important;
+    page-break-before: auto !important;
+  }
+}
+
+div {
+  @media print {
+    page-break-before: auto !important;
   }
 }
 
@@ -1487,11 +1501,6 @@ i.fa {
     &.collapse.in {
       border-bottom: 1px solid $divider-color;
     }
-    @media print {
-      p {
-        page-break-after: always;
-      }
-    }
   }
 
 #contentModal {
@@ -1533,7 +1542,13 @@ i.fa {
       border: none;
       overflow: visible !important;
       p {
-        page-break-before: always;
+        page-break-before: auto !important;
+      }
+      div.video {
+        page-break-before: auto !important;
+      }
+      div.fb-post {
+        page-break-before: auto !important;
       }
     }
     .modal-footer {
@@ -1715,3 +1730,4 @@ i.fa {
 
 /* Content goes at the end */
 @import "content";
+@import "content-print";
