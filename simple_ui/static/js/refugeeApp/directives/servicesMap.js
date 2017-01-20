@@ -5,7 +5,8 @@ angular.module('refugeeApp').directive('servicesMap', function(leafletData, $sta
         scope: {
             region: '=',
             services: '=',
-            mapView: '='
+            mapView: '=',
+            isMobile: '='
         },
         link: {
             pre: function (scope) {
@@ -24,7 +25,6 @@ angular.module('refugeeApp').directive('servicesMap', function(leafletData, $sta
             post: function (scope) {
                 var ctrl = scope.$parent.ctrl;
                 var infoDiv = L.control();
-
                 infoDiv.onAdd = function () {
                     this._div = L.DomUtil.create('div', 'hidden');
                     return this._div;
@@ -50,6 +50,9 @@ angular.module('refugeeApp').directive('servicesMap', function(leafletData, $sta
                 leafletData.getMap().then(function (map) {
                     var polygon = L.geoJson(scope.region);
                     map.fitBounds(polygon.getBounds());
+                    if (scope.isMobile) {
+                        map.sleep.disable();
+                    }
                     infoDiv.addTo(map);
                 });
 
@@ -118,6 +121,20 @@ angular.module('refugeeApp').directive('servicesMap', function(leafletData, $sta
                         refreshMap();
                     }
                 }, true);
+
+                scope.$watch('mapView', function (newValue, oldValue) {
+                    if (oldValue === newValue) {
+                        return;
+                    }
+                    leafletData.getMap().then(function(map) {
+                        if (scope.services.length > 0) {
+                            map.fitBounds(markers.getBounds());
+                        }
+                    });
+
+                }, true);
+
+                refreshMap();
             }
         },
         template: '<leaflet geojson="geojson" layers="layers" class="services-map"></leaflet>'
