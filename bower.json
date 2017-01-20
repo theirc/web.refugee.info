@@ -28,7 +28,7 @@
     "jquery": "2.2.2",
     "leaflet": "^0.7.7",
     "leaflet-plugins": "^1.9.0",
-    "leaflet-sleep": "^0.5.1",
+    "leaflet-sleep": "kamilnowak/Leaflet.Sleep#fix-remove-hook",
     "leaflet.markercluster": "#leaflet-0.7",
     "leaflet.vector-markers": "https://github.com/jfsebastian/Leaflet.vector-markers.git#7a0c707c2cf2f758f57329772ca6f26a1de27452",
     "Leaflet.label": "^0.2.1",
