@@ -246,24 +246,21 @@ a.link-button-reversed {
       display: block;
     }
     + label:before {
-      content: "\2212";
+      -ms-transform: rotate(90deg);
+      -webkit-transform: rotate(90deg);
+      transform: rotate(90deg);
     }
   }
   + label:before {
-    background-color: $green-accent-color;
-    -webkit-border-radius: 10px;
-    -moz-border-radius: 10px;
-    border-radius: 10px;
-    color: #FFFFFF;
-    content: "\002B";
     display: block;
-    float: left;
-    font-weight: bold;
-    height: 20px;
-    width: 20px;
-    line-height: 20px;
+    height: 0;
+    width: 0;
+    content: "";
     margin: 10px;
-    text-align: center;
+    border-top: 8px solid transparent;
+    border-bottom: 8px solid transparent;
+    border-left: 15px solid $green-accent-color;
+    @include transition-mixin(all, 0.3, ease-out);
   }
 }
 
