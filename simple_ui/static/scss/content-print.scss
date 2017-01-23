@@ -1,0 +1,245 @@
+.general-info-item-content {
+    @media print {
+    //  adjust content css for printing
+      .video-container {
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        page-break-inside: avoid !important;
+      }
+      .video {
+          position: relative !important;
+          display: block !important;
+          margin: 10px auto !important;
+          &:before {
+            transition: opacity 0.2s ease-out !important;
+            content: "" !important;
+            position: absolute !important;
+            top: 0 !important;
+            width: 100% !important;
+            height: 100% !important;
+            z-index: 100 !important;
+            background: transparent url(../images/play_button.png) no-repeat center !important;
+            pointer-events: none !important;
+            opacity: 0.66 !important;
+          }
+          &:hover {
+            &:before {
+              opacity: 1 !important;
+            }
+          }
+          img {
+            display: block !important;
+            margin: 0 auto !important;
+          }
+        }
+      .toggle-box {
+        display: none !important;
+        + label {
+          cursor: pointer !important;
+          display: flex !important;
+          align-items: center !important;
+          font-weight: bold !important;
+          line-height: 30px !important;
+          background-color: #F2F2F2 !important;
+          margin: 0 !important;
+          p {
+            margin: 0 !important;
+            padding: 5px 0 !important;
+          }
+          + div {
+            display: none !important;
+            margin-bottom: 10px !important;
+          }
+        }
+        &:checked {
+          + label + div {
+            display: block !important;
+          }
+          + label:before {
+            content: "\2212" !important;
+          }
+        }
+        + label:before {
+          background-color: $green-accent-color !important;
+          -webkit-border-radius: 10px !important;
+          -moz-border-radius: 10px !important;
+          border-radius: 10px !important;
+          color: #FFFFFF !important;
+          content: "+" !important;
+          display: block !important;
+          float: left !important;
+          font-weight: bold !important;
+          height: 20px !important;
+          width: 20px !important;
+          line-height: 20px !important;
+          margin: 10px !important;
+          text-align: center !important;
+        }
+      }
+      .answer {
+        background-color: #FAFAFA !important;
+      }
+
+      .fb-container {
+        justify-content: center !important;
+        display: flex !important;
+        padding-bottom: 15px !important;
+        page-break-inside: avoid !important;
+      }
+
+      .fb-post {
+        padding: 10px !important;
+        display: inline-block !important;
+        overflow: hidden !important;
+        box-shadow: 0 0 3px rgba(0, 0, 0, 0.4) !important;
+      }
+
+      .fb-post-header {
+        display: flex !important;
+        justify-content: space-between !important;
+        padding-bottom: 10px !important;
+      }
+
+      .fb-post-header-left {
+        display: flex !important;
+      }
+
+      .fb-post-body {
+        display: block !important;
+      }
+
+      .fb-post-img {
+        padding-right: 1px !important;
+        padding-bottom: 5px !important;
+        padding-top: 1px !important;
+      }
+
+      .fb-post-video {
+        padding-bottom: 5px !important;
+        position: relative !important;
+        display: block !important;
+        margin: 10px auto !important;
+        &:before {
+          transition: opacity 0.2s ease-out !important;
+          content: "" !important;
+          position: absolute !important;
+          top: 0 !important;
+          width: 100% !important;
+          height: 100% !important;
+          z-index: 100 !important;
+          background: transparent url(../images/fb_play_button.png) no-repeat center !important;
+          pointer-events: none !important;
+          opacity: 0.66 !important;
+        }
+        &:hover {
+          &:before {
+            opacity: 1 !important;
+          }
+        }
+        img {
+          width: 100% !important;
+          display: block !important;
+          margin: 0 auto !important;
+        }
+      }
+
+      .fb-post-info {
+        padding: 0 10px !important;
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: center !important;
+        a:first-of-type {
+          font-weight: bold !important;
+        }
+        a:last-of-type {
+          font-size: 12px !important;
+        }
+        a {
+          text-decoration: none !important;
+        }
+      }
+
+      .fb-post-link {
+        margin-left: auto !important;
+        padding-right: 1px !important;
+      }
+
+      .fb-user-cover {
+        a {
+          height: 100% !important;
+          img {
+            width: 50px !important;
+            height: 50px !important;
+          }
+        }
+      }
+
+
+      a.link-button {
+        background-color: $green-accent-color !important;
+        color: white !important;
+        display: block !important;
+        font-size: 14px !important;
+        text-align: center !important;
+        text-decoration: none !important;
+        padding: 12px !important;
+        &:hover {
+          background-color: $green-accent-color-dark !important;
+        }
+      }
+
+      a.link-button-reversed {
+        background-color: white !important;
+        border: 1px $green-accent-color solid !important;
+        color: $green-accent-color !important;
+        display: block !important;
+        font-size: 14px !important;
+        text-align: center !important;
+        text-decoration: none !important;
+        padding: 12px !important;
+        &:hover {
+          background-color: $green-accent-color !important;
+          color: white !important;
+        }
+      }
+    }
+  }
+
+
+.button-green {
+  @media print {
+    @include transition-mixin(background-color, 0.15, linear);
+    background-color: $green-accent-color !important;
+    color: #FFFFFF !important;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.33) !important;
+  }
+}
+
+.button-black {
+  @media print {
+    @include transition-mixin(background-color, 0.15, linear);
+    background-color: #000000 !important;
+    color: #FFFFFF !important;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.33) !important;
+    i.fa {
+      color: #FFFFFF !important;
+      padding: 0 10px !important;
+    }
+  }
+}
+
+.button-white {
+  @media print {
+    @include transition-mixin(background-color, 0.15, linear);
+    background-color: #FFFFFF !important;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.33) !important;
+    color: #000000 !important;
+  }
+}
+
+.print-container {
+  @media print {
+    display: none;
+  }
+}
