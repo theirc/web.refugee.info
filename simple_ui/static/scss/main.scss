@@ -161,6 +161,7 @@ drawer {
     &:hover {
       filter: brightness(140%);
       -webkit-filter: brightness(140%);
+      cursor: pointer;
     }
   }
   .navbar-left {
