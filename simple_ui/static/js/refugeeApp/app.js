@@ -4,7 +4,9 @@ angular.module('refugeeApp', ['ui.router', 'ngCookies', 'ngSanitize', 'djng.rmi'
         var unregister = $rootScope.$on('$stateChangeSuccess', function (event, toState, toParams, fromState, fromParams) {
             if (fromState) {
                 $rootScope.previousStateName = fromState.name;
-            } else { $rootScope.previousStateName = 'location'; }
+            } else {
+                $rootScope.previousStateName = 'location';
+            }
             $rootScope.previousStateParams = fromParams;
         });
 
@@ -25,22 +27,21 @@ angular.module('refugeeApp', ['ui.router', 'ngCookies', 'ngSanitize', 'djng.rmi'
         $urlRouterProvider.otherwise('/');
         $urlMatcherFactoryProvider.strictMode(false);
         $translateProvider.useSanitizeValueStrategy('escapeParameters')
-        .useStaticFilesLoader({
-            'prefix': staticUrl + 'locale/',
-            'suffix': '.json'
-        })
-        .registerAvailableLanguageKeys(
-            ['en', 'ar', 'fa'],
-            {
-                'en*': 'en',
-                'ar*': 'ar',
-                'fa*': 'fa',
-                '*': 'en' // must be last!
-            }
-        )
-        .useCookieStorage()
-        .determinePreferredLanguage()
-        .fallbackLanguage('en');
+            .useStaticFilesLoader({
+                'prefix': staticUrl + 'locale/',
+                'suffix': '.json'
+            })
+            .registerAvailableLanguageKeys(
+                ['en', 'ar', 'fa'], {
+                    'en*': 'en',
+                    'ar*': 'ar',
+                    'fa*': 'fa',
+                    '*': 'en' // must be last!
+                }
+            )
+            .useCookieStorage()
+            .determinePreferredLanguage()
+            .fallbackLanguage('en');
         $stateProvider
             .state('location', {
                 url: '/?language',
@@ -62,7 +63,7 @@ angular.module('refugeeApp', ['ui.router', 'ngCookies', 'ngSanitize', 'djng.rmi'
                     aboutUs: function ($http, $location, apiUrl, $translate) {
                         var language = $location.search().language || $translate.proposedLanguage() || $translate.use();
 
-                        var getAboutUs = function(language) {
+                        var getAboutUs = function (language) {
                             return $http({
                                 method: 'GET',
                                 url: apiUrl + '/v2/about/' + language + '/'
@@ -101,8 +102,16 @@ angular.module('refugeeApp', ['ui.router', 'ngCookies', 'ngSanitize', 'djng.rmi'
                         });
                     }
                 },
-                controller: function ($rootScope, location) {
-                    $rootScope.location = location;
+                controller: function ($rootScope, $stateParams, $location, $state, location) {
+                    var vm = this;
+                    vm.$onInit = function () {
+                        var urlLocation = $location.path().substr(1, $location.path().length - 2);
+                        $rootScope.location = location;
+                        if ($stateParams.slug != urlLocation) {
+                            $state.go('locationDetails.index', {slug: urlLocation});
+                        }
+                    };
+
                 },
                 controllerAs: 'ctrl'
             })
