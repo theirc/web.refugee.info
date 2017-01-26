@@ -1,5 +1,5 @@
 angular.module('refugeeApp', ['ui.router', 'ngCookies', 'ngSanitize', 'djng.rmi', 'leaflet-directive',
-    'infinite-scroll', 'pascalprecht.translate', 'snap', 'angular-bind-html-compile', 'ngStorage'])
+        'infinite-scroll', 'pascalprecht.translate', 'snap', 'angular-bind-html-compile', 'ngStorage'])
     .run(function ($rootScope, $state) {
         var unregister = $rootScope.$on('$stateChangeSuccess', function (event, toState, toParams, fromState, fromParams) {
             if (fromState) {
@@ -105,10 +105,13 @@ angular.module('refugeeApp', ['ui.router', 'ngCookies', 'ngSanitize', 'djng.rmi'
                 controller: function ($rootScope, $stateParams, $location, $state, location) {
                     var vm = this;
                     vm.$onInit = function () {
-                        var urlLocation = $location.path().substr(1, $location.path().length - 2);
-                        $rootScope.location = location;
-                        if ($stateParams.slug != urlLocation) {
-                            $state.go('locationDetails.index', {slug: urlLocation});
+                        var splitUrl = $location.path().split('/');
+                        if (splitUrl.length > 2) {
+                            var urlLocation = splitUrl[1];
+                            $rootScope.location = location;
+                            if ($stateParams.slug != urlLocation) {
+                                $state.go('locationDetails.index', {slug: urlLocation});
+                            }
                         }
                     };
 
