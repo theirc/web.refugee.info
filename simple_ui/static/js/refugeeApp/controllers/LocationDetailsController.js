@@ -10,6 +10,7 @@ angular.module('refugeeApp').controller('LocationDetailsController', function ($
         toParams.slug =  vm.slug;
     });
 
+    /* this has been causing an infinite recursive behavior when you try to go from /serbia/info/staying-safe-general/ to /greece/info/staying-safe-general/
     $scope.$on('$stateChangeSuccess', function(event, toState){
         if (toState.name == 'locationDetails.info'){
             var path = $location.path().split('/');
@@ -20,4 +21,5 @@ angular.module('refugeeApp').controller('LocationDetailsController', function ($
             }
         }
     });
+    */
 });
