@@ -190,6 +190,9 @@ if 'AWS_ACCESS_KEY_ID' in os.environ:
     COMPRESS_STORAGE = 'root.storages.S3BotoStorage'
 
 
+FACEBOOK_GRAPH_API = 'https://graph.facebook.com/v2.8/'
+FACEBOOK_APP_ID = '708254579325899'
+FACEBOOK_APP_SECRET = os.environ.get('FACEBOOK_APP_SECRET', '')
 
 try:
     from .localsettings import *

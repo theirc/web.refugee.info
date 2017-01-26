@@ -224,4 +224,5 @@ class LandingPageView(TemplateView):
     def get_context_data(self, **kwargs):
         kwargs['API_URL'] = settings.API_URL
         kwargs['IS_ALKHADAMAT'] = is_alkhadamat(self.request)
+        kwargs['FACEBOOK_APP_ID'] = settings.FACEBOOK_APP_ID
         return super(LandingPageView, self).get_context_data(**kwargs)
