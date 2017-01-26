@@ -190,6 +190,7 @@ if 'AWS_ACCESS_KEY_ID' in os.environ:
     COMPRESS_STORAGE = 'root.storages.S3BotoStorage'
 
 
+FACEBOOK_APP_ID = '708254579325899'
 
 try:
     from .localsettings import *
