@@ -111,13 +111,13 @@ angular.module('refugeeApp').controller('BaseController', function ($scope, $roo
     var refreshFacebookSdk = function () {
         $window.fbAsyncInit = function() {
             $window.FB.init({
-              appId: facebookAppId,
-              status: true,
-              cookie: true,
-              version: 'v2.8',
-              xfbml: true
+                appId: facebookAppId,
+                status: true,
+                cookie: true,
+                version: 'v2.8',
+                xfbml: true
             });
-          };
+        };
 
         $window.FB = null;
         (function (d, s, id) {
