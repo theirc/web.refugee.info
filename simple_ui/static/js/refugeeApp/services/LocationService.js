@@ -19,14 +19,14 @@ angular.module('refugeeApp').factory('LocationService', function ($http, apiUrl,
         getServiceTypes: function () {
             return $http({
                 method: 'GET',
-                url: apiUrl + '/v2/servicetypes/',
+                url: apiUrl + '/v1/servicetypes/',
                 headers: {'Accept-Language': $translate.proposedLanguage() || $translate.use()}
             });
         },
         getService: function (serviceId) {
             return $http({
                 method: 'GET',
-                url: apiUrl + '/v2/services/search/?format=json&id=' + serviceId,
+                url: apiUrl + '/v1/services/search/?format=json&id=' + serviceId,
                 headers: {'Accept-Language': $translate.proposedLanguage() || $translate.use()}
             });
         },
