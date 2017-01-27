@@ -1728,6 +1728,10 @@ i.fa {
     max-width: 100%;
   }
 }
+.tel {
+  direction: ltr!important;
+}
+
 
 /* Content goes at the end */
 @import "content";
