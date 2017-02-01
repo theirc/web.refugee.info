@@ -1,9 +1,14 @@
 <div class="service-details" ng-show="ctrl.service">
     <div class="no-padding col-xs-12 service-details-bar">
-        <h1 class="service-name">{$ ctrl.service.name $}</h1>
-        <h1 ng-if="ctrl.service.address" class="service-location">
-            <i class="material-icons">&#xE0C8;</i><span style="display: block">{$ ctrl.service.address $}</span></h1>
+        <div class="flex-row">
+            <h1 class="service-name">{$ ctrl.service.name $}</h1>
+            <h1 ng-if="ctrl.service.address" class="service-location">
+                <i class="material-icons">&#xE0C8;</i><span style="display: block">{$ ctrl.service.address $}</span>
+            </h1>
+        </div>
+        <h1 class="provider-name">{$ 'SERVICE_PROVIDER' | translate $} {$ ctrl.service.provider.name $}</h1>
     </div>
+
     <div class="col-xs-12 col-sm-10 col-sm-offset-1 no-padding">
         <img ng-if="!!ctrl.service.image" class="service-image" ng-src="{$ ctrl.service.image $}"/>
 

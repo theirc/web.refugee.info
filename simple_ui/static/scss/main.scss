@@ -1114,8 +1114,12 @@ nav {
   }
   .service-name {
     font-size: 16px;
-    font-weight: 700;
+    font-weight: bold;
     text-transform: uppercase;
+  }
+  .provider-name {
+    font-size: 14px;
+    font-weight: bold;
   }
   .service-location {
     @include flexbox();
@@ -1132,6 +1136,8 @@ nav {
 
   .service-details-bar {
     border-bottom: 1px solid $divider-color;
+  }
+  .flex-row {
     @media (min-width: $screen-sm-min) {
       @include flexbox();
       justify-content: space-between;

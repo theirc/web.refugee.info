@@ -51,5 +51,6 @@
 
   "NO_SERVICES_INFO": "There are no services currently mapped in your location. The {$ siteName $} team is working hard to research and list all the services near you.",
 
-  "SLEEP_NOTE": "Click to wake"
+  "SLEEP_NOTE": "Click to wake",
+  "SERVICE_PROVIDER": "Service Provider: "
 }
