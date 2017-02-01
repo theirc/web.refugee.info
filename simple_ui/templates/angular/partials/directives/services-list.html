@@ -1,7 +1,7 @@
 <div class="service-list" ng-show="ctrl.loaded">
     <div>
         <div class="row service-list-row" ng-repeat="rows in ctrl.chunkedServicesList">
-            <div class="col-sm-4 no-padding service-list-item" ng-repeat="item in rows"
+            <div class="col-sm-4 no-padding service-list-item service-divider" ng-repeat="item in rows"
                  ui-sref="locationDetails.services.details({slug: ctrl.slug, serviceId: item.id})">
                 <div class="col-xs-3 service-list-divider">
                     <div class="service-list-item-icon-container">

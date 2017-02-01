@@ -1394,6 +1394,7 @@ a:after {
   margin-right: auto;
   margin-bottom: 20px;
   &.service-list-row {
+    margin-bottom: 0;
     @media (max-width: $screen-xs-max) {
       margin-bottom: 0;
     }
@@ -1739,6 +1740,9 @@ i.fa {
   display: inline-block;
 }
 
+.service-divider {
+  border-bottom: 1px solid $divider-color-dark;
+}
 
 /* Content goes at the end */
 @import "content";

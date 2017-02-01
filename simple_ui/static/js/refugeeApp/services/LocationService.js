@@ -5,11 +5,11 @@ angular.module('refugeeApp').factory('LocationService', function ($http, apiUrl,
 
             return $http({
                 method: 'GET',
-                url: apiUrl + '/v2/services/search/',
+                url: apiUrl + '/v1/services/search/',
                 params: {
                     geographic_region: location.slug,
                     page: page,
-                    page_size: 12,
+                    page_size: 100,
                     search: search,
                     type_numbers: typeNumbers.join()
                 },
