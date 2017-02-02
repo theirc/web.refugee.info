@@ -36,7 +36,7 @@ angular.module('refugeeApp').controller('LocationServicesController', function (
 
     LocationService.getServiceTypes().then(function (response) {
         response.data.forEach(function (serviceType) {
-            vm.serviceTypes[serviceType.url] = serviceType;
+            vm.serviceTypes[serviceType.id] = serviceType;
         });
         vm.loaded = true;
     });

@@ -146,7 +146,7 @@ angular.module('refugeeApp', ['ui.router', 'ngCookies', 'ngSanitize', 'djng.rmi'
                 resolve: {
                     service: function (LocationService, $stateParams) {
                         return LocationService.getService($stateParams.serviceId).then(function (response) {
-                            return response.data.results[0];
+                            return response.data[0];
                         });
                     },
                     serviceIcon: function (LocationService, service) {
