@@ -56,26 +56,13 @@ angular.module('refugeeApp').directive('servicesMap', function(leafletData, $sta
                     infoDiv.addTo(map);
                 });
 
-                var markers = new L.markerClusterGroup({
-                    zoomToBoundsOnClick: false,
-                    iconCreateFunction: function(cluster) {
-                        return L.divIcon({
-                            className: 'service-list-item-icon-container',
-                            html: '<span class="service-icon">' + cluster.getChildCount() + '</span>',
-                            iconSize: null
-                        });
-                    }
-                });
+                var markers = new L.LayerGroup();
                 var markerClick = function onClick(e) {
                     $state.go('locationDetails.services.details', {slug: ctrl.slug, serviceId: e.target.options.service.id});
                 };
 
                 var drawServices = function(map, services) {
                     markers.clearLayers();
-                    markers.on('clusterclick', function (a) {
-                        var bounds = a.layer.getBounds().pad(0.1);
-                        map.fitBounds(bounds);
-                    });
                     services.forEach(function(service) {
                         var lat = service.location.coordinates[1];
                         var lng = service.location.coordinates[0];
@@ -98,7 +85,6 @@ angular.module('refugeeApp').directive('servicesMap', function(leafletData, $sta
                     });
                     if (services.length > 0) {
                         map.addLayer(markers);
-                        map.fitBounds(markers.getBounds(), {padding: [25, 25]});
                     }
                 };
 
@@ -126,11 +112,7 @@ angular.module('refugeeApp').directive('servicesMap', function(leafletData, $sta
                     if (oldValue === newValue) {
                         return;
                     }
-                    leafletData.getMap().then(function(map) {
-                        if (scope.services.length > 0) {
-                            map.fitBounds(markers.getBounds());
-                        }
-                    });
+                    leafletData.getMap();
 
                 }, true);
 
