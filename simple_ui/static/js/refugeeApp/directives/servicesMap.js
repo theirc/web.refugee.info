@@ -50,6 +50,7 @@ angular.module('refugeeApp').directive('servicesMap', function(leafletData, $sta
                 leafletData.getMap().then(function (map) {
                     var polygon = L.geoJson(scope.region);
                     map.fitBounds(polygon.getBounds());
+                    map.sleep.disable();
                     if (scope.isMobile) {
                         map.sleep.disable();
                     }
@@ -67,8 +68,8 @@ angular.module('refugeeApp').directive('servicesMap', function(leafletData, $sta
                         var lat = service.location.coordinates[1];
                         var lng = service.location.coordinates[0];
                         var icon = L.divIcon({
-                            className: 'service-list-item-icon-container',
-                            html: '<span class="fa ' + ctrl.getServiceIcon(service.type) + ' fa-2x service-icon"></span>',
+                            className: 'service-list-item-icon-container-map',
+                            html: '<span class="fa fa-map-marker fa-3x service-icon-map"></span>',
                             iconSize: null
                         });
                         var marker = L.marker([lat, lng], {
