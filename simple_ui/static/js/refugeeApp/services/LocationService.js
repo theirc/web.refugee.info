@@ -5,7 +5,7 @@ angular.module('refugeeApp').factory('LocationService', function ($http, apiUrl,
 
             return $http({
                 method: 'GET',
-                url: apiUrl + '/v1/services/search/',
+                url: apiUrl + '/v2/services/search/',
                 params: {
                     geographic_region: location.slug,
                     page: page,
@@ -19,21 +19,21 @@ angular.module('refugeeApp').factory('LocationService', function ($http, apiUrl,
         getServiceTypes: function () {
             return $http({
                 method: 'GET',
-                url: apiUrl + '/v1/servicetypes/',
+                url: apiUrl + '/v2/servicetypes/',
                 headers: {'Accept-Language': $translate.proposedLanguage() || $translate.use()}
             });
         },
         getService: function (serviceId) {
             return $http({
                 method: 'GET',
-                url: apiUrl + '/v1/services/search/?format=json&id=' + serviceId,
+                url: apiUrl + '/v2/services/search/?format=json&id=' + serviceId,
                 headers: {'Accept-Language': $translate.proposedLanguage() || $translate.use()}
             });
         },
         getServiceType: function (service) {
             return $http({
                 method: 'GET',
-                url: service.type,
+                url: apiUrl + '/v2/servicetypes/' + service.type + '/',
                 headers: {'Accept-Language': $translate.proposedLanguage() || $translate.use()}
             });
         },
