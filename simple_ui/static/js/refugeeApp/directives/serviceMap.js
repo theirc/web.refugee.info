@@ -1,4 +1,4 @@
-angular.module('refugeeApp').directive('serviceMap', function (leafletData, $filter) {
+angular.module('refugeeApp').directive('serviceMap', function (leafletData) {
     return {
         restrict: 'E',
         scope: {
@@ -16,6 +16,12 @@ angular.module('refugeeApp').directive('serviceMap', function (leafletData, $fil
                                 type: 'google'
                             }
                         }
+                    },
+                    defaults: {
+                        dragging: false,
+                        zoomControl: false,
+                        doubleClickZoom: false,
+                        scrollWheelZoom: false
                     }
                 });
             },
@@ -32,12 +38,7 @@ angular.module('refugeeApp').directive('serviceMap', function (leafletData, $fil
                         }
                     });
                     leafletData.getMap().then(function(map) {
-                        if (scope.isMobile){
-                            map.sleep.sleepNote.textContent = $filter('translate')('SLEEP_NOTE');
-                        }
-                        else {
-                            map.sleep.sleepNote.hidden = true;
-                        }
+                        map.sleep.sleepNote.hidden = true;
                         var zoom = 16;
                         map._onResize();
                         map.setView([lat, lng], zoom);
@@ -55,6 +56,6 @@ angular.module('refugeeApp').directive('serviceMap', function (leafletData, $fil
                 refreshMap();
             }
         },
-        template: '<leaflet markers="markers" layers="layers" class="service-details-map"></leaflet>'
+        template: '<leaflet markers="markers" defaults="defaults" layers="layers" class="service-details-map"></leaflet>'
     };
 });
