@@ -9,9 +9,9 @@
             </div>
             <input ng-model-options="{ debounce: 500 }" ng-model="ctrl.search" type="text" class="form-control"
                    placeholder="{$ 'SEARCH' | translate $}">
-            <div class="input-group-btn" ng-class="{open: open}">
+            <div class="input-group-btn" ng-class="{open: open}" ng-if="!baseController.isMobile()">
                 <button class="btn dropdown-toggle" ng-click="open=!open">
-                    <i class="fa fa-filter"></i>
+                    <span><i class="fa fa-filter"></i>FILTER</span>
                 </button>
                 <ul class="dropdown-menu services-filter-list" ng-class="baseController.direction()"
                     aria-labelledby="dropdownMenu">
