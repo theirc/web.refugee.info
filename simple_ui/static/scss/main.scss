@@ -861,7 +861,7 @@ nav {
     padding-top: 50px;
   }
   @media (max-width: $screen-xs-max) {
-    padding-top: 10px;
+    padding-top: 80px;
   }
   .service-list-divider {
     border-right: 1px solid $divider-color;
@@ -878,10 +878,31 @@ nav {
   @include justify-content(center);
 }
 
+.services-filter-list-container {
+  padding-right: 0;
+  padding-left: 0;
+}
+
 .services-filter-list {
+  list-style-type: none;
   overflow-y: scroll;
   width: 200px;
   max-height: 250px;
+  @media (max-width: $screen-xs-max) {
+    padding-left: 0;
+    padding-top: 80px;
+    width: 100%;
+    max-height: 100%;
+  }
+}
+
+.filter-line {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  border-bottom: 1px $divider-color-dark solid;
+  padding-bottom: 5px;
+  padding-top: 5px;
 }
 
 .services-filter-list.ltr {
@@ -900,14 +921,21 @@ nav {
   margin-bottom: 3px;
 }
 
+.services-filter-list-item {
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  a {
+    white-space: normal;
+    width:100%;
+    display: flex;
+    justify-content: center;
+  }
+}
+
 .service-icon {
   color: #FFF;
-}
-
-.service-icon-map {
-}
-
-.service-list-item-icon-container-map {
 }
 
 .search-bar {
@@ -985,6 +1013,53 @@ nav {
   @media (max-width: $screen-sm-max) {
     display: none;
   }
+}
+
+.mobile-services-map-navigation {
+  display: flex;
+  top: 40px;
+  padding: 10px;
+  padding-top: 0;
+  z-index: 1001;
+  position: fixed;
+  background: white;
+  justify-content: space-around;
+  @media (max-width: $screen-xs-max) {
+    background-color: transparent;
+    top: 100px;
+  }
+}
+
+.leaflet-control-zoom {
+  @media (max-width: $screen-xs-max) {
+    display: none;
+  }
+}
+
+.mobile-services-map-navigation-button {
+  background: white;
+  height: 50px;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4);
+  i.fa {
+    color: $divider-color-2;
+  }
+  span {
+    padding-left: 5px;
+  }
+  &.active {
+    background: $green-accent-color;
+    i.fa {
+      color: #FFF;
+    }
+  }
+}
+
+.search-background {
+  background: $page-background-color;
+  z-index: 1001;
 }
 
 .floating-action-button {
@@ -1475,7 +1550,7 @@ i.fa {
   border-radius: 5px;
   max-width: 400px;
   @media (max-width: $screen-sm-max) {
-    margin-top: 40px;
+    margin-top: 90px;
   }
 }
 

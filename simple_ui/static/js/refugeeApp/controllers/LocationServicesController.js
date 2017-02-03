@@ -8,6 +8,7 @@ function chunk(arr, size) {
 
 angular.module('refugeeApp').controller('LocationServicesController', function ($scope, $state, $stateParams, LocationService, location, $location) {
     var vm = this;
+    vm.filters = false;
     vm.busy = false;
     vm.noMoreData = false;
     vm.chunkedServicesList = [];
@@ -103,6 +104,16 @@ angular.module('refugeeApp').controller('LocationServicesController', function (
     };
 
     vm.switchView = function () {
-        vm.mapView = !vm.mapView;
+        vm.mapView = true;
+        vm.filters = false;
+    };
+
+    vm.filtersView = function() {
+        vm.filters = !vm.filters;
+    };
+
+    vm.listView = function() {
+        vm.filters = false;
+        vm.mapView = false;
     };
 });
