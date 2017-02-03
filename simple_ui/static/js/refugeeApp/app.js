@@ -19,13 +19,14 @@ angular.module('refugeeApp', ['ui.router', 'ngCookies', 'ngSanitize', 'djng.rmi'
         };
     })
     .config(function ($stateProvider, $urlRouterProvider, $interpolateProvider, $httpProvider, $translateProvider,
-                      staticUrl, snapRemoteProvider, $locationProvider, $urlMatcherFactoryProvider) {
+                      staticUrl, snapRemoteProvider, $locationProvider, $urlMatcherFactoryProvider, $logProvider) {
         $interpolateProvider.startSymbol('{$');
         $interpolateProvider.endSymbol('$}');
         $httpProvider.defaults.xsrfCookieName = 'csrftoken';
         $httpProvider.defaults.xsrfHeaderName = 'X-CSRFToken';
         $urlRouterProvider.otherwise('/');
         $urlMatcherFactoryProvider.strictMode(false);
+        $logProvider.debugEnabled(false);
         $translateProvider.useSanitizeValueStrategy('escapeParameters')
             .useStaticFilesLoader({
                 'prefix': staticUrl + 'locale/',
