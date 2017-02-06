@@ -30,13 +30,13 @@
         </div>
         <div class="mobile-services-map-navigation col-xs-12" ng-if="baseController.isMobile()" ng-class="{'search-background': !ctrl.mapView || ctrl.filters}" >
             <div class="col-xs-4 mobile-services-map-navigation-button" ng-class="{'active': ctrl.filters}" ng-click="ctrl.filtersView()">
-                <i class="fa fa-filter"><span>FILTER</span></i>
+                <span><i class="fa fa-filter"></i>FILTER</span>
             </div>
             <div class="col-xs-4 mobile-services-map-navigation-button" ng-click="ctrl.listView()"  ng-class="{'active': !ctrl.mapView && !ctrl.filters}">
-                <i class="fa fa-list"><span>LIST</span></i>
+                <span><i class="fa fa-list"></i>LIST</span>
             </div>
             <div class="col-xs-4 mobile-services-map-navigation-button" ng-click="ctrl.switchView()" ng-class="{'active': ctrl.mapView && !ctrl.filters}">
-                <i class="fa fa-map"><span>MAP</span></i>
+                <span><i class="fa fa-map"></i>MAP</span>
             </div>
         </div>
     </div>
