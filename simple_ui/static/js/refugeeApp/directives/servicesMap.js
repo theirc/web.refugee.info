@@ -19,7 +19,10 @@ angular.module('refugeeApp').directive('servicesMap', function(leafletData, $sta
                                 type: 'google'
                             }
                         }
-                    }
+                    },
+                    showServiceInfo: false,
+                    regionSlug: '',
+                    serviceInfo: {}
                 });
             },
             post: function (scope) {
@@ -47,6 +50,22 @@ angular.module('refugeeApp').directive('servicesMap', function(leafletData, $sta
                     infoDiv._div.className = 'hidden';
                 }
 
+                var displayServiceInfo = function(e) {
+                    scope.regionSlug = ctrl.slug;
+                    scope.serviceInfo = e ? e.target.options.service : null;
+                    scope.showServiceInfo = true;
+                    scope.serviceInfo.icon = ctrl.getServiceIcon(scope.serviceInfo.type);
+                    scope.serviceInfo.description = $filter('limitTo')(scope.serviceInfo.description, 200);
+                    leafletData.getMap().then(function (map) {
+                        map.setView(
+                            new L.LatLng(
+                                scope.serviceInfo.location.coordinates[1],
+                                scope.serviceInfo.location.coordinates[0])
+                        );
+                    });
+                    refreshMap();
+                };
+
                 leafletData.getMap().then(function (map) {
                     var polygon = L.geoJson(scope.region);
                     map.fitBounds(polygon.getBounds());
@@ -54,6 +73,11 @@ angular.module('refugeeApp').directive('servicesMap', function(leafletData, $sta
                     if (scope.isMobile) {
                         map.sleep.disable();
                     }
+                    map.on({
+                        click: function() {
+                            scope.showServiceInfo = false;
+                        }
+                    });
                     infoDiv.addTo(map);
                 });
 
@@ -62,7 +86,7 @@ angular.module('refugeeApp').directive('servicesMap', function(leafletData, $sta
                     $state.go('locationDetails.services.details', {slug: ctrl.slug, serviceId: e.target.options.service.id});
                 };
 
-                var drawServices = function(map, services) {
+                var drawServices = function(map, services, isMobile) {
                     markers.clearLayers();
                     services.forEach(function(service) {
                         var lat = service.location.coordinates[1];
@@ -80,7 +104,13 @@ angular.module('refugeeApp').directive('servicesMap', function(leafletData, $sta
                         marker.on({
                             mouseover: showInfo,
                             mouseout: hideDiv,
-                            click: markerClick
+                            click: function (e) {
+                                if (isMobile) {
+                                    displayServiceInfo(e);
+                                } else {
+                                    markerClick(e);
+                                }
+                            }
                         });
                         markers.addLayer(marker);
                     });
@@ -92,7 +122,7 @@ angular.module('refugeeApp').directive('servicesMap', function(leafletData, $sta
                 var refreshMap = function(){
                     leafletData.getMap().then(function (map) {
                         map.sleep.sleepNote.hidden = true;
-                        drawServices(map, scope.services);
+                        drawServices(map, scope.services, scope.isMobile);
                     });
                 };
 
@@ -113,6 +143,7 @@ angular.module('refugeeApp').directive('servicesMap', function(leafletData, $sta
                     if (oldValue === newValue) {
                         return;
                     }
+                    scope.showServiceInfo = false;
                     leafletData.getMap();
 
                 }, true);
@@ -120,6 +151,6 @@ angular.module('refugeeApp').directive('servicesMap', function(leafletData, $sta
                 refreshMap();
             }
         },
-        template: '<leaflet geojson="geojson" layers="layers" class="services-map"></leaflet>'
+        templateUrl: 'partials/directives/services-map.html'
     };
 });
