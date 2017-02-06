@@ -1009,6 +1009,14 @@ nav {
   }
 }
 
+.info-above {
+  @media (max-width: $screen-sm-max) {
+    position: absolute;
+    background-color: $primary-color-4;
+    z-index: 1000;
+  }
+}
+
 .below {
   @media (max-width: $screen-sm-max) {
     display: none;
@@ -1026,7 +1034,7 @@ nav {
   justify-content: space-around;
   @media (max-width: $screen-xs-max) {
     background-color: transparent;
-    top: 100px;
+    top: 95px;
   }
 }
 
@@ -1038,7 +1046,7 @@ nav {
 
 .mobile-services-map-navigation-button {
   background: white;
-  height: 50px;
+  height: 35px;
   align-items: center;
   justify-content: center;
   display: flex;
@@ -1552,6 +1560,26 @@ i.fa {
   @media (max-width: $screen-sm-max) {
     margin-top: 90px;
   }
+}
+
+.service-info-container {
+  display: none;
+  @media (max-width: $screen-sm-max) {
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: #FFF;
+    display: block;
+  }
+}
+
+.service-info-header {
+  display: flex;
+}
+
+.service-info-icon {
+  padding-left: 5px;
+  padding-right: 5px;
 }
 
 .modal-fullscreen {
