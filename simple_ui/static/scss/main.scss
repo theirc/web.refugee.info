@@ -743,11 +743,18 @@ change-location-button {
   font-weight: bold;
   font-size: 16px;
   margin-top: 0;
+  margin-bottom: 0;
 }
 
 .service-list-item-location {
   margin-bottom: 0;
+  margin-top: 0;
 }
+
+.service-list-provider {
+  font-weight: bold;
+  margin-top: 0;
+  margin-bottom: 0;}
 
 .service-list-item {
   @include transition-mixin(background-color, 0.15, linear);
@@ -1038,12 +1045,6 @@ nav {
   }
 }
 
-.leaflet-control-zoom {
-  @media (max-width: $screen-xs-max) {
-    display: none;
-  }
-}
-
 .mobile-services-map-navigation-button {
   background: white;
   height: 35px;
@@ -1052,14 +1053,18 @@ nav {
   display: flex;
   box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4);
   i.fa {
+    padding-right: 5px;
     color: $divider-color-2;
   }
   span {
-    padding-left: 5px;
+    color: $divider-color-2;
   }
   &.active {
     background: $green-accent-color;
     i.fa {
+      color: #FFF;
+    }
+    span {
       color: #FFF;
     }
   }
@@ -1542,7 +1547,7 @@ i.fa {
 
 .leaflet-left .leaflet-control {
   @media (max-width: $screen-sm-max) {
-    margin-top: 50px;
+    margin-top: 85px;
   }
 }
 
