@@ -1,7 +1,7 @@
 <leaflet geojson="geojson" layers="layers" class="services-map">
 </leaflet>
 
-<div class="service-info-container" ng-class="{'info-above': showServiceInfo, 'below': !showServiceInfo}">
+<div class="service-info-container" ng-class="{'info-above': showServiceInfo, 'below': !showServiceInfo, 'hidden': !showServiceInfo}">
     <div class="service-info-header" ui-sref="locationDetails.services.details({slug: regionSlug, serviceId: serviceInfo.id})">
         <div class="service-info-icon">
             <i class="fa fa-3x {$ serviceInfo.icon $}"></i>
