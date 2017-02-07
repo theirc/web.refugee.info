@@ -868,7 +868,7 @@ nav {
     padding-top: 50px;
   }
   @media (max-width: $screen-xs-max) {
-    padding-top: 80px;
+    padding-top: 60px;
   }
   .service-list-divider {
     border-right: 1px solid $divider-color;
@@ -895,9 +895,9 @@ nav {
   overflow-y: scroll;
   width: 200px;
   max-height: 250px;
-  @media (max-width: $screen-xs-max) {
+  @media (max-width: $screen-sm-max) {
     padding-left: 0;
-    padding-top: 80px;
+    padding-top: 60px;
     width: 100%;
     max-height: 100%;
   }
@@ -1039,7 +1039,7 @@ nav {
   position: fixed;
   background: white;
   justify-content: space-around;
-  @media (max-width: $screen-xs-max) {
+  @media (max-width: $screen-sm-max) {
     background-color: transparent;
     top: 95px;
   }
@@ -1165,6 +1165,7 @@ nav {
   margin-top: 15px;
   height: 400px;
   @media (max-width: $screen-sm-max) {
+    margin-top: 0;
     height: 100%;
   }
 }
