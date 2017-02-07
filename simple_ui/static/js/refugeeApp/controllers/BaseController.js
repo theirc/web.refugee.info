@@ -69,7 +69,11 @@ angular.module('refugeeApp').controller('BaseController', function ($scope, $roo
     };
 
     vm.getDrawerIcon = function () {
-        return '\uE5D2';
+        if ($state.includes('locationDetails.services.details')) {
+            if (vm.isRTL) {
+                return '\uE5C8';
+            } else {return '\uE5C4';}
+        } else {return '\uE5D2';}
     };
 
     vm.changeLocation = function () {
@@ -160,5 +164,13 @@ angular.module('refugeeApp').controller('BaseController', function ($scope, $roo
                 return anotherOne;
             });
         }
+    };
+
+    vm.isServicesDetails = function() {
+        return $state.includes('locationDetails.services.details');
+    };
+
+    vm.goBack = function() {
+        $state.go('locationDetails.services');
     };
 });

@@ -10,10 +10,12 @@
             <img id="logo" class="theme" ng-if="!baseController.isAlkhadamat()" ng-src="/static/images/logo-{$ baseController.theme() $}.png"/>
             <img id="logo" class="theme" ng-if="baseController.isAlkhadamat()" ng-src="/static/images/logo-alkhadamat.png"/>
         </a>
-        <div class="drawer-controls">
-            <div snap-toggle="right"><i class="material-icons">{$ baseController.getDrawerIcon() $}</i>
+        <div class="drawer-controls" ng-if="!baseController.isServicesDetails()">
+            <div snap-toggle="right"><i class="material-icons">{$ baseController.getDrawerIcon() $}</i></div>
         </div>
-    </div>
+        <div class="drawer-controls" ng-if="baseController.isServicesDetails()">
+            <div ng-click="baseController.goBack()"><i class="material-icons">{$ baseController.getDrawerIcon() $}</i></div>
+        </div>
     </div>
 
     <div class="container">

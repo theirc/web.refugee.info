@@ -61,6 +61,9 @@ directives_patterns = [
     url(r'^print-page.html$',
         TemplateView.as_view(template_name='angular/partials/directives/print-page.html'),
         name='print-page'),
+    url(r'^services-map.html$',
+        TemplateView.as_view(template_name='angular/partials/directives/services-map.html'),
+        name='services-map'),
 ]
 
 partial_patterns = [
