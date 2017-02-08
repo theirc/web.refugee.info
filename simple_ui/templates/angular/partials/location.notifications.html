@@ -3,7 +3,7 @@
     <location-buttons></location-buttons>
     <location-info location="ctrl.location"></location-info>
     <quick-links class="hidden-xs" location="ctrl.location" direction="baseController.direction()"></quick-links>
-    <div ng-repeat="b in ctrl.location.metadata.banners">
-        <div class="general-info-box" ng-bind-html="b"></div>
+    <div ng-repeat="b in ctrl.location.banners">
+        <div class="general-info-box" ng-bind-html="b.html"></div>
     </div>
 </div>
