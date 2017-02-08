@@ -16,7 +16,7 @@ class RssFeed(Feed):
             ip = request.META.get('REMOTE_ADDR')
 
         # Url is actually a filter in the regions for the slug we are looking for
-        url = "{}?slug={}".format(os.path.join(settings.API_URL, 'v1/region/'), slug)
+        url = "{}?slug={}".format(os.path.join(settings.API_URL, 'v2/region/'), slug)
         r_en = requests.get(
             url,
             headers={
@@ -35,7 +35,7 @@ class RssFeed(Feed):
             raise Http404
 
         region_en = regions_en[0]
-        languages_available = region_en['languages_available']
+        languages_available = ['ar', 'fa']
 
         all_languages = [region_en]
         for l in [l for l in languages_available if l.lower() != 'en']:
@@ -64,13 +64,13 @@ class RssFeed(Feed):
         }
 
     def title(self, obj):
-        return obj['english']['metadata']['page_title']
+        return obj['english']['name']
 
     def link(self, obj):
-        return "https://refugeeinfo.eu/%s/" % obj['english']['slug']
+        return "https://refugee.info/%s/" % obj['english']['slug']
 
     def description(self, obj):
-        return obj['english']['metadata']['page_title']
+        return obj['english']['name']
 
     def items(self, obj):
         iterable = [l['content'] for l in obj['all']]
@@ -80,7 +80,7 @@ class RssFeed(Feed):
         return ""
 
     def item_description(self, item):
-        return item['section']
+        return item['html']
 
     def item_title(self, item):
         return item['title']
