@@ -152,6 +152,18 @@ drawer {
     }
   }
 
+  .drawer-controls i.material-icons.home-page-icon {
+    position: fixed;
+    top: 10px;
+    left: 15px;
+    font-size: 24px;
+    padding: 3px 0;
+    color: #000;
+    @media (min-width: $screen-sm-min) {
+      display: none;
+    }
+  }
+
   .brand-logo img {
     @media (max-width: $screen-xs-max) {
       padding-top: 7px;
@@ -1512,6 +1524,12 @@ a:after {
     margin-left: -85px !important;
   }
   display: block;
+}
+
+.service-state-brand {
+  @media (max-width: $screen-sm-max) {
+    left: 50px;
+  }
 }
 
 a {
