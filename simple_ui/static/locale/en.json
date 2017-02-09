@@ -31,7 +31,7 @@
   "SEARCH": "Search",
   "IMPORTANT_INFORMATION": "Home",
   "IMPORTANT_INFORMATION_CLICK_HERE": "Click here to find more information about the location selected",
-  "SERVICES": "Services",
+  "SERVICES_LIST": "Services list",
   "SERVICES_CLICK_HERE": "Click here to find services in the location selected",
   "THE_IRC": "The International Rescue Committee",
   "WITH_PARTNERS": "with partners",
@@ -52,5 +52,9 @@
   "NO_SERVICES_INFO": "There are no services currently mapped in your location. The {$ siteName $} team is working hard to research and list all the services near you.",
 
   "SLEEP_NOTE": "Click to wake",
-  "SERVICE_PROVIDER": "Service Provider: "
+  "SERVICE_PROVIDER": "Service Provider: ",
+
+  "FILTER": "Filter",
+  "LIST": "List",
+  "MAP": "Map"
 }

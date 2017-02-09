@@ -1065,7 +1065,7 @@ nav {
   display: flex;
   box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4);
   i.fa {
-    padding-right: 5px;
+    padding: 0 3px;
     color: $divider-color-2;
   }
   span {
@@ -1213,6 +1213,7 @@ nav {
   font-size: 16px;
   font-weight: bold;
   text-transform: uppercase;
+  margin: 0;
 }
 
 .service-details {
