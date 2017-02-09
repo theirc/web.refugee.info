@@ -27,7 +27,7 @@
   "SEARCH": "بحث",
   "IMPORTANT_INFORMATION": "الصفحة الرئيسية",
   "IMPORTANT_INFORMATION_CLICK_HERE": "انقر هنا لمزيد من المعلومات حول الموقع المحدد",
-  "SERVICES": "خدمات",
+  "SERVICES_LIST": "خدمات",
   "SERVICES_CLICK_HERE": "انقر هنا لمعرفة الخدمات في الموقع المحدد",
   "THE_IRC": "لجنة الإنقاذ الدولية",
   "WITH_PARTNERS": "مع الشركاء",
@@ -43,5 +43,9 @@
 
   "LOCATION_INFO_1": "أهلاً بكم في {$ siteName $}.",
   "LOCATION_INFO_2": "قد حدّدت {$ location $} كموقعك. كل المعلومات التي ستظهر على هذه الصفحة هي مخصّصة لـ {$ location $} ولحقوقك طالما أنت هناك.",
-  "LOCATION_INFO_3": "إذهب إلى المربعات الخضر بالأسفل لتطّلع على المزيد من المعلومات."
+  "LOCATION_INFO_3": "إذهب إلى المربعات الخضر بالأسفل لتطّلع على المزيد من المعلومات.",
+
+  "FILTER": "Filter",
+  "LIST": "List",
+  "MAP": "Map"
 }
