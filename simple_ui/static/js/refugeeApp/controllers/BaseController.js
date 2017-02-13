@@ -72,10 +72,6 @@ angular.module('refugeeApp').controller('BaseController', function ($scope, $roo
         return '\uE5D2';
     };
 
-    vm.getHomePageIcon = function () {
-        return vm.isRTL ? '\uE315' : '\uE314';
-    };
-
     vm.changeLocation = function () {
         $cookies.remove('locationSlug');
         $state.go('location');
