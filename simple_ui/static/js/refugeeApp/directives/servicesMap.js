@@ -5,10 +5,11 @@ angular.module('refugeeApp').directive('servicesMap', function(leafletData, $sta
         scope: {
             region: '=',
             services: '=',
-            mapView: '='
+            mapView: '=',
+            isMobile: '='
         },
         link: {
-            pre: function(scope) {
+            pre: function (scope) {
                 angular.extend(scope, {
                     layers: {
                         baselayers: {
@@ -18,13 +19,15 @@ angular.module('refugeeApp').directive('servicesMap', function(leafletData, $sta
                                 type: 'google'
                             }
                         }
-                    }
+                    },
+                    showServiceInfo: false,
+                    regionSlug: '',
+                    serviceInfo: {}
                 });
             },
-            post: function(scope) {
+            post: function (scope) {
                 var ctrl = scope.$parent.ctrl;
                 var infoDiv = L.control();
-
                 infoDiv.onAdd = function () {
                     this._div = L.DomUtil.create('div', 'hidden');
                     return this._div;
@@ -34,7 +37,7 @@ angular.module('refugeeApp').directive('servicesMap', function(leafletData, $sta
                     if (!service) {
                         this._div.innerHTML = ('<b>' + $filter('translate')('NO_SERVICES_INFO', { siteName: scope.$root.translatedSiteName }) + '</b>');
                     } else {
-                        this._div.innerHTML = ('<b>' + service.name + '</b><br/>' +  $filter('limitTo')(service.description, 250));
+                        this._div.innerHTML = '<b>' + service.name + '</b><br/>' + $filter('limitTo')(service.description, 250);
                     }
                     this._div.className = 'service-info-control';
                 };
@@ -47,39 +50,51 @@ angular.module('refugeeApp').directive('servicesMap', function(leafletData, $sta
                     infoDiv._div.className = 'hidden';
                 }
 
+                var displayServiceInfo = function(e) {
+                    scope.regionSlug = ctrl.slug;
+                    scope.serviceInfo = e ? e.target.options.service : null;
+                    scope.showServiceInfo = true;
+                    scope.serviceInfo.icon = ctrl.getServiceIcon(scope.serviceInfo.type);
+                    scope.serviceInfo.description = $filter('limitTo')(scope.serviceInfo.description, 200);
+                    leafletData.getMap().then(function (map) {
+                        map.setView(
+                            new L.LatLng(
+                                scope.serviceInfo.location.coordinates[1],
+                                scope.serviceInfo.location.coordinates[0])
+                        );
+                    });
+                    refreshMap();
+                };
+
                 leafletData.getMap().then(function (map) {
                     var polygon = L.geoJson(scope.region);
                     map.fitBounds(polygon.getBounds());
+                    map.sleep.disable();
+                    if (scope.isMobile) {
+                        map.sleep.disable();
+                    }
+                    map.on({
+                        click: function() {
+                            scope.showServiceInfo = false;
+                        }
+                    });
                     infoDiv.addTo(map);
                 });
 
-                var markers = new L.markerClusterGroup({
-                    zoomToBoundsOnClick: false,
-                    iconCreateFunction: function(cluster) {
-                        return L.divIcon({
-                            className: 'service-list-item-icon-container',
-                            html: '<span class="service-icon">' + cluster.getChildCount() + '</span>',
-                            iconSize:null
-                        });
-                    }
-                });
+                var markers = new L.LayerGroup();
                 var markerClick = function onClick(e) {
-                    $state.go('locationDetails.services.details',{slug: ctrl.slug, serviceId: e.target.options.service.id});
+                    $state.go('locationDetails.services.details', {slug: ctrl.slug, serviceId: e.target.options.service.id});
                 };
 
-                var drawServices = function(map, services) {
+                var drawServices = function(map, services, isMobile) {
                     markers.clearLayers();
-                    markers.on('clusterclick', function (a) {
-                        var bounds = a.layer.getBounds().pad(0.1);
-                        map.fitBounds(bounds);
-                    });
                     services.forEach(function(service) {
                         var lat = service.location.coordinates[1];
                         var lng = service.location.coordinates[0];
                         var icon = L.divIcon({
-                            className: 'service-list-item-icon-container',
-                            html: '<span class="fa ' + ctrl.getServiceIcon(service.type) + ' fa-2x service-icon"></span>',
-                            iconSize: null,
+                            className: 'service-list-item-icon-container-map',
+                            html: '<img src="/static/images/marker.png" class="service-icon-map">',
+                            iconSize: null
                         });
                         var marker = L.marker([lat, lng], {
                             icon: icon,
@@ -89,65 +104,53 @@ angular.module('refugeeApp').directive('servicesMap', function(leafletData, $sta
                         marker.on({
                             mouseover: showInfo,
                             mouseout: hideDiv,
-                            click: markerClick
+                            click: function (e) {
+                                if (isMobile) {
+                                    displayServiceInfo(e);
+                                } else {
+                                    markerClick(e);
+                                }
+                            }
                         });
                         markers.addLayer(marker);
                     });
                     if (services.length > 0) {
                         map.addLayer(markers);
-                        map.fitBounds(markers.getBounds(), {padding: [25, 25]});
                     }
                 };
+
+                var refreshMap = function(){
+                    leafletData.getMap().then(function (map) {
+                        map.sleep.sleepNote.hidden = true;
+                        drawServices(map, scope.services, scope.isMobile);
+                    });
+                };
+
+                scope.$watch('services', function (newValue) {
+                    if (angular.isDefined(newValue)) {
+                        scope.services = newValue;
+                        if (!scope.services.length) {
+                            showInfo();
+                        }
+                        else {
+                            hideDiv();
+                        }
+                        refreshMap();
+                    }
+                }, true);
 
                 scope.$watch('mapView', function (newValue, oldValue) {
                     if (oldValue === newValue) {
                         return;
                     }
-                    leafletData.getMap().then(function(map) {
-                        if (scope.services.length > 0) {
-                            map.fitBounds(markers.getBounds());
-                        }
-                    });
+                    scope.showServiceInfo = false;
+                    leafletData.getMap();
 
                 }, true);
 
-                scope.$watch('region', function (newValue, oldValue) {
-                    if (oldValue === newValue) {
-                        return;
-                    }
-                    scope.region = newValue;
-                }, true);
-
-                scope.$watch('services', function (newValue, oldValue) {
-                    if (oldValue === newValue) {
-                        return;
-                    }
-                    scope.services = newValue;
-                    if (!scope.services.length){
-                        showInfo();
-                    }
-                    else {
-                        hideDiv();
-                    }
-                    leafletData.getMap().then(function(map) {
-                        map.sleep.sleepNote.hidden = true;
-                        drawServices(map, scope.services);
-                    });
-                }, true);
-
-                scope.$watch('$stateChangeSuccess', function () {
-                    leafletData.getMap().then(function(map) {
-                        map.sleep.sleepNote.hidden = true;
-                        if (scope.services.length) {
-                            drawServices(map, scope.services);
-                        }
-                        else {
-                            showInfo();
-                        }
-                    });
-                });
+                refreshMap();
             }
         },
-        template: '<leaflet geojson="geojson" layers="layers" class="services-map"></leaflet>'
+        templateUrl: 'partials/directives/services-map.html'
     };
 });

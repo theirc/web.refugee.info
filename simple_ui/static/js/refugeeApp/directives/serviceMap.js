@@ -1,8 +1,9 @@
-angular.module('refugeeApp').directive('serviceMap', function (leafletData) {
+angular.module('refugeeApp').directive('serviceMap', function (leafletData, $filter) {
     return {
         restrict: 'E',
         scope: {
-            service: '='
+            service: '=',
+            isMobile: '='
         },
         link: {
             pre: function (scope) {
@@ -31,7 +32,11 @@ angular.module('refugeeApp').directive('serviceMap', function (leafletData) {
                         }
                     });
                     leafletData.getMap().then(function(map) {
-                        map.sleep.sleepNote.hidden = true;
+                        if (scope.isMobile) {
+                            map.sleep.sleepNote.textContent = $filter('translate')('SLEEP_NOTE');
+                        } else {
+                            map.sleep.sleepNote.hidden = true;
+                        }
                         var zoom = 16;
                         map._onResize();
                         map.setView([lat, lng], zoom);

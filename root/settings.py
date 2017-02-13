@@ -64,12 +64,11 @@ TEMPLATES = [
         'OPTIONS': {
             'context_processors': [
                 'django.contrib.auth.context_processors.auth',
-                'django.core.context_processors.debug',
-                'django.core.context_processors.i18n',
-                'django.core.context_processors.media',
-                'django.core.context_processors.static',
-                'django.core.context_processors.tz',
-                'django.core.context_processors.request',
+                'django.template.context_processors.debug',
+                'django.template.context_processors.i18n',
+                'django.template.context_processors.media',
+                'django.template.context_processors.static',
+                'django.template.context_processors.tz',
                 'django.contrib.messages.context_processors.messages',
             ],
         },
@@ -191,6 +190,7 @@ if 'AWS_ACCESS_KEY_ID' in os.environ:
     COMPRESS_STORAGE = 'root.storages.S3BotoStorage'
 
 
+FACEBOOK_APP_ID = '708254579325899'
 
 try:
     from .localsettings import *

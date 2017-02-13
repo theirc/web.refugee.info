@@ -3,17 +3,41 @@
         <location-selected class="hidden-sm-down"></location-selected>
         <location-buttons class="hidden-sm-down"></location-buttons>
         <location-info class="hidden-sm-down" location="ctrl.location"></location-info>
-        <quick-links class="hidden-sm-down" location="ctrl.location" direction="baseController.direction()"></quick-links>
+        <quick-links class="hidden-sm-down" location="ctrl.location"
+                     direction="baseController.direction()"></quick-links>
         <services-map region="ctrl.location.envelope"
                       services="ctrl.services"
-                      map-view="ctrl.mapView"></services-map>
-        <search-bar class="mobile-search-bar" search="ctrl.search" direction="baseController.direction()"></search-bar>
-        <div ng-class="{'above': !ctrl.mapView, 'below': ctrl.mapView}">
+                      map-view="ctrl.mapView"
+                      is-mobile="baseController.isMobile()">
+        </services-map>
+        <search-bar class="mobile-search-bar" ng-class="{'search-background': !ctrl.mapView || ctrl.filters}" search="ctrl.search" direction="baseController.direction()"></search-bar>
+        <div ng-class="{'above': !ctrl.mapView, 'below': ctrl.mapView || ctrl.filters}">
             <services-list></services-list>
         </div>
-    </div>
-    <div class="floating-action-button" ng-click="ctrl.switchView()" ng-class="baseController.direction()">
-        <i ng-if="ctrl.mapView" class="material-icons">&#xE896;</i>
-        <i ng-if="!ctrl.mapView" class="material-icons">&#xE55B;</i>
+        <div class="col-xs-12 services-filter-list-container" ng-class="{'above': ctrl.filters, 'below': !ctrl.filters}" ng-if="baseController.isMobile()">
+            <ul class="services-filter-list" ng-class="baseController.direction()">
+                <li class="filter-line" data-ng-repeat="type in ctrl.serviceTypes" style="cursor: pointer;">
+                    <div class="services-filter-list-icon-container" style="padding-left: 20px;">
+                        <i class="fa {$ type.vector_icon $}"></i>
+                    </div>
+                    <div class="services-filter-list-item">
+                        <a data-ng-click="setSelectedType()">
+                            <span>{$ type.name $}<i ng-class="isChecked(type.number) ? 'fa fa-check' : ''"></i></span>
+                        </a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="mobile-services-map-navigation col-xs-12" ng-if="baseController.isMobile()" ng-class="{'search-background': !ctrl.mapView || ctrl.filters}" >
+            <div class="col-xs-4 mobile-services-map-navigation-button" ng-class="{'active': ctrl.filters}" ng-click="ctrl.filtersView()">
+                <span style="text-transform: uppercase;"><i class="fa fa-filter"></i>{$ 'FILTER' | translate $}</span>
+            </div>
+            <div class="col-xs-4 mobile-services-map-navigation-button" ng-click="ctrl.listView()"  ng-class="{'active': !ctrl.mapView && !ctrl.filters}">
+                <span style="text-transform: uppercase;"><i class="fa fa-list"></i>{$ 'LIST' | translate $}</span>
+            </div>
+            <div class="col-xs-4 mobile-services-map-navigation-button" ng-click="ctrl.switchView()" ng-class="{'active': ctrl.mapView && !ctrl.filters}">
+                <span style="text-transform: uppercase;"><i class="fa fa-map"></i>{$ 'MAP' | translate $}</span>
+            </div>
+        </div>
     </div>
 </ui-view>

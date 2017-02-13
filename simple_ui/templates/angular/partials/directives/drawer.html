@@ -1,6 +1,7 @@
 <div snap-drawer="right" id="drawer">
     <div class="drawer-contents" dir="{$ baseController.direction() $}">
-        <img class="theme" ng-if="!baseController.isAlkhadamat()" ng-src="/static/images/logo-{$ baseController.theme() $}.png"/>
+        <img class="theme" ng-if="!baseController.isAlkhadamat()"
+             ng-src="/static/images/logo-{$ baseController.theme() $}.png"/>
         <img class="theme" ng-if="baseController.isAlkhadamat()" ng-src="/static/images/logo-arabic.png"/>
         <div ng-if="!location">
             <div class="current-location-container">
@@ -27,10 +28,15 @@
                 <i class="fa fa-info" aria-hidden="true"></i>
                 <span>{$ 'IMPORTANT_INFORMATION' | translate $}</span>
             </a>
-            <a ui-sref="locationDetails.services({slug: location.slug})"
-               ui-sref-active="active" class="navigation-link" snap-close>
+            <a ui-sref="locationDetails.services({slug: location.slug, mapView: false})"
+               ng-class="{'active': baseController.isServicesState() && !$root.mapView}" class="navigation-link" snap-close>
                 <i class="fa fa-list" aria-hidden="true"></i>
-                <span>{$ 'SERVICES' | translate $}</span>
+                <span>{$ 'SERVICE_LIST' | translate $}</span>
+            </a>
+            <a ui-sref="locationDetails.services({slug: location.slug, mapView: true})"
+               ng-class="{'active': baseController.isServicesState() && $root.mapView }" class="navigation-link" snap-close>
+                <i class="fa fa-map" aria-hidden="true"></i>
+                <span>{$ 'SERVICE_MAP' | translate $}</span>
             </a>
             <a ui-sref="aboutUs"
                ui-sref-active="active" class="navigation-link" snap-close>
@@ -52,9 +58,9 @@
             </div>
             <a ui-sref="locationDetails.info({slug: location.slug, infoSlug: info.slug, '#': 'info'})"
                ui-sref-active="active"
-               ng-repeat="info in location.important_information | filter: {hidden: false}"
+               ng-repeat="info in location.important"
                class="navigation-link" snap-close>
-                <span class="padded">{$ info.metadata.page_title $}</span>
+                <span class="padded">{$ info.title $}</span>
             </a>
         </div>
 

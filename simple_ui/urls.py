@@ -13,7 +13,7 @@ Including another URLconf
     1. Import the include() function: from django.conf.urls import url, include
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
-from django.conf.urls import url, patterns, include
+from django.conf.urls import url, include
 from django.views.generic import TemplateView
 
 from simple_ui.views import LocationJSONView, LandingPageView
@@ -58,6 +58,12 @@ directives_patterns = [
     url(r'^location-info.html$',
         TemplateView.as_view(template_name='angular/partials/directives/location-info.html'),
         name='location-info'),
+    url(r'^print-page.html$',
+        TemplateView.as_view(template_name='angular/partials/directives/print-page.html'),
+        name='print-page'),
+    url(r'^services-map.html$',
+        TemplateView.as_view(template_name='angular/partials/directives/services-map.html'),
+        name='services-map'),
 ]
 
 partial_patterns = [

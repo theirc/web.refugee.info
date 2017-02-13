@@ -221,3 +221,193 @@ a.link-button-reversed {
   width: 25px;
   margin-right: 5px;
 }
+
+.toggle-box {
+  display: none;
+  + label {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    font-weight: bold;
+    line-height: 30px;
+    background-color: #F2F2F2;
+    margin: 0;
+    p {
+      margin: 0;
+      padding: 5px 0;
+    }
+    + div {
+      display: none;
+      margin-bottom: 10px;
+    }
+  }
+  &:checked {
+    + label + div {
+      display: block;
+    }
+    + label:before {
+      -ms-transform: rotate(90deg);
+      -webkit-transform: rotate(90deg);
+      transform: rotate(90deg);
+    }
+  }
+  + label:before {
+    display: block;
+    height: 0;
+    width: 0;
+    content: "";
+    margin: 10px;
+    border-top: 8px solid transparent;
+    border-bottom: 8px solid transparent;
+    border-left: 15px solid $green-accent-color;
+    @include transition-mixin(all, 0.3, ease-out);
+  }
+}
+
+div.answer {
+  padding: 10px;
+  background-color: #FAFAFA;
+}
+
+.video {
+  position: relative;
+  display: block;
+  margin: 10px auto;
+  &:before {
+    transition: opacity 0.2s ease-out;
+    content: "";
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 100;
+    background: transparent url(../images/play_button.png) no-repeat center;
+    pointer-events: none;
+    opacity: 0.66;
+  }
+  &:hover {
+    &:before {
+      opacity: 1;
+    }
+  }
+  img {
+    display: block;
+    margin: 0 auto;
+  }
+}
+
+div.video-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.footnotes_list label {
+  max-height: 100px;
+  overflow: auto;
+  word-break: break-all;
+}
+
+.fb-container {
+  justify-content: center;
+  display: flex;
+  padding-bottom: 15px;
+}
+
+.fb-post {
+  padding: 10px;
+  display: inline-block;
+  overflow: hidden;
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.4);
+  @media (max-width: $screen-xs-max) {
+    width: 100%;
+  }
+  @media (min-width: $screen-sm-min) {
+    width: 600px;
+  }
+}
+
+.fb-post-header {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 10px;
+}
+
+.fb-post-header-left {
+  display: flex;
+}
+
+.fb-post-body {
+  display: block;
+}
+
+.fb-post-img {
+  padding-right: 1px;
+  padding-bottom: 5px;
+  padding-top: 1px;
+}
+
+.fb-post-video {
+  padding-bottom: 5px;
+  position: relative;
+  display: block;
+  margin: 10px auto;
+  &:before {
+    transition: opacity 0.2s ease-out;
+    content: "";
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 100;
+    background: transparent url(../images/fb_play_button.png) no-repeat center;
+    pointer-events: none;
+    opacity: 0.66;
+  }
+  &:hover {
+    &:before {
+      opacity: 1;
+    }
+  }
+  img {
+    width: 100%;
+    display: block;
+    margin: 0 auto;
+  }
+}
+
+.fb-post-info {
+  padding: 0 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  a:first-of-type {
+    font-weight: bold;
+  }
+  a:last-of-type {
+    font-size: 12px;
+  }
+  a {
+    text-decoration: none !important;
+  }
+}
+
+.fb-post-link {
+  margin-left: auto;
+  padding-right: 1px;
+}
+
+.fb-user-cover {
+  a {
+    height: 100%;
+    img {
+      width: 50px;
+      height: 50px;
+    }
+  }
+}
+
+.link-content {
+  position: relative;
+  height: 46px;
+}

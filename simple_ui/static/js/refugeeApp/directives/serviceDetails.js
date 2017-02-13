@@ -1,7 +1,7 @@
 angular.module('refugeeApp').directive('serviceDetails', function () {
     return {
         restrict: 'E',
-        templateUrl: '/partials/directives/service-details.html',
+        templateUrl: 'partials/directives/service-details.html',
         bindToController: true,
         scope: {
             service: '='

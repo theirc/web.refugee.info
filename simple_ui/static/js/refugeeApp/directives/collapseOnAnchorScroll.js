@@ -10,9 +10,9 @@ angular.module('refugeeApp').directive('collapseOnAnchorScroll', function ($docu
         link: function (scope) {
             var openModal = function () {
                 var $modal = $('#contentModal');
-                if (scope.item.hide_from_toc) {
+                if (scope.item) {
                     $modal.find('.modal-title').text(scope.item.title);
-                    $modal.find('.modal-body').html($compile(scope.item.section)(scope));
+                    $modal.find('.modal-body').html($compile(scope.item.html)(scope));
                     $modal.modal('show');
                     if($window.FB) { // For AD Block fans
                         $window.FB.XFBML.parse();
@@ -22,24 +22,43 @@ angular.module('refugeeApp').directive('collapseOnAnchorScroll', function ($docu
                 }
             };
             if (scope.item && $location.hash()) {
-                if (scope.item.anchor_name === $location.hash()) {
-                    openModal();
+                if (scope.item.slug === $location.hash()) {
+                    if(scope.item.pop_up || !('pop_up' in scope.item)) {
+                        openModal();
+                    }
+                    else {
+                        anchorInfo = scope.item;
+                    }
                 }
-                if ('info' + scope.item.index === $location.hash()) {
+                if (scope.item.slug === $location.hash()) {
                     anchorInfo = scope.item;
+                }
+            }
+            if (scope.item) {
+                if (scope.item.important && scope.item.pop_up && $location.path().indexOf('/info/' + scope.item.slug) !== -1) {
+                    openModal();
                 }
             }
             if (scope.$parent.$last) {
                 $timeout(function () {
-                    if (anchorInfo && $location.hash() && 'info' + anchorInfo.index === $location.hash()) {
-                        var el = $('#info' + anchorInfo.index);
+                    if (anchorInfo && $location.hash() && anchorInfo.slug === $location.hash()) {
+                        var el = $('#' + anchorInfo.slug);
                         el.collapse('show');
                         $uiViewScroll(el);
                     }
                 });
             }
-            $($document[0].body).on('click', 'a[href="#' + scope.name + '"]', function () {
-                openModal();
+            $($document[0].body).on('click', 'a[href="#' + scope.item.slug + '"]', function () {
+                if(scope.item.pop_up || !('pop_up' in scope.item)) {
+                    openModal();
+                }
+                else {
+                    var el = $('#' + scope.item.slug);
+                    if (el) {
+                        el.collapse('show');
+                        $uiViewScroll(el);
+                    }
+                }
             });
 
             scope.$on('$stateChangeStart', function () {

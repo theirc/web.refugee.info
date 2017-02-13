@@ -2,12 +2,11 @@
     <h1 class="quick-links">{$ 'QUICK_LINKS' | translate $}:</h1>
     <div class="important-information-container">
         <div class="important-information-item"
-             ng-repeat="info in ctrl.filteredImportantInfo"
+             ng-repeat="info in ctrl.location.important"
              ui-sref="locationDetails.info({slug: ctrl.location.slug, infoSlug: info.slug})"
-             ui-sref-active="active"
-        >
+             ui-sref-active="active" ng-if="!info.hidden">
             <div class="important-information-item-inner" ng-class="ctrl.direction">
-                {$ info.metadata.page_title $}
+                {$ info.title $}
             </div>
         </div>
     </div>

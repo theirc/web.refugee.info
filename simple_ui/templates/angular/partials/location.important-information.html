@@ -3,21 +3,33 @@
     <location-buttons></location-buttons>
     <location-info location="ctrl.location"></location-info>
     <quick-links class="hidden-xs" location="ctrl.location" direction="baseController.direction()"></quick-links>
-    <div id="info" ng-repeat="info in ctrl.location.important_information | filter: {slug: ctrl.infoSlug}">
+    <div id="info" ng-repeat="info in ctrl.location.important | filter: {slug: ctrl.infoSlug}" ng-show="!info.pop_up">
         <div class="row green-bar" style="margin-top: 10px">
-            {$ info.metadata.page_title $}
+            {$ info.title $}
         </div>
         <div class="important-information-content"
-             ng-repeat-start="item in info.content"
-             ng-bind-html="item.section"
-             ng-show="!item.hide_from_toc"
-             name="{$ item.anchor_name || 'Anchor_' + item.index $}"
-             item="item" collapse-on-anchor-scroll>
+             ng-bind-html="info.html"
+             name="{$ 'Anchor_' + info.slug $}"
+             item="info" collapse-on-anchor-scroll>
         </div>
-        <div ng-repeat-end="" class="share-thumbs-container"
-             ng-show="!item.hide_from_toc">
+        <div class="genral-info-item" ng-repeat="sub in info.subsections" id="{$ 'Anchor_' + sub.slug $}"
+             ng-show="false">
+            <a href="#{$ sub.slug $}">
+                <div class="general-info-item-header collapsed" data-toggle="collapse" data-target="#{$ sub.slug $}">
+                    <div class="general-info-item-header-inner" ng-class="baseController.direction()">
+                        <i class="fa {$ sub.icon $}"></i>{$ sub.title $}<span name="{$ 'Anchor_' + sub.slug $}"
+                                                                              item="sub"
+                                                                              collapse-on-anchor-scroll></span>
+                    </div>
+                </div>
+            </a>
+            <div class="general-info-item-content collapse" ng-if="false" id="{$ sub.slug $}"
+                 bind-html-compile="sub.html"></div>
+        </div>
+        <div class="share-thumbs-container">
             <fb-share href="request.get_full_path"></fb-share>
-            <rating-thumbs class="rating-thumbs" slug="info.slug"></rating-thumbs>
+            <print-page item="info"></print-page>
+            <rating-thumbs class="rating-thumbs" slug="info.slug" item="info"></rating-thumbs>
         </div>
     </div>
 
@@ -33,6 +45,7 @@
                 <div class="modal-body">
                 </div>
                 <div class="modal-footer">
+                    <print-page></print-page>
                     <button type="button" class="btn btn-default" data-dismiss="modal">{$ 'BACK' | translate $}</button>
                 </div>
             </div>

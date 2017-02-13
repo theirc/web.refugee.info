@@ -1,7 +1,7 @@
 <div class="service-list" ng-show="ctrl.loaded">
     <div>
         <div class="row service-list-row" ng-repeat="rows in ctrl.chunkedServicesList">
-            <div class="col-sm-4 no-padding service-list-item" ng-repeat="item in rows"
+            <div class="col-sm-4 no-padding service-list-item service-divider" ng-repeat="item in rows"
                  ui-sref="locationDetails.services.details({slug: ctrl.slug, serviceId: item.id})">
                 <div class="col-xs-3 service-list-divider">
                     <div class="service-list-item-icon-container">
@@ -18,11 +18,16 @@
                             <region-name region="ctrl.location"></region-name>
                         </h5>
                     </div>
+                    <div>
+                        <h5 class="service-list-provider">{$ item.provider.name $}</h5>
+                    </div>
                 </div>
             </div>
         </div>
         <div class="service-list-message" ng-show="ctrl.busy">{$ 'LOADING' | translate $}</div>
         <div style='clear: both;'></div>
     </div>
-    <div class="service-list-message" ng-show="ctrl.services.length === 0 && !ctrl.busy">{$ 'NO_SERVICES' | translate $}</div>
+    <div class="service-list-message" ng-show="ctrl.services.length === 0 && !ctrl.busy">
+        {$ 'NO_SERVICES' | translate $}
+    </div>
 </div>

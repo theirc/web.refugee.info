@@ -1,6 +1,6 @@
 angular.module('refugeeApp').controller('BaseController', function ($scope, $rootScope, $cookies, $templateCache,
                                                                     $state, LoadingOverlayService, $translate, $window,
-                                                                    $location, isAlkhadamat) {
+                                                                    $location, isAlkhadamat, facebookAppId) {
     var vm = this;
     vm.isCookiePolicyAccepted = $cookies.get('cookiePolicy');
     vm.language = $location.search().language || $translate.proposedLanguage() || $translate.use();
@@ -30,6 +30,10 @@ angular.module('refugeeApp').controller('BaseController', function ($scope, $roo
         }
     };
 
+    vm.isMobile = function () {
+        return $window.innerWidth <= 991;
+    };
+
     vm.feedbackUrl = function () {
         switch (vm.language) {
         case 'ar':
@@ -46,6 +50,7 @@ angular.module('refugeeApp').controller('BaseController', function ($scope, $roo
         vm.language = value;
         $translate.use(value);
         addLanguageToUrl(value);
+        refreshSiteName();
         if ($state.current.name != 'location') {
             $templateCache.removeAll();
             $state.reload();
@@ -85,6 +90,7 @@ angular.module('refugeeApp').controller('BaseController', function ($scope, $roo
     $scope.$on('$stateChangeSuccess', function () {
         refreshFacebookSdk();
         addLanguageToUrl(vm.language);
+        refreshSiteName();
     });
 
     $scope.$on('$stateChangeStart', function () {
@@ -103,6 +109,16 @@ angular.module('refugeeApp').controller('BaseController', function ($scope, $roo
     };
 
     var refreshFacebookSdk = function () {
+        $window.fbAsyncInit = function() {
+            $window.FB.init({
+                appId: facebookAppId,
+                status: true,
+                cookie: true,
+                version: 'v2.8',
+                xfbml: true
+            });
+        };
+
         $window.FB = null;
         (function (d, s, id) {
             var js, fjs = d.getElementsByTagName(s)[0];
@@ -119,9 +135,15 @@ angular.module('refugeeApp').controller('BaseController', function ($scope, $roo
             }
             js = d.createElement(s);
             js.id = id;
-            js.src = "//connect.facebook.net/" + lang + "/sdk.js#xfbml=1&version=v2.7";
+            js.src = "//connect.facebook.net/" + lang + "/sdk.js";
             fjs.parentNode.insertBefore(js, fjs);
         }(document, 'script', 'facebook-jssdk'));
+    };
+
+    var refreshSiteName = function () {
+        vm.getTranslatedSiteName().then(function (data) {
+            $rootScope.translatedSiteName = data;
+        });
     };
 
     vm.isAlkhadamat = function () {
@@ -140,7 +162,16 @@ angular.module('refugeeApp').controller('BaseController', function ($scope, $roo
         }
     };
 
-    vm.getTranslatedSiteName().then(function (data) {
-        $rootScope.translatedSiteName = data;
-    });
+    vm.isServicesState = function() {
+        return $state.includes('locationDetails.services');
+    };
+
+    vm.homePageButton = function() {
+        if ($state.includes('locationDetails.services.details')) {
+            $state.go('locationDetails.services');
+        } else {
+            vm.navigationRedirect();
+        }
+
+    };
 });

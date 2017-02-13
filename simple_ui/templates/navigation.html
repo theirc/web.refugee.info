@@ -6,14 +6,18 @@
 <div class="navbar navbar-default navbar-fixed-top navbar-refugee" role="navigation">
 
     <div class="navbar-header flex">
-        <a class="brand brand-logo img-responsive" ng-click="baseController.navigationRedirect()">
+        <div class="drawer-controls" ng-if="baseController.isServicesState()">
+            <div ng-click="baseController.homePageButton()">
+                <i class="fa home-page-icon" ng-class="{'fa-angle-left': !baseController.isRTL, 'fa-angle-right': baseController.isRTL}"></i>
+            </div>
+        </div>
+        <a class="brand brand-logo img-responsive " ng-click="baseController.navigationRedirect()" ng-class="{'service-state-brand': baseController.isServicesState()}">
             <img id="logo" class="theme" ng-if="!baseController.isAlkhadamat()" ng-src="/static/images/logo-{$ baseController.theme() $}.png"/>
             <img id="logo" class="theme" ng-if="baseController.isAlkhadamat()" ng-src="/static/images/logo-alkhadamat.png"/>
         </a>
         <div class="drawer-controls">
-            <div snap-toggle="right"><i class="material-icons">{$ baseController.getDrawerIcon() $}</i>
+            <div snap-toggle="right"><i class="material-icons">{$ baseController.getDrawerIcon() $}</i></div>
         </div>
-    </div>
     </div>
 
     <div class="container">
