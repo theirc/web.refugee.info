@@ -6,7 +6,7 @@ function chunk(arr, size) {
     return newArr;
 }
 
-angular.module('refugeeApp').controller('LocationServicesController', function ($scope, $state, $stateParams, LocationService, location, $location) {
+angular.module('refugeeApp').controller('LocationServicesController', function ($scope, $state, $stateParams, LocationService, location, $location, $rootScope) {
     var vm = this;
     vm.filters = false;
     vm.busy = false;
@@ -16,7 +16,8 @@ angular.module('refugeeApp').controller('LocationServicesController', function (
     vm.serviceTypes = {};
     vm.slug = $stateParams.slug;
     vm.location = location;
-    vm.mapView = false;
+    vm.mapView = $stateParams.mapView;
+    $rootScope.mapView = vm.mapView;
     vm.search = $stateParams.query;
     var getFilterTypesArr = function () {
         if ($location.search().type) {
@@ -105,6 +106,7 @@ angular.module('refugeeApp').controller('LocationServicesController', function (
 
     vm.switchView = function () {
         vm.mapView = true;
+        $rootScope.mapView = true;
         vm.filters = false;
     };
 
@@ -115,5 +117,6 @@ angular.module('refugeeApp').controller('LocationServicesController', function (
     vm.listView = function() {
         vm.filters = false;
         vm.mapView = false;
+        $rootScope.mapView = false;
     };
 });

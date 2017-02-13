@@ -28,10 +28,15 @@
                 <i class="fa fa-info" aria-hidden="true"></i>
                 <span>{$ 'IMPORTANT_INFORMATION' | translate $}</span>
             </a>
-            <a ui-sref="locationDetails.services({slug: location.slug})"
-               ui-sref-active="active" class="navigation-link" snap-close>
+            <a ui-sref="locationDetails.services({slug: location.slug, mapView: false})"
+               ng-class="{'active': baseController.isServicesState() && !$root.mapView}" class="navigation-link" snap-close>
                 <i class="fa fa-list" aria-hidden="true"></i>
-                <span>{$ 'SERVICES_LIST' | translate $}</span>
+                <span>{$ 'SERVICE_LIST' | translate $}</span>
+            </a>
+            <a ui-sref="locationDetails.services({slug: location.slug, mapView: true})"
+               ng-class="{'active': baseController.isServicesState() && $root.mapView }" class="navigation-link" snap-close>
+                <i class="fa fa-map" aria-hidden="true"></i>
+                <span>{$ 'SERVICE_MAP' | translate $}</span>
             </a>
             <a ui-sref="aboutUs"
                ui-sref-active="active" class="navigation-link" snap-close>
