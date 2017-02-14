@@ -883,7 +883,14 @@ nav {
     padding-top: 60px;
   }
   .service-list-divider {
-    border-right: 1px solid $divider-color;
+    &.ltr {
+      border-right: 1px solid $divider-color;
+      border-left: none;
+    }
+    &.rtl {
+      border-left: 1px solid $divider-color;
+      border-right: none;
+    }
   }
 }
 
@@ -897,9 +904,80 @@ nav {
   @include justify-content(center);
 }
 
-.services-filter-list-container {
+.services-filter-list-container-mobile {
   padding-right: 0;
   padding-left: 0;
+}
+
+.services-filter-list-mobile {
+  list-style-type: none;
+  overflow-y: scroll;
+  width: 200px;
+  max-height: 250px;
+  @media (max-width: $screen-sm-max) {
+    padding-left: 0;
+    padding-top: 60px;
+    width: 100%;
+    max-height: 100%;
+  }
+}
+
+.services-filter-list-mobile.ltr {
+  left: auto;
+  right: 0;
+}
+
+.services-filter-list-mobile.rtl {
+  right: auto;
+  left: 0;
+  padding-right: 0;
+}
+
+.filter-line-mobile {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  border-bottom: 1px $divider-color-dark solid;
+  padding-bottom: 5px;
+  padding-top: 5px;
+}
+
+.services-filter-list-icon-container-mobile {
+  display: inline-block;
+  margin-top: 3px;
+  margin-bottom: 3px;
+  padding-left: 20px;
+  padding-right: 0;
+  &.rtl {
+    padding-left: 0;
+    padding-right: 20px;
+  }
+}
+
+.services-filter-list-item-mobile {
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  a {
+    white-space: normal;
+    width:100%;
+    display: flex;
+    justify-content: center;
+  }
+}
+
+.service-icon {
+  color: #FFF;
+}
+
+.filter-line-mobile {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  border-bottom: 1px $divider-color-dark solid;
+  padding-bottom: 5px;
+  padding-top: 5px;
 }
 
 .services-filter-list {
@@ -913,15 +991,6 @@ nav {
     width: 100%;
     max-height: 100%;
   }
-}
-
-.filter-line {
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  border-bottom: 1px $divider-color-dark solid;
-  padding-bottom: 5px;
-  padding-top: 5px;
 }
 
 .services-filter-list.ltr {
@@ -938,23 +1007,6 @@ nav {
   display: inline-block;
   margin-top: 3px;
   margin-bottom: 3px;
-}
-
-.services-filter-list-item {
-  position: relative;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  a {
-    white-space: normal;
-    width:100%;
-    display: flex;
-    justify-content: center;
-  }
-}
-
-.service-icon {
-  color: #FFF;
 }
 
 .search-bar {
