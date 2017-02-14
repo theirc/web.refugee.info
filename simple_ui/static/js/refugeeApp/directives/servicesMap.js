@@ -56,13 +56,6 @@ angular.module('refugeeApp').directive('servicesMap', function(leafletData, $sta
                     scope.showServiceInfo = true;
                     scope.serviceInfo.icon = ctrl.getServiceIcon(scope.serviceInfo.type);
                     scope.serviceInfo.description = $filter('limitTo')(scope.serviceInfo.description, 200);
-                    leafletData.getMap().then(function (map) {
-                        map.setView(
-                            new L.LatLng(
-                                scope.serviceInfo.location.coordinates[1],
-                                scope.serviceInfo.location.coordinates[0])
-                        );
-                    });
                     refreshMap();
                 };
 
