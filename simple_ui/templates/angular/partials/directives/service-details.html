@@ -31,8 +31,8 @@
         <div class="button-container">
             <a ng-if="!!ctrl.service.address" ng-click="ctrl.getDirections()" class="button button-green">
                 {$ 'GET_DIRECTIONS' | translate $}</a>
-            <a ng-if="!!ctrl.service.phone_number" class="button button-black"
-            ><i class="fa fa-phone" aria-hidden="true"></i>{$ ctrl.service.phone_number $}</a>
+            <a ng-if="!!ctrl.service.phone_number" class="button button-black">
+                <i class="fa fa-phone" aria-hidden="true"></i><span class="tel">{$ ctrl.service.phone_number $}</span></a>
             <a class="button button-white" href="https://www.facebook.com/sharer/sharer.php?u={$ ctrl.serviceUrl $}"
                target="_blank">{$ 'SHARE' | translate $}
             </a>
