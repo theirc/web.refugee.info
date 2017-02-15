@@ -971,6 +971,10 @@ nav {
   color: #FFF;
 }
 
+.service-icon-map {
+  margin-top: -32px;
+}
+
 .filter-line-mobile {
   display: flex;
   align-items: center;
@@ -1629,8 +1633,9 @@ i.fa {
   }
 }
 
-.leaflet-marker-icon.service-list-item-icon-container {
-  border: 1px solid #FFFFFF;
+.leaflet-marker-icon.service-list-item-icon-container-map {
+  margin-top: -10px;
+  margin-left: -17px;
 }
 
 .service-info-control {
