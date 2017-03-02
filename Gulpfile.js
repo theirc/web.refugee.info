@@ -1,14 +1,11 @@
-/**
- * Created by reyrodrigues on 12/30/16.
- */
 /*eslint no-undef:0*/
-var gulp = require('gulp');
 
-var del = require('del');
-var templateCache = require('gulp-angular-templatecache');
-var concat = require('gulp-concat');
-var sass = require('gulp-sass');
-
+var gulp = require('gulp'),
+    del = require('del'),
+    templateCache = require('gulp-angular-templatecache'),
+    concat = require('gulp-concat'),
+    sass = require('gulp-sass'),
+    babel = require('gulp-babel');
 
 gulp.task('clean', function () {
     return del([
@@ -28,6 +25,9 @@ gulp.task('templates', ['clean'], function () {
     return gulp.src('simple_ui/templates/angular/**/*.html')
         .pipe(templateCache({
             module: 'refugeeApp'
+        }))
+        .pipe(babel({
+            presets: ['es2015']
         }))
         .pipe(gulp.dest('simple_ui/static/js/refugeeApp'))
         ;

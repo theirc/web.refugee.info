@@ -1,21 +1,21 @@
 angular.module('refugeeApp').directive('locationMap', function (leafletData) {
     var lightStyle = {
-        color: "#969393",
-        fillColor: "#c7c7c7",
+        color: '#969393',
+        fillColor: '#c7c7c7',
         fillOpacity: 1,
         opacity: 1,
         weight: 0.6
     };
     var darkStyle = {
-        color: "#252525",
-        fillColor: "#424242",
+        color: '#252525',
+        fillColor: '#424242',
         fillOpacity: 1,
         opacity: 1,
         weight: 0.6
     };
     var closestCountryStyle = {
-        color: "#000",
-        fillColor: "#00BA50",
+        color: '#000',
+        fillColor: '#00BA50',
         fillOpacity: 1,
         opacity: 1,
         weight: 0.3
@@ -43,13 +43,13 @@ angular.module('refugeeApp').directive('locationMap', function (leafletData) {
                 angular.extend(scope, {
                     tiles: {
                         dark: {
-                            url: "http://{s}.basemaps.cartocdn.com/dark_nolabels/{z}/{x}/{y}.png",
+                            url: 'http://{s}.basemaps.cartocdn.com/dark_nolabels/{z}/{x}/{y}.png',
                             options: {
                                 attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
                             }
                         },
                         light: {
-                            url: "http://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}.png",
+                            url: 'http://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}.png',
                             options: {
                                 attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
                             }

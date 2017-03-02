@@ -1942,6 +1942,12 @@ i.fa {
   border-bottom: 1px solid $divider-color-dark;
 }
 
+.collapse-button {
+  justify-content: center;
+  border-top: 1px solid $divider-color;
+  color: $green-accent-color;
+}
+
 /* Content goes at the end */
 @import "content";
 @import "content-print";
