@@ -14,23 +14,25 @@
             <a href="#{$ p.slug $}">
                 <div class="general-info-item-header collapsed" data-toggle="collapse" data-target="#{$ p.slug $}">
                     <div class="general-info-item-header-inner" ng-class="baseController.direction()">
-                        <i class="fa {$ p.icon $}"></i>{$ p.title $}<span name="{$ 'Anchor_' + p.slug $}" item="p"
-                                                                          collapse-on-anchor-scroll></span>
+                        <i class="fa {$ p.icon $}"></i>{$ p.title $}
+                        <span name="{$ 'Anchor_' + p.slug $}" item="p" collapse-on-anchor-scroll></span>
                     </div>
                 </div>
             </a>
-            <div class="general-info-item-content collapse" ng-if="!p.pop_up" id="{$ p.slug $}"
-                 bind-html-compile="p.html"></div>
-
+            <div class="general-info-item-content collapse" ng-if="!p.pop_up" id="{$ p.slug $}">
+                <div bind-html-compile="p.html"></div>
+                <div class="general-info-item-header collapse-button" data-toggle="collapse" data-target="#{$ p.slug $}">
+                    <i class="fa fa-compress"></i><span>Close {$ p.title $}</span>
+                </div>
+            </div>
             <div class="genral-info-item" ng-repeat="sub in p.subsections" id="{$ 'Anchor_' + sub.slug $}"
                  ng-show="false">
                 <a href="#{$ sub.slug $}">
                     <div class="general-info-item-header collapsed" data-toggle="collapse"
                          data-target="#{$ sub.slug $}">
                         <div class="general-info-item-header-inner" ng-class="baseController.direction()">
-                            <i class="fa {$ sub.icon $}"></i>{$ sub.title $}<span name="{$ 'Anchor_' + sub.slug $}"
-                                                                                  item="sub"
-                                                                                  collapse-on-anchor-scroll></span>
+                            <i class="fa {$ sub.icon $}"></i>{$ sub.title $}
+                            <span name="{$ 'Anchor_' + sub.slug $}" item="sub" collapse-on-anchor-scroll></span>
                         </div>
                     </div>
                 </a>
