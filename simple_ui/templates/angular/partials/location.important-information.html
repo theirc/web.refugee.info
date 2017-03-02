@@ -12,6 +12,8 @@
              name="{$ 'Anchor_' + info.slug $}"
              item="info" collapse-on-anchor-scroll>
         </div>
+        <div class="updated-at">{$ 'LAST_UPDATED_ON' | translate $} {$ info.updated_at | date: "medium" $}</div>
+
         <div class="genral-info-item" ng-repeat="sub in info.subsections" id="{$ 'Anchor_' + sub.slug $}"
              ng-show="false">
             <a href="#{$ sub.slug $}">

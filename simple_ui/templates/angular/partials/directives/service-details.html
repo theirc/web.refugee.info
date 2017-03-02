@@ -28,6 +28,8 @@
             </table>
         </div>
 
+        <div class="updated-at">{$ 'LAST_UPDATED_ON' | translate $} {$ ctrl.service.updated_at | date: "medium" $}</div>
+
         <div class="button-container">
             <a ng-if="!!ctrl.service.address" ng-click="ctrl.getDirections()" class="button button-green">
                 {$ 'GET_DIRECTIONS' | translate $}</a>
