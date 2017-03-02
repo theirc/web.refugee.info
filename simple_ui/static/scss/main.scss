@@ -1948,6 +1948,13 @@ i.fa {
   color: $green-accent-color;
 }
 
+.updated-at {
+  display: flex;
+  justify-content: flex-end;
+  padding: 10px 0;
+  font-size: 10px;
+}
+
 /* Content goes at the end */
 @import "content";
 @import "content-print";
