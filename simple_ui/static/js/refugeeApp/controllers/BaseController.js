@@ -135,7 +135,7 @@ angular.module('refugeeApp').controller('BaseController', function ($scope, $roo
             }
             js = d.createElement(s);
             js.id = id;
-            js.src = "//connect.facebook.net/" + lang + "/sdk.js";
+            js.src = '//connect.facebook.net/' + lang + '/sdk.js';
             fjs.parentNode.insertBefore(js, fjs);
         }(document, 'script', 'facebook-jssdk'));
     };
