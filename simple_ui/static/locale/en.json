@@ -58,5 +58,6 @@
   "LIST": "List",
   "MAP": "Map",
 
-  "SERVICE_MAP": "Service Map"
+  "SERVICE_MAP": "Service Map",
+  "CLOSE": "Close"
 }
