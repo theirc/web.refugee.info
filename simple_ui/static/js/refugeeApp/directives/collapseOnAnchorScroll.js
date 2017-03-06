@@ -14,7 +14,7 @@ angular.module('refugeeApp').directive('collapseOnAnchorScroll', function ($docu
                 if (scope.item) {
                     $modal.find('.modal-title').text(scope.item.title);
                     $modal.find('.modal-body').html($compile(scope.item.html)(scope));
-                    $modal.find('.updated-at-date').text($filter('date')(scope.item.updated_at, 'medium'));
+                    $modal.find('.updated-at-date').text($filter('date')(scope.item.updated_at, 'dd/MM/y hh:mm a'));
                     $modal.modal('show');
                     if($window.FB) { // For AD Block fans
                         $window.FB.XFBML.parse();
