@@ -23,7 +23,7 @@
                 <div bind-html-compile="p.html"></div>
                 <div class="updated-at">{$ 'LAST_UPDATED_ON' | translate $} {$ p.updated_at | date: "medium" $}</div>
                 <div class="general-info-item-header collapse-button" data-toggle="collapse" data-target="#{$ p.slug $}">
-                    <i class="fa fa-compress"></i><span>Close {$ p.title $}</span>
+                    <i class="fa fa-compress"></i><span>{$ 'CLOSE' | translate $} {$ p.title $}</span>
                 </div>
             </div>
             <div class="genral-info-item" ng-repeat="sub in p.subsections" id="{$ 'Anchor_' + sub.slug $}"
