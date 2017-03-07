@@ -1951,8 +1951,9 @@ i.fa {
 .updated-at {
   display: flex;
   justify-content: flex-end;
-  padding: 10px 0;
+  padding-bottom: 10px;
   font-size: 10px;
+  font-style: italic;
 }
 
 /* Content goes at the end */
