@@ -7,19 +7,18 @@
         <div class="row green-bar" style="margin-top: 10px">
             {$ info.title $}
         </div>
-        <div class="important-information-content"
-             ng-bind-html="info.html"
-             name="{$ 'Anchor_' + info.slug $}"
-             item="info" collapse-on-anchor-scroll>
+        <div class="important-information-content">
+            <div class="updated-at">{$ 'LAST_UPDATED_ON' | translate $}&nbsp;<span class="tel">{$ info.updated_at | date: "dd/MM/y hh:mm a" $}</span>&nbsp;</div>
+            <div ng-bind-html="info.html" name="{$ 'Anchor_' + info.slug $}" item="info" collapse-on-anchor-scroll></div>
         </div>
+
         <div class="genral-info-item" ng-repeat="sub in info.subsections" id="{$ 'Anchor_' + sub.slug $}"
              ng-show="false">
             <a href="#{$ sub.slug $}">
                 <div class="general-info-item-header collapsed" data-toggle="collapse" data-target="#{$ sub.slug $}">
                     <div class="general-info-item-header-inner" ng-class="baseController.direction()">
-                        <i class="fa {$ sub.icon $}"></i>{$ sub.title $}<span name="{$ 'Anchor_' + sub.slug $}"
-                                                                              item="sub"
-                                                                              collapse-on-anchor-scroll></span>
+                        <i class="fa {$ sub.icon $}"></i>{$ sub.title $}
+                        <span name="{$ 'Anchor_' + sub.slug $}" item="sub" collapse-on-anchor-scroll></span>
                     </div>
                 </div>
             </a>
@@ -29,7 +28,6 @@
         <div class="share-thumbs-container">
             <fb-share href="request.get_full_path"></fb-share>
             <print-page item="info"></print-page>
-            <rating-thumbs class="rating-thumbs" slug="info.slug" item="info"></rating-thumbs>
         </div>
     </div>
 

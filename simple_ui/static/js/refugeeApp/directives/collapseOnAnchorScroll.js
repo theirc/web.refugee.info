@@ -1,4 +1,5 @@
-angular.module('refugeeApp').directive('collapseOnAnchorScroll', function ($document, $stateParams, $location, $timeout, $uiViewScroll, $window, $compile) {
+angular.module('refugeeApp').directive('collapseOnAnchorScroll', function ($document, $stateParams, $location, $timeout, $uiViewScroll,
+                                                                           $window, $compile, $filter) {
     var anchorInfo;
     return {
         restrict: 'A',
@@ -7,23 +8,44 @@ angular.module('refugeeApp').directive('collapseOnAnchorScroll', function ($docu
             target: '@',
             item: '='
         },
-        link: function (scope) {
+        link: function (scope, element) {
             var openModal = function () {
-                var $modal = $('#contentModal');
+                var $modal = angular.element('#contentModal');
                 if (scope.item) {
                     $modal.find('.modal-title').text(scope.item.title);
                     $modal.find('.modal-body').html($compile(scope.item.html)(scope));
+                    $modal.find('.updated-at-date').text($filter('date')(scope.item.updated_at, 'dd/MM/y hh:mm a'));
                     $modal.modal('show');
-                    if($window.FB) { // For AD Block fans
+                    if ($window.FB) { // For AD Block fans
                         $window.FB.XFBML.parse();
                     }
                 } else {
-                    $(scope.target).collapse('show');
+                    angular.element(scope.target).collapse('show');
                 }
             };
-            if (scope.item && $location.hash()) {
+            if (!scope.item) {
+                // only for QA sections
+                let anchor = element.context.id;
+                let location = $location.hash();
+                if (anchor === location) {
+                    anchorInfo = anchor.split('-q-')[0];
+                    $timeout(() => {
+                        let element = angular.element(`#${anchorInfo}`);
+                        element.collapse('show');
+                        $uiViewScroll(element);
+                    });
+                    angular.element($document[0].body).on('click', `a[href="#${anchorInfo}"]`, () => {
+                        let element = angular.element(`#${anchorInfo}`);
+                        element.collapse('show');
+                        $uiViewScroll(element);
+                    });
+                }
+                return;
+            }
+
+            if ($location.hash()) {
                 if (scope.item.slug === $location.hash()) {
-                    if(scope.item.pop_up || !('pop_up' in scope.item)) {
+                    if (scope.item.pop_up || !('pop_up' in scope.item)) {
                         openModal();
                     }
                     else {
@@ -34,26 +56,24 @@ angular.module('refugeeApp').directive('collapseOnAnchorScroll', function ($docu
                     anchorInfo = scope.item;
                 }
             }
-            if (scope.item) {
-                if (scope.item.important && scope.item.pop_up && $location.path().indexOf('/info/' + scope.item.slug) !== -1) {
-                    openModal();
-                }
+            if (scope.item.important && scope.item.pop_up && $location.path().indexOf('/info/' + scope.item.slug) !== -1) {
+                openModal();
             }
             if (scope.$parent.$last) {
                 $timeout(function () {
                     if (anchorInfo && $location.hash() && anchorInfo.slug === $location.hash()) {
-                        var el = $('#' + anchorInfo.slug);
+                        var el = angular.element('#' + anchorInfo.slug);
                         el.collapse('show');
                         $uiViewScroll(el);
                     }
                 });
             }
-            $($document[0].body).on('click', 'a[href="#' + scope.item.slug + '"]', function () {
-                if(scope.item.pop_up || !('pop_up' in scope.item)) {
+            angular.element($document[0].body).on('click', 'a[href="#' + scope.item.slug + '"]', function () {
+                if (scope.item.pop_up || !('pop_up' in scope.item)) {
                     openModal();
                 }
                 else {
-                    var el = $('#' + scope.item.slug);
+                    var el = angular.element('#' + scope.item.slug);
                     if (el) {
                         el.collapse('show');
                         $uiViewScroll(el);
@@ -62,12 +82,12 @@ angular.module('refugeeApp').directive('collapseOnAnchorScroll', function ($docu
             });
 
             scope.$on('$stateChangeStart', function () {
-                $('body').removeClass('modal-open');
-                $('.modal-backdrop').remove();
+                angular.element('body').removeClass('modal-open');
+                angular.element('.modal-backdrop').remove();
             });
 
-            $('#contentModal').on('shown.bs.modal', function () {
-                $(".modal-content").scrollTop(0);
+            angular.element('#contentModal').on('shown.bs.modal', function () {
+                angular.element('.modal-content').scrollTop(0);
             });
         }
     };

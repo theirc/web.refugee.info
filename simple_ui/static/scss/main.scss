@@ -971,6 +971,10 @@ nav {
   color: #FFF;
 }
 
+.service-icon-map {
+  margin-top: -32px;
+}
+
 .filter-line-mobile {
   display: flex;
   align-items: center;
@@ -1629,8 +1633,9 @@ i.fa {
   }
 }
 
-.leaflet-marker-icon.service-list-item-icon-container {
-  border: 1px solid #FFFFFF;
+.leaflet-marker-icon.service-list-item-icon-container-map {
+  margin-top: -10px;
+  margin-left: -17px;
 }
 
 .service-info-control {
@@ -1801,18 +1806,6 @@ i.fa {
 .share-thumbs-container {
   @include flexbox();
   @include align-items(center);
-  .rating-thumbs {
-    @include flexbox();
-    @include flex(1);
-    @include justify-content(flex-end);
-    i {
-      cursor: pointer;
-    }
-    span {
-      font-size: 20px;
-      margin: 4px;
-    }
-  }
   .print-container {
     margin-top: auto;
   }
@@ -1935,6 +1928,20 @@ i.fa {
 
 .service-divider {
   border-bottom: 1px solid $divider-color-dark;
+}
+
+.collapse-button {
+  justify-content: center;
+  border-top: 1px solid $divider-color;
+  color: $green-accent-color;
+}
+
+.updated-at {
+  display: flex;
+  justify-content: flex-end;
+  padding-bottom: 10px;
+  /*font-size: 10px;*/
+  font-style: italic;
 }
 
 /* Content goes at the end */

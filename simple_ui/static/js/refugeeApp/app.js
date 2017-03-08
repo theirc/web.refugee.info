@@ -67,7 +67,7 @@ angular.module('refugeeApp', ['ui.router', 'ngCookies', 'ngSanitize', 'djng.rmi'
                         var getAboutUs = function (language) {
                             return $http({
                                 method: 'GET',
-                                url: apiUrl + '/v2/about/' + language + '/'
+                                url: `${apiUrl}/v2/about/${language}/`
                             });
                         };
                         return getAboutUs(language).then(function (response) {
@@ -188,11 +188,16 @@ angular.module('refugeeApp', ['ui.router', 'ngCookies', 'ngSanitize', 'djng.rmi'
                     $window.ga('send', 'pageview', {page: $location.path()});
 
                     if (parameters) {
+                        /*
+                        Recording all events. Else ifs may have been filtering data unnecessary
+                        */
                         if ('infoSlug' in parameters) {
                             $window.ga('send', 'event', 'info-page-view', parameters.infoSlug);
-                        } else if ('slug' in parameters) {
+                        } 
+                        if ('slug' in parameters) {
                             $window.ga('send', 'event', 'page-view', parameters.slug);
-                        } else if ('serviceId' in parameters) {
+                        } 
+                        if ('serviceId' in parameters) {
                             $window.ga('send', 'event', 'service-view', parameters.serviceId);
                         }
                     }
