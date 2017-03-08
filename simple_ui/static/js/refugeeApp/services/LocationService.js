@@ -36,23 +36,6 @@ angular.module('refugeeApp').factory('LocationService', function ($http, apiUrl,
                 url: apiUrl + '/v2/servicetypes/' + service.type + '/',
                 headers: {'Accept-Language': $translate.proposedLanguage() || $translate.use()}
             });
-        },
-        getRating: function (contentSlug) {
-            return $http({
-                method: 'GET',
-                url: apiUrl + '/v2/page/' + contentSlug + '/rate/'
-            });
-        },
-        setRating: function (contentSlug, rating, ratingId) {
-            return $http({
-                method: 'POST',
-                url: apiUrl + '/v2/page/' + contentSlug + '/rate/',
-                data: {
-                    slug: contentSlug,
-                    rating: rating,
-                    rating_id: ratingId
-                }
-            });
         }
     };
 });

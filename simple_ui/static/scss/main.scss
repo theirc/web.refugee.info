@@ -1806,18 +1806,6 @@ i.fa {
 .share-thumbs-container {
   @include flexbox();
   @include align-items(center);
-  .rating-thumbs {
-    @include flexbox();
-    @include flex(1);
-    @include justify-content(flex-end);
-    i {
-      cursor: pointer;
-    }
-    span {
-      font-size: 20px;
-      margin: 4px;
-    }
-  }
   .print-container {
     margin-top: auto;
   }
