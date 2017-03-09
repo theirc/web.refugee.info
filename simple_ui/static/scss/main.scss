@@ -1806,6 +1806,8 @@ i.fa {
 .share-thumbs-container {
   @include flexbox();
   @include align-items(center);
+  @include justify-content(flex-end);
+  margin: 10px 0;
   .print-container {
     margin-top: auto;
   }
