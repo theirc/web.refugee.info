@@ -27,19 +27,23 @@ angular.module('refugeeApp').directive('collapseOnAnchorScroll', function ($docu
                 // only for QA sections
                 let anchor = element.context.id;
                 let location = $location.hash();
+                let anchorInfo = anchor.split('-q-')[0];
+
                 if (anchor === location) {
-                    anchorInfo = anchor.split('-q-')[0];
                     $timeout(() => {
                         let element = angular.element(`#${anchorInfo}`);
                         element.collapse('show');
                         $uiViewScroll(element);
                     });
-                    angular.element($document[0].body).on('click', `a[href="#${anchorInfo}"]`, () => {
-                        let element = angular.element(`#${anchorInfo}`);
-                        element.collapse('show');
-                        $uiViewScroll(element);
-                    });
                 }
+                angular.element($document[0].body).on('click', `a[href="#${anchorInfo}"]`, () => {
+                    let element = angular.element(`#${anchorInfo}`);
+                    element.collapse('show');
+                    $uiViewScroll(element);
+                });
+                element.on('click', () => {
+                    $window.location.hash = anchor;
+                });
                 return;
             }
 
