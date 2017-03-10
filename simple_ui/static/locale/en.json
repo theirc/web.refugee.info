@@ -59,5 +59,7 @@
   "MAP": "Map",
 
   "SERVICE_MAP": "Service Map",
-  "CLOSE": "Close"
+  "CLOSE": "Close",
+  "TAGS": "Tags",
+  "SHOW_TAGS": "Click to check all tags"
 }

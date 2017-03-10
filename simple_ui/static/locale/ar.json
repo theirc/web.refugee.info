@@ -50,5 +50,8 @@
   "MAP": "خريطة",
 
   "SERVICE_MAP": "خريطة الخدمات",
-  "CLOSE": "أغلق"
+  "CLOSE": "أغلق",
+  "TAGS": "Tags",
+  "SHOW_TAGS": "Click to check all tags"
+
 }
