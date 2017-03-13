@@ -25,24 +25,28 @@ angular.module('refugeeApp').directive('collapseOnAnchorScroll', function ($docu
             };
             if (!scope.item) {
                 // only for QA sections
-                let anchor = element.context.id;
-                let location = $location.hash();
-                let anchorInfo = anchor.split('-q-')[0];
+                // timeout value is needed because of collapse animations
+                let timeoutValue = 500;
+                let qaAnchor = element.context.id;
+                let currentLocation = $location.hash();
+                let infoElement = element.parent().parent();
 
-                if (anchor === location) {
+                if (qaAnchor === currentLocation) {
                     $timeout(() => {
-                        let element = angular.element(`#${anchorInfo}`);
-                        element.collapse('show');
-                        $uiViewScroll(element);
+                        infoElement.collapse('show');
+                        let qaInputElement = element.prev();
+                        qaInputElement.prop('checked', true);
+                        $timeout(() => $uiViewScroll(element), timeoutValue);
                     });
                 }
-                angular.element($document[0].body).on('click', `a[href="#${anchorInfo}"]`, () => {
-                    let element = angular.element(`#${anchorInfo}`);
-                    element.collapse('show');
-                    $uiViewScroll(element);
+                angular.element($document[0].body).on('click', `a[href="#${qaAnchor}"]`, () => {
+                    infoElement.collapse('show');
+                    let qaInputElement = element.prev();
+                    qaInputElement.prop('checked', true);
+                    $timeout(() => $uiViewScroll(element), timeoutValue);
                 });
                 element.on('click', () => {
-                    $window.location.hash = anchor;
+                    $window.location.hash = qaAnchor;
                 });
                 return;
             }
