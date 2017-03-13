@@ -13,28 +13,6 @@ angular.module('refugeeApp').directive('serviceDetails', function () {
             vm.close = [];
             vm.serviceUrl = $location.absUrl();
 
-            vm.getFewTags = function () {
-                if (vm.service.tags.length > 3) {
-                    return vm.service.tags.slice(0, 3);
-                }
-                else {
-                    return vm.service.tags;
-                }
-            };
-
-            vm.getRestTags = function () {
-                if (vm.service.tags.length > 3) {
-                    return vm.service.tags.slice(3, vm.service.tags.length);
-                }
-                else {
-                    return [];
-                }
-            };
-
-            vm.showButton = function () {
-                return vm.service.tags.length > 3;
-            };
-
             vm.getDirections = function () {
                 $window.open('https://maps.google.com?daddr=' + vm.service.address, '_blank');
             };
