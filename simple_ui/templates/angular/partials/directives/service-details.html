@@ -31,29 +31,6 @@
             </table>
         </div>
 
-        <div ng-if="ctrl.service.tags.length">
-            <h2 class="service-description-title">
-                {$ 'TAGS' | translate $}:
-            </h2>
-
-            <div>
-                <a ng-repeat="tag in ctrl.getFewTags()" class="tags btn">{$ tag.name $}</a>
-            </div>
-            <div id="hiddenTags" class="collapse">
-                <a ng-repeat="tag in ctrl.getRestTags()" class="tags btn"> {$ tag.name $} </a>
-            </div>
-            <div style="margin-top: 10px">
-                <a  ng-if="ctrl.showButton()"
-                    data-toggle="collapse"
-                    data-target="#hiddenTags"
-                    class="tags tags-white collapsed"
-                    style="height: 24px; cursor: pointer;">
-                    {$ 'SHOW_TAGS' | translate $}
-                </a>
-            </div>
-
-        </div>
-
         <div class="button-container">
             <a ng-if="!!ctrl.service.address" ng-click="ctrl.getDirections()" class="button button-green">
                 {$ 'GET_DIRECTIONS' | translate $}</a>

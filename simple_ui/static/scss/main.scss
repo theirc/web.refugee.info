@@ -1947,32 +1947,6 @@ i.fa {
   font-style: italic;
 }
 
-.tags {
-  @include transition-mixin(background-color, 0.15, linear);
-  margin: 5px 5px 0 0;
-  padding: 3px;
-  border-radius: 3px;
-  background-color: $green-accent-color;
-  color: #FFFFFF;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.33);
-  &:hover {
-    background-color: $green-accent-color-dark;
-  }
-  &.tags-white {
-    @include transition-mixin(background-color, 0.15, linear);
-    background-color: #FFFFFF;
-    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.33);
-    color: #000000 !important;
-    &:hover {
-      background-color: #e2e2e2;
-    }
-  }
-  &.btn {
-    cursor: default;
-    font-size: 12px;
-  }
-}
-
 /* Content goes at the end */
 @import "content";
 @import "content-print";
