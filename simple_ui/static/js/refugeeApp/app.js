@@ -92,7 +92,7 @@ angular.module('refugeeApp', ['ui.router', 'ngCookies', 'ngSanitize', 'djng.rmi'
             .state('locationDetails', {
                 abstract: true,
                 url: '/:slug',
-                template: '<ui-view autoscroll="true"/>',
+                template: '<ui-view />',
                 resolve: {
                     location: function ($stateParams, djangoRMI, $translate) {
                         return djangoRMI.location_json_view.get_details({
