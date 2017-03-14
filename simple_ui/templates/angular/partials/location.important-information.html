@@ -8,8 +8,10 @@
             {$ info.title $}
         </div>
         <div class="important-information-content">
-            <div class="updated-at">{$ 'LAST_UPDATED_ON' | translate $}&nbsp;<span class="tel">{$ info.updated_at | date: "dd/MM/y hh:mm a" $}</span>&nbsp;</div>
-            <div ng-bind-html="info.html" name="{$ 'Anchor_' + info.slug $}" item="info" collapse-on-anchor-scroll></div>
+            <div class="updated-at">{$ 'LAST_UPDATED_ON' | translate $}&nbsp;<span class="tel">{$ info.updated_at | date: "dd/MM/y hh:mm a" $}</span>&nbsp;
+            </div>
+            <div ng-bind-html="info.html" name="{$ 'Anchor_' + info.slug $}" item="info"
+                 collapse-on-anchor-scroll></div>
         </div>
 
         <div class="genral-info-item" ng-repeat="sub in info.subsections" id="{$ 'Anchor_' + sub.slug $}"
@@ -35,12 +37,14 @@
     <div id="contentModal" class="modal modal-fullscreen fade" tabindex="-1" role="dialog"
          aria-labelledby="content-modal" aria-hidden="true">
         <div class="modal-dialog general-info-item-content">
+
             <div class="modal-content" style="overflow: scroll">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                     <h4 class="modal-title"></h4>
                 </div>
-                <div class="modal-body">
+                <div class="modal-body-container">
+                    <div class="modal-body"></div>
                 </div>
                 <div class="modal-footer">
                     <print-page></print-page>

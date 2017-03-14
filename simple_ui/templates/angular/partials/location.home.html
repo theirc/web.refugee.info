@@ -20,13 +20,16 @@
                 </div>
             </a>
             <div class="general-info-item-content collapse" ng-if="!p.pop_up" id="{$ p.slug $}">
-                <div class="updated-at">{$ 'LAST_UPDATED_ON' | translate $}&nbsp;<span class="tel">{$ p.updated_at | date: "dd/MM/y hh:mm a" $}</span>&nbsp;</div>
+                <div class="updated-at">{$ 'LAST_UPDATED_ON' | translate $}&nbsp;<span class="tel">{$ p.updated_at | date: "dd/MM/y hh:mm a" $}</span>&nbsp;
+                </div>
                 <div bind-html-compile="p.html"></div>
-                <div class="general-info-item-header collapse-button" data-toggle="collapse" data-target="#{$ p.slug $}">
+                <div class="general-info-item-header collapse-button" data-toggle="collapse"
+                     data-target="#{$ p.slug $}">
                     <i class="fa fa-compress"></i><span>{$ 'CLOSE' | translate $} {$ p.title $}</span>
                 </div>
             </div>
-            <div class="genral-info-item" ng-repeat="sub in p.subsections" id="{$ 'Anchor_' + sub.slug $}" ng-show="false">
+            <div class="genral-info-item" ng-repeat="sub in p.subsections" id="{$ 'Anchor_' + sub.slug $}"
+                 ng-show="false">
                 <a href="#{$ sub.slug $}">
                     <div class="general-info-item-header collapsed" data-toggle="collapse"
                          data-target="#{$ sub.slug $}">
@@ -52,12 +55,12 @@
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                     <h4 class="modal-title"></h4>
                 </div>
-                <div>
+                <div class="modal-body-container">
                     <div class="updated-at" style="padding: 15px 15px 0">
-                        <span style="white-space: pre">{$ 'LAST_UPDATED_ON' | translate $} </span><span class="updated-at-date"></span>
+                        <span style="white-space: pre">{$ 'LAST_UPDATED_ON' | translate $} </span><span
+                            class="updated-at-date"></span>
                     </div>
-                </div>
-                <div class="modal-body">
+                    <div class="modal-body"></div>
                 </div>
                 <div class="modal-footer">
                     <print-page></print-page>
