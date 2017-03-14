@@ -4,6 +4,8 @@
 .snap-content {
   background-color: $primary-color-3;
   color: $text-color;
+  @include flexbox();
+  @include flex-direction(column);
   @media (min-width: $screen-md-min) {
     background: url($background-image) no-repeat fixed center center;
     -webkit-background-size: cover;
@@ -225,6 +227,12 @@ drawer {
   .give-feedback {
     text-decoration: underline;
   }
+}
+
+.main-flex-container {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
 .powered-by {
@@ -691,9 +699,11 @@ region-flag {
     padding: 0 10px;
     font-size: 20px;
     width: 50px;
+    @include flexbox();
+    @include align-items(center);
+    @include justify-content(center);
   }
 }
-
 
 .general-info-date {
   margin: 10px 0 -5px 0;
@@ -766,7 +776,8 @@ change-location-button {
 .service-list-provider {
   font-weight: bold;
   margin-top: 0;
-  margin-bottom: 0;}
+  margin-bottom: 0;
+}
 
 .service-list-item {
   @include transition-mixin(background-color, 0.15, linear);
@@ -961,7 +972,7 @@ nav {
   justify-content: center;
   a {
     white-space: normal;
-    width:100%;
+    width: 100%;
     display: flex;
     justify-content: center;
   }
@@ -1422,14 +1433,13 @@ nav {
 .view-container {
   @media (max-width: $screen-xs-max) {
     padding: 0 10px 10px 10px;
-    margin-top: 50px;
   }
   @media (min-width: $screen-sm-min) {
     padding: 0 30px 30px 30px;
-    margin-top: 100px;
+    margin-top: 20px;
   }
   @media print {
-    margin-top: 0px;
+    margin-top: 0;
   }
   background-color: $primary-color-4;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
@@ -1704,11 +1714,12 @@ i.fa {
 }
 
 .general-info-item-content {
-    padding: 10px 0;
-    &.collapse.in {
-      border-bottom: 1px solid $divider-color;
-    }
+  padding: 55px 0 10px 0;
+  margin-top: -45px;
+  &.collapse.in {
+    border-bottom: 1px solid $divider-color;
   }
+}
 
 #contentModal {
   @media print {
@@ -1924,8 +1935,9 @@ i.fa {
     max-width: 100%;
   }
 }
+
 .tel {
-  direction: ltr!important;
+  direction: ltr !important;
   display: inline-block;
 }
 
@@ -1945,6 +1957,20 @@ i.fa {
   padding-bottom: 10px;
   /*font-size: 10px;*/
   font-style: italic;
+}
+
+// flexbox modal
+div.modal-dialog {
+  margin: 0;
+  .modal-content {
+    overflow: auto !important;
+    @include flexbox();
+    @include flex-direction(column);
+  }
+  .modal-body-container {
+    flex: 1;
+    overflow-y: auto;
+  }
 }
 
 /* Content goes at the end */
