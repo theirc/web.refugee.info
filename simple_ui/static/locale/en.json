@@ -52,12 +52,20 @@
   "NO_SERVICES_INFO": "There are no services currently mapped in your location. The {$ siteName $} team is working hard to research and list all the services near you.",
 
   "SLEEP_NOTE": "Click to wake",
-  "SERVICE_PROVIDER": "Service Provider: ",
+  "SERVICE_PROVIDER": "Service Provider",
 
   "FILTER": "Filter",
   "LIST": "List",
   "MAP": "Map",
 
   "SERVICE_MAP": "Service Map",
-  "CLOSE": "Close"
+  "CLOSE": "Close",
+
+  "SUNDAY": "Sunday",
+  "MONDAY": "Monday",
+  "TUESDAY": "Tuesday",
+  "WEDNESDAY": "Wednesday",
+  "THURSDAY": "Thursday",
+  "FRIDAY": "Friday",
+  "SATURDAY": "Saturday"
 }
