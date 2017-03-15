@@ -36,11 +36,17 @@
 
         <div class="button-container">
             <a ng-if="!!ctrl.service.address" ng-click="ctrl.getDirections()" class="button button-green">
-                {$ 'GET_DIRECTIONS' | translate $}</a>
+                <i class="fa fa-map" aria-hidden="true"></i>{$ 'GET_DIRECTIONS' | translate $}</a>
+            <a ng-if="!!ctrl.service.email" href="mailto:{$ ctrl.service.email $}" class="button button-green">
+                <i class="fa fa-envelope-o" aria-hidden="true"></i><span>{$ ctrl.service.email $}</span></a>
+            <a ng-if="!!ctrl.service.website" ng-click="ctrl.openUrl(ctrl.service.website)" class="button button-green">
+                <i class="fa fa-external-link" aria-hidden="true"></i><span>{$ ctrl.service.website $}</span></a>
+            <a ng-if="!!ctrl.service.facebook_page" ng-click="ctrl.openUrl(ctrl.service.facebook_page)" class="button button-blue">
+                <i class="fa fa-facebook-f" aria-hidden="true"></i><span>{$ 'FB_PAGE' | translate $}</span></a>
             <a ng-if="!!ctrl.service.phone_number" class="button button-black">
                 <i class="fa fa-phone" aria-hidden="true"></i><span class="tel">{$ ctrl.service.phone_number $}</span></a>
             <a class="button button-white" href="https://www.facebook.com/sharer/sharer.php?u={$ ctrl.serviceUrl $}"
-               target="_blank">{$ 'SHARE' | translate $}
+               target="_blank"><i class="fa fa-share" aria-hidden="true"></i>{$ 'SHARE' | translate $}
             </a>
         </div>
     </div>
