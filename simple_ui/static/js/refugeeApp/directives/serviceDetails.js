@@ -30,6 +30,21 @@ angular.module('refugeeApp').directive('serviceDetails', function () {
                     return true;
                 }
             };
+
+            /*
+            *   In case if url does not have protocol provided url would be concatenated with refugee.info url
+            */
+            vm.openUrl = function(url) {
+                let fixedUrl = '';
+                if (url.indexOf('http://') !== -1 || url.indexOf('https://') !== -1) {
+                    fixedUrl = url;
+                }
+                else {
+                    fixedUrl = `http:\/\/${url}`;
+                }
+                let newTab = $window.open(fixedUrl, '_blank');
+                newTab.focus();
+            };
         },
         controllerAs: 'ctrl'
     };

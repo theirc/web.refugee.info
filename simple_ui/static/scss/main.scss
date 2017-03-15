@@ -1368,6 +1368,29 @@ nav {
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.33);
   &:hover {
     background-color: $green-accent-color-dark;
+    color: #FFFFFF;
+  }
+  i.fa {
+    color: #FFFFFF;
+    padding: 0 10px;
+  }
+}
+
+.button-blue {
+  @include transition-mixin(background-color, 0.15, linear);
+  background-color: $facebook-blue;
+  color: #FFFFFF;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.33);
+  &:hover {
+    background-color: $facebook-blue-light;
+    color: #FFFFFF;
+  }
+  i.fa {
+    color: #FFFFFF;
+    padding: 0 10px;
+  }
+  span {
+    color: #FFFFFF;
   }
 }
 
@@ -1378,6 +1401,7 @@ nav {
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.33);
   &:hover {
     background-color: #303030;
+    color: #FFFFFF;
   }
   i.fa {
     color: #FFFFFF;
@@ -1392,6 +1416,10 @@ nav {
   color: #000000 !important;
   &:hover {
     background-color: #e2e2e2;
+  }
+  i.fa {
+    color: #000000;
+    padding: 0 10px;
   }
 }
 
