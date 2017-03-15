@@ -7,11 +7,7 @@
   @include flexbox();
   @include flex-direction(column);
   @media (min-width: $screen-md-min) {
-    background: url($background-image) no-repeat fixed center center;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
+    background-color: lighten($primary-color-2, 2%);
   }
   @media print {
     overflow: visible !important;
@@ -1340,6 +1336,7 @@ nav {
   .service-description-body {
     font-size: 12px;
     color: $text-color-muted !important;
+    white-space: pre-wrap;
   }
   .service-image {
     max-width: 100%;
