@@ -8,7 +8,10 @@
                 <p>{$ ctrl.service.address_in_country_language $}</p>
             </div>
         </div>
-        <h1 class="provider-name">{$ 'SERVICE_PROVIDER' | translate $} {$ ctrl.service.provider.name $}</h1>
+        <h1 class="provider-name">
+            <span>{$ 'SERVICE_PROVIDER' | translate $}: </span>
+            <span>{$ ctrl.service.provider.name $}</span>
+        </h1>
     </div>
 
     <div class="col-xs-12 col-sm-10 col-sm-offset-1 no-padding">
@@ -23,7 +26,7 @@
             <h2 class="service-description-title">{$ 'OPENING_HOURS' | translate $}</h2>
             <table class="service-opening-hours-table">
                 <tr ng-repeat="day in ctrl.days">
-                    <td class="day-of-week">{$ day $}</td>
+                    <td class="day-of-week">{$ day.toUpperCase() | translate $}</td>
                     <td>{$ ctrl.open[$index] $}</td>
                     <td>-</td>
                     <td>{$ ctrl.close[$index] $}</td>
