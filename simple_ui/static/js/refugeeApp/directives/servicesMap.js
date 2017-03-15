@@ -81,7 +81,7 @@ angular.module('refugeeApp').directive('servicesMap', function(leafletData, $sta
 
                 var drawServices = function(map, services, isMobile) {
                     markers.clearLayers();
-                    services.forEach(function(service) {
+                    services && services.forEach(function(service) {
                         var lat = service.location.coordinates[1];
                         var lng = service.location.coordinates[0];
                         var icon = L.divIcon({
@@ -107,7 +107,7 @@ angular.module('refugeeApp').directive('servicesMap', function(leafletData, $sta
                         });
                         markers.addLayer(marker);
                     });
-                    if (services.length > 0) {
+                    if (services && services.length > 0) {
                         map.addLayer(markers);
                     }
                 };
