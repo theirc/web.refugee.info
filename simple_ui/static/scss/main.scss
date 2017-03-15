@@ -312,33 +312,12 @@ ul.locations.country li {
 }
 
 ul.locations.children li {
-  background-color: $primary-color-5;
-  border-top: 1px solid $divider-color;
+  background-color: $primary-color-2;
+  border-top: 1px solid $primary-color-5;
   color: $text-color;
   text-decoration: none;
   &:hover {
-    background-color: darken($primary-color-5, 5%);
-  }
-}
-
-ul.locations.children li.country {
-  background-color: $primary-color-5;
-  &:hover {
-    background-color: darken($primary-color-5, 5%);
-  }
-}
-
-ul.locations.children li.region {
-  background-color: $divider-color;
-  &:hover {
-    background-color: darken($divider-color, 5%);
-  }
-}
-
-ul.locations.children li.camp {
-  background-color: $divider-color-3;
-  &:hover {
-    background-color: darken($divider-color-3, 5%);
+    background-color: darken($primary-color-2, 5%);
   }
 }
 
