@@ -22,6 +22,14 @@
         </h2>
         <p class="service-description-body">{$ ctrl.service.description $}</p>
 
+        <div ng-if="ctrl.service.additional_info">
+            <h2 class="service-description-title">
+                {$ 'ADDITIONAL_INFO' | translate $}
+            </h2>
+            <p class="service-description-body">{$ ctrl.service.additional_info $}</p>
+        </div>
+
+
         <div ng-if="ctrl.showOpeningHours()">
             <h2 class="service-description-title">{$ 'OPENING_HOURS' | translate $}</h2>
             <table class="service-opening-hours-table">
