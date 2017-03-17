@@ -21,6 +21,8 @@
   "GET_DIRECTIONS": "انتخاب مسیر",
   "DESCRIPTION": "توضیحات",
   "ADDITIONAL_INFO": "Additional Information",
+  "ADDRESS": "Address",
+  "CLOSED": "CLOSED",
   "FB_PAGE": "Facebook Page",
   "NO_SERVICES": "هیچ سرویسی پیدا نشد ",
   "NEAREST_SERVICES": "نزدیک ترین سرویس ها به جایی که شما در آن هستید ",

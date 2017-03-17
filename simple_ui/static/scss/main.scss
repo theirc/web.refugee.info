@@ -1977,6 +1977,12 @@ div.modal-dialog {
   }
 }
 
+.opening-hours-table {
+  @media (max-width: $screen-xs-max) {
+    width: 100%;
+  }
+}
+
 /* Content goes at the end */
 @import "content";
 @import "content-print";
