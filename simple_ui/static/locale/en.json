@@ -25,6 +25,8 @@
   "GET_DIRECTIONS": "Get directions",
   "DESCRIPTION": "Description",
   "ADDITIONAL_INFO": "Additional Information",
+  "ADDRESS": "Address",
+  "CLOSED": "CLOSED",
   "FB_PAGE": "Facebook Page",
   "NO_SERVICES": "No services found",
   "NEAREST_SERVICES": "Nearest services to your location",

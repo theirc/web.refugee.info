@@ -21,6 +21,8 @@
   "GET_DIRECTIONS": "احصل على الاتجاهات",
   "DESCRIPTION": "الشرح",
   "ADDITIONAL_INFO": "Additional Information",
+  "ADDRESS": "Address",
+  "CLOSED": "CLOSED",
   "FB_PAGE": "Facebook Page",
   "NO_SERVICES": "لا توجد خدمات",
   "NEAREST_SERVICES": "أقرب الخدمات لموقعك",

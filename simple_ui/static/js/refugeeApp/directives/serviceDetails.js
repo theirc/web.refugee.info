@@ -4,7 +4,8 @@ angular.module('refugeeApp').directive('serviceDetails', function () {
         templateUrl: 'partials/directives/service-details.html',
         bindToController: true,
         scope: {
-            service: '='
+            service: '=',
+            location: '='
         },
         controller: function ($window, $location) {
             var vm = this;
