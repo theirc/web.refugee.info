@@ -51,8 +51,8 @@
 
   "NO_SERVICES_INFO": "There are no services currently mapped in your location. The {$ siteName $} team is working hard to research and list all the services near you.",
 
-  "SLEEP_NOTE": "Click to wake",
-  "SERVICE_PROVIDER": "Service Provider",
+  "SLEEP_NOTE": "برای بیدار کلیک کنید",
+  "SERVICE_PROVIDER": "ارائه دهنده خدمات",
 
   "FILTER": "صافی",
   "LIST": "فهرست",
@@ -61,11 +61,11 @@
   "SERVICE_MAP": "الخدمات نقشه",
   "CLOSE": "بستن",
 
-  "SUNDAY": "Sunday",
-  "MONDAY": "Monday",
-  "TUESDAY": "Tuesday",
-  "WEDNESDAY": "Wednesday",
-  "THURSDAY": "Thursday",
-  "FRIDAY": "Friday",
-  "SATURDAY": "Saturday"
+  "SUNDAY": "یکشنبه",
+  "MONDAY": "دوشنبه",
+  "TUESDAY": "سهشنبه",
+  "WEDNESDAY": "چهار شنبه",
+  "THURSDAY": "پنج شنبه",
+  "FRIDAY": "جمعه",
+  "SATURDAY": "شنبه"
 }
