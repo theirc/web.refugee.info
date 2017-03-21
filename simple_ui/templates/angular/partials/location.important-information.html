@@ -1,7 +1,6 @@
 <div class="col-xs-12 col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2 view-container view-container-padded">
     <location-selected></location-selected>
     <location-buttons></location-buttons>
-    <location-info location="ctrl.location"></location-info>
     <quick-links class="hidden-xs" location="ctrl.location" direction="baseController.direction()"></quick-links>
     <div id="info" ng-repeat="info in ctrl.location.important | filter: {slug: ctrl.infoSlug}" ng-show="!info.pop_up">
         <div class="row green-bar" style="margin-top: 10px">
