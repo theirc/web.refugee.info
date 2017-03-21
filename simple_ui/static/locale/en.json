@@ -53,7 +53,7 @@
   "LOCATION_INFO_2": "You have selected <strong>{$ location $}</strong> as your location. All the information on this page is specific to <strong>{$ location $}</strong> and your rights whilst staying there.",
   "LOCATION_INFO_3": "Explore each of the boxes below to learn more.",
 
-  "NO_SERVICES_INFO": "There are no services currently mapped in your location. The {$ siteName $} team is working hard to research and list all the services near you.",
+  "NO_SERVICES_INFO": "Our team has not yet mapped the services in your location.",
 
   "SLEEP_NOTE": "Click to wake",
   "SERVICE_PROVIDER": "Service Provider",
