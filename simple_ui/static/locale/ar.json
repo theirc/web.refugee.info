@@ -20,6 +20,10 @@
   "OPENING_HOURS": "ساعات العمل",
   "GET_DIRECTIONS": "احصل على الاتجاهات",
   "DESCRIPTION": "الشرح",
+  "ADDITIONAL_INFO": "معلومة اضافية",
+  "ADDRESS": "Address",
+  "CLOSED": "CLOSED",
+  "FB_PAGE": "Facebook Page",
   "NO_SERVICES": "لا توجد خدمات",
   "NEAREST_SERVICES": "أقرب الخدمات لموقعك",
   "FILTER_BY_TYPE": "فلترة الخدمات حسب النوع",
@@ -45,10 +49,23 @@
   "LOCATION_INFO_2": "قد حدّدت {$ location $} كموقعك. كل المعلومات التي ستظهر على هذه الصفحة هي مخصّصة لـ {$ location $} ولحقوقك طالما أنت هناك.",
   "LOCATION_INFO_3": "إذهب إلى المربعات الخضر بالأسفل لتطّلع على المزيد من المعلومات.",
 
+  "NO_SERVICES_INFO": "لـم يقم فريقنا بعد باضافة الخدمات على الخارطة في موقعك.",
+
+  "SLEEP_NOTE": "انقر لايقاظ",
+  "SERVICE_PROVIDER": "مقدم الخدمة",
+
   "FILTER": "فلتر",
   "LIST": "قائمة",
   "MAP": "خريطة",
 
   "SERVICE_MAP": "خريطة الخدمات",
-  "CLOSE": "أغلق"
+  "CLOSE": "أغلق",
+
+  "SUNDAY": "الأحد",
+  "MONDAY": "الإثنين",
+  "TUESDAY": "الثلاثاء",
+  "WEDNESDAY": "الأربعاء",
+  "THURSDAY": "الخميس",
+  "FRIDAY": "يوم الجمعة",
+  "SATURDAY": "يوم السبت"
 }

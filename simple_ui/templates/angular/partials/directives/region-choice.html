@@ -1,6 +1,7 @@
 <div>
     <ul id="locations-{$ region.id $}" class="locations country">
-        <li data-toggle="collapse" data-target="#region{$ region.id $}">
+        <li data-toggle="collapse" data-target="#region{$ region.id $}"
+            ng-click="!region.children.length && navigateToDetails(region)">
             <div class="location-flex">
                 <span class="location-helper"></span>
                 <region-flag region="region"></region-flag>
@@ -8,7 +9,7 @@
             </div>
         </li>
     </ul>
-    <ul class="locations children panel-collapse collapse" id="region{$ region.id $}">
+    <ul ng-if="region.children.length" class="locations children panel-collapse collapse" id="region{$ region.id $}">
         <li ng-click="navigateToDetails(region)" ng-if="!region.hidden">
             <span class="location-helper">{$ 'VIEW_INFO_FOR' | translate $}:</span>
             <img class="location-icon" src="/static/images/level-country.png"/>

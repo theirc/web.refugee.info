@@ -20,6 +20,10 @@
   "OPENING_HOURS": "ساعات کار",
   "GET_DIRECTIONS": "انتخاب مسیر",
   "DESCRIPTION": "توضیحات",
+  "ADDITIONAL_INFO": "Additional Information",
+  "ADDRESS": "Address",
+  "CLOSED": "CLOSED",
+  "FB_PAGE": "Facebook Page",
   "NO_SERVICES": "هیچ سرویسی پیدا نشد ",
   "NEAREST_SERVICES": "نزدیک ترین سرویس ها به جایی که شما در آن هستید ",
   "FILTER_BY_TYPE": "سرویس ها را بر اساس دسته بندی ها فیلتر کن",
@@ -45,10 +49,23 @@
   "LOCATION_INFO_2": "شما {$ location $} را به عنوان مکان انتخاب کرده‌اید. همه‌ی اطلاعات در این صفحه مختصِ {$ location $} و حقوقِ شما در زمانِ اقامت‌تان در آنجا می‌باشد.",
   "LOCATION_INFO_3": "جعبه‌های سبز را که در زیر می‌بینید جستجو کنید تا اطلاعاتِ بیشتری بدست بیاورید.",
 
+  "NO_SERVICES_INFO": "تیم ما هنوز نقشه خدمات موجود در منطقه شما را تهیه نکرده است.",
+
+  "SLEEP_NOTE": "برای بیدار کلیک کنید",
+  "SERVICE_PROVIDER": "ارائه دهنده خدمات",
+
   "FILTER": "صافی",
   "LIST": "فهرست",
   "MAP": "نقشه",
 
   "SERVICE_MAP": "الخدمات نقشه",
-  "CLOSE": "بستن"
+  "CLOSE": "بستن",
+
+  "SUNDAY": "یکشنبه",
+  "MONDAY": "دوشنبه",
+  "TUESDAY": "سهشنبه",
+  "WEDNESDAY": "چهار شنبه",
+  "THURSDAY": "پنج شنبه",
+  "FRIDAY": "جمعه",
+  "SATURDAY": "شنبه"
 }

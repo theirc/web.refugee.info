@@ -4,12 +4,10 @@
 .snap-content {
   background-color: $primary-color-3;
   color: $text-color;
+  @include flexbox();
+  @include flex-direction(column);
   @media (min-width: $screen-md-min) {
-    background: url($background-image) no-repeat fixed center center;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
+    background-color: lighten($primary-color-2, 2%);
   }
   @media print {
     overflow: visible !important;
@@ -227,6 +225,12 @@ drawer {
   }
 }
 
+.main-flex-container {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
 .powered-by {
   font-size: 14px;
   padding: 50px 15px 20px;
@@ -308,33 +312,12 @@ ul.locations.country li {
 }
 
 ul.locations.children li {
-  background-color: $primary-color-5;
-  border-top: 1px solid $divider-color;
+  background-color: $primary-color-2;
+  border-top: 1px solid $primary-color-5;
   color: $text-color;
   text-decoration: none;
   &:hover {
-    background-color: darken($primary-color-5, 5%);
-  }
-}
-
-ul.locations.children li.country {
-  background-color: $primary-color-5;
-  &:hover {
-    background-color: darken($primary-color-5, 5%);
-  }
-}
-
-ul.locations.children li.region {
-  background-color: $divider-color;
-  &:hover {
-    background-color: darken($divider-color, 5%);
-  }
-}
-
-ul.locations.children li.camp {
-  background-color: $divider-color-3;
-  &:hover {
-    background-color: darken($divider-color-3, 5%);
+    background-color: darken($primary-color-2, 5%);
   }
 }
 
@@ -691,9 +674,11 @@ region-flag {
     padding: 0 10px;
     font-size: 20px;
     width: 50px;
+    @include flexbox();
+    @include align-items(center);
+    @include justify-content(center);
   }
 }
-
 
 .general-info-date {
   margin: 10px 0 -5px 0;
@@ -766,7 +751,8 @@ change-location-button {
 .service-list-provider {
   font-weight: bold;
   margin-top: 0;
-  margin-bottom: 0;}
+  margin-bottom: 0;
+}
 
 .service-list-item {
   @include transition-mixin(background-color, 0.15, linear);
@@ -961,7 +947,7 @@ nav {
   justify-content: center;
   a {
     white-space: normal;
-    width:100%;
+    width: 100%;
     display: flex;
     justify-content: center;
   }
@@ -1293,25 +1279,26 @@ nav {
   }
   .service-location {
     @include flexbox();
-
+    @include flex-direction(row);
     font-size: 13px;
     color: $green-accent-color;
+    margin-bottom: 10px;
+    .service-location-text {
+      p {
+        margin: 0;
+      }
+    }
     .material-icons {
-      font-size: 15px;
-      position: relative;
-      top: 2px;
-      margin-right: 5px;
+      @include flexbox();
+      @include align-items(center);
+      @include justify-content(center);
+      font-size: 16px;
+      width: 24px;
     }
   }
 
   .service-details-bar {
     border-bottom: 1px solid $divider-color;
-  }
-  .flex-row {
-    @media (min-width: $screen-sm-min) {
-      @include flexbox();
-      justify-content: space-between;
-    }
   }
   .service-rate-link {
     text-decoration: underline;
@@ -1328,6 +1315,7 @@ nav {
   .service-description-body {
     font-size: 12px;
     color: $text-color-muted !important;
+    white-space: pre-wrap;
   }
   .service-image {
     max-width: 100%;
@@ -1380,6 +1368,29 @@ nav {
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.33);
   &:hover {
     background-color: $green-accent-color-dark;
+    color: #FFFFFF;
+  }
+  i.fa {
+    color: #FFFFFF;
+    padding: 0 10px;
+  }
+}
+
+.button-blue {
+  @include transition-mixin(background-color, 0.15, linear);
+  background-color: $facebook-blue;
+  color: #FFFFFF;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.33);
+  &:hover {
+    background-color: $facebook-blue-light;
+    color: #FFFFFF;
+  }
+  i.fa {
+    color: #FFFFFF;
+    padding: 0 10px;
+  }
+  span {
+    color: #FFFFFF;
   }
 }
 
@@ -1390,6 +1401,7 @@ nav {
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.33);
   &:hover {
     background-color: #303030;
+    color: #FFFFFF;
   }
   i.fa {
     color: #FFFFFF;
@@ -1404,6 +1416,10 @@ nav {
   color: #000000 !important;
   &:hover {
     background-color: #e2e2e2;
+  }
+  i.fa {
+    color: #000000;
+    padding: 0 10px;
   }
 }
 
@@ -1421,14 +1437,13 @@ nav {
 .view-container {
   @media (max-width: $screen-xs-max) {
     padding: 0 10px 10px 10px;
-    margin-top: 50px;
   }
   @media (min-width: $screen-sm-min) {
     padding: 0 30px 30px 30px;
-    margin-top: 100px;
+    margin-top: 20px;
   }
   @media print {
-    margin-top: 0px;
+    margin-top: 0;
   }
   background-color: $primary-color-4;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
@@ -1703,11 +1718,12 @@ i.fa {
 }
 
 .general-info-item-content {
-    padding: 10px 0;
-    &.collapse.in {
-      border-bottom: 1px solid $divider-color;
-    }
+  padding: 55px 0 10px 0;
+  margin-top: -45px;
+  &.collapse.in {
+    border-bottom: 1px solid $divider-color;
   }
+}
 
 #contentModal {
   @media print {
@@ -1806,6 +1822,8 @@ i.fa {
 .share-thumbs-container {
   @include flexbox();
   @include align-items(center);
+  @include justify-content(flex-end);
+  margin: 10px 0;
   .print-container {
     margin-top: auto;
   }
@@ -1921,8 +1939,9 @@ i.fa {
     max-width: 100%;
   }
 }
+
 .tel {
-  direction: ltr!important;
+  direction: ltr !important;
   display: inline-block;
 }
 
@@ -1942,6 +1961,26 @@ i.fa {
   padding-bottom: 10px;
   /*font-size: 10px;*/
   font-style: italic;
+}
+
+// flexbox modal
+div.modal-dialog {
+  margin: 0;
+  .modal-content {
+    overflow: auto !important;
+    @include flexbox();
+    @include flex-direction(column);
+  }
+  .modal-body-container {
+    flex: 1;
+    overflow-y: auto;
+  }
+}
+
+.opening-hours-table {
+  @media (max-width: $screen-xs-max) {
+    width: 100%;
+  }
 }
 
 /* Content goes at the end */

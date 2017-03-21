@@ -1,41 +1,79 @@
 <div class="service-details" ng-show="ctrl.service">
     <div class="no-padding col-xs-12 service-details-bar">
-        <div class="updated-at" style="padding: 0">{$ 'LAST_UPDATED_ON' | translate $}&nbsp;<span class="tel">{$ ctrl.service.updated_at | date: "dd/MM/y hh:mm a" $}&nbsp;</span></div>
-        <div class="flex-row">
-            <h1 ng-if="ctrl.service.address" class="service-location">
-                <i class="material-icons">&#xE0C8;</i><span style="display: block">{$ ctrl.service.address $}</span>
-            </h1>
+
+        <div class="service-location">
+            <i class="material-icons">&#xE0C8;</i>
+            <div class="service-location-text">
+                <p>{$ ctrl.location.name $}</p>
+            </div>
         </div>
-        <h1 class="provider-name">{$ 'SERVICE_PROVIDER' | translate $} {$ ctrl.service.provider.name $}</h1>
+        <div style="margin-bottom: 10px">
+            <span style="font-size: 14px">{$ 'SERVICE_PROVIDER' | translate $}: </span>
+            <span class="provider-name">{$ ctrl.service.provider.name $}</span>
+        </div>
     </div>
 
     <div class="col-xs-12 col-sm-10 col-sm-offset-1 no-padding">
+        <div class="updated-at" style="padding: 0">{$ 'LAST_UPDATED_ON' | translate $}&nbsp;<span class="tel">
+            {$ ctrl.service.updated_at | date: "dd/MM/y hh:mm a" $}&nbsp;</span></div>
         <img ng-if="!!ctrl.service.image" class="service-image" ng-src="{$ ctrl.service.image $}"/>
 
-        <h2 class="service-description-title">
-            {$ 'DESCRIPTION' | translate $}
-        </h2>
-        <p class="service-description-body">{$ ctrl.service.description $}</p>
+        <div style="display:flex;">
+            <i class="fa fa-2x fa-info" style="margin: 20px 15px 15px 15px"></i>
+            <div>
+                <h2 class="service-description-title">
+                    {$ 'DESCRIPTION' | translate $}
+                </h2>
+                <p class="service-description-body">{$ ctrl.service.description $}</p>
 
-        <div ng-if="ctrl.showOpeningHours()">
-            <h2 class="service-description-title">{$ 'OPENING_HOURS' | translate $}</h2>
-            <table class="service-opening-hours-table">
-                <tr ng-repeat="day in ctrl.days">
-                    <td class="day-of-week">{$ day $}</td>
-                    <td>{$ ctrl.open[$index] $}</td>
-                    <td>-</td>
-                    <td>{$ ctrl.close[$index] $}</td>
-                </tr>
-            </table>
+                <div ng-if="ctrl.service.additional_info">
+                    <h2 class="service-description-title">
+                        {$ 'ADDITIONAL_INFO' | translate $}
+                    </h2>
+                    <p class="service-description-body">{$ ctrl.service.additional_info $}</p>
+                </div>
+            </div>
+        </div>
+
+        <div style="display:flex;">
+            <i class="fa fa-2x fa-map-marker" style="margin: 20px 15px 15px 15px"></i>
+            <div>
+                <h2 class="service-description-title">
+                    {$ 'ADDRESS' | translate $}
+                </h2>
+                <p>{$ ctrl.service.address $}</p>
+                <p>{$ ctrl.service.address_in_country_language $}</p>
+            </div>
+        </div>
+
+        <div ng-if="ctrl.showOpeningHours()" style="display:flex;">
+            <i class="fa fa-2x fa-clock-o" style="margin: 20px 15px 15px 15px"></i>
+            <div class="opening-hours-table">
+                <h2 class="service-description-title">{$ 'OPENING_HOURS' | translate $}</h2>
+                <table class="service-opening-hours-table" style="width: 100%">
+                    <tr ng-repeat="day in ctrl.days">
+                        <td class="day-of-week">{$ day.toUpperCase() | translate $}</td>
+                        <td align="center">
+                            {$ ctrl.open[$index] && ctrl.close[$index] ? ctrl.open[$index] + ' - ' + ctrl.close[$index] : 'CLOSED' | translate $}
+                        </td>
+                    </tr>
+                </table>
+            </div>
         </div>
 
         <div class="button-container">
             <a ng-if="!!ctrl.service.address" ng-click="ctrl.getDirections()" class="button button-green">
-                {$ 'GET_DIRECTIONS' | translate $}</a>
+                <i class="fa fa-map" aria-hidden="true"></i>{$ 'GET_DIRECTIONS' | translate $}</a>
+            <a ng-if="!!ctrl.service.email" href="mailto:{$ ctrl.service.email $}" class="button button-green">
+                <i class="fa fa-envelope-o" aria-hidden="true"></i><span>{$ ctrl.service.email $}</span></a>
+            <a ng-if="!!ctrl.service.website" ng-click="ctrl.openUrl(ctrl.service.website)" class="button button-green">
+                <i class="fa fa-external-link" aria-hidden="true"></i><span>{$ ctrl.service.website $}</span></a>
+            <a ng-if="!!ctrl.service.facebook_page" ng-click="ctrl.openUrl(ctrl.service.facebook_page)" class="button button-blue">
+                <i class="fa fa-facebook-f" aria-hidden="true"></i><span>{$ 'FB_PAGE' | translate $}</span></a>
             <a ng-if="!!ctrl.service.phone_number" class="button button-black">
                 <i class="fa fa-phone" aria-hidden="true"></i><span class="tel">{$ ctrl.service.phone_number $}</span></a>
             <a class="button button-white" href="https://www.facebook.com/sharer/sharer.php?u={$ ctrl.serviceUrl $}"
-               target="_blank">{$ 'SHARE' | translate $}
+               target="_blank"><i class="fa fa-share" aria-hidden="true"></i>{$ 'SHARE' | translate $}
             </a>
         </div>
     </div>
