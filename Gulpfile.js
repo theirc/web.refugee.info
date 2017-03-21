@@ -17,6 +17,9 @@ gulp.task('clean', function () {
 
 gulp.task('scripts', ['clean', 'templates'], function () {
     return gulp.src('simple_ui/static/js/refugeeApp/**/*.js')
+        .pipe(babel({
+            presets: ['es2015']
+        }))
         .pipe(concat('app.built.js'))
         .pipe(gulp.dest('simple_ui/static/js/refugeeApp'));
 });
