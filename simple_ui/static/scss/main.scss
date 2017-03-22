@@ -126,6 +126,10 @@ drawer {
     height: 80px;
     padding: 24px 10px 0 10px;
   }
+  @media (max-width: $screen-sm-max) {
+    position: fixed;
+    width: 100%;
+  }
   @media print {
     display: none;
   }
@@ -163,6 +167,7 @@ drawer {
   }
 
   .brand-logo img {
+    position: fixed;
     @media (max-width: $screen-xs-max) {
       padding-top: 7px;
       max-height: 40px;
@@ -863,7 +868,7 @@ nav {
 
 .service-list {
   @media (max-width: $screen-sm-max) {
-    padding-top: 50px;
+    padding-top: 100px;
   }
   @media (max-width: $screen-xs-max) {
     padding-top: 60px;
@@ -902,9 +907,12 @@ nav {
   max-height: 250px;
   @media (max-width: $screen-sm-max) {
     padding-left: 0;
-    padding-top: 60px;
+    padding-top: 100px;
     width: 100%;
     max-height: 100%;
+  }
+  @media (max-width: $screen-xs-max) {
+    padding-top: 60px;
   }
 }
 
@@ -1086,16 +1094,16 @@ nav {
 
 .mobile-services-map-navigation {
   display: flex;
-  top: 40px;
+  top: 95px;
+
   padding: 10px;
   padding-top: 0;
   z-index: 1001;
   position: fixed;
-  background: white;
   justify-content: space-around;
-  @media (max-width: $screen-sm-max) {
+  @media (min-width: $screen-sm-min) {
     background-color: transparent;
-    top: 95px;
+    top: 135px;
   }
 }
 
@@ -1105,7 +1113,7 @@ nav {
   align-items: center;
   justify-content: center;
   display: flex;
-  box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
   i.fa {
     padding: 0 3px;
     color: $divider-color-2;
@@ -1184,7 +1192,7 @@ nav {
     }
     .input-group {
       z-index: 1000;
-      box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4);
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
     }
   }
   @media (max-width: $screen-xs-max) {
@@ -1451,7 +1459,11 @@ nav {
 }
 
 .view-container-padded {
+  @media (max-width: $screen-sm-max) {
+    margin-top: 80px;
+  }
   @media (max-width: $screen-xs-max) {
+    margin-top: 50px;
     padding: 10px;
   }
   @media (min-width: $screen-sm-min) {
@@ -1599,7 +1611,7 @@ a:after {
 }
 
 .service-state-brand {
-  @media (max-width: $screen-sm-max) {
+  @media (max-width: $screen-xs-max) {
     left: 50px;
   }
 }
@@ -1722,6 +1734,14 @@ i.fa {
   margin-top: -45px;
   &.collapse.in {
     border-bottom: 1px solid $divider-color;
+  }
+  @media (max-width: $screen-xs-max) {
+    padding: 105px 0 10px 0;
+    margin-top: -95px;
+  }
+  @media (min-width: $screen-xs-max) {
+    padding: 135px 0 10px 0;
+    margin-top: -125px;
   }
 }
 
