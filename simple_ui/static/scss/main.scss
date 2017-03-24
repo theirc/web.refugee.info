@@ -622,17 +622,6 @@ region-flag {
   }
 }
 
-.general-info-box {
-  border: 2px solid $divider-color;
-  width: 100%;
-  padding: 10px;
-  margin-bottom: 10px;
-  text-align: center;
-  @media print {
-    display: none;
-  }
-}
-
 .general-info-divider {
   width: 100%;
   border-top: 1px solid $divider-color;
@@ -1872,13 +1861,6 @@ i.fa {
   &:hover {
     background-color: $panel-color-dark;
   }
-}
-
-.general-info-box {
-  padding: 10px;
-  border: 2px solid $divider-color;
-  text-align: center;
-  margin-bottom: 10px;
 }
 
 .important-information-container {

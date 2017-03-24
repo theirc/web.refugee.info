@@ -5,8 +5,6 @@
     <location-info location="ctrl.location"></location-info>
     <div class="general-info-container">
 
-        <div class="general-info-box hidden-xs" ng-repeat="b in ctrl.location.banners" ng-bind-html="b.html"></div>
-
         <div class="general-info-divider" ng-if="ctrl.location.content"></div>
         <div class="general-info-item" ng-repeat="p in ctrl.location.content" id="{$ 'Anchor_' + p.slug $}"
              ng-show="!p.pop_up">
