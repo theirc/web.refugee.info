@@ -2,7 +2,6 @@
     <location-selected></location-selected>
     <location-buttons></location-buttons>
     <location-info location="ctrl.location"></location-info>
-    <quick-links class="hidden-xs" location="ctrl.location" direction="baseController.direction()"></quick-links>
     <div ng-repeat="b in ctrl.location.banners">
         <div class="general-info-box" ng-bind-html="b.html" name="{$ 'Anchor_' + b.slug $}"
              item="b" collapse-on-anchor-scroll></div>
