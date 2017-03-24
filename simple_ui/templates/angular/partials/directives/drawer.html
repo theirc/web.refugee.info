@@ -52,16 +52,6 @@
                 <i class="fa fa-envelope" aria-hidden="true"></i>
                 <span class="padded">{$ 'ANNOUNCEMENTS' | translate $}</span>
             </a>
-
-            <div class="section-header">
-                {$ 'QUICK_LINKS' | translate $}
-            </div>
-            <a ui-sref="locationDetails.info({slug: location.slug, infoSlug: info.slug, '#': 'info'})"
-               ui-sref-active="active"
-               ng-repeat="info in location.important"
-               class="navigation-link" snap-close>
-                <span class="padded">{$ info.title $}</span>
-            </a>
         </div>
 
         <div class="section-header">

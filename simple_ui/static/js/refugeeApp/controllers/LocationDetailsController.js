@@ -9,15 +9,4 @@ angular.module('refugeeApp').controller('LocationDetailsController', function ($
     $scope.$on('$stateChangeStart', function (event, toState, toParams) {
         toParams.slug = vm.slug;
     });
-
-    $scope.$on('$stateChangeSuccess', function (event, toState) {
-        if (toState.name == 'locationDetails.info') {
-            var path = $location.path().split('/');
-            path[1] = vm.slug;
-            var newPath = path.join('/');
-            if ($location.path() != newPath) {
-                $location.path(newPath).replace();
-            }
-        }
-    });
 });
