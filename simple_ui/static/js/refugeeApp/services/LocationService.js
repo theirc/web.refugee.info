@@ -11,7 +11,8 @@ angular.module('refugeeApp').factory('LocationService', function ($http, apiUrl,
                     page: page,
                     page_size: 100,
                     search: search,
-                    type_numbers: typeNumbers.join()
+                    type_numbers: typeNumbers.join(),
+                    filter: 'wide'
                 },
                 headers: {'Accept-Language': $translate.proposedLanguage() || $translate.use()}
             });
