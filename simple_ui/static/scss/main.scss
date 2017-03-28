@@ -637,6 +637,7 @@ region-flag {
   cursor: pointer;
   background-color: transparent;
   border-bottom: 1px solid $divider-color;
+  position: relative;
   &.collapsed {
     @media print {
       display: none;
