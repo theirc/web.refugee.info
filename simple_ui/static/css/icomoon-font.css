@@ -1,0 +1,129 @@
+@font-face {
+  font-family: 'icomoon';
+  src:  url('../fonts/icomoon.eot?jpas6y');
+  src:  url('../fonts/icomoon.eot?jpas6y#iefix') format('embedded-opentype'),
+    url('../fonts/icomoon.ttf?jpas6y') format('truetype'),
+    url('../fonts/icomoon.woff?jpas6y') format('woff'),
+    url('../fonts/icomoon.svg?jpas6y#icomoon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'icomoon' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-language-lessons:before {
+  content: "\e908";
+}
+.icon-mediation:before {
+  content: "\e909";
+}
+.icon-voluntary-return:before {
+  content: "\e90a";
+}
+.icon-bath:before {
+  content: "\e900";
+}
+.icon-changing-room:before {
+  content: "\e901";
+}
+.icon-charging:before {
+  content: "\e902";
+}
+.icon-children-place:before {
+  content: "\e903";
+}
+.icon-classroom:before {
+  content: "\e904";
+}
+.icon-computer:before {
+  content: "\e905";
+}
+.icon-cultural:before {
+  content: "\e907";
+}
+.icon-dentist:before {
+  content: "\e90c";
+}
+.icon-Infant-feeding:before {
+  content: "\e90d";
+}
+.icon-jobs:before {
+  content: "\e90e";
+}
+.icon-lawyer:before {
+  content: "\e90f";
+}
+.icon-library:before {
+  content: "\e910";
+}
+.icon-lodging:before {
+  content: "\e911";
+}
+.icon-medkit:before {
+  content: "\e912";
+}
+.icon-mother-and-baby:before {
+  content: "\e913";
+}
+.icon-pharmacy:before {
+  content: "\e914";
+}
+.icon-pregnant-woman:before {
+  content: "\e915";
+}
+.icon-psychology:before {
+  content: "\e916";
+}
+.icon-question:before {
+  content: "\e917";
+}
+.icon-resting:before {
+  content: "\e918";
+}
+.icon-shower:before {
+  content: "\e919";
+}
+.icon-snacks:before {
+  content: "\e91a";
+}
+.icon-soap:before {
+  content: "\e91b";
+}
+.icon-social_service:before {
+  content: "\e91c";
+}
+.icon-soup:before {
+  content: "\e91d";
+}
+.icon-toilet:before {
+  content: "\e91e";
+}
+.icon-toiletries:before {
+  content: "\e91f";
+}
+.icon-translators:before {
+  content: "\e920";
+}
+.icon-tshirt:before {
+  content: "\e921";
+}
+.icon-vocational:before {
+  content: "\e922";
+}
+.icon-wifi:before {
+  content: "\e923";
+}
+
