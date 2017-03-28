@@ -1,3 +1,9 @@
+.snap-content {
+  @media print {
+    display: block !important;
+  }
+}
+
 .general-info-item-content {
     @media print {
     //  adjust content css for printing
