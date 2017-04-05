@@ -8,7 +8,7 @@
             {$ info.title $}
         </div>
         <div class="important-information-content">
-            <div class="updated-at">{$ 'LAST_UPDATED_ON' | translate $}&nbsp;<span class="tel">{$ info.updated_at | date: "dd/MM/y hh:mm a" $}</span>&nbsp;
+            <div class="updated-at" ng-hide="info.hide_last_updated">{$ 'LAST_UPDATED_ON' | translate $}&nbsp;<span class="tel">{$ info.updated_at | date: "dd/MM/y hh:mm a" $}</span>&nbsp;
             </div>
             <div ng-bind-html="info.html" name="{$ 'Anchor_' + info.slug $}" item="info"
                  collapse-on-anchor-scroll></div>
