@@ -167,7 +167,9 @@ drawer {
   }
 
   .brand-logo img {
-    position: fixed;
+    @media (min-width: $screen-md-min) {
+      position: fixed;
+    }
     @media (max-width: $screen-xs-max) {
       padding-top: 7px;
       max-height: 40px;
@@ -231,9 +233,11 @@ drawer {
 }
 
 .main-flex-container {
-  flex: 1;
-  overflow-y: auto;
-  overflow-x: hidden;
+  @media (min-width: $screen-md-min) {
+    flex: 1;
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
 }
 
 .powered-by {
