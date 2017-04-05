@@ -18,7 +18,7 @@
                 </div>
             </a>
             <div class="general-info-item-content collapse" ng-if="!p.pop_up" id="{$ p.slug $}">
-                <div class="updated-at">{$ 'LAST_UPDATED_ON' | translate $}&nbsp;<span class="tel">{$ p.updated_at | date: "dd/MM/y hh:mm a" $}</span>&nbsp;
+                <div class="updated-at" ng-hide="p.hide_last_updated">{$ 'LAST_UPDATED_ON' | translate $}&nbsp;<span class="tel">{$ p.updated_at | date: "dd/MM/y hh:mm a" $}</span>&nbsp;
                 </div>
                 <div bind-html-compile="p.html"></div>
                 <div class="general-info-item-header collapse-button" data-toggle="collapse"
