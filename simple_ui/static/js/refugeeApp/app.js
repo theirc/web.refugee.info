@@ -131,6 +131,16 @@ angular.module('refugeeApp', ['ui.router', 'ngCookies', 'ngSanitize', 'djng.rmi'
                 templateUrl: 'partials/location.home.html',
                 controller: 'LocationDetailsController as ctrl'
             })
+            .state('locationDetails.info', {
+                url: '/info/:infoSlug',
+                templateUrl: 'partials/location.important-information.html',
+                controller: 'LocationDetailsController as ctrl'
+            })
+            .state('locationDetails.notifications', {
+                url: '/notifications/',
+                templateUrl: 'partials/location.notifications.html',
+                controller: 'LocationDetailsController as ctrl'
+            })
             .state('locationDetails.services', {
                 url: '/services/?query&type',
                 templateUrl: 'partials/location.services.html',
@@ -179,14 +189,14 @@ angular.module('refugeeApp', ['ui.router', 'ngCookies', 'ngSanitize', 'djng.rmi'
 
                     if (parameters) {
                         /*
-                         Recording all events. Else ifs may have been filtering data unnecessary
-                         */
+                        Recording all events. Else ifs may have been filtering data unnecessary
+                        */
                         if ('infoSlug' in parameters) {
                             $window.ga('send', 'event', 'info-page-view', parameters.infoSlug);
-                        }
+                        } 
                         if ('slug' in parameters) {
                             $window.ga('send', 'event', 'page-view', parameters.slug);
-                        }
+                        } 
                         if ('serviceId' in parameters) {
                             $window.ga('send', 'event', 'service-view', parameters.serviceId);
                         }
