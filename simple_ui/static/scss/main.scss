@@ -890,6 +890,7 @@ nav {
   height: 50px;
   background-color: $green-accent-color !important;
   border-radius: 10px;
+  margin: auto;
   @include flexbox();
   @include align-items(center);
   @include justify-content(center);
