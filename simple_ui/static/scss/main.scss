@@ -748,7 +748,7 @@ change-location-button {
 }
 
 .service-list-provider {
-  font-weight: bold;
+  font-style: italic;
   margin-top: 0;
   margin-bottom: 0;
 }
@@ -757,11 +757,17 @@ change-location-button {
   @include transition-mixin(background-color, 0.15, linear);
   @include flexbox();
   flex-wrap: wrap;
-  height: 80px;
+  height: 115px;
   @include align-items(center);
   cursor: pointer;
   &:hover {
     background-color: $primary-color-2;
+  }
+  @media (max-width: 1366px) and (min-width: $screen-sm-min) {
+    height: 125px;
+  }
+  @media (max-width: $screen-xs-max) {
+    height: 90px;
   }
 }
 
