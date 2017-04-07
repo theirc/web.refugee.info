@@ -146,34 +146,36 @@
     text-align: center;
   }
 
-  .img-centered {
-    display: block;
-    margin: auto;
-    max-width: 100%;
-    clear: both;
-  }
-
   img.outside-buttons {
     @media (min-width: $screen-sm-min) {
       max-width: 250px !important;
     }
   }
 
-  .logo-centered {
-    display: block;
-    margin: auto;
-    @media (min-width: $screen-sm-min) {
-      max-width: 250px;
-    }
-    @media (max-width: $screen-sm-min) {
-      max-width: 100%;
-    }
-    clear: both;
-  }
 }
 
 .general-info-container li, .app li, .general-info-item-content li {
   margin-bottom: 5px;
+}
+
+
+.img-centered, .img-centred {
+  display: block;
+  margin: auto;
+  max-width: 100%;
+  clear: both;
+}
+
+.logo-centered, .logo-centred {
+  display: block;
+  margin: auto;
+  @media (min-width: $screen-sm-min) {
+    max-width: 250px;
+  }
+  @media (max-width: $screen-sm-min) {
+    max-width: 100%;
+  }
+  clear: both;
 }
 
 .country-cell {
