@@ -90,6 +90,7 @@ angular.module('refugeeApp').controller('LocationServicesController', function (
         vm.busy = true;
         LocationService.getServices(vm.location, page, vm.search, vm.filterTypes).then(function (response) {
             response.data.results.forEach(function (service) {
+                service.hideFromList = false;
                 vm.services.push(service);
             });
             vm.chunkedServicesList = chunk(vm.services, 3);

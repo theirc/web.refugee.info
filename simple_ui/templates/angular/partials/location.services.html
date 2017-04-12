@@ -8,7 +8,8 @@
         <services-map region="ctrl.location.envelope"
                       services="ctrl.services"
                       map-view="ctrl.mapView"
-                      is-mobile="baseController.isMobile()">
+                      is-mobile="baseController.isMobile()"
+                      chunked-services-list="ctrl.chunkedServicesList">
         </services-map>
         <search-bar class="mobile-search-bar" ng-class="{'search-background': !ctrl.mapView || ctrl.filters}" search="ctrl.search" direction="baseController.direction()"></search-bar>
         <div ng-class="{'above': !ctrl.mapView, 'below': ctrl.mapView || ctrl.filters}">
