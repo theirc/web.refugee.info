@@ -6,7 +6,8 @@ angular.module('refugeeApp').directive('servicesMap', function(leafletData, $sta
             region: '=',
             services: '=',
             mapView: '=',
-            isMobile: '='
+            isMobile: '=',
+            chunkedServicesList: '='
         },
         link: {
             pre: function (scope) {
@@ -59,6 +60,14 @@ angular.module('refugeeApp').directive('servicesMap', function(leafletData, $sta
                     refreshMap();
                 };
 
+                function chunk(arr, size) {
+                    var newArr = [];
+                    for (var i = 0; i < arr.length; i += size) {
+                        newArr.push(arr.slice(i, i + size));
+                    }
+                    return newArr;
+                }
+
                 leafletData.getMap().then(function (map) {
                     var polygon = L.geoJson(scope.region);
                     map.fitBounds(polygon.getBounds());
@@ -67,8 +76,32 @@ angular.module('refugeeApp').directive('servicesMap', function(leafletData, $sta
                         map.sleep.disable();
                     }
                     map.on({
-                        click: function() {
+                        click: () => {
                             scope.showServiceInfo = false;
+                        },
+                        zoomend: () => {
+                            for (let service of scope.services) {
+                                let position = L.latLng(service.location.coordinates[1], service.location.coordinates[0]);
+                                service.hideFromList = !map.getBounds().contains(position);
+                            }
+                            if (!scope.isMobile) {
+                                scope.chunkedServicesList = chunk(scope.services.filter( (s) => s.hideFromList == false ), 3);
+                            }
+                            else {
+                                scope.chunkedServicesList = chunk(scope.services, 3);
+                            }
+                        },
+                        moveend: () => {
+                            for (let service of scope.services) {
+                                let position = L.latLng(service.location.coordinates[1], service.location.coordinates[0]);
+                                service.hideFromList = !map.getBounds().contains(position);
+                            }
+                            if (!scope.isMobile) {
+                                scope.chunkedServicesList = chunk(scope.services.filter( (s) => s.hideFromList == false ), 3);
+                            }
+                            else {
+                                scope.chunkedServicesList = chunk(scope.services, 3);
+                            }
                         }
                     });
                     infoDiv.addTo(map);
@@ -105,10 +138,18 @@ angular.module('refugeeApp').directive('servicesMap', function(leafletData, $sta
                                 }
                             }
                         });
+                        let position = L.latLng(lat, lng);
+                        service.hideFromList = !map.getBounds().contains(position);
                         markers.addLayer(marker);
                     });
                     if (services && services.length > 0) {
                         map.addLayer(markers);
+                        if (!scope.isMobile) {
+                            scope.chunkedServicesList = chunk(scope.services.filter( (s) => s.hideFromList == false ), 3);
+                        }
+                        else {
+                            scope.chunkedServicesList = chunk(scope.services, 3);
+                        }
                     }
                 };
 
