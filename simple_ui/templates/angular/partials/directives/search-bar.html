@@ -1,17 +1,14 @@
 <div class="search-bar">
-    <div class="col-md-6">
-        <p class="form-control-static title">{$ 'NEAREST_SERVICES' | translate $}</p>
-    </div>
-    <div class="col-md-6">
+    <div class="col-md-12">
         <div class="input-group">
             <div class="input-group-addon">
-                <i class="fa fa-search"></i>
+                <i class="fa fa-search "></i>
             </div>
             <input ng-model-options="{ debounce: 500 }" ng-model="ctrl.search" type="text" class="form-control"
-                   placeholder="{$ 'SEARCH' | translate $}" style="font-size: 16px">
+                   placeholder="{$ 'SEARCH' | translate $}">
             <div class="input-group-btn" ng-class="{open: open}" ng-if="!baseController.isMobile()">
                 <button class="btn dropdown-toggle" ng-click="open=!open">
-                    <span><i class="fa fa-filter" style="padding-right: 2px"></i>FILTER</span>
+                    <span><i class="fa fa-filter" style="padding-right: 2px"></i>{$ 'TYPES_OF_SERVICES' | translate $}</span>
                 </button>
                 <ul class="dropdown-menu services-filter-list" ng-class="baseController.direction()"
                     aria-labelledby="dropdownMenu">

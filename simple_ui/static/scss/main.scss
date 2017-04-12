@@ -1047,6 +1047,7 @@ nav {
     border: none;
     padding-left: 5px;
     outline: none;
+    font-size: 20px;
     box-shadow: none !important;
     @media (max-width: $screen-sm-max) {
       background-color: #FFFFFF;
@@ -1131,6 +1132,17 @@ nav {
       color: #FFF;
     }
   }
+  &.types-of-services {
+    span {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 12px;
+      i {
+        font-size: 14px;
+      }
+    }
+  }
 }
 
 .search-background {
@@ -1176,6 +1188,17 @@ nav {
 }
 
 .mobile-search-bar {
+  .input-group {
+    height: 40px;
+    font-size: 20px;
+    input {
+      height: 40px;
+      font-size: 20px;
+    }
+    i {
+      font-size: 20px;
+    }
+  }
   @media (max-width: $screen-sm-max) {
     position: fixed;
     top: 75px;
@@ -1188,12 +1211,21 @@ nav {
     .form-control-static {
       display: none;
     }
-    .col-md-6 {
+    .col-md-12 {
       padding: 0;
     }
     .input-group {
       z-index: 1000;
       box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+      font-size: 16px;
+      height: 34px;
+      input {
+        height: 34px;
+        font-size: 16px;
+      }
+      i {
+        font-size: 16px;
+      }
     }
   }
   @media (max-width: $screen-xs-max) {
@@ -1201,11 +1233,10 @@ nav {
   }
   @media (max-width: $screen-sm-max) and (min-width: $screen-sm-min) {
     .input-group {
-      width: 60%;
       margin: 0 auto;
-
     }
   }
+
 }
 
 .mobile-service-map-container {
