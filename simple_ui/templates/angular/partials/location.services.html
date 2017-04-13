@@ -9,7 +9,8 @@
                       services="ctrl.services"
                       map-view="ctrl.mapView"
                       is-mobile="baseController.isMobile()"
-                      chunked-services-list="ctrl.chunkedServicesList">
+                      chunked-services-list="ctrl.chunkedServicesList"
+                      loading="ctrl.busy">
         </services-map>
         <search-bar class="mobile-search-bar" ng-class="{'search-background': !ctrl.mapView || ctrl.filters}" search="ctrl.search" direction="baseController.direction()"></search-bar>
         <div ng-class="{'above': !ctrl.mapView, 'below': ctrl.mapView || ctrl.filters}">
@@ -17,13 +18,13 @@
         </div>
         <div class="col-xs-12 services-filter-list-container-mobile" ng-class="{'above': ctrl.filters, 'below': !ctrl.filters}" ng-if="baseController.isMobile()">
             <ul class="services-filter-list-mobile" ng-class="baseController.direction()">
-                <li class="filter-line-mobile" data-ng-repeat="type in ctrl.serviceTypes" style="cursor: pointer;">
+                <li class="filter-line-mobile" data-ng-repeat="type in ctrl.serviceTypesMobile" style="cursor: pointer;">
                     <div class="services-filter-list-icon-container-mobile" ng-class="baseController.direction()">
                         <i class="fa {$ type.vector_icon $}"></i>
                     </div>
                     <div class="services-filter-list-item-mobile">
-                        <a data-ng-click="setSelectedType()">
-                            <span>{$ type.name $}<i ng-class="isChecked(type.number) ? 'fa fa-check' : ''"></i></span>
+                        <a data-ng-click="ctrl.setSelectedTypeMobile(type)">
+                            <span>{$ type.name $}</span>
                         </a>
                     </div>
                 </li>

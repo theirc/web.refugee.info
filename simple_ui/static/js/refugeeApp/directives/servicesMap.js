@@ -7,7 +7,8 @@ angular.module('refugeeApp').directive('servicesMap', function(leafletData, $sta
             services: '=',
             mapView: '=',
             isMobile: '=',
-            chunkedServicesList: '='
+            chunkedServicesList: '=',
+            loading: '='
         },
         link: {
             pre: function (scope) {
@@ -36,7 +37,12 @@ angular.module('refugeeApp').directive('servicesMap', function(leafletData, $sta
 
                 infoDiv.update = function (service) {
                     if (!service) {
-                        this._div.innerHTML = ('<b>' + $filter('translate')('NO_SERVICES_INFO', { siteName: scope.$root.translatedSiteName }) + '</b>');
+                        if (scope.loading) {
+                            this._div.innerHTML = ('<b>' + $filter('translate')('LOADING', { siteName: scope.$root.translatedSiteName }) + '</b>');
+                        }
+                        else {
+                            this._div.innerHTML = ('<b>' + $filter('translate')('NO_SERVICES_INFO', { siteName: scope.$root.translatedSiteName }) + '</b>');
+                        }
                     } else {
                         this._div.innerHTML = '<b>' + service.name + '</b><br/>' + $filter('limitTo')(service.description, 250);
                     }
