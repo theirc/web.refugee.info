@@ -179,6 +179,15 @@ angular.module('refugeeApp').directive('servicesMap', function(leafletData, $sta
                     }
                 }, true);
 
+                scope.$watch('loading', function(newValue) {
+                    if (angular.isDefined(newValue)) {
+                        scope.loading = newValue;
+                        if (!scope.services.length) {
+                            showInfo();
+                        }
+                    }
+                }, true);
+
                 scope.$watch('mapView', function (newValue, oldValue) {
                     if (oldValue === newValue) {
                         return;

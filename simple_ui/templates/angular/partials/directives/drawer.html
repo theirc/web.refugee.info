@@ -29,7 +29,7 @@
                 <span>{$ 'IMPORTANT_INFORMATION' | translate $}</span>
             </a>
             <a ui-sref="locationDetails.services({slug: location.slug, mapView: true})"
-               ng-class="{'active': baseController.isServicesState() && $root.mapView }" class="navigation-link" snap-close>
+               ng-class="{'active': baseController.isServicesState()}" class="navigation-link" snap-close>
                 <i class="fa fa-map" aria-hidden="true"></i>
                 <span>{$ 'SERVICE_MAP' | translate $}</span>
             </a>
