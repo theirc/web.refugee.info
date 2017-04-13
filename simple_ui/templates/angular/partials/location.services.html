@@ -30,8 +30,8 @@
             </ul>
         </div>
         <div class="mobile-services-map-navigation col-xs-12" ng-if="baseController.isMobile()" ng-class="{'search-background': !ctrl.mapView || ctrl.filters}" >
-            <div class="col-xs-4 mobile-services-map-navigation-button" ng-class="{'active': ctrl.filters}" ng-click="ctrl.filtersView()">
-                <span style="text-transform: uppercase;"><i class="fa fa-filter"></i>{$ 'FILTER' | translate $}</span>
+            <div class="col-xs-4 mobile-services-map-navigation-button types-of-services" ng-class="{'active': ctrl.filters}" ng-click="ctrl.filtersView()">
+                <span style="text-transform: uppercase;"><i class="fa fa-filter"></i>{$ 'TYPES_OF_SERVICES' | translate $}</span>
             </div>
             <div class="col-xs-4 mobile-services-map-navigation-button" ng-click="ctrl.listView()"  ng-class="{'active': !ctrl.mapView && !ctrl.filters}">
                 <span style="text-transform: uppercase;"><i class="fa fa-list"></i>{$ 'LIST' | translate $}</span>
