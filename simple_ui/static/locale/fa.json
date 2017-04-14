@@ -27,6 +27,7 @@
   "NO_SERVICES": "هیچ سرویسی پیدا نشد ",
   "NEAREST_SERVICES": "نزدیک ترین سرویس ها به جایی که شما در آن هستید ",
   "FILTER_BY_TYPE": "سرویس ها را بر اساس دسته بندی ها فیلتر کن",
+  "TYPES_OF_SERVICES": "انواع خدمات",
   "SHARE": "اشتراک",
   "SEARCH": "جستجو کن",
   "IMPORTANT_INFORMATION": "خانه",
@@ -58,7 +59,7 @@
   "LIST": "فهرست",
   "MAP": "نقشه",
 
-  "SERVICE_MAP": "الخدمات نقشه",
+  "SERVICE_MAP": "نقشه خدمات در",
   "CLOSE": "بستن",
 
   "SUNDAY": "یکشنبه",

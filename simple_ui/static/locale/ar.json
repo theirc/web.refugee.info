@@ -27,6 +27,7 @@
   "NO_SERVICES": "لا توجد خدمات",
   "NEAREST_SERVICES": "أقرب الخدمات لموقعك",
   "FILTER_BY_TYPE": "فلترة الخدمات حسب النوع",
+  "TYPES_OF_SERVICES": "أنواع الخدمـات",
   "SHARE": "شارك",
   "SEARCH": "بحث",
   "IMPORTANT_INFORMATION": "الصفحة الرئيسية",
@@ -58,7 +59,7 @@
   "LIST": "قائمة",
   "MAP": "خريطة",
 
-  "SERVICE_MAP": "خريطة الخدمات",
+  "SERVICE_MAP": "خـارطة الخدمـات المتوفرة في",
   "CLOSE": "أغلق",
 
   "SUNDAY": "الأحد",

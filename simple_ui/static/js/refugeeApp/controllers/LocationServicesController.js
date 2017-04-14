@@ -8,12 +8,15 @@ function chunk(arr, size) {
 
 angular.module('refugeeApp').controller('LocationServicesController', function ($scope, $state, $stateParams, LocationService, location, $location, $rootScope) {
     var vm = this;
-    vm.filters = false;
+    vm.filters = true;
     vm.busy = false;
     vm.noMoreData = false;
     vm.chunkedServicesList = [];
     vm.services = [];
     vm.serviceTypes = {};
+    vm.serviceTypesMobile = {
+        0: {'name': 'All Types'}
+    };
     vm.slug = $stateParams.slug;
     vm.location = location;
     vm.mapView = $stateParams.mapView;
@@ -39,6 +42,7 @@ angular.module('refugeeApp').controller('LocationServicesController', function (
     LocationService.getServiceTypes().then(function (response) {
         response.data.forEach(function (serviceType) {
             vm.serviceTypes[serviceType.id] = serviceType;
+            vm.serviceTypesMobile[serviceType.id] = serviceType;
         });
         vm.loaded = true;
     });
@@ -90,6 +94,7 @@ angular.module('refugeeApp').controller('LocationServicesController', function (
         vm.busy = true;
         LocationService.getServices(vm.location, page, vm.search, vm.filterTypes).then(function (response) {
             response.data.results.forEach(function (service) {
+                service.hideFromList = false;
                 vm.services.push(service);
             });
             vm.chunkedServicesList = chunk(vm.services, 3);
@@ -118,5 +123,16 @@ angular.module('refugeeApp').controller('LocationServicesController', function (
         vm.filters = false;
         vm.mapView = false;
         $rootScope.mapView = false;
+    };
+
+    vm.setSelectedTypeMobile = function(type) {
+        if (type.number) {
+            $location.search('type', type.number);
+        }
+        else {
+            $location.search('type', '');
+        }
+        vm.mapView = true;
+        vm.filters = false;
     };
 });

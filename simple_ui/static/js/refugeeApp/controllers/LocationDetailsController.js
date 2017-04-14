@@ -1,4 +1,4 @@
-angular.module('refugeeApp').controller('LocationDetailsController', function ($scope, $stateParams, $state, djangoRMI, location, $location) {
+angular.module('refugeeApp').controller('LocationDetailsController', function ($scope, $stateParams, $state, djangoRMI, location, $location, $uiViewScroll) {
     var vm = this;
     vm.data = {};
     vm.loaded = false;
@@ -17,6 +17,10 @@ angular.module('refugeeApp').controller('LocationDetailsController', function ($
             var newPath = path.join('/');
             if ($location.path() != newPath) {
                 $location.path(newPath).replace();
+            }
+            var el = angular.element('location-selected');
+            if (el) {
+                $uiViewScroll(el);
             }
         }
     });
