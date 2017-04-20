@@ -3,8 +3,7 @@
         <location-selected class="hidden-sm-down"></location-selected>
         <location-buttons class="hidden-sm-down"></location-buttons>
         <location-info class="hidden-sm-down" location="ctrl.location"></location-info>
-        <quick-links class="hidden-sm-down" location="ctrl.location"
-                     direction="baseController.direction()"></quick-links>
+        <search-bar class="mobile-search-bar" ng-class="{'search-background': !ctrl.mapView || ctrl.filters}" search="ctrl.search" direction="baseController.direction()"></search-bar>
         <services-map region="ctrl.location.envelope"
                       services="ctrl.services"
                       map-view="ctrl.mapView"
@@ -12,7 +11,6 @@
                       chunked-services-list="ctrl.chunkedServicesList"
                       loading="ctrl.busy">
         </services-map>
-        <search-bar class="mobile-search-bar" ng-class="{'search-background': !ctrl.mapView || ctrl.filters}" search="ctrl.search" direction="baseController.direction()"></search-bar>
         <div ng-class="{'above': !ctrl.mapView, 'below': ctrl.mapView || ctrl.filters}">
             <services-list></services-list>
         </div>
