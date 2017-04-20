@@ -1,5 +1,5 @@
 {
-  "REFUGEE_INFO": "Refugee Info",
+  "REFUGEE_INFO": "Refugee.Info",
   "ALKHADAMAT_INFO": "Alkhadamat Info",
   "ABOUT_US": "About us",
   "GIVE_FEEDBACK": "Give Feedback",
@@ -45,13 +45,11 @@
   "NO_LOCATION": "Please choose location first!",
   "ANNOUNCEMENTS": "Announcements",
 
-  "LANDING_1": "Welcome to {$ siteName $}. We provide refugees with trustworthy, accurate information.",
+  "LANDING_1": "Welcome to {$ siteName $}.",
   "LANDING_2": "Our website provides information specific to your location.",
-  "LANDING_3": "Select your location from the list of options below to begin:",
 
   "LOCATION_INFO_1": "Welcome to {$ siteName $}.",
-  "LOCATION_INFO_2": "You have selected <strong>{$ location $}</strong> as your location. All the information on this page is specific to <strong>{$ location $}</strong> and your rights whilst staying there.",
-  "LOCATION_INFO_3": "Explore each of the boxes below to learn more.",
+  "LOCATION_INFO_2": "You have selected <strong>{$ location $}</strong> as your location. All the information on this page is specific to <strong>{$ location $}</strong>.",
 
   "NO_SERVICES_INFO": "Our team has not yet mapped the services in your location.",
 
