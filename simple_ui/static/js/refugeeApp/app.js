@@ -43,7 +43,7 @@ angular.module('refugeeApp', ['ui.router', 'ngCookies', 'ngSanitize', 'djng.rmi'
                 }
 
                 if (pieces.length > 1) {
-                    return [path, pieces[1]].join('#')
+                    return [path, pieces[1]].join('#');
                 }
 
                 return path;
