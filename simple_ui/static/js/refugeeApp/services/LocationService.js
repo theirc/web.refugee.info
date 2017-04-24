@@ -24,10 +24,27 @@ angular.module('refugeeApp').factory('LocationService', function ($http, apiUrl,
                 headers: {'Accept-Language': $translate.proposedLanguage() || $translate.use()}
             });
         },
+        getServiceTypesMobile: function (location) {
+            return $http({
+                method: 'GET',
+                url: apiUrl + '/v2/custom-servicetypes/',
+                params: {
+                    geographic_region: location.slug,
+                },
+                headers: {'Accept-Language': $translate.proposedLanguage() || $translate.use()}
+            });
+        },
         getService: function (serviceId) {
             return $http({
                 method: 'GET',
                 url: apiUrl + '/v2/services/search/?format=json&id=' + serviceId,
+                headers: {'Accept-Language': $translate.proposedLanguage() || $translate.use()}
+            });
+        },
+        getServiceForPreview: function (serviceId) {
+            return $http({
+                method: 'GET',
+                url: apiUrl + '/v2/services/preview/?format=json&id=' + serviceId,
                 headers: {'Accept-Language': $translate.proposedLanguage() || $translate.use()}
             });
         },

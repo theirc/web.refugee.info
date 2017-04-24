@@ -1,5 +1,5 @@
 {
-  "REFUGEE_INFO": "اطلاعات مهاجر",
+  "REFUGEE_INFO": "Refugee.Info",
   "ABOUT_US": "درباره ما",
   "GIVE_FEEDBACK": "بازخورد",
   "CHANGE_LANGUAGE": "زبان خود را عوض کن ",
@@ -42,10 +42,10 @@
   "NO_LOCATION": "لطفا یک شهر را انتخاب کن.",
   "ANNOUNCEMENTS": "اطلاعیه ها",
 
-  "LANDING_1": "خوش آمدید. {$ siteName $} به.",
+  "LANDING_1": "به {$ siteName $}  خوش آمدید.",
   "LANDING_2": "وبسایت ما اطلاعات به روز رسانی شده و مختص به جایی که شما در آن هستید ارائه میکند.",
 
-  "LOCATION_INFO_1": "خوش آمدید. {$ siteName $} به.",
+  "LOCATION_INFO_1": "به {$ siteName $}  خوش آمدید.",
   "LOCATION_INFO_2": "شما {$ location $} را به عنوان موقعیت جغرافیایی تان انتخاب کرده اید. تمام اطلاعات موجود در این صفحه متختص به {$ location $} است.",
 
   "NO_SERVICES_INFO": "تیم ما هنوز نقشه خدمات موجود در منطقه شما را تهیه نکرده است.",
