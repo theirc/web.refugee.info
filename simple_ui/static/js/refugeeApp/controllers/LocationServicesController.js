@@ -38,13 +38,17 @@ angular.module('refugeeApp').controller('LocationServicesController', function (
         }
     };
     vm.filterTypes = getFilterTypesArr();
-
     LocationService.getServiceTypes().then(function (response) {
         response.data.forEach(function (serviceType) {
             vm.serviceTypes[serviceType.id] = serviceType;
-            vm.serviceTypesMobile[serviceType.id] = serviceType;
         });
         vm.loaded = true;
+    });
+
+    LocationService.getServiceTypesMobile(vm.location).then(function (response) {
+        response.data.forEach(function (service) {
+            vm.serviceTypesMobile[service.type.id] = service.type;
+        });
     });
     var page = 1;
 
@@ -126,8 +130,8 @@ angular.module('refugeeApp').controller('LocationServicesController', function (
     };
 
     vm.setSelectedTypeMobile = function(type) {
-        if (type.number) {
-            $location.search('type', type.number);
+        if (type.id) {
+            $location.search('type', type.id);
         }
         else {
             $location.search('type', '');
