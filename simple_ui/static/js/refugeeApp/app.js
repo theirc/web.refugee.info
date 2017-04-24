@@ -26,6 +26,33 @@ angular.module('refugeeApp', ['ui.router', 'ngCookies', 'ngSanitize', 'djng.rmi'
         $httpProvider.defaults.xsrfHeaderName = 'X-CSRFToken';
         $urlRouterProvider.otherwise('/');
         $urlMatcherFactoryProvider.strictMode(false);
+
+
+        $urlRouterProvider.rule(function ($injector, $location) {
+            var pieces = $location.url().split('#');
+            var path = pieces[0];
+
+            // check to see if the path already has a slash where it should be
+            if (path[path.length - 1] === '/' || path.indexOf('/?') > -1) {
+                return;
+            } else {
+                if (path.indexOf('?') > -1) {
+                    path = path.replace('?', '/?');
+                } else {
+                    path = path + '/';
+                }
+
+                if (pieces.length > 1) {
+                    return [path, pieces[1]].join('#')
+                }
+
+                return path;
+            }
+
+        });
+
+
+
         $logProvider.debugEnabled(false);
         snapRemoteProvider.globalOptions = {
             disable: 'left'
@@ -218,10 +245,10 @@ angular.module('refugeeApp', ['ui.router', 'ngCookies', 'ngSanitize', 'djng.rmi'
                         */
                         if ('infoSlug' in parameters) {
                             $window.ga('send', 'event', 'info-page-view', parameters.infoSlug);
-                        } 
+                        }
                         if ('slug' in parameters) {
                             $window.ga('send', 'event', 'page-view', parameters.slug);
-                        } 
+                        }
                         if ('serviceId' in parameters) {
                             $window.ga('send', 'event', 'service-view', parameters.serviceId);
                         }
