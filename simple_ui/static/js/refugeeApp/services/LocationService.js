@@ -41,6 +41,13 @@ angular.module('refugeeApp').factory('LocationService', function ($http, apiUrl,
                 headers: {'Accept-Language': $translate.proposedLanguage() || $translate.use()}
             });
         },
+        getServiceForPreview: function (serviceId) {
+            return $http({
+                method: 'GET',
+                url: apiUrl + '/v2/services/preview/?format=json&id=' + serviceId,
+                headers: {'Accept-Language': $translate.proposedLanguage() || $translate.use()}
+            });
+        },
         getServiceType: function (service) {
             return $http({
                 method: 'GET',

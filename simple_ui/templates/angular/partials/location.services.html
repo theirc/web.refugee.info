@@ -1,7 +1,7 @@
 <ui-view>
     <div class="col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2 view-container view-container-padded mobile-service-map-container">
         <location-selected class="hidden-sm-down"></location-selected>
-        <location-buttons class="hidden-sm-down"></location-buttons>
+        <location-buttons class="hidden-sm-down" slug="ctrl.slug"></location-buttons>
         <location-info class="hidden-sm-down" location="ctrl.location"></location-info>
         <search-bar class="mobile-search-bar" ng-class="{'search-background': !ctrl.mapView || ctrl.filters}" search="ctrl.search" direction="baseController.direction()"></search-bar>
         <services-map region="ctrl.location.envelope"

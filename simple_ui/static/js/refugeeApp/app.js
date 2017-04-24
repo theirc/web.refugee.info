@@ -96,6 +96,31 @@ angular.module('refugeeApp', ['ui.router', 'ngCookies', 'ngSanitize', 'djng.rmi'
                 },
                 controllerAs: 'ctrl'
             })
+            .state('servicePreview', {
+                url: '/preview/:serviceId',
+                templateUrl: 'partials/location.service-details.html',
+                controller: 'ServiceDetailsController as ctrl',
+                resolve: {
+                    location: () => {
+                        return {};
+                    },
+                    service: function (LocationService, $stateParams) {
+                        return LocationService.getServiceForPreview($stateParams.serviceId).then(function (response) {
+                            return response.data[0];
+                        });
+                    },
+                    serviceIcon: function (LocationService, service) {
+                        return LocationService.getServiceType(service).then(function (response) {
+                            return response.data.vector_icon;
+                        });
+                    },
+                    serviceType: function (LocationService, service) {
+                        return LocationService.getServiceType(service).then(function (response) {
+                            return response.data.name;
+                        });
+                    }
+                }
+            })
             .state('locationDetails', {
                 abstract: true,
                 url: '/:slug',
