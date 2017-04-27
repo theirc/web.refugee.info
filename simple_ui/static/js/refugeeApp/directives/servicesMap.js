@@ -87,8 +87,10 @@ angular.module('refugeeApp').directive('servicesMap', function(leafletData, $sta
                         },
                         zoomend: () => {
                             for (let service of scope.services) {
-                                let position = L.latLng(service.location.coordinates[1], service.location.coordinates[0]);
-                                service.hideFromList = !map.getBounds().contains(position);
+                                if (service.location) {
+                                    let position = L.latLng(service.location.coordinates[1], service.location.coordinates[0]);
+                                    service.hideFromList = !map.getBounds().contains(position);
+                                }
                             }
                             if (!scope.isMobile) {
                                 scope.chunkedServicesList = chunk(scope.services.filter( (s) => s.hideFromList == false ), 3);
@@ -99,8 +101,10 @@ angular.module('refugeeApp').directive('servicesMap', function(leafletData, $sta
                         },
                         moveend: () => {
                             for (let service of scope.services) {
-                                let position = L.latLng(service.location.coordinates[1], service.location.coordinates[0]);
-                                service.hideFromList = !map.getBounds().contains(position);
+                                if (service.location) {
+                                    let position = L.latLng(service.location.coordinates[1], service.location.coordinates[0]);
+                                    service.hideFromList = !map.getBounds().contains(position);
+                                }
                             }
                             if (!scope.isMobile) {
                                 scope.chunkedServicesList = chunk(scope.services.filter( (s) => s.hideFromList == false ), 3);
@@ -121,32 +125,34 @@ angular.module('refugeeApp').directive('servicesMap', function(leafletData, $sta
                 var drawServices = function(map, services, isMobile) {
                     markers.clearLayers();
                     services && services.forEach(function(service) {
-                        var lat = service.location.coordinates[1];
-                        var lng = service.location.coordinates[0];
-                        var icon = L.divIcon({
-                            className: 'service-list-item-icon-container-map',
-                            html: '<img src="/static/images/marker.png" class="service-icon-map">',
-                            iconSize: null
-                        });
-                        var marker = L.marker([lat, lng], {
-                            icon: icon,
-                            service: service,
-                            riseOnHover: true
-                        });
-                        marker.on({
-                            mouseover: showInfo,
-                            mouseout: hideDiv,
-                            click: function (e) {
-                                if (isMobile) {
-                                    displayServiceInfo(e);
-                                } else {
-                                    markerClick(e);
+                        if (service.location) {
+                            var lat = service.location.coordinates[1];
+                            var lng = service.location.coordinates[0];
+                            var icon = L.divIcon({
+                                className: 'service-list-item-icon-container-map',
+                                html: '<img src="/static/images/marker.png" class="service-icon-map">',
+                                iconSize: null
+                            });
+                            var marker = L.marker([lat, lng], {
+                                icon: icon,
+                                service: service,
+                                riseOnHover: true
+                            });
+                            marker.on({
+                                mouseover: showInfo,
+                                mouseout: hideDiv,
+                                click: function (e) {
+                                    if (isMobile) {
+                                        displayServiceInfo(e);
+                                    } else {
+                                        markerClick(e);
+                                    }
                                 }
-                            }
-                        });
-                        let position = L.latLng(lat, lng);
-                        service.hideFromList = !map.getBounds().contains(position);
-                        markers.addLayer(marker);
+                            });
+                            let position = L.latLng(lat, lng);
+                            service.hideFromList = !map.getBounds().contains(position);
+                            markers.addLayer(marker);
+                        }
                     });
                     if (services && services.length > 0) {
                         map.addLayer(markers);
