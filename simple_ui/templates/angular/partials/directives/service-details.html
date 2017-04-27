@@ -41,8 +41,10 @@
                 <h2 class="service-description-title">
                     {$ 'ADDRESS' | translate $}
                 </h2>
-                <p>{$ ctrl.service.address $}</p>
-                <p>{$ ctrl.service.address_in_country_language $}</p>
+                <p ng-if="ctrl.service.address_city">{$ ctrl.service.address_city $}</p>
+                <p ng-if="ctrl.service.address">{$ ctrl.service.address $}</p>
+                <p ng-if="ctrl.service.address_floor">{$ ctrl.service.address_floor $}</p>
+                <p ng-if="ctrl.service.address_in_country_language">{$ ctrl.service.address_in_country_language $}</p>
             </div>
         </div>
 
