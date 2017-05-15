@@ -91,6 +91,15 @@ angular.module('refugeeApp').controller('LocationServicesController', function (
         }
     };
 
+    vm.getServiceColor = function (url) {
+        var serviceType = vm.serviceTypes[url];
+        if (!serviceType || !serviceType.color) {
+            return '#00BA50';
+        } else {
+            return serviceType.color;
+        }
+    };
+
     vm.getNextPage = function () {
         if (vm.busy || vm.noMoreData) {
             return;
