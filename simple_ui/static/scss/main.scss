@@ -1357,6 +1357,12 @@ nav {
     color: $text-color-muted !important;
     white-space: pre-wrap;
   }
+  .time-shift {
+    margin: 0 !important;
+    span {
+      display: inline-block;
+    }
+  }
   .service-image {
     max-width: 100%;
     margin: 8px 0;

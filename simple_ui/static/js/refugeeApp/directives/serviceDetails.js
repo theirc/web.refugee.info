@@ -10,7 +10,6 @@ angular.module('refugeeApp').directive('serviceDetails', function () {
         controller: function ($window, $location) {
             var vm = this;
             vm.days = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'];
-            vm.open = [];
             vm.close = [];
             vm.serviceUrl = $location.absUrl();
 
@@ -18,17 +17,32 @@ angular.module('refugeeApp').directive('serviceDetails', function () {
                 $window.open('https://maps.google.com?daddr=' + vm.service.address, '_blank');
             };
 
-            vm.showOpeningHours = function () {
-                for (var i = 0; i <= vm.days.length; i++) {
-                    if (vm.service[vm.days[i] + '_open']) {
-                        vm.open[i] = vm.service[vm.days[i] + '_open'].slice(0, -3);
-                    }
-                    if (vm.service[vm.days[i] + '_open']) {
-                        vm.close[i] = vm.service[vm.days[i] + '_close'].slice(0, -3);
-                    }
-                }
-                if (vm.open.length || vm.close.length ) {
+            vm.showOpeningHours = () => {
+                vm.opening_time = vm.service.opening_time;
+                let changed = false;
+                if (vm.opening_time && vm.opening_time['24/7']) {
                     return true;
+                }
+                else if (vm.opening_time) {
+                    for (let day in vm.days) {
+                        for (let shift in vm.opening_time[vm.days[day]]) {
+                            let o = vm.opening_time[vm.days[day]][shift]['open'];
+                            let c = vm.opening_time[vm.days[day]][shift]['close'];
+                            if (o && c) {
+                                /* Changing from 24 hour format to 12 hour. */
+                                if (o.substring(o.length - 1) != 'm') {
+                                    /* global moment */
+                                    /* eslint no-undef: "error" */
+                                    vm.opening_time[vm.days[day]][shift]['open'] = moment(o, 'HH:mm:ss').format('hh:mma');
+                                }
+                                if (c.substring(c.length - 1) != 'm') {
+                                    vm.opening_time[vm.days[day]][shift]['close'] = moment(c, 'HH:mm:ss').format('hh:mma');
+                                }
+                                changed = true;
+                            }
+                        }
+                    }
+                    return changed;
                 }
             };
 

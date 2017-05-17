@@ -52,11 +52,19 @@
             <i class="fa fa-2x fa-clock-o" style="margin: 20px 15px 15px 15px"></i>
             <div class="opening-hours-table">
                 <h2 class="service-description-title">{$ 'OPENING_HOURS' | translate $}</h2>
-                <table class="service-opening-hours-table" style="width: 100%">
+                <p ng-if="ctrl.opening_time['24/7']">
+                    {$ 'OPEN_24_7' | translate $}
+                </p>
+                <table ng-if="!ctrl.opening_time['24/7']" class="service-opening-hours-table" style="width: 100%">
                     <tr ng-repeat="day in ctrl.days">
                         <td class="day-of-week">{$ day.toUpperCase() | translate $}</td>
                         <td align="center">
-                            {$ ctrl.open[$index] && ctrl.close[$index] ? ctrl.open[$index] + ' - ' + ctrl.close[$index] : 'CLOSED' | translate $}
+                            <p ng-repeat="shift in ctrl.opening_time[day]" class="time-shift">
+                                <span ng-if="shift['open'] && shift['close']">{$ shift['open'] $}</span>
+                                <span ng-if="shift['open'] && shift['close']"> - </span>
+                                <span ng-if="shift['open'] && shift['close']">{$ shift['close'] $}</span>
+                                <span ng-if="!shift['open'] && !shift['close']">{$ 'CLOSED' | translate $}</span>
+                            </p>
                         </td>
                     </tr>
                 </table>
