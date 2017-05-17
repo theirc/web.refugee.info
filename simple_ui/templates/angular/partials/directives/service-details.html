@@ -63,7 +63,8 @@
                                 <span ng-if="shift['open'] && shift['close']">{$ shift['open'] $}</span>
                                 <span ng-if="shift['open'] && shift['close']"> - </span>
                                 <span ng-if="shift['open'] && shift['close']">{$ shift['close'] $}</span>
-                                <span ng-if="!shift['open'] && !shift['close']">{$ 'CLOSED' | translate $}</span>
+                                <span ng-if="!shift['open'] && !shift['close'] && $first && $last">
+                                    {$ 'CLOSED' | translate $}</span>
                             </p>
                         </td>
                     </tr>
