@@ -130,7 +130,7 @@ angular.module('refugeeApp').directive('servicesMap', function(leafletData, $sta
                             var lng = service.location.coordinates[0];
                             var icon = L.divIcon({
                                 className: 'service-list-item-icon-container-map',
-                                html: '<img src="/static/images/marker.png" class="service-icon-map">',
+                                html: `<span class="fa fa-map-marker fa-3x service-icon-map" style="color: ${ctrl.getServiceColor(service.type)}"></span>`,
                                 iconSize: null
                             });
                             var marker = L.marker([lat, lng], {

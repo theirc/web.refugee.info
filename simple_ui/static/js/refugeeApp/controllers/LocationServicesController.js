@@ -86,8 +86,24 @@ angular.module('refugeeApp').controller('LocationServicesController', function (
         var serviceType = vm.serviceTypes[url];
         if (!serviceType) {
             return;
-        } else {
+        }
+        else {
             return serviceType.vector_icon;
+        }
+    };
+
+    vm.getServiceColor = (url) => {
+        let serviceType = vm.serviceTypes[url];
+        if (!serviceType || !serviceType.color) {
+            return '#00BA50';
+        }
+        else {
+            if (serviceType.color.substring(0,1) == '#') {
+                return serviceType.color;
+            }
+            else {
+                return `#${serviceType.color}`;
+            }
         }
     };
 
