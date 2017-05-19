@@ -18,14 +18,15 @@
             {$ ctrl.service.updated_at | date: "dd/MM/y hh:mm a" $}&nbsp;</span></div>
         <img ng-if="!!ctrl.service.image" class="service-image" ng-src="{$ ctrl.service.image $}"/>
 
-        <div style="display:flex;">
+        <div style="display:flex;" ng-if="ctrl.service.description || ctrl.service.additional_info">
             <i class="fa fa-2x fa-info" style="margin: 20px 15px 15px 15px"></i>
             <div>
-                <h2 class="service-description-title">
-                    {$ 'DESCRIPTION' | translate $}
-                </h2>
-                <p class="service-description-body">{$ ctrl.service.description $}</p>
-
+                <div ng-if="ctrl.service.description">
+                    <h2 class="service-description-title">
+                        {$ 'DESCRIPTION' | translate $}
+                    </h2>
+                    <p class="service-description-body">{$ ctrl.service.description $}</p>
+                </div>
                 <div ng-if="ctrl.service.additional_info">
                     <h2 class="service-description-title">
                         {$ 'ADDITIONAL_INFO' | translate $}
@@ -35,16 +36,40 @@
             </div>
         </div>
 
-        <div style="display:flex;">
+        <div style="display:flex;"
+             ng-if="ctrl.service.address_city ||
+                    ctrl.service.address ||
+                    ctrl.service.address_floor ||
+                    ctrl.service.address_in_country_language">
             <i class="fa fa-2x fa-map-marker" style="margin: 20px 15px 15px 15px"></i>
             <div>
                 <h2 class="service-description-title">
                     {$ 'ADDRESS' | translate $}
                 </h2>
-                <p ng-if="ctrl.service.address_city">{$ ctrl.service.address_city $}</p>
-                <p ng-if="ctrl.service.address">{$ ctrl.service.address $}</p>
-                <p ng-if="ctrl.service.address_floor">{$ ctrl.service.address_floor $}</p>
-                <p ng-if="ctrl.service.address_in_country_language">{$ ctrl.service.address_in_country_language $}</p>
+                <div ng-if="ctrl.service.address_city">
+                    <h5 class="service-description-sub-title">
+                        {$ 'ADDRESS_CITY' | translate $}
+                    </h5>
+                    <p class="service-description-body">{$ ctrl.service.address_city $}</p>
+                </div>
+                <div ng-if="ctrl.service.address">
+                    <h5 class="service-description-sub-title">
+                        {$ 'ADDRESS_STREET' | translate $}
+                    </h5>
+                    <p class="service-description-body">{$ ctrl.service.address $}</p>
+                </div>
+                <div ng-if="ctrl.service.address_floor">
+                    <h5 class="service-description-sub-title">
+                        {$ 'ADDRESS_FLOOR_NOTE' | translate $}
+                    </h5>
+                    <p class="service-description-body">{$ ctrl.service.address_floor $}</p>
+                </div>
+                <div ng-if="ctrl.service.address_in_country_language">
+                    <h5 class="service-description-sub-title">
+                        {$ 'ADDRESS_IN_COUNTRY_LANGUAGE' | translate $}
+                    </h5>
+                    <p class="service-description-body">{$ ctrl.service.address_in_country_language $}</p>
+                </div>
             </div>
         </div>
 
