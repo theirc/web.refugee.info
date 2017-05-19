@@ -18,7 +18,7 @@ angular.module('refugeeApp').directive('locationButtons', function () {
 
             vm.goToServices = () => {
                 if ($scope.slug) {
-                    $state.go('locationDetails.services', {slug: $scope.slug, mapView: true});
+                    $state.go('locationDetails.services', {slug: $scope.slug, mapView: false});
                 }
                 else {
                     $state.go('location');
