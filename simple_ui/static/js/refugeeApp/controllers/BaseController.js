@@ -53,7 +53,13 @@ angular.module('refugeeApp').controller('BaseController', function ($scope, $roo
         refreshSiteName();
         if ($state.current.name != 'location') {
             $templateCache.removeAll();
-            $state.reload();
+            let hash = $location.hash();
+            if ($state.current.name == 'locationDetails.index' && hash) {
+                $state.go('locationDetails.index', {'#': hash}, {reload: true});
+            }
+            else {
+                $state.reload();
+            }
         }
     };
 

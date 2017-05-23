@@ -152,7 +152,7 @@ angular.module('refugeeApp').controller('LocationServicesController', function (
         else {
             $location.search('type', '');
         }
-        vm.mapView = true;
+        vm.mapView = false;
         vm.filters = false;
     };
 });
