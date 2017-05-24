@@ -59,9 +59,6 @@
                     <p class="service-description-body">{$ ctrl.service.address $}</p>
                 </div>
                 <div ng-if="ctrl.service.address_floor">
-                    <h5 class="service-description-sub-title">
-                        {$ 'ADDRESS_FLOOR_NOTE' | translate $}
-                    </h5>
                     <p class="service-description-body">{$ ctrl.service.address_floor $}</p>
                 </div>
                 <div ng-if="ctrl.service.address_in_country_language">
@@ -86,8 +83,10 @@
                         <td align="center">
                             <p ng-repeat="shift in ctrl.opening_time[day]" class="time-shift">
                                 <span ng-if="shift['open'] && shift['close']">{$ shift['open'] $}</span>
+                                <span ng-if="shift['open'] && shift['close']">{$ shift['open_format'] | translate $}</span>
                                 <span ng-if="shift['open'] && shift['close']"> - </span>
                                 <span ng-if="shift['open'] && shift['close']">{$ shift['close'] $}</span>
+                                <span ng-if="shift['open'] && shift['close']">{$ shift['close_format'] | translate $}</span>
                                 <span ng-if="!shift['open'] && !shift['close'] && $first && $last">
                                     {$ 'CLOSED' | translate $}</span>
                             </p>
