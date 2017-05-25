@@ -18,7 +18,7 @@
   "YOUR_LOCATION": "موقعیت شما",
   "CHANGE_LOCATION": "تغییر مکان",
   "OPENING_HOURS": "ساعات کار",
-  "OPEN_24_7": "The service is open 24/7",
+  "OPEN_24_7": "خدمات در طول 24 روز در 7 روز هفته در دسترس خواهد بود",
   "GET_DIRECTIONS": "انتخاب مسیر",
   "DESCRIPTION": "توضیحات",
   "ADDITIONAL_INFO": "اطلاعات اضافی",
@@ -71,5 +71,8 @@
   "WEDNESDAY": "چهار شنبه",
   "THURSDAY": "پنج شنبه",
   "FRIDAY": "جمعه",
-  "SATURDAY": "شنبه"
+  "SATURDAY": "شنبه",
+
+  "AM": "قبل از ظهر",
+  "PM": "بعد از ظهر"
 }

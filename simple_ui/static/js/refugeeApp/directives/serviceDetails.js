@@ -14,7 +14,7 @@ angular.module('refugeeApp').directive('serviceDetails', function () {
             vm.serviceUrl = $location.absUrl();
 
             vm.getDirections = function () {
-                $window.open('https://maps.google.com?daddr=' + vm.service.address, '_blank');
+                $window.open('https://maps.google.com?daddr=' + vm.service.address_en, '_blank');
             };
 
             vm.showOpeningHours = () => {
@@ -30,13 +30,15 @@ angular.module('refugeeApp').directive('serviceDetails', function () {
                             let c = vm.opening_time[vm.days[day]][shift]['close'];
                             if (o && c) {
                                 /* Changing from 24 hour format to 12 hour. */
-                                if (o.substring(o.length - 1) != 'm') {
+                                if (!vm.opening_time[vm.days[day]][shift]['open_format']) {
                                     /* global moment */
                                     /* eslint no-undef: "error" */
-                                    vm.opening_time[vm.days[day]][shift]['open'] = moment(o, 'HH:mm:ss').format('hh:mma');
+                                    vm.opening_time[vm.days[day]][shift]['open'] = moment(o, 'HH:mm:ss').format('hh:mm');
+                                    vm.opening_time[vm.days[day]][shift]['open_format'] = moment(o, 'HH:mm:ss').format('A');
                                 }
-                                if (c.substring(c.length - 1) != 'm') {
-                                    vm.opening_time[vm.days[day]][shift]['close'] = moment(c, 'HH:mm:ss').format('hh:mma');
+                                if (!vm.opening_time[vm.days[day]][shift]['close_format']) {
+                                    vm.opening_time[vm.days[day]][shift]['close'] = moment(c, 'HH:mm:ss').format('hh:mm');
+                                    vm.opening_time[vm.days[day]][shift]['close_format'] = moment(c, 'HH:mm:ss').format('A');
                                 }
                                 changed = true;
                             }
