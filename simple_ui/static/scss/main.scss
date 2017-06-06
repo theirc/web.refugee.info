@@ -2037,6 +2037,11 @@ div.modal-dialog {
   }
 }
 
+.fb-like span, .fb-like iframe, .fb-share-button span, .fb-share-button iframe {
+  height: 20px !important;
+  width: 60px !important;
+}
+
 /* Content goes at the end */
 @import "content";
 @import "content-print";
