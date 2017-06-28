@@ -97,7 +97,7 @@
         </div>
 
         <div class="button-container">
-            <a ng-if="!!ctrl.service.address" ng-click="ctrl.getDirections()" class="button button-green">
+            <a ng-if="!!ctrl.service.location" ng-click="ctrl.getDirections()" class="button button-green">
                 <i class="fa fa-map" aria-hidden="true"></i>{$ 'GET_DIRECTIONS' | translate $}</a>
             <a ng-if="!!ctrl.service.email" href="mailto:{$ ctrl.service.email $}" class="button button-green">
                 <i class="fa fa-envelope-o" aria-hidden="true"></i><span>{$ ctrl.service.email $}</span></a>
