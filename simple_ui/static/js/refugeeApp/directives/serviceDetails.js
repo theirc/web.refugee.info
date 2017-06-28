@@ -14,7 +14,7 @@ angular.module('refugeeApp').directive('serviceDetails', function () {
             vm.serviceUrl = $location.absUrl();
 
             vm.getDirections = function () {
-                $window.open('https://maps.google.com?daddr=' + vm.service.address_en, '_blank');
+                $window.open(`https:\/\/maps.google.com?daddr=${vm.service.location.coordinates[1]},${vm.service.location.coordinates[0]}`);
             };
 
             vm.showOpeningHours = () => {
