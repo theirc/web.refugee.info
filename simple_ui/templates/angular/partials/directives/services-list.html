@@ -8,7 +8,7 @@
                         <div ng-class="{'service-list-item-icon-container-small': item.types[1], 'service-list-item-icon-container': !item.types[1], 'fa-2x': !item.types[1]}">
                             <span class="fa {$ ctrl.getServiceIcon(item.types[0].id) $} service-icon"></span>
                         </div>
-                        <div class="service-list-item-icon-container-small" ng-if="item.types[1].id">
+                        <div class="service-list-item-icon-container-small" ng-if="item.types[1].id" style="margin-left: 2px !important;">
                             <span class="fa {$ ctrl.getServiceIcon(item.types[1].id) $} service-icon"></span>
                         </div>
                     </div>
@@ -16,7 +16,7 @@
                         <div class="service-list-item-icon-container-small" ng-if="item.types[2].id">
                             <span class="fa {$ ctrl.getServiceIcon(item.types[2].id) $} service-icon"></span>
                         </div>
-                        <div class="service-list-item-icon-container-small" ng-if="item.types[3].id">
+                        <div class="service-list-item-icon-container-small" ng-if="item.types[3].id" style="margin-left: 2px !important;">
                             <span class="fa {$ ctrl.getServiceIcon(item.types[3].id) $} service-icon"></span>
                         </div>
                     </div>
