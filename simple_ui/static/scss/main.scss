@@ -896,6 +896,17 @@ nav {
   @include justify-content(center);
 }
 
+.service-list-item-icon-container-small {
+  width: 30px;
+  height: 30px;
+  background-color: $green-accent-color !important;
+  border-radius: 4px;
+  margin: auto;
+  @include flexbox();
+  @include align-items(center);
+  @include justify-content(center);
+}
+
 .services-filter-list-container-mobile {
   padding-right: 0;
   padding-left: 0;
