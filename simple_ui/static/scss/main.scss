@@ -1748,6 +1748,11 @@ i.fa {
 .service-info-icon {
   padding-left: 5px;
   padding-right: 5px;
+  color: $green-accent-color !important;
+  margin: auto;
+  @include flexbox();
+  @include align-items(center);
+  @include justify-content(center);
 }
 
 .modal-fullscreen {

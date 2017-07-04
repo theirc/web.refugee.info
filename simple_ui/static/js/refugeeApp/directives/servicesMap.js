@@ -61,7 +61,7 @@ angular.module('refugeeApp').directive('servicesMap', function(leafletData, $sta
                     scope.regionSlug = ctrl.slug;
                     scope.serviceInfo = e ? e.target.options.service : null;
                     scope.showServiceInfo = true;
-                    scope.serviceInfo.icon = ctrl.getServiceIcon(scope.serviceInfo.type);
+                    scope.serviceInfo.icons = scope.serviceInfo.types;
                     scope.serviceInfo.description = $filter('limitTo')(scope.serviceInfo.description, 200);
                     refreshMap();
                 };
