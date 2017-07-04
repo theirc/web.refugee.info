@@ -3,8 +3,21 @@
 
 <div class="service-info-container" ng-class="{'info-above': showServiceInfo, 'below': !showServiceInfo, 'hidden': !showServiceInfo}">
     <div class="service-info-header" ui-sref="locationDetails.services.details({slug: regionSlug, serviceId: serviceInfo.id})">
-        <div class="service-info-icon">
-            <i class="fa fa-3x {$ serviceInfo.icon $}"></i>
+        <div style="display: flex; flex-direction: column;" ng-if="serviceInfo.icons">
+            <div class="service-info-icon" ng-class="{'fa-3x': !serviceInfo.icons[1]}">
+                <span class="fa {$ serviceInfo.icons[0].vector_icon $}"></span>
+            </div>
+            <div class="service-info-icon" ng-if="serviceInfo.icons[1].id">
+                <span class="fa {$ serviceInfo.icons[1].vector_icon $}"></span>
+            </div>
+        </div>
+        <div style="display: flex; flex-direction: column;" ng-if="serviceInfo.icons[2].id">
+            <div class="service-info-icon" ng-if="serviceInfo.icons[2].id">
+                <span class="fa {$ serviceInfo.icons[2].vector_icon $}"></span>
+            </div>
+            <div class="service-info-icon" ng-if="serviceInfo.icons[3].id">
+                <span class="fa {$ serviceInfo.icons[3].vector_icon $}"></span>
+            </div>
         </div>
         <div class="service-info-name">
             <span>{$ serviceInfo.name $}</span><br>
