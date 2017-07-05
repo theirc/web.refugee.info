@@ -4,8 +4,21 @@
             <div class="col-sm-4 no-padding service-list-item service-divider" ng-repeat="item in rows"
                  ui-sref="locationDetails.services.details({slug: ctrl.slug, serviceId: item.id})">
                 <div class="col-xs-3 service-list-divider" ng-class="baseController.direction()">
-                    <div class="service-list-item-icon-container">
-                        <span class="fa {$ ctrl.getServiceIcon(item.type) $} fa-2x service-icon"></span>
+                    <div style="display: flex;">
+                        <div ng-class="{'service-list-item-icon-container-small': item.types[1], 'service-list-item-icon-container': !item.types[1], 'fa-2x': !item.types[1]}">
+                            <span class="fa {$ ctrl.getServiceIcon(item.types[0].id) $} service-icon"></span>
+                        </div>
+                        <div class="service-list-item-icon-container-small" ng-if="item.types[1].id" style="margin-left: 2px !important;">
+                            <span class="fa {$ ctrl.getServiceIcon(item.types[1].id) $} service-icon"></span>
+                        </div>
+                    </div>
+                    <div style="display: flex; margin-top: 2px;" ng-if="item.types[2].id">
+                        <div class="service-list-item-icon-container-small" ng-if="item.types[2].id">
+                            <span class="fa {$ ctrl.getServiceIcon(item.types[2].id) $} service-icon"></span>
+                        </div>
+                        <div class="service-list-item-icon-container-small" ng-if="item.types[3].id" style="margin-left: 2px !important;">
+                            <span class="fa {$ ctrl.getServiceIcon(item.types[3].id) $} service-icon"></span>
+                        </div>
                     </div>
                 </div>
                 <div class="col-xs-9 service-info">

@@ -889,11 +889,36 @@ nav {
   width: 50px;
   height: 50px;
   background-color: $green-accent-color !important;
-  border-radius: 10px;
+  border-radius: 8px;
   margin: auto;
   @include flexbox();
   @include align-items(center);
   @include justify-content(center);
+  @media (max-width: 1600px) and (min-width: $screen-sm-min) {
+    width: 40px;
+    height: 40px;
+    border-radius: 5px;
+  }
+}
+
+.service-list-item-icon-container-small {
+  width: 30px;
+  height: 30px;
+  background-color: $green-accent-color !important;
+  border-radius: 5px;
+  margin: auto;
+  @include flexbox();
+  @include align-items(center);
+  @include justify-content(center);
+  @media (max-width: 1600px) and (min-width: $screen-sm-min) {
+    width: 20px;
+    height: 20px;
+    border-radius: 3px;
+  }
+}
+
+.service-list-item-margin {
+  margin-left: 2px !important;
 }
 
 .services-filter-list-container-mobile {
@@ -1737,6 +1762,11 @@ i.fa {
 .service-info-icon {
   padding-left: 5px;
   padding-right: 5px;
+  color: $green-accent-color !important;
+  margin: auto;
+  @include flexbox();
+  @include align-items(center);
+  @include justify-content(center);
 }
 
 .modal-fullscreen {
