@@ -50,7 +50,9 @@ angular.module('refugeeApp').directive('servicesMap', function(leafletData, $sta
                 };
 
                 function showInfo(e) {
-                    infoDiv.update(e ? e.target.options.service : null);
+                    if (!scope.isMobile) {
+                        infoDiv.update(e ? e.target.options.service : null);
+                    }
                 }
 
                 function hideDiv() {
@@ -59,11 +61,13 @@ angular.module('refugeeApp').directive('servicesMap', function(leafletData, $sta
 
                 var displayServiceInfo = function(e) {
                     scope.regionSlug = ctrl.slug;
-                    scope.serviceInfo = e ? e.target.options.service : null;
-                    scope.showServiceInfo = true;
+                    scope.serviceInfo = e ? e.options.service : null;
                     scope.serviceInfo.icons = scope.serviceInfo.types;
                     scope.serviceInfo.description = $filter('limitTo')(scope.serviceInfo.description, 200);
-                    refreshMap();
+                    scope.showServiceInfo = true;
+                    leafletData.getMap().then(function (map) {
+                        map.sleep.sleepNote.hidden = true;
+                    });
                 };
 
                 function chunk(arr, size) {
@@ -119,10 +123,10 @@ angular.module('refugeeApp').directive('servicesMap', function(leafletData, $sta
 
                 var markers = new L.LayerGroup();
                 var markerClick = function onClick(e) {
-                    $state.go('locationDetails.services.details', {slug: ctrl.slug, serviceId: e.target.options.service.id});
+                    $state.go('locationDetails.services.details', {slug: ctrl.slug, serviceId: e.options.service.id});
                 };
 
-                var drawServices = function(map, services, isMobile) {
+                var drawServices = function(map, services, isMobile, oms) {
                     markers.clearLayers();
                     services && services.forEach(function(service) {
                         if (service.location) {
@@ -130,7 +134,8 @@ angular.module('refugeeApp').directive('servicesMap', function(leafletData, $sta
                             var lng = service.location.coordinates[0];
                             var icon = L.divIcon({
                                 className: 'service-list-item-icon-container-map',
-                                html: `<span class="fa fa-map-marker fa-3x service-icon-map" style="color: ${ctrl.getServiceColor(service.type)}"></span>`,
+                                html: `<span class="fa fa-map-marker fa-3x service-icon-map" style="color: ${ctrl.getServiceColor(service.type)}"></span>
+                                        <span class="fa fa-plus service-plus-icon-map" style="color: white; background-color: ${ctrl.getServiceColor(service.type)}"></span>`,
                                 iconSize: null
                             });
                             var marker = L.marker([lat, lng], {
@@ -140,18 +145,12 @@ angular.module('refugeeApp').directive('servicesMap', function(leafletData, $sta
                             });
                             marker.on({
                                 mouseover: showInfo,
-                                mouseout: hideDiv,
-                                click: function (e) {
-                                    if (isMobile) {
-                                        displayServiceInfo(e);
-                                    } else {
-                                        markerClick(e);
-                                    }
-                                }
+                                mouseout: hideDiv
                             });
                             let position = L.latLng(lat, lng);
                             service.hideFromList = !map.getBounds().contains(position);
                             markers.addLayer(marker);
+                            oms.addMarker(marker);
                         }
                     });
                     if (services && services.length > 0) {
@@ -168,12 +167,45 @@ angular.module('refugeeApp').directive('servicesMap', function(leafletData, $sta
                 var refreshMap = function(){
                     leafletData.getMap().then(function (map) {
                         map.sleep.sleepNote.hidden = true;
-                        drawServices(map, scope.services, scope.isMobile);
+                        /* global OverlappingMarkerSpiderfier */
+                        /* eslint no-undef: "error" */
+                        let oms = new OverlappingMarkerSpiderfier(map, {keepSpiderfied: true, markersWontMove: true, markersWontHide: true});
+                        oms.addListener('click', function(marker) {
+                            if (marker) {
+                                if (scope.isMobile) {
+                                    displayServiceInfo(marker);
+                                } else {
+                                    markerClick(marker);
+                                }
+                            }
+                        });
+                        oms.addListener('spiderfy', function(markers) {
+                            for (var i = 0, len = markers.length; i < len; i ++) {
+                                var icon = L.divIcon({
+                                    className: 'service-list-item-icon-container-map',
+                                    html: `<span class="fa fa-map-marker fa-3x service-icon-map" style="color: ${ctrl.getServiceColor(markers[i].options.service.type)}"></span>`,
+                                    iconSize: null
+                                });
+                                markers[i].setIcon(icon);
+                            }
+                        });
+                        oms.addListener('unspiderfy', function(markers) {
+                            for (var i = 0, len = markers.length; i < len; i ++) {
+                                var icon = L.divIcon({
+                                    className: 'service-list-item-icon-container-map',
+                                    html: `<span class="fa fa-map-marker fa-3x service-icon-map" style="color: ${ctrl.getServiceColor(markers[i].options.service.type)}"></span>
+                                            <span class="fa fa-plus service-plus-icon-map" style="color: white; background-color: ${ctrl.getServiceColor(markers[i].options.service.type)}"></span>`,
+                                    iconSize: null
+                                });
+                                markers[i].setIcon(icon);
+                            }
+                        });
+                        drawServices(map, scope.services, scope.isMobile, oms);
                     });
                 };
 
-                scope.$watch('services', function (newValue) {
-                    if (angular.isDefined(newValue)) {
+                scope.$watch('services', function (newValue, oldValue) {
+                    if (angular.isDefined(newValue) && newValue.length != oldValue.length) {
                         scope.services = newValue;
                         if (!scope.services.length) {
                             showInfo();
