@@ -128,6 +128,7 @@ angular.module('refugeeApp').directive('servicesMap', function(leafletData, $sta
 
                 var drawServices = function(map, services, isMobile, oms) {
                     markers.clearLayers();
+                    map.fireEvent('click');
                     services && services.forEach(function(service) {
                         if (service.location) {
                             var lat = service.location.coordinates[1];
@@ -162,6 +163,7 @@ angular.module('refugeeApp').directive('servicesMap', function(leafletData, $sta
                             scope.chunkedServicesList = chunk(scope.services, 3);
                         }
                     }
+
                 };
 
                 var refreshMap = function(){
