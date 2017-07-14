@@ -10,6 +10,7 @@
                       is-mobile="baseController.isMobile()"
                       chunked-services-list="ctrl.chunkedServicesList"
                       loading="ctrl.busy"
+                      is-rtl="baseController.isRTL"
                       ng-class="{'col-md-12': !baseController.isMobile(), 'services-map-desktop': !baseController.isMobile()}">
         </services-map>
         <div class="col-md-3 services-filter-list-desktop-relative" ng-if="!baseController.isMobile()">
@@ -24,7 +25,7 @@
                         </div>
                         <div class="services-filter-list-item-mobile">
                             <a data-ng-click="ctrl.setSelectedTypeMobile(type)" style="text-align: center">
-                                <span>{$ type.name $}</span>
+                                <span>{$ type.name $} <i ng-class="ctrl.isChecked(type) ? (baseController.isRTL ? 'fa fa-arrow-right' : 'fa fa-arrow-left') : ''"></i></span>
                             </a>
                         </div>
                     </li>
