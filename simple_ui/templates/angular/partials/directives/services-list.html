@@ -1,4 +1,4 @@
-<div class="service-list" ng-show="ctrl.loaded">
+<div class="service-list" ng-show="ctrl.loaded" ng-class="{'col-md-12': !baseController.isMobile()}">
     <div>
         <div class="row service-list-row" ng-repeat="rows in ctrl.chunkedServicesList">
             <div class="col-sm-4 no-padding service-list-item service-divider" ng-repeat="item in rows"
