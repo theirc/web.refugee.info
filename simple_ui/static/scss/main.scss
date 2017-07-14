@@ -1031,6 +1031,14 @@ nav {
   width: 15px;
 }
 
+.service-plus-icon-map-rtl {
+  top: -32px;
+  position: relative;
+  left: -3px;
+  text-align: center;
+  width: 15px;
+}
+
 
 .filter-line-mobile {
   display: flex;
@@ -1345,6 +1353,7 @@ nav {
   opacity: 0.8;
   border-bottom: 1px $divider-color-dark solid;
   border-left: 1px $divider-color-dark solid;
+  border-top: 1px $divider-color-dark solid;
   h4 {
     i {
       padding-right: 2px;

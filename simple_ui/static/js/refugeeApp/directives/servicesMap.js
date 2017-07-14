@@ -8,7 +8,8 @@ angular.module('refugeeApp').directive('servicesMap', function(leafletData, $sta
             mapView: '=',
             isMobile: '=',
             chunkedServicesList: '=',
-            loading: '='
+            loading: '=',
+            isRtl: '=',
         },
         link: {
             pre: function (scope) {
@@ -133,10 +134,18 @@ angular.module('refugeeApp').directive('servicesMap', function(leafletData, $sta
                         if (service.location) {
                             var lat = service.location.coordinates[1];
                             var lng = service.location.coordinates[0];
+                            let iconHtml = '';
+                            if (scope.isRtl) {
+                                iconHtml = `<span class="fa fa-map-marker fa-3x service-icon-map" style="color: ${ctrl.getServiceColor(service.type)}"></span>
+                                            <span class="fa fa-plus service-plus-icon-map-rtl" style="color: white; background-color: ${ctrl.getServiceColor(service.type)}"></span>`;
+                            }
+                            else {
+                                iconHtml = `<span class="fa fa-map-marker fa-3x service-icon-map" style="color: ${ctrl.getServiceColor(service.type)}"></span>
+                                            <span class="fa fa-plus service-plus-icon-map" style="color: white; background-color: ${ctrl.getServiceColor(service.type)}"></span>`;
+                            }
                             var icon = L.divIcon({
                                 className: 'service-list-item-icon-container-map',
-                                html: `<span class="fa fa-map-marker fa-3x service-icon-map" style="color: ${ctrl.getServiceColor(service.type)}"></span>
-                                        <span class="fa fa-plus service-plus-icon-map" style="color: white; background-color: ${ctrl.getServiceColor(service.type)}"></span>`,
+                                html: iconHtml,
                                 iconSize: null
                             });
                             var marker = L.marker([lat, lng], {
@@ -193,10 +202,18 @@ angular.module('refugeeApp').directive('servicesMap', function(leafletData, $sta
                         });
                         oms.addListener('unspiderfy', function(markers) {
                             for (var i = 0, len = markers.length; i < len; i ++) {
+                                let iconHtml = '';
+                                if (scope.isRtl) {
+                                    iconHtml = `<span class="fa fa-map-marker fa-3x service-icon-map" style="color: ${ctrl.getServiceColor(markers[i].options.service.type)}"></span>
+                                                <span class="fa fa-plus service-plus-icon-map-rtl" style="color: white; background-color: ${ctrl.getServiceColor(markers[i].options.service.type)}"></span>`;
+                                }
+                                else {
+                                    iconHtml = `<span class="fa fa-map-marker fa-3x service-icon-map" style="color: ${ctrl.getServiceColor(markers[i].options.service.type)}"></span>
+                                                <span class="fa fa-plus service-plus-icon-map" style="color: white; background-color: ${ctrl.getServiceColor(markers[i].options.service.type)}"></span>`;
+                                }
                                 var icon = L.divIcon({
                                     className: 'service-list-item-icon-container-map',
-                                    html: `<span class="fa fa-map-marker fa-3x service-icon-map" style="color: ${ctrl.getServiceColor(markers[i].options.service.type)}"></span>
-                                            <span class="fa fa-plus service-plus-icon-map" style="color: white; background-color: ${ctrl.getServiceColor(markers[i].options.service.type)}"></span>`,
+                                    html: iconHtml,
                                     iconSize: null
                                 });
                                 markers[i].setIcon(icon);
