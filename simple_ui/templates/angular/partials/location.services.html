@@ -25,7 +25,7 @@
                         </div>
                         <div class="services-filter-list-item-mobile">
                             <a data-ng-click="ctrl.setSelectedTypeMobile(type)" style="text-align: center">
-                                <span>{$ type.name $} <i ng-class="ctrl.isChecked(type) ? (baseController.isRTL ? 'fa fa-arrow-right' : 'fa fa-arrow-left') : ''"></i></span>
+                                <span>{$ type.name == 'All Types' ? ('ALL_SERVICES' | translate) : type.name $} <i ng-class="ctrl.isChecked(type) ? (baseController.isRTL ? 'fa fa-arrow-right' : 'fa fa-arrow-left') : ''"></i></span>
                             </a>
                         </div>
                     </li>
@@ -43,7 +43,7 @@
                     </div>
                     <div class="services-filter-list-item-mobile">
                         <a data-ng-click="ctrl.setSelectedTypeMobile(type)">
-                            <span>{$ type.name $}</span>
+                            <span>{$ type.name == 'All Types' ? ('ALL_SERVICES' | translate) : type.name $}</span>
                         </a>
                     </div>
                 </li>
