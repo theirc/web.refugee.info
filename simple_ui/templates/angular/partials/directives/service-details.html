@@ -52,14 +52,14 @@
                     </h5>
                     <p class="service-description-body">{$ ctrl.service.address_city $}</p>
                 </div>
+                <div ng-if="ctrl.service.address_floor">
+                    <p class="service-description-body">{$ ctrl.service.address_floor $}</p>
+                </div>
                 <div ng-if="ctrl.service.address">
                     <h5 class="service-description-sub-title">
                         {$ 'ADDRESS_STREET' | translate $}
                     </h5>
                     <p class="service-description-body">{$ ctrl.service.address $}</p>
-                </div>
-                <div ng-if="ctrl.service.address_floor">
-                    <p class="service-description-body">{$ ctrl.service.address_floor $}</p>
                 </div>
                 <div ng-if="ctrl.service.address_in_country_language">
                     <h5 class="service-description-sub-title">
