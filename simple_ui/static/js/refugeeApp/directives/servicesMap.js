@@ -90,10 +90,7 @@ angular.module('refugeeApp').directive('servicesMap', function(leafletData, $sta
                                 html: '',
                                 iconSize: null
                             };
-                            if (closestLayer.distance > 3) {
-                                iconDict['html'] = `<span class="fa fa-map-marker fa-3x service-icon-map" style="color: ${ctrl.getServiceColor(map._layers[marker].options.service.type)}"></span>`;
-                            }
-                            else {
+                            if (closestLayer && closestLayer.distance < 3) {
                                 let iconHtml = '';
                                 if (scope.isRtl) {
                                     iconHtml = `<span class="fa fa-map-marker fa-3x service-icon-map" style="color: ${ctrl.getServiceColor(map._layers[marker].options.service.type)}"></span>
@@ -104,6 +101,9 @@ angular.module('refugeeApp').directive('servicesMap', function(leafletData, $sta
                                                 <span class="fa fa-plus service-plus-icon-map" style="color: white; background-color: ${ctrl.getServiceColor(map._layers[marker].options.service.type)}"></span>`;
                                 }
                                 iconDict['html'] = iconHtml;
+                            }
+                            else {
+                                iconDict['html'] = `<span class="fa fa-map-marker fa-3x service-icon-map" style="color: ${ctrl.getServiceColor(map._layers[marker].options.service.type)}"></span>`;
                             }
                             let icon = L.divIcon(iconDict);
                             map._layers[marker].setIcon(icon);
@@ -192,7 +192,7 @@ angular.module('refugeeApp').directive('servicesMap', function(leafletData, $sta
                         for (let marker in markers._layers) {
                             let locsFiltered = locs.filter( (l) => { return l.lng !== markers._layers[marker]._latlng && l.lat !== markers._layers[marker]._latlng.lat; });
                             let closestLayer = L.GeometryUtil.closest(map, locsFiltered, markers._layers[marker]._latlng);
-                            if (closestLayer.distance < 3) {
+                            if (closestLayer && closestLayer.distance < 3) {
                                 let iconHtml = '';
                                 if (scope.isRtl) {
                                     iconHtml = `<span class="fa fa-map-marker fa-3x service-icon-map" style="color: ${ctrl.getServiceColor(markers._layers[marker].options.service.type)}"></span>
