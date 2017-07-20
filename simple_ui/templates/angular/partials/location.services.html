@@ -18,7 +18,7 @@
                 <div class="services-types-header" ng-if="!baseController.isMobile()">
                     <h4><i class="fa fa-filter"></i>{$ 'TYPES_OF_SERVICES' | translate $}</h4>
                 </div>
-                <ul ng-class="baseController.direction()" style="padding: 0; overflow: auto">
+                <ul ng-class="baseController.direction()" style="padding: 0; overflow: auto; overflow-y: scroll;">
                     <li class="filter-line-mobile" data-ng-repeat="type in ctrl.serviceTypesMobile" style="cursor: pointer;">
                         <div class="services-filter-list-icon-container-mobile" ng-class="baseController.direction()">
                             <i class="fa {$ type.vector_icon $}"></i>
