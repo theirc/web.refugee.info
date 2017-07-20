@@ -942,6 +942,31 @@ nav {
   }
 }
 
+.services-filter-list-desktop-relative {
+  padding-right: 0 !important;
+  padding-left: 0 !important;
+  height: 0;
+  margin-top: 0;
+  position: relative;
+  top: -400px;
+  float: right;
+  z-index: 1001;
+  display: flex;
+  flex-direction: column;
+}
+
+.services-filter-list-desktop-absolute {
+  display: flex;
+  flex-direction: column;
+  height: 400px;
+  position: absolute;
+}
+
+.services-list-desktop {
+  padding: 0 !important;
+  top: -400px
+}
+
 .services-filter-list-mobile.ltr {
   left: auto;
   right: 0;
@@ -958,6 +983,9 @@ nav {
   align-items: center;
   justify-content: flex-start;
   border-bottom: 1px $divider-color-dark solid;
+  border-left: 1px $divider-color-dark solid;
+  opacity: 0.8;
+  background-color: white;
   padding-bottom: 5px;
   padding-top: 5px;
 }
@@ -994,6 +1022,23 @@ nav {
 .service-icon-map {
   margin-top: -36px;
 }
+
+.service-plus-icon-map {
+  top: -32px;
+  position: relative;
+  left: 3px;
+  text-align: center;
+  width: 15px;
+}
+
+.service-plus-icon-map-rtl {
+  top: -32px;
+  position: relative;
+  left: -3px;
+  text-align: center;
+  width: 15px;
+}
+
 
 .filter-line-mobile {
   display: flex;
@@ -1281,11 +1326,40 @@ nav {
 }
 
 .services-map {
+  height: 400px;
+  margin-top: 0;
+  @media (max-width: $screen-sm-max) {
+    height: 100%;
+  }
+}
+
+.services-map-desktop {
+  padding: 0 !important;
+}
+
+.services-types-list {
   margin-top: 15px;
   height: 400px;
+  padding: 0;
   @media (max-width: $screen-sm-max) {
     margin-top: 0;
     height: 100%;
+  }
+}
+.services-types-header {
+  text-align: center;
+  padding-right: 0 !important;
+  background-color: white;
+  opacity: 0.8;
+  border-bottom: 1px $divider-color-dark solid;
+  border-left: 1px $divider-color-dark solid;
+  border-top: 1px $divider-color-dark solid;
+  h4 {
+    padding: 10px 0;
+    i {
+      padding-right: 2px;
+      color: #000;
+    }
   }
 }
 
@@ -1740,6 +1814,12 @@ i.fa {
   max-width: 400px;
   @media (max-width: $screen-sm-max) {
     margin-top: 90px;
+  }
+}
+
+.leaflet-top {
+  &.leaflet-right {
+    z-index: 1005 !important;
   }
 }
 

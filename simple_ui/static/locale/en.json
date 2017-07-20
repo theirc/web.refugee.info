@@ -36,7 +36,7 @@
   "NO_SERVICES": "No services found",
   "NEAREST_SERVICES": "Nearest services to your location",
   "FILTER_BY_TYPE": "Filter services by type",
-  "TYPES_OF_SERVICES": "Types of services",
+  "TYPES_OF_SERVICES": "Types of Services",
   "SHARE": "Share",
   "SEARCH": "Search",
   "IMPORTANT_INFORMATION": "Home",
@@ -65,6 +65,7 @@
   "FILTER": "Filter",
   "LIST": "List",
   "MAP": "Map",
+  "ALL_SERVICES": "All Services",
 
   "SERVICE_MAP": "Map of Services",
   "CLOSE": "Close",

@@ -9,9 +9,30 @@
                       map-view="ctrl.mapView"
                       is-mobile="baseController.isMobile()"
                       chunked-services-list="ctrl.chunkedServicesList"
-                      loading="ctrl.busy">
+                      loading="ctrl.busy"
+                      is-rtl="baseController.isRTL"
+                      ng-class="{'col-md-12': !baseController.isMobile(), 'services-map-desktop': !baseController.isMobile()}">
         </services-map>
-        <div ng-class="{'above': !ctrl.mapView, 'below': ctrl.mapView || ctrl.filters}">
+        <div class="col-md-3 services-filter-list-desktop-relative" ng-if="!baseController.isMobile()">
+            <div class="services-filter-list-desktop-absolute">
+                <div class="services-types-header" ng-if="!baseController.isMobile()">
+                    <h4><i class="fa fa-filter"></i>{$ 'TYPES_OF_SERVICES' | translate $}</h4>
+                </div>
+                <ul ng-class="baseController.direction()" style="padding: 0; overflow: auto; overflow-y: scroll;">
+                    <li class="filter-line-mobile" data-ng-repeat="type in ctrl.serviceTypesMobile" style="cursor: pointer;">
+                        <div class="services-filter-list-icon-container-mobile" ng-class="baseController.direction()">
+                            <i class="fa {$ type.vector_icon $}"></i>
+                        </div>
+                        <div class="services-filter-list-item-mobile">
+                            <a data-ng-click="ctrl.setSelectedTypeMobile(type)" style="text-align: center">
+                                <span>{$ type.name == 'All Types' ? ('ALL_SERVICES' | translate) : type.name $} <i ng-class="ctrl.isChecked(type) ? (baseController.isRTL ? 'fa fa-arrow-right' : 'fa fa-arrow-left') : ''"></i></span>
+                            </a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div ng-class="{'above': !ctrl.mapView, 'below': ctrl.mapView || ctrl.filters, 'services-list-desktop': !baseController.isMobile()}">
             <services-list></services-list>
         </div>
         <div class="col-xs-12 services-filter-list-container-mobile" ng-class="{'above': ctrl.filters, 'below': !ctrl.filters}" ng-if="baseController.isMobile()">
@@ -22,7 +43,7 @@
                     </div>
                     <div class="services-filter-list-item-mobile">
                         <a data-ng-click="ctrl.setSelectedTypeMobile(type)">
-                            <span>{$ type.name $}</span>
+                            <span>{$ type.name == 'All Types' ? ('ALL_SERVICES' | translate) : type.name $}</span>
                         </a>
                     </div>
                 </li>

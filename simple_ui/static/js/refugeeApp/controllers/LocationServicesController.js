@@ -155,4 +155,15 @@ angular.module('refugeeApp').controller('LocationServicesController', function (
         vm.mapView = false;
         vm.filters = false;
     };
+
+    vm.isChecked = (type) => {
+        if (type && type.id) {
+            let searchValue = $location.search();
+            return searchValue.type ? searchValue.type == type.id : false;
+        }
+        else if (type && type.name == 'All Types') {
+            let searchValue = $location.search();
+            return searchValue.type ? searchValue.type == '' : true;
+        }
+    };
 });
