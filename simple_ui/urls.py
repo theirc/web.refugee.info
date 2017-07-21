@@ -72,9 +72,6 @@ partial_patterns = [
     url(r'^location.important-information.html$',
         TemplateView.as_view(template_name='angular/partials/location.important-information.html'),
         name='location_important_information'),
-    url(r'^location.notifications.html$',
-        TemplateView.as_view(template_name='angular/partials/location.notifications.html'),
-        name='location_notifications'),
     url(r'^location.services.html$', TemplateView.as_view(template_name='angular/partials/location.services.html'),
         name='location_services'),
     url(r'^location.service-details.html$', TemplateView.as_view(

@@ -183,18 +183,18 @@ angular.module('refugeeApp', ['ui.router', 'ngCookies', 'ngSanitize', 'djng.rmi'
                 templateUrl: 'partials/location.home.html',
                 controller: 'LocationDetailsController as ctrl'
             })
+            .state('locationDetails.hidden', {
+                url: '/:infoSlug',
+                templateUrl: 'partials/location.important-information.html',
+                controller: 'LocationDetailsController as ctrl'
+            })
             .state('locationDetails.info', {
                 url: '/info/:infoSlug',
                 templateUrl: 'partials/location.important-information.html',
                 controller: 'LocationDetailsController as ctrl'
             })
-            .state('locationDetails.notifications', {
-                url: '/notifications/',
-                templateUrl: 'partials/location.notifications.html',
-                controller: 'LocationDetailsController as ctrl'
-            })
             .state('locationDetails.services', {
-                url: '/services/?query&type',
+                url: '/services/map/?query&type',
                 templateUrl: 'partials/location.services.html',
                 controller: 'LocationServicesController as ctrl',
                 reloadOnSearch: false,
