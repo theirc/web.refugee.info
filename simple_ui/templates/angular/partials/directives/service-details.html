@@ -25,7 +25,7 @@
                     <h2 class="service-description-title">
                         {$ 'DESCRIPTION' | translate $}
                     </h2>
-                    <p class="service-description-body">{$ ctrl.service.description $}</p>
+                    <p ng-bind-html="ctrl.service.description" class="service-description-body"></p>
                 </div>
                 <div ng-if="ctrl.service.additional_info">
                     <h2 class="service-description-title">
