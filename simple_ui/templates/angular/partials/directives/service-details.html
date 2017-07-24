@@ -31,7 +31,7 @@
                     <h2 class="service-description-title">
                         {$ 'ADDITIONAL_INFO' | translate $}
                     </h2>
-                    <p class="service-description-body">{$ ctrl.service.additional_info $}</p>
+                    <p ng-bind-html="ctrl.service.additional_info" class="service-description-body"></p>
                 </div>
             </div>
         </div>
