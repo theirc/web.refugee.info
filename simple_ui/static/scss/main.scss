@@ -758,6 +758,7 @@ change-location-button {
   @include flexbox();
   flex-wrap: wrap;
   height: 115px;
+  overflow: hidden;
   @include align-items(center);
   cursor: pointer;
   &:hover {
@@ -767,7 +768,10 @@ change-location-button {
     height: 125px;
   }
   @media (max-width: $screen-xs-max) {
-    height: 90px;
+    height: auto;
+    min-height: 90px;
+    padding-top: 10px;
+    padding-bottom: 10px;
   }
 }
 
