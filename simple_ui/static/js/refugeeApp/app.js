@@ -184,7 +184,7 @@ angular.module('refugeeApp', ['ui.router', 'ngCookies', 'ngSanitize', 'djng.rmi'
                 controller: 'LocationDetailsController as ctrl'
             })
             .state('locationDetails.hidden', {
-                url: '/:infoSlug',
+                url: '/{infoSlug:(?:wifi)}',
                 templateUrl: 'partials/location.important-information.html',
                 controller: 'LocationDetailsController as ctrl'
             })
@@ -194,7 +194,7 @@ angular.module('refugeeApp', ['ui.router', 'ngCookies', 'ngSanitize', 'djng.rmi'
                 controller: 'LocationDetailsController as ctrl'
             })
             .state('locationDetails.services', {
-                url: '/services/map/?query&type',
+                url: '/services/?query&type',
                 templateUrl: 'partials/location.services.html',
                 controller: 'LocationServicesController as ctrl',
                 reloadOnSearch: false,
