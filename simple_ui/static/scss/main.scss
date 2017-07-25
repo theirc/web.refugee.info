@@ -761,17 +761,25 @@ change-location-button {
   overflow: hidden;
   @include align-items(center);
   cursor: pointer;
+  padding-top: 10px;
+  padding-bottom: 10px;
+
   &:hover {
     background-color: $primary-color-2;
+    min-height: 115px;
   }
   @media (max-width: 1366px) and (min-width: $screen-sm-min) {
     height: 125px;
+    &:hover {
+      min-height: 125px;
+    }
   }
   @media (max-width: $screen-xs-max) {
     height: auto;
     min-height: 90px;
-    padding-top: 10px;
-    padding-bottom: 10px;
+    &:hover {
+      min-height: 90px;
+    }
   }
 }
 
@@ -1740,6 +1748,17 @@ a:after {
   margin-bottom: 20px;
   &.service-list-row {
     margin-bottom: 0;
+    &:hover {
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: -ms-flexbox;
+      display: flex;
+      flex-wrap: wrap;
+
+      .service-list-item {
+        height: auto;
+      }
+    }
     @media (max-width: $screen-xs-max) {
       margin-bottom: 0;
     }
