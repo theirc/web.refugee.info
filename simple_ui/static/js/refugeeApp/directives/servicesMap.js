@@ -128,12 +128,7 @@ angular.module('refugeeApp').directive('servicesMap', function(leafletData, $sta
                                     service.hideFromList = !map.getBounds().contains(position);
                                 }
                             }
-                            if (!scope.isMobile) {
-                                scope.chunkedServicesList = chunk(scope.services.filter( (s) => s.hideFromList == false ), 3);
-                            }
-                            else {
-                                scope.chunkedServicesList = chunk(scope.services, 3);
-                            }
+                            scope.chunkedServicesList = chunk(scope.services.filter( (s) => s.hideFromList == false ), 3);
                             checkOverlappingServices(map);
                         },
                         moveend: () => {
@@ -143,12 +138,7 @@ angular.module('refugeeApp').directive('servicesMap', function(leafletData, $sta
                                     service.hideFromList = !map.getBounds().contains(position);
                                 }
                             }
-                            if (!scope.isMobile) {
-                                scope.chunkedServicesList = chunk(scope.services.filter( (s) => s.hideFromList == false ), 3);
-                            }
-                            else {
-                                scope.chunkedServicesList = chunk(scope.services, 3);
-                            }
+                            scope.chunkedServicesList = chunk(scope.services.filter( (s) => s.hideFromList == false ), 3);
                         }
                     });
                     infoDiv.addTo(map);
@@ -210,12 +200,7 @@ angular.module('refugeeApp').directive('servicesMap', function(leafletData, $sta
                             }
                         }
                         map.addLayer(markers);
-                        if (!scope.isMobile) {
-                            scope.chunkedServicesList = chunk(scope.services.filter( (s) => s.hideFromList == false ), 3);
-                        }
-                        else {
-                            scope.chunkedServicesList = chunk(scope.services, 3);
-                        }
+                        scope.chunkedServicesList = chunk(scope.services.filter( (s) => s.hideFromList == false ), 3);
                     }
 
                 };
