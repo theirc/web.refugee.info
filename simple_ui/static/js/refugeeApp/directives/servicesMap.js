@@ -45,7 +45,7 @@ angular.module('refugeeApp').directive('servicesMap', function(leafletData, $sta
                             this._div.innerHTML = ('<b>' + $filter('translate')('NO_SERVICES_INFO', { siteName: scope.$root.translatedSiteName }) + '</b>');
                         }
                     } else {
-                        this._div.innerHTML = '<b>' + service.name + '</b><br/>' + $filter('limitTo')(service.description, 250);
+                        this._div.innerHTML = '<b>' + service.name + '</b><br/>' + service.description;
                     }
                     this._div.className = 'service-info-control';
                 };
@@ -64,7 +64,6 @@ angular.module('refugeeApp').directive('servicesMap', function(leafletData, $sta
                     scope.regionSlug = ctrl.slug;
                     scope.serviceInfo = e ? e.options.service : null;
                     scope.serviceInfo.icons = scope.serviceInfo.types;
-                    scope.serviceInfo.description = $filter('limitTo')(scope.serviceInfo.description, 200);
                     scope.showServiceInfo = true;
                     leafletData.getMap().then(function (map) {
                         map.sleep.sleepNote.hidden = true;
