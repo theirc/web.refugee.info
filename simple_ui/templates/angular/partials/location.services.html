@@ -19,7 +19,7 @@
                     <h4><i class="fa fa-filter"></i>{$ 'TYPES_OF_SERVICES' | translate $}</h4>
                 </div>
                 <ul ng-class="baseController.direction()" style="padding: 0; overflow: auto; overflow-y: scroll;">
-                    <li class="filter-line-mobile" data-ng-repeat="type in ctrl.serviceTypesMobile" style="cursor: pointer;">
+                    <li class="filter-line-desktop" data-ng-repeat="type in ctrl.serviceTypesMobile">
                         <div class="services-filter-list-icon-container-mobile" ng-class="baseController.direction()">
                             <i class="fa {$ type.vector_icon $}"></i>
                         </div>
@@ -37,7 +37,7 @@
         </div>
         <div class="col-xs-12 services-filter-list-container-mobile" ng-class="{'above': ctrl.filters, 'below': !ctrl.filters}" ng-if="baseController.isMobile()">
             <ul class="services-filter-list-mobile" ng-class="baseController.direction()">
-                <li class="filter-line-mobile" data-ng-repeat="type in ctrl.serviceTypesMobile" style="cursor: pointer;">
+                <li class="filter-line-mobile" ng-class="{'active': ctrl.isChecked(type)}" data-ng-repeat="type in ctrl.serviceTypesMobile">
                     <div class="services-filter-list-icon-container-mobile" ng-class="baseController.direction()">
                         <i class="fa {$ type.vector_icon $}"></i>
                     </div>
