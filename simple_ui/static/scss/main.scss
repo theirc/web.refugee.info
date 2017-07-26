@@ -1847,6 +1847,8 @@ i.fa {
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
   border-radius: 5px;
   max-width: 400px;
+  max-height: 200px;
+  overflow: hidden;
   @media (max-width: $screen-sm-max) {
     margin-top: 90px;
   }
@@ -1860,6 +1862,9 @@ i.fa {
 
 .service-info-container {
   display: none;
+  max-height: 200px;
+  overflow: hidden;
+
   @media (max-width: $screen-sm-max) {
     bottom: 0;
     left: 0;
