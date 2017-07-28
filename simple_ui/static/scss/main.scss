@@ -443,6 +443,12 @@ region-flag {
   }
 }
 
+.service-info {
+  div {
+    padding: 1px;
+  }
+}
+
 .service-information-choice {
   margin-top: 30px;
   .content {
@@ -762,8 +768,8 @@ change-location-button {
   overflow: hidden;
   @include align-items(center);
   cursor: pointer;
-  padding-top: 10px;
-  padding-bottom: 10px;
+  padding-top: 15px;
+  padding-bottom: 15px;
 
   &:hover {
     background-color: $primary-color-2;
@@ -775,6 +781,8 @@ change-location-button {
   @media (max-width: $screen-xs-max) {
     height: auto;
     min-height: 90px;
+    padding-top: 20px;
+    padding-bottom: 20px;
   }
 }
 
