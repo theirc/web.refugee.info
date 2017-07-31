@@ -903,7 +903,6 @@ nav {
 .service-list-item-icon-container {
   width: 50px;
   height: 50px;
-  background-color: $green-accent-color !important;
   border-radius: 8px;
   margin: auto;
   @include flexbox();
@@ -919,7 +918,6 @@ nav {
 .service-list-item-icon-container-small {
   width: 30px;
   height: 30px;
-  background-color: $green-accent-color !important;
   border-radius: 5px;
   margin: auto;
   @include flexbox();
