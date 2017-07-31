@@ -5,8 +5,7 @@ angular.module('refugeeApp').directive('serviceDetails', function () {
         bindToController: true,
         scope: {
             service: '=',
-            location: '=',
-            locationTitleInEnglish: '='
+            location: '='
         },
         controller: function ($window, $location) {
             var vm = this;
@@ -69,7 +68,7 @@ angular.module('refugeeApp').directive('serviceDetails', function () {
             };
 
             vm.getAddressInCountryLanguageName = () => {
-                let title = vm.locationTitleInEnglish;
+                let title = vm.service.region.title_en || vm.service.region.name || "";
                 for (const key of Object.keys(vm.addressByLanguage)) {
                     if (title.toLowerCase().indexOf(key) > -1) {
                         return vm.addressByLanguage[key];

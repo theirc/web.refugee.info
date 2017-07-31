@@ -160,15 +160,6 @@ angular.module('refugeeApp', ['ui.router', 'ngCookies', 'ngSanitize', 'djng.rmi'
                         }).then(function (response) {
                             return response.data.location;
                         });
-                    },
-                    locationTitleInEnglish: function ($stateParams, djangoRMI) {
-                        return djangoRMI.location_json_view.get_details({
-                            slug: $stateParams.slug,
-                            language: 'en'
-                        }).then(function (response) {
-                            let location = response.data.location;
-                            return location.title || location.name || "";
-                        });
                     }
                 },
                 controller: function ($rootScope, $stateParams, $location, $state, location) {
