@@ -70,14 +70,6 @@ angular.module('refugeeApp').directive('servicesMap', function(leafletData, $sta
                     });
                 };
 
-                function chunk(arr, size) {
-                    var newArr = [];
-                    for (var i = 0; i < arr.length; i += size) {
-                        newArr.push(arr.slice(i, i + size));
-                    }
-                    return newArr;
-                }
-
                 let checkOverlappingServices = (map) => {
                     let locs = Object.values(map._layers).map( (m) => {return m._latlng;} );
                     for (let marker in map._layers) {
@@ -128,7 +120,7 @@ angular.module('refugeeApp').directive('servicesMap', function(leafletData, $sta
                                     service.hideFromList = !map.getBounds().contains(position);
                                 }
                             }
-                            scope.chunkedServicesList = chunk(scope.services.filter( (s) => s.hideFromList == false ), 3);
+                            scope.chunkedServicesList = ctrl.sortServices(scope.services);
                             checkOverlappingServices(map);
                         },
                         moveend: () => {
@@ -138,7 +130,8 @@ angular.module('refugeeApp').directive('servicesMap', function(leafletData, $sta
                                     service.hideFromList = !map.getBounds().contains(position);
                                 }
                             }
-                            scope.chunkedServicesList = chunk(scope.services.filter( (s) => s.hideFromList == false ), 3);
+                            scope.chunkedServicesList = ctrl.sortServices(scope.services);
+                            ctrl.sortServices(scope.services);
                         }
                     });
                     infoDiv.addTo(map);
@@ -200,7 +193,7 @@ angular.module('refugeeApp').directive('servicesMap', function(leafletData, $sta
                             }
                         }
                         map.addLayer(markers);
-                        scope.chunkedServicesList = chunk(scope.services.filter( (s) => s.hideFromList == false ), 3);
+                        scope.chunkedServicesList = ctrl.sortServices(scope.services);
                     }
 
                 };
