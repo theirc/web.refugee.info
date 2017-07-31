@@ -117,7 +117,7 @@ angular.module('refugeeApp').controller('LocationServicesController', function (
                 service.hideFromList = false;
                 vm.services.push(service);
             });
-            vm.chunkedServicesList = chunk(vm.services, 3);
+            vm.chunkedServicesList = vm.sortServices(vm.services);
             page++;
             vm.busy = false;
             if (!response.data.next) {
@@ -165,5 +165,29 @@ angular.module('refugeeApp').controller('LocationServicesController', function (
             let searchValue = $location.search();
             return searchValue.type ? searchValue.type == '' : true;
         }
+    };
+
+    vm.isCheckedAllType = () => {
+        let searchValue = $location.search();
+        return searchValue.type ? searchValue.type == '' : true;
+    };
+
+    vm.sortServices = (services) => {
+        let sorted = {};
+        for (let type of Object.keys(vm.serviceTypesMobile)) {
+            if (vm.serviceTypesMobile[type].name != 'All Types') {
+                sorted[vm.serviceTypesMobile[type].name] = services.filter( (s) => {
+                    let hasType = false;
+                    s.types.forEach( (t) => {
+                        if (t.name ==  vm.serviceTypesMobile[type].name) {
+                            hasType = true;
+                        }
+                    });
+                    return s.hideFromList == false && hasType;
+                });
+                sorted[vm.serviceTypesMobile[type].name] = chunk(sorted[vm.serviceTypesMobile[type].name], 3);
+            }
+        }
+        return sorted;
     };
 });
