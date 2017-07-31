@@ -27,6 +27,8 @@
   "ADDRESS_STREET": "العنوان",
   "ADDRESS_FLOOR_NOTE": "Floor / note about location",
   "ADDRESS_IN_COUNTRY_LANGUAGE": "العنوان باللغة المحلية",
+  "ADDRESS_IN_GREEK": "العنوان باللغة اليونانية",
+  "ADDRESS_IN_SERBIAN": "العنوان باللغة الصربية",
   "CLOSED": "مغلق",
   "EMAIL": "البريد الالكتروني:",
   "FB_PAGE": "Facebook Page",

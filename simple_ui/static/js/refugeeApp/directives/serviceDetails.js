@@ -11,6 +11,10 @@ angular.module('refugeeApp').directive('serviceDetails', function () {
             var vm = this;
             vm.days = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'];
             vm.close = [];
+            vm.addressByLanguage = {
+                "serbia": "ADDRESS_IN_SERBIAN",
+                "greece": "ADDRESS_IN_GREEK"
+            };
             vm.serviceUrl = $location.absUrl();
 
             vm.getDirections = function () {
@@ -61,6 +65,16 @@ angular.module('refugeeApp').directive('serviceDetails', function () {
                 }
                 let newTab = $window.open(fixedUrl, '_blank');
                 newTab.focus();
+            };
+
+            vm.getAddressInCountryLanguageName = () => {
+                let title = vm.service.region.title_en || vm.service.region.name || "";
+                for (const key of Object.keys(vm.addressByLanguage)) {
+                    if (title.toLowerCase().indexOf(key) > -1) {
+                        return vm.addressByLanguage[key];
+                    }
+                }
+                return 'ADDRESS_IN_COUNTRY_LANGUAGE';
             };
         },
         controllerAs: 'ctrl'

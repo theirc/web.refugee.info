@@ -31,6 +31,8 @@
   "ADDRESS_STREET": "Address",
   "ADDRESS_FLOOR_NOTE": "Floor / note about location",
   "ADDRESS_IN_COUNTRY_LANGUAGE": "Address in local language",
+  "ADDRESS_IN_GREEK": "Address in Greek",
+  "ADDRESS_IN_SERBIAN": "Address in Serbian",
   "CLOSED": "CLOSED",
   "EMAIL": "Email:",
   "FB_PAGE": "Facebook Page",

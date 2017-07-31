@@ -87,7 +87,7 @@
                 </div>
                 <div ng-if="ctrl.service.address_in_country_language">
                     <h5 class="service-description-sub-title">
-                        {$ 'ADDRESS_IN_COUNTRY_LANGUAGE' | translate $}
+                        {$ ctrl.getAddressInCountryLanguageName() | translate $}
                     </h5>
                     <p class="service-description-body">{$ ctrl.service.address_in_country_language $}</p>
                 </div>
