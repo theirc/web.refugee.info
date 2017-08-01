@@ -32,6 +32,9 @@
                 </ul>
             </div>
         </div>
+        <div class="col-md-12 col-xs-12 map-disclaimer-desktop" ng-if="!baseController.isMobile()">
+            {$ 'MAP_DISCLAIMER' | translate $}
+        </div>
         <div ng-class="{'above': !ctrl.mapView, 'below': ctrl.mapView || ctrl.filters, 'services-list-desktop': !baseController.isMobile()}">
             <services-list></services-list>
         </div>
