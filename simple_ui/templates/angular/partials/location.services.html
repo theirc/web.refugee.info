@@ -21,7 +21,7 @@
                 <ul ng-class="baseController.direction()" style="padding: 0; overflow: auto; overflow-y: scroll;">
                     <li class="filter-line-desktop" data-ng-repeat="type in ctrl.serviceTypesMobile | orderBy: 'number'">
                         <div class="services-filter-list-icon-container-mobile" ng-class="baseController.direction()">
-                            <i class="fa {$ type.vector_icon $}"></i>
+                            <i class="fa {$ type.vector_icon $}" ng-style="{'color': ctrl.getServiceColor(type.id) }"></i>
                         </div>
                         <div class="services-filter-list-item-mobile">
                             <a data-ng-click="ctrl.setSelectedTypeMobile(type)" style="text-align: center">
@@ -39,7 +39,7 @@
             <ul class="services-filter-list-mobile" ng-class="baseController.direction()">
                 <li class="filter-line-mobile" ng-class="{'active': ctrl.isChecked(type)}" data-ng-repeat="type in ctrl.serviceTypesMobile | orderBy: 'number'">
                     <div class="services-filter-list-icon-container-mobile" ng-class="baseController.direction()">
-                        <i class="fa {$ type.vector_icon $}"></i>
+                        <i class="fa {$ type.vector_icon $}" ng-style="{'color': ctrl.getServiceColor(type.id) }"></i>
                     </div>
                     <div class="services-filter-list-item-mobile">
                         <a data-ng-click="ctrl.setSelectedTypeMobile(type)">

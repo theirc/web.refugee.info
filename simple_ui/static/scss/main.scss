@@ -1069,10 +1069,10 @@ nav {
   &.active {
     background: $green-accent-color;
     i.fa {
-      color: #FFF;
+      color: #FFF !important;
     }
     span {
-      color: #FFF;
+      color: #FFF !important;
     }
   }
 }
