@@ -763,9 +763,8 @@ change-location-button {
   @include transition-mixin(background-color, 0.15, linear);
   @include flexbox();
   flex-wrap: wrap;
-  height: 115px;
+  height: auto;
   min-height: 115px;
-  overflow: hidden;
   @include align-items(center);
   cursor: pointer;
   padding-top: 15px;
@@ -775,11 +774,9 @@ change-location-button {
     background-color: $primary-color-2;
   }
   @media (max-width: 1366px) and (min-width: $screen-sm-min) {
-    height: 125px;
     min-height: 125px;
   }
   @media (max-width: $screen-xs-max) {
-    height: auto;
     min-height: 90px;
     padding-top: 20px;
     padding-bottom: 20px;
@@ -1777,18 +1774,12 @@ a:after {
   margin-bottom: 20px;
   &.service-list-row {
     margin-bottom: 0;
-    &:hover {
-    .service-list-item {
-        height: auto;
-      }
-    }
     @media (min-width: $screen-sm-min) {
+      height: auto;
       display: flex;
-      &:hover {
-        display: -webkit-box;
-        display: -webkit-flex;
-        display: -ms-flexbox;
-      }
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: -ms-flexbox;
     }
     @media (max-width: $screen-xs-max) {
       margin-bottom: 0;
