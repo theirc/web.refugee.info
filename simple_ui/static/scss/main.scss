@@ -959,6 +959,13 @@ nav {
   }
 }
 
+.map-disclaimer-desktop {
+  display: inline-block;
+  font-size: 11px;
+  padding-top: 10px;
+  padding-bottom: 5px;
+}
+
 .services-filter-list-desktop-relative {
   padding-right: 0 !important;
   padding-left: 0 !important;
@@ -1770,11 +1777,11 @@ a:after {
       }
     }
     @media (min-width: $screen-sm-min) {
+      display: flex;
       &:hover {
         display: -webkit-box;
         display: -webkit-flex;
         display: -ms-flexbox;
-        display: flex;
       }
     }
     @media (max-width: $screen-xs-max) {
@@ -1870,10 +1877,9 @@ i.fa {
   }
 }
 
-.service-info-container {
+.map-info-container {
   display: none;
-  max-height: 200px;
-  overflow: hidden;
+  opacity: 0.9;
   @media (max-width: $screen-sm-max) {
     bottom: 0;
     left: 0;
@@ -1882,6 +1888,10 @@ i.fa {
     background: #FFF;
     display: block;
   }
+}
+
+.service-info-container {
+  max-height: 200px;
 }
 
 .service-info-header {
@@ -1896,6 +1906,15 @@ i.fa {
   @include flexbox();
   @include align-items(center);
   @include justify-content(center);
+}
+
+.service-description {
+  padding-left: 5px;
+  padding-top: 5px;
+}
+
+.map-info-disclaimer {
+  font-size: 11px;
 }
 
 .modal-fullscreen {
