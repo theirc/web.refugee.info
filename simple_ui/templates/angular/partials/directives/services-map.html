@@ -29,7 +29,7 @@
             <span ng-bind-html="serviceInfo.description"></span>
         </div>
     </div>
-    <div class="map-info-disclaimer">
+    <div class="map-info-disclaimer" ng-class="{'hidden': showServiceInfo}">
         {$ 'MAP_DISCLAIMER' | translate $}
     </div>
 </div>
