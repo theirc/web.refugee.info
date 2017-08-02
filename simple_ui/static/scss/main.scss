@@ -447,6 +447,10 @@ region-flag {
   div {
     padding: 1px;
   }
+  width: calc(100% - 82px);
+  @media (max-width: 1600px) and (min-width: $screen-sm-min) {
+    width: calc(100% - 72px);
+  }
 }
 
 .service-information-choice {
@@ -886,6 +890,8 @@ nav {
     padding-top: 60px;
   }
   .service-list-divider {
+    padding-left: 15px;
+    padding-right: 15px;
     &.ltr {
       border-right: 1px solid $divider-color;
       border-left: none;
