@@ -443,6 +443,12 @@ region-flag {
   }
 }
 
+.service-info {
+  div {
+    padding: 1px;
+  }
+}
+
 .service-information-choice {
   margin-top: 30px;
   .content {
@@ -757,17 +763,23 @@ change-location-button {
   @include transition-mixin(background-color, 0.15, linear);
   @include flexbox();
   flex-wrap: wrap;
-  height: 115px;
+  height: auto;
+  min-height: 115px;
   @include align-items(center);
   cursor: pointer;
+  padding-top: 15px;
+  padding-bottom: 15px;
+
   &:hover {
     background-color: $primary-color-2;
   }
   @media (max-width: 1366px) and (min-width: $screen-sm-min) {
-    height: 125px;
+    min-height: 125px;
   }
   @media (max-width: $screen-xs-max) {
-    height: 90px;
+    min-height: 90px;
+    padding-top: 20px;
+    padding-bottom: 20px;
   }
 }
 
@@ -883,12 +895,17 @@ nav {
       border-right: none;
     }
   }
+  .disclaimer-mobile {
+    padding-top: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+    font-size: 11px;
+  }
 }
 
 .service-list-item-icon-container {
   width: 50px;
   height: 50px;
-  background-color: $green-accent-color !important;
   border-radius: 8px;
   margin: auto;
   @include flexbox();
@@ -904,7 +921,6 @@ nav {
 .service-list-item-icon-container-small {
   width: 30px;
   height: 30px;
-  background-color: $green-accent-color !important;
   border-radius: 5px;
   margin: auto;
   @include flexbox();
@@ -926,6 +942,10 @@ nav {
   padding-left: 0;
 }
 
+.service-list-type-title {
+  padding: 20px 20px 0 20px;
+}
+
 .services-filter-list-mobile {
   list-style-type: none;
   overflow-y: scroll;
@@ -940,6 +960,13 @@ nav {
   @media (max-width: $screen-xs-max) {
     padding-top: 60px;
   }
+}
+
+.map-disclaimer-desktop {
+  display: inline-block;
+  font-size: 11px;
+  padding-top: 10px;
+  padding-bottom: 5px;
 }
 
 .services-filter-list-desktop-relative {
@@ -978,7 +1005,7 @@ nav {
   padding-right: 0;
 }
 
-.filter-line-mobile {
+.filter-line-desktop {
   display: flex;
   align-items: center;
   justify-content: flex-start;
@@ -988,6 +1015,7 @@ nav {
   background-color: white;
   padding-bottom: 5px;
   padding-top: 5px;
+  cursor: pointer;
 }
 
 .services-filter-list-icon-container-mobile {
@@ -1047,6 +1075,16 @@ nav {
   border-bottom: 1px $divider-color-dark solid;
   padding-bottom: 5px;
   padding-top: 5px;
+  cursor: pointer;
+  &.active {
+    background: $green-accent-color;
+    i.fa {
+      color: #FFF !important;
+    }
+    span {
+      color: #FFF !important;
+    }
+  }
 }
 
 .services-filter-list {
@@ -1457,7 +1495,7 @@ nav {
   .service-description-body {
     font-size: 12px;
     color: $text-color-muted !important;
-    white-space: pre-wrap;
+    white-space: normal;
   }
   .time-shift {
     margin: 0 !important;
@@ -1506,6 +1544,10 @@ nav {
   }
   i {
     font-size: 20px;
+  }
+  .labeled-text {
+    padding-left: 10px;
+    padding-right: 10px;
   }
 }
 
@@ -1732,6 +1774,13 @@ a:after {
   margin-bottom: 20px;
   &.service-list-row {
     margin-bottom: 0;
+    @media (min-width: $screen-sm-min) {
+      height: auto;
+      display: flex;
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: -ms-flexbox;
+    }
     @media (max-width: $screen-xs-max) {
       margin-bottom: 0;
     }
@@ -1812,6 +1861,8 @@ i.fa {
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
   border-radius: 5px;
   max-width: 400px;
+  max-height: 200px;
+  overflow: hidden;
   @media (max-width: $screen-sm-max) {
     margin-top: 90px;
   }
@@ -1823,8 +1874,9 @@ i.fa {
   }
 }
 
-.service-info-container {
+.map-info-container {
   display: none;
+  opacity: 0.9;
   @media (max-width: $screen-sm-max) {
     bottom: 0;
     left: 0;
@@ -1833,6 +1885,11 @@ i.fa {
     background: #FFF;
     display: block;
   }
+}
+
+.service-info-container {
+  max-height: 200px;
+  overflow: hidden;
 }
 
 .service-info-header {
@@ -1847,6 +1904,15 @@ i.fa {
   @include flexbox();
   @include align-items(center);
   @include justify-content(center);
+}
+
+.service-description {
+  padding-left: 5px;
+  padding-top: 5px;
+}
+
+.map-info-disclaimer {
+  font-size: 11px;
 }
 
 .modal-fullscreen {

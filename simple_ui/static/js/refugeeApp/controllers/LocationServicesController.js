@@ -14,9 +14,9 @@ angular.module('refugeeApp').controller('LocationServicesController', function (
     vm.chunkedServicesList = [];
     vm.services = [];
     vm.serviceTypes = {};
-    vm.serviceTypesMobile = {
-        0: {'name': 'All Types'}
-    };
+    vm.serviceTypesMobile = [
+        {'name': 'All Types', 'number': 0}
+    ];
     vm.slug = $stateParams.slug;
     vm.location = location;
     vm.mapView = $stateParams.mapView;
@@ -47,7 +47,7 @@ angular.module('refugeeApp').controller('LocationServicesController', function (
 
     LocationService.getServiceTypesMobile(vm.location).then(function (response) {
         response.data.forEach(function (service) {
-            vm.serviceTypesMobile[service.type.id] = service.type;
+            vm.serviceTypesMobile.push(service.type);
         });
     });
     var page = 1;
@@ -117,7 +117,7 @@ angular.module('refugeeApp').controller('LocationServicesController', function (
                 service.hideFromList = false;
                 vm.services.push(service);
             });
-            vm.chunkedServicesList = chunk(vm.services, 3);
+            vm.chunkedServicesList = vm.sortServices(vm.services);
             page++;
             vm.busy = false;
             if (!response.data.next) {
@@ -165,5 +165,29 @@ angular.module('refugeeApp').controller('LocationServicesController', function (
             let searchValue = $location.search();
             return searchValue.type ? searchValue.type == '' : true;
         }
+    };
+
+    vm.isCheckedAllType = () => {
+        let searchValue = $location.search();
+        return searchValue.type ? searchValue.type == '' : true;
+    };
+
+    vm.sortServices = (services) => {
+        let sorted = {};
+        for (let type of vm.serviceTypesMobile) {
+            if (type.name != 'All Types') {
+                sorted[type.name] = services.filter( (s) => {
+                    let hasType = false;
+                    s.types.forEach( (t) => {
+                        if (t.name ==  type.name) {
+                            hasType = true;
+                        }
+                    });
+                    return s.hideFromList == false && hasType;
+                });
+                sorted[type.name] = chunk(sorted[type.name], 3);
+            }
+        }
+        return sorted;
     };
 });
