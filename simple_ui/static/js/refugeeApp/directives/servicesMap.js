@@ -179,7 +179,7 @@ angular.module('refugeeApp').directive('servicesMap', function(leafletData, $sta
                         for (let marker in markers._layers) {
                             let layer = markers._layers[marker];
                             let locsFiltered = locs.filter( (l) => (l) );
-                            let firstEqualLatLngIndex = locs.findIndex( (l) => (l.lng == layer._latlng.lng && l.lat == layer._latlng.lat) );
+                            let firstEqualLatLngIndex = locsFiltered.findIndex( (l) => (l.lng == layer._latlng.lng && l.lat == layer._latlng.lat) );
                             if (firstEqualLatLngIndex !== -1) {
                                 locsFiltered.splice(firstEqualLatLngIndex, 1);
                             }
