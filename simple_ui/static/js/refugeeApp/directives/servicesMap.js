@@ -73,9 +73,14 @@ angular.module('refugeeApp').directive('servicesMap', function(leafletData, $sta
                 let checkOverlappingServices = (map) => {
                     let locs = Object.values(map._layers).map( (m) => {return m._latlng;} );
                     for (let marker in map._layers) {
-                        if (map._layers[marker]._latlng && map._layers[marker].options.service) {
-                            let locsFiltered = locs.filter( (l) => { return l && l.lng !== map._layers[marker]._latlng.lng && l.lat !== map._layers[marker]._latlng.lat; });
-                            let closestLayer = L.GeometryUtil.closest(map, locsFiltered, map._layers[marker]._latlng, true);
+                        let layer = map._layers[marker];
+                        if (layer._latlng && layer.options.service) {
+                            let locsFiltered = locs.filter( (l) => (l) );
+                            let firstEqualLatLngIndex = locsFiltered.find( (l) => (l.lng == layer._latlng.lng && l.lat == layer._latlng.lat) );
+                            if (firstEqualLatLngIndex !== -1) {
+                                locsFiltered.splice(firstEqualLatLngIndex, 1);
+                            }
+                            let closestLayer = L.GeometryUtil.closest(map, locsFiltered, layer._latlng, true);
                             let iconDict = {
                                 className: 'service-list-item-icon-container-map',
                                 html: '',
@@ -84,20 +89,20 @@ angular.module('refugeeApp').directive('servicesMap', function(leafletData, $sta
                             if (closestLayer && closestLayer.distance < 2) {
                                 let iconHtml = '';
                                 if (scope.isRtl) {
-                                    iconHtml = `<span class="fa fa-map-marker fa-3x service-icon-map" style="color: ${ctrl.getServiceColor(map._layers[marker].options.service.types[0].id)}"></span>
-                                                <span class="fa fa-plus service-plus-icon-map-rtl" style="color: white; background-color: ${ctrl.getServiceColor(map._layers[marker].options.service.types[0].id)}"></span>`;
+                                    iconHtml = `<span class="fa fa-map-marker fa-3x service-icon-map" style="color: ${ctrl.getServiceColor(layer.options.service.types[0].id)}"></span>
+                                                <span class="fa fa-plus service-plus-icon-map-rtl" style="color: white; background-color: ${ctrl.getServiceColor(layer.options.service.types[0].id)}"></span>`;
                                 }
                                 else {
-                                    iconHtml = `<span class="fa fa-map-marker fa-3x service-icon-map" style="color: ${ctrl.getServiceColor(map._layers[marker].options.service.types[0].id)}"></span>
-                                                <span class="fa fa-plus service-plus-icon-map" style="color: white; background-color: ${ctrl.getServiceColor(map._layers[marker].options.service.types[0].id)}"></span>`;
+                                    iconHtml = `<span class="fa fa-map-marker fa-3x service-icon-map" style="color: ${ctrl.getServiceColor(layer.options.service.types[0].id)}"></span>
+                                                <span class="fa fa-plus service-plus-icon-map" style="color: white; background-color: ${ctrl.getServiceColor(layer.options.service.types[0].id)}"></span>`;
                                 }
                                 iconDict['html'] = iconHtml;
                             }
                             else {
-                                iconDict['html'] = `<span class="fa fa-map-marker fa-3x service-icon-map" style="color: ${ctrl.getServiceColor(map._layers[marker].options.service.types[0].id)}"></span>`;
+                                iconDict['html'] = `<span class="fa fa-map-marker fa-3x service-icon-map" style="color: ${ctrl.getServiceColor(layer.options.service.types[0].id)}"></span>`;
                             }
                             let icon = L.divIcon(iconDict);
-                            map._layers[marker].setIcon(icon);
+                            layer.setIcon(icon);
                         }
                     }
                 };
