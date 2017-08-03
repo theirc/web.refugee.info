@@ -76,7 +76,7 @@ angular.module('refugeeApp').directive('servicesMap', function(leafletData, $sta
                         let layer = map._layers[marker];
                         if (layer._latlng && layer.options.service) {
                             let locsFiltered = locs.filter( (l) => (l) );
-                            let firstEqualLatLngIndex = locsFiltered.find( (l) => (l.lng == layer._latlng.lng && l.lat == layer._latlng.lat) );
+                            let firstEqualLatLngIndex = locsFiltered.findIndex( (l) => (l.lng == layer._latlng.lng && l.lat == layer._latlng.lat) );
                             if (firstEqualLatLngIndex !== -1) {
                                 locsFiltered.splice(firstEqualLatLngIndex, 1);
                             }
@@ -177,24 +177,29 @@ angular.module('refugeeApp').directive('servicesMap', function(leafletData, $sta
                     if (services && services.length > 0) {
                         let locs = oms.markers.map((m) => {return m._latlng;});
                         for (let marker in markers._layers) {
-                            let locsFiltered = locs.filter( (l) => { return l.lng !== markers._layers[marker]._latlng && l.lat !== markers._layers[marker]._latlng.lat; });
-                            let closestLayer = L.GeometryUtil.closest(map, locsFiltered, markers._layers[marker]._latlng, true);
+                            let layer = markers._layers[marker];
+                            let locsFiltered = locs.filter( (l) => (l) );
+                            let firstEqualLatLngIndex = locs.findIndex( (l) => (l.lng == layer._latlng.lng && l.lat == layer._latlng.lat) );
+                            if (firstEqualLatLngIndex !== -1) {
+                                locsFiltered.splice(firstEqualLatLngIndex, 1);
+                            }
+                            let closestLayer = L.GeometryUtil.closest(map, locsFiltered, layer._latlng, true);
                             if (closestLayer && closestLayer.distance < 2) {
                                 let iconHtml = '';
                                 if (scope.isRtl) {
-                                    iconHtml = `<span class="fa fa-map-marker fa-3x service-icon-map" style="color: ${ctrl.getServiceColor(markers._layers[marker].options.service.types[0].id)}"></span>
-                                                <span class="fa fa-plus service-plus-icon-map-rtl" style="color: white; background-color: ${ctrl.getServiceColor(markers._layers[marker].options.service.types[0].id)}"></span>`;
+                                    iconHtml = `<span class="fa fa-map-marker fa-3x service-icon-map" style="color: ${ctrl.getServiceColor(layer.options.service.types[0].id)}"></span>
+                                                <span class="fa fa-plus service-plus-icon-map-rtl" style="color: white; background-color: ${ctrl.getServiceColor(layer.options.service.types[0].id)}"></span>`;
                                 }
                                 else {
-                                    iconHtml = `<span class="fa fa-map-marker fa-3x service-icon-map" style="color: ${ctrl.getServiceColor(markers._layers[marker].options.service.types[0].id)}"></span>
-                                                <span class="fa fa-plus service-plus-icon-map" style="color: white; background-color: ${ctrl.getServiceColor(markers._layers[marker].options.service.types[0].id)}"></span>`;
+                                    iconHtml = `<span class="fa fa-map-marker fa-3x service-icon-map" style="color: ${ctrl.getServiceColor(layer.options.service.types[0].id)}"></span>
+                                                <span class="fa fa-plus service-plus-icon-map" style="color: white; background-color: ${ctrl.getServiceColor(layer.options.service.types[0].id)}"></span>`;
                                 }
                                 let icon = L.divIcon({
                                     className: 'service-list-item-icon-container-map',
                                     html: iconHtml,
                                     iconSize: null
                                 });
-                                markers._layers[marker].setIcon(icon);
+                                layer.setIcon(icon);
                             }
                         }
                         map.addLayer(markers);
