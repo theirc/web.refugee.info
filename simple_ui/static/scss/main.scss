@@ -444,8 +444,14 @@ region-flag {
 }
 
 .service-info {
+  padding-left: 15px;
+  padding-right: 15px;
+  width: calc(100% - 95px);
   div {
     padding: 1px;
+  }
+  @media (max-width: 1600px) and (min-width: $screen-sm-min) {
+    width: calc(100% - 75px);
   }
 }
 
@@ -886,6 +892,9 @@ nav {
     padding-top: 60px;
   }
   .service-list-divider {
+    padding-left: 15px;
+    padding-right: 15px;
+    width: 95px;
     &.ltr {
       border-right: 1px solid $divider-color;
       border-left: none;
@@ -893,6 +902,9 @@ nav {
     &.rtl {
       border-left: 1px solid $divider-color;
       border-right: none;
+    }
+    @media (max-width: 1600px) and (min-width: $screen-sm-min) {
+      width: 75px;
     }
   }
   .disclaimer-mobile {

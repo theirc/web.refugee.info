@@ -12,7 +12,7 @@
                 <div class="row service-list-row" ng-repeat="rows in ctrl.chunkedServicesList[type.name]">
                     <div class="col-sm-4 service-list-item service-divider" ng-repeat="item in rows"
                          ui-sref="locationDetails.services.details({slug: ctrl.slug, serviceId: item.id})">
-                        <div class="col-xs-3 service-list-divider" ng-class="baseController.direction()">
+                        <div class="service-list-divider" ng-class="baseController.direction()">
                             <div style="display: flex;">
                                 <div ng-class="{'service-list-item-icon-container-small': item.types[1], 'service-list-item-icon-container': !item.types[1], 'fa-2x': !item.types[1]}"
                                      ng-style="{'background-color': ctrl.getServiceColor(item.types[0].id) }">
@@ -34,7 +34,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-xs-9 service-info">
+                        <div class="service-info">
                             <div>
                                 <h4 class="service-list-item-name">{$ item.name $}</h4>
                             </div>
