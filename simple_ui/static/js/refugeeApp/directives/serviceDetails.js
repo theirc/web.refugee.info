@@ -5,7 +5,9 @@ angular.module('refugeeApp').directive('serviceDetails', function () {
         bindToController: true,
         scope: {
             service: '=',
-            location: '='
+            location: '=',
+            sameCoordinatesServices: '=',
+            getServiceColor: '&'
         },
         controller: function ($window, $location) {
             var vm = this;

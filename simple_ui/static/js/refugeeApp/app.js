@@ -212,6 +212,12 @@ angular.module('refugeeApp', ['ui.router', 'ngCookies', 'ngSanitize', 'djng.rmi'
                             return response.data[0];
                         });
                     },
+                    sameCoordinatesServices: (LocationService) => {
+                        // MOCKED
+                        return LocationService.getSameCoordinatesServices({slug: 'slug'}).then((response) => {
+                            return response.data.results;
+                        });
+                    },
                     serviceIcon: function (LocationService, service) {
                         return LocationService.getServiceType(service).then(function (response) {
                             return response.data.vector_icon;
