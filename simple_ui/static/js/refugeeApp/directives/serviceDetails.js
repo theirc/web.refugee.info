@@ -76,6 +76,10 @@ angular.module('refugeeApp').directive('serviceDetails', function () {
                 }
                 return 'ADDRESS_IN_COUNTRY_LANGUAGE';
             };
+
+            vm.isHTML = (text) => {
+                return /<\/[a-z][\S]*|<br>|<img/i.test(text);
+            };
         },
         controllerAs: 'ctrl'
     };
