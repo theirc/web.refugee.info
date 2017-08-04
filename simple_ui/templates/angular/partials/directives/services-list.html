@@ -13,12 +13,12 @@
                     <div class="col-sm-4 service-list-item service-divider" ng-repeat="item in rows"
                          ui-sref="locationDetails.services.details({slug: ctrl.slug, serviceId: item.id})">
                         <div class="service-list-divider" ng-class="baseController.direction()">
-                            <div style="display: flex;">
+                            <div style="display: flex;" ng-class="{'column-direction': !item.types[2].id}">
                                 <div ng-class="{'service-list-item-icon-container-small': item.types[1], 'service-list-item-icon-container': !item.types[1], 'fa-2x': !item.types[1]}"
                                      ng-style="{'background-color': ctrl.getServiceColor(item.types[0].id) }">
                                     <span class="fa {$ ctrl.getServiceIcon(item.types[0].id) $} service-icon"></span>
                                 </div>
-                                <div class="service-list-item-icon-container-small" ng-if="item.types[1].id" style="margin-left: 2px !important;"
+                                <div class="service-list-item-icon-container-small second-icon" ng-if="item.types[1].id"
                                      ng-style="{'background-color': ctrl.getServiceColor(item.types[1].id) }">
                                     <span class="fa {$ ctrl.getServiceIcon(item.types[1].id) $} service-icon"></span>
                                 </div>

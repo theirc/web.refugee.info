@@ -891,6 +891,9 @@ nav {
   @media (max-width: $screen-xs-max) {
     padding-top: 60px;
   }
+  .second-icon {
+    margin-left: 2px !important;
+  }
   .service-list-divider {
     padding-left: 15px;
     padding-right: 15px;
@@ -905,6 +908,12 @@ nav {
     }
     @media (max-width: 1600px) and (min-width: $screen-sm-min) {
       width: 75px;
+    }
+    .column-direction {
+      flex-direction: column;
+      .second-icon {
+        margin: 2px auto 0px auto !important;
+      }
     }
   }
   .disclaimer-mobile {
