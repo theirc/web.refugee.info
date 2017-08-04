@@ -18,20 +18,20 @@
             {$ ctrl.service.updated_at | date: "dd/MM/y hh:mm a" $}&nbsp;</span></div>
         <img ng-if="!!ctrl.service.image" class="service-image" ng-src="{$ ctrl.service.image $}"/>
 
-        <div style="display:flex;" ng-if="ctrl.service.description || ctrl.service.additional_info || ctrl.service.languages_spoken">
+        <div style="display:flex;" ng-if="ctrl.service.description || ctrl.service.additional_info">
             <i class="fa fa-2x fa-info" style="margin: 20px 15px 15px 15px"></i>
             <div>
                 <div ng-if="ctrl.service.description">
                     <h2 class="service-description-title">
                         {$ 'DESCRIPTION' | translate $}
                     </h2>
-                    <p ng-bind-html="ctrl.service.description" class="service-description-body" ng-class="{'service-description-body-wrap': !ctrl.isHTML(ctrl.service.description)}"></p>
+                    <p ng-bind-html="ctrl.service.description" class="service-description-body"></p>
                 </div>
                 <div ng-if="ctrl.service.additional_info">
                     <h2 class="service-description-title">
                         {$ 'ADDITIONAL_INFO' | translate $}
                     </h2>
-                    <p ng-bind-html="ctrl.service.additional_info" class="service-description-body" ng-class="{'service-description-body-wrap': !ctrl.isHTML(ctrl.service.additional_info)}"></p>
+                    <p ng-bind-html="ctrl.service.additional_info" class="service-description-body"></p>
                 </div>
                 <div ng-if="ctrl.service.languages_spoken">
                     <h2 class="service-description-title">
