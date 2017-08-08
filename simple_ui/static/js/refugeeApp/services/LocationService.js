@@ -24,10 +24,10 @@ angular.module('refugeeApp').factory('LocationService', function ($http, apiUrl,
                 headers: {'Accept-Language': $translate.proposedLanguage() || $translate.use()}
             });
         },
-        getServiceTypesMobile: function (location) {
+        getAssignedServiceTypes: function (location) {
             return $http({
                 method: 'GET',
-                url: apiUrl + '/v2/custom-servicetypes/',
+                url: apiUrl + '/v2/custom-servicetypes/used_types/',
                 params: {
                     geographic_region: location.slug,
                 },
