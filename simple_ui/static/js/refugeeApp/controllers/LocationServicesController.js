@@ -184,6 +184,9 @@ angular.module('refugeeApp').controller('LocationServicesController', function (
                     return s.hideFromList == false && hasType;
                 });
                 sorted[type.name] = chunk(sorted[type.name], 3);
+                if (sorted[type.name].length) {
+                    sorted['exists'] = true;
+                }
             }
         }
         return sorted;
