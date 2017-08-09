@@ -1037,6 +1037,15 @@ nav {
   padding-bottom: 5px;
   padding-top: 5px;
   cursor: pointer;
+  &.active {
+    background: $green-accent-color;
+    i.fa {
+      color: #FFF !important;
+    }
+    span {
+      color: #FFF !important;
+    }
+  }
 }
 
 .services-filter-list-icon-container-mobile {
