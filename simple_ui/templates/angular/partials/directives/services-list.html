@@ -3,7 +3,7 @@
         <div class="disclaimer-mobile" ng-if="baseController.isMobile()">
             {$ 'MAP_DISCLAIMER' | translate $}
         </div>
-        <div ng-repeat="type in ctrl.assignedServiceTypes | orderBy: 'number'" ng-if="type.name != 'All Services'">
+        <div ng-repeat="type in ctrl.assignedServiceTypes | orderBy: 'number'" ng-if="type.name && type.name != 'All Services'">
             <div ng-if="ctrl.isCheckedAllType() || ctrl.isChecked(type)">
                 <div class="service-list-type-title" ng-if="ctrl.chunkedServicesList[type.name].length">
                     <span class="fa {$ ctrl.getServiceIcon(type.id) $}"></span>

@@ -126,6 +126,9 @@ angular.module('refugeeApp').directive('servicesMap', function(leafletData, $sta
                                 }
                             }
                             scope.chunkedServicesList = ctrl.sortServices(scope.services);
+                            if (!scope.chunkedServicesList['exists']) {
+                                map.fitBounds(polygon.getBounds(),  {pan: {animate: true, duration: 1.0}, zoom: {animate: true}});
+                            }
                             checkOverlappingServices(map);
                         },
                         moveend: () => {
@@ -136,7 +139,9 @@ angular.module('refugeeApp').directive('servicesMap', function(leafletData, $sta
                                 }
                             }
                             scope.chunkedServicesList = ctrl.sortServices(scope.services);
-                            ctrl.sortServices(scope.services);
+                            if (!scope.chunkedServicesList['exists']) {
+                                map.fitBounds(polygon.getBounds(),  {pan: {animate: true, duration: 1.0}, zoom: {animate: true}});
+                            }
                         }
                     });
                     infoDiv.addTo(map);
@@ -204,8 +209,11 @@ angular.module('refugeeApp').directive('servicesMap', function(leafletData, $sta
                         }
                         map.addLayer(markers);
                         scope.chunkedServicesList = ctrl.sortServices(scope.services);
+                        if (!scope.chunkedServicesList['exists']) {
+                            var polygon = L.geoJson(scope.region);
+                            map.fitBounds(polygon.getBounds(), {pan: {animate: true, duration: 1.0}, zoom: {animate: true}});
+                        }
                     }
-
                 };
 
                 var refreshMap = function(){
