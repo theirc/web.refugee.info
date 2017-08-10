@@ -31,6 +31,7 @@ angular.module('refugeeApp').directive('servicesMap', function(leafletData, $sta
             post: function (scope) {
                 var ctrl = scope.$parent.ctrl;
                 var infoDiv = L.control();
+                let mapFittingEnabled = false;
                 infoDiv.onAdd = function () {
                     this._div = L.DomUtil.create('div', 'hidden');
                     return this._div;
@@ -126,8 +127,9 @@ angular.module('refugeeApp').directive('servicesMap', function(leafletData, $sta
                                 }
                             }
                             scope.chunkedServicesList = ctrl.sortServices(scope.services);
-                            if (!scope.chunkedServicesList['exists']) {
+                            if (!scope.chunkedServicesList['exists'] && mapFittingEnabled) {
                                 map.fitBounds(polygon.getBounds(),  {pan: {animate: true, duration: 1.0}, zoom: {animate: true}});
+                                mapFittingEnabled = false;
                             }
                             checkOverlappingServices(map);
                         },
@@ -139,8 +141,9 @@ angular.module('refugeeApp').directive('servicesMap', function(leafletData, $sta
                                 }
                             }
                             scope.chunkedServicesList = ctrl.sortServices(scope.services);
-                            if (!scope.chunkedServicesList['exists']) {
+                            if (!scope.chunkedServicesList['exists'] && mapFittingEnabled) {
                                 map.fitBounds(polygon.getBounds(),  {pan: {animate: true, duration: 1.0}, zoom: {animate: true}});
+                                mapFittingEnabled = false;
                             }
                         }
                     });
@@ -153,6 +156,7 @@ angular.module('refugeeApp').directive('servicesMap', function(leafletData, $sta
                 };
 
                 var drawServices = function(map, services, isMobile, oms) {
+                    mapFittingEnabled = true;
                     markers.clearLayers();
                     map.fireEvent('click');
                     services && services.forEach(function(service) {
@@ -212,6 +216,7 @@ angular.module('refugeeApp').directive('servicesMap', function(leafletData, $sta
                         if (!scope.chunkedServicesList['exists']) {
                             var polygon = L.geoJson(scope.region);
                             map.fitBounds(polygon.getBounds(), {pan: {animate: true, duration: 1.0}, zoom: {animate: true}});
+                            mapFittingEnabled = false;
                         }
                     }
                 };
