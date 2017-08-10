@@ -29,13 +29,31 @@ angular.module('refugeeApp').directive('servicesMap', function(leafletData, $sta
                 });
             },
             post: function (scope) {
-                var ctrl = scope.$parent.ctrl;
-                var infoDiv = L.control();
+                let ctrl = scope.$parent.ctrl;
+                let infoDiv = L.control();
                 let mapFittingEnabled = false;
                 infoDiv.onAdd = function () {
                     this._div = L.DomUtil.create('div', 'hidden');
                     return this._div;
                 };
+
+                let customControl = L.Control.extend({
+                    options: {
+                        position: 'topleft'
+                    },
+                    onAdd: (map) => {
+                        let container = L.DomUtil.create('div', 'leaflet-bar leaflet-control leaflet-control-custom');
+
+                        container.innerHTML = ('<a><i class="fa fa-map" style="align-self: center; color: black"></i></a>');
+                        container.title = 'Go back to chosen region';
+
+                        container.onclick = () => {
+                            let polygon = L.geoJson(scope.region);
+                            map.fitBounds(polygon.getBounds(), {pan: {animate: true, duration: 1.0}, zoom: {animate: true}});
+                        };
+                        return container;
+                    }
+                });
 
                 infoDiv.update = function (service) {
                     if (!service) {
@@ -61,7 +79,7 @@ angular.module('refugeeApp').directive('servicesMap', function(leafletData, $sta
                     infoDiv._div.className = 'hidden';
                 }
 
-                var displayServiceInfo = function(e) {
+                let displayServiceInfo = function(e) {
                     scope.regionSlug = ctrl.slug;
                     scope.serviceInfo = e ? e.options.service : null;
                     scope.serviceInfo.icons = scope.serviceInfo.types;
@@ -109,7 +127,7 @@ angular.module('refugeeApp').directive('servicesMap', function(leafletData, $sta
                 };
 
                 leafletData.getMap().then(function (map) {
-                    var polygon = L.geoJson(scope.region);
+                    let polygon = L.geoJson(scope.region);
                     map.fitBounds(polygon.getBounds());
                     map.sleep.disable();
                     if (scope.isMobile) {
@@ -148,27 +166,28 @@ angular.module('refugeeApp').directive('servicesMap', function(leafletData, $sta
                         }
                     });
                     infoDiv.addTo(map);
+                    map.addControl(new customControl());
                 });
 
-                var markers = new L.LayerGroup();
-                var markerClick = function onClick(e) {
+                let markers = new L.LayerGroup();
+                let markerClick = function onClick(e) {
                     $state.go('locationDetails.services.details', {slug: ctrl.slug, serviceId: e.options.service.id});
                 };
 
-                var drawServices = function(map, services, isMobile, oms) {
+                let drawServices = function(map, services, isMobile, oms) {
                     mapFittingEnabled = true;
                     markers.clearLayers();
                     map.fireEvent('click');
                     services && services.forEach(function(service) {
                         if (service.location) {
-                            var lat = service.location.coordinates[1];
-                            var lng = service.location.coordinates[0];
-                            var icon = L.divIcon({
+                            let lat = service.location.coordinates[1];
+                            let lng = service.location.coordinates[0];
+                            let icon = L.divIcon({
                                 className: 'service-list-item-icon-container-map',
                                 html: `<span class="fa fa-map-marker fa-3x service-icon-map" style="color: ${ctrl.getServiceColor(service.types[0].id)}"></span>`,
                                 iconSize: null
                             });
-                            var marker = L.marker([lat, lng], {
+                            let marker = L.marker([lat, lng], {
                                 icon: icon,
                                 service: service,
                                 riseOnHover: true
@@ -214,14 +233,14 @@ angular.module('refugeeApp').directive('servicesMap', function(leafletData, $sta
                         map.addLayer(markers);
                         scope.chunkedServicesList = ctrl.sortServices(scope.services);
                         if (!scope.chunkedServicesList['exists']) {
-                            var polygon = L.geoJson(scope.region);
+                            let polygon = L.geoJson(scope.region);
                             map.fitBounds(polygon.getBounds(), {pan: {animate: true, duration: 1.0}, zoom: {animate: true}});
                             mapFittingEnabled = false;
                         }
                     }
                 };
 
-                var refreshMap = function(){
+                let refreshMap = function(){
                     leafletData.getMap().then(function (map) {
                         map.sleep.sleepNote.hidden = true;
                         /* global OverlappingMarkerSpiderfier */
@@ -237,8 +256,8 @@ angular.module('refugeeApp').directive('servicesMap', function(leafletData, $sta
                             }
                         });
                         oms.addListener('spiderfy', function(markers) {
-                            for (var i = 0, len = markers.length; i < len; i ++) {
-                                var icon = L.divIcon({
+                            for (let i = 0, len = markers.length; i < len; i ++) {
+                                let icon = L.divIcon({
                                     className: 'service-list-item-icon-container-map',
                                     html: `<span class="fa fa-map-marker fa-3x service-icon-map" style="color: ${ctrl.getServiceColor(markers[i].options.service.types[0].id)}"></span>`,
                                     iconSize: null
@@ -247,7 +266,7 @@ angular.module('refugeeApp').directive('servicesMap', function(leafletData, $sta
                             }
                         });
                         oms.addListener('unspiderfy', function(markers) {
-                            for (var i = 0, len = markers.length; i < len; i ++) {
+                            for (let i = 0, len = markers.length; i < len; i ++) {
                                 let iconHtml = '';
                                 if (scope.isRtl) {
                                     iconHtml = `<span class="fa fa-map-marker fa-3x service-icon-map" style="color: ${ctrl.getServiceColor(markers[i].options.service.types[0].id)}"></span>
@@ -257,7 +276,7 @@ angular.module('refugeeApp').directive('servicesMap', function(leafletData, $sta
                                     iconHtml = `<span class="fa fa-map-marker fa-3x service-icon-map" style="color: ${ctrl.getServiceColor(markers[i].options.service.types[0].id)}"></span>
                                                 <span class="fa fa-plus service-plus-icon-map" style="color: white; background-color: ${ctrl.getServiceColor(markers[i].options.service.types[0].id)}"></span>`;
                                 }
-                                var icon = L.divIcon({
+                                let icon = L.divIcon({
                                     className: 'service-list-item-icon-container-map',
                                     html: iconHtml,
                                     iconSize: null

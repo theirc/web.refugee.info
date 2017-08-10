@@ -1887,6 +1887,14 @@ i.fa {
   margin-left: -10px;
 }
 
+.leaflet-control-custom {
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  margin-top: 10px !important;
+  cursor: pointer;
+}
+
 .service-info-control {
   margin: 10px;
   padding: 6px 8px;
