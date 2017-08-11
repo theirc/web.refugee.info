@@ -44,8 +44,7 @@ angular.module('refugeeApp').directive('servicesMap', function(leafletData, $sta
                     onAdd: (map) => {
                         let container = L.DomUtil.create('div', 'leaflet-bar leaflet-control leaflet-control-custom');
 
-                        container.innerHTML = ('<a><i class="fa fa-map" style="align-self: center; color: black"></i></a>');
-                        container.title = $filter('translate')('RESET_MAP');
+                        container.innerHTML = ('<a><span style="align-self: center; color: black">' + $filter('translate')('RESET_MAP') + '</span></a>');
 
                         container.onclick = () => {
                             let polygon = L.geoJson(scope.region);
