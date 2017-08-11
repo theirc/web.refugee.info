@@ -45,7 +45,7 @@ angular.module('refugeeApp').directive('servicesMap', function(leafletData, $sta
                         let container = L.DomUtil.create('div', 'leaflet-bar leaflet-control leaflet-control-custom');
 
                         container.innerHTML = ('<a><i class="fa fa-map" style="align-self: center; color: black"></i></a>');
-                        container.title = 'Go back to chosen region';
+                        container.title = $filter('translate')('RESET_MAP');
 
                         container.onclick = () => {
                             let polygon = L.geoJson(scope.region);
