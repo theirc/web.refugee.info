@@ -1878,8 +1878,9 @@ i.fa {
 }
 
 .leaflet-left .leaflet-control {
+  margin-top: 40px;
   @media (max-width: $screen-sm-max) {
-    margin-top: 85px;
+    margin-top: 120px;
   }
 }
 
@@ -1890,10 +1891,18 @@ i.fa {
 
 .leaflet-control-custom {
   background-color: white;
+  width: auto !important;
   display: flex;
   justify-content: center;
-  margin-top: 10px !important;
+  margin-top: -85px !important;
   cursor: pointer;
+  a {
+    width: auto !important;
+    padding: 0 10px;
+  }
+  @media (max-width: $screen-sm-max) {
+    margin-top: -100px !important;
+  }
 }
 
 .service-info-control {
