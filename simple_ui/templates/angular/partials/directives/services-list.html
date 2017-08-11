@@ -3,7 +3,7 @@
         <div class="disclaimer-mobile" ng-if="baseController.isMobile()">
             {$ 'MAP_DISCLAIMER' | translate $}
         </div>
-        <div ng-repeat="type in ctrl.serviceTypesMobile | orderBy: 'number'" ng-if="type.name != 'All Services'">
+        <div ng-repeat="type in ctrl.assignedServiceTypes | orderBy: 'number'" ng-if="type.name && type.name != 'All Services'">
             <div ng-if="ctrl.isCheckedAllType() || ctrl.isChecked(type)">
                 <div class="service-list-type-title" ng-if="ctrl.chunkedServicesList[type.name].length">
                     <span class="fa {$ ctrl.getServiceIcon(type.id) $}"></span>
@@ -12,13 +12,13 @@
                 <div class="row service-list-row" ng-repeat="rows in ctrl.chunkedServicesList[type.name]">
                     <div class="col-sm-4 service-list-item service-divider" ng-repeat="item in rows"
                          ui-sref="locationDetails.services.details({slug: ctrl.slug, serviceId: item.id})">
-                        <div class="col-xs-3 service-list-divider" ng-class="baseController.direction()">
-                            <div style="display: flex;">
+                        <div class="service-list-divider" ng-class="baseController.direction()">
+                            <div style="display: flex;" ng-class="{'column-direction': !item.types[2].id}">
                                 <div ng-class="{'service-list-item-icon-container-small': item.types[1], 'service-list-item-icon-container': !item.types[1], 'fa-2x': !item.types[1]}"
                                      ng-style="{'background-color': ctrl.getServiceColor(item.types[0].id) }">
                                     <span class="fa {$ ctrl.getServiceIcon(item.types[0].id) $} service-icon"></span>
                                 </div>
-                                <div class="service-list-item-icon-container-small" ng-if="item.types[1].id" style="margin-left: 2px !important;"
+                                <div class="service-list-item-icon-container-small second-icon" ng-if="item.types[1].id"
                                      ng-style="{'background-color': ctrl.getServiceColor(item.types[1].id) }">
                                     <span class="fa {$ ctrl.getServiceIcon(item.types[1].id) $} service-icon"></span>
                                 </div>
@@ -34,18 +34,18 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-xs-9 service-info">
+                        <div class="service-info">
                             <div>
                                 <h4 class="service-list-item-name">{$ item.name $}</h4>
+                            </div>
+                            <div>
+                                <h5 class="service-list-provider">{$ item.provider.name $}</h5>
                             </div>
                             <div>
                                 <h5 class="service-list-item-location">
                                     <span class="fa fa-map-marker" style="color: #989898"></span>
                                     <region-name region="item.region"></region-name>
                                 </h5>
-                            </div>
-                            <div>
-                                <h5 class="service-list-provider">{$ item.provider.name $}</h5>
                             </div>
                         </div>
                     </div>

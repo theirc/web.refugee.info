@@ -33,6 +33,12 @@
                     </h2>
                     <p ng-bind-html="ctrl.service.additional_info" class="service-description-body"></p>
                 </div>
+                <div ng-if="ctrl.service.languages_spoken">
+                    <h2 class="service-description-title">
+                        {$ 'LANGUAGES_SPOKEN' | translate $}
+                    </h2>
+                    <p class="service-description-body">{$ ctrl.service.languages_spoken $}</p>
+                </div>
             </div>
         </div>
 

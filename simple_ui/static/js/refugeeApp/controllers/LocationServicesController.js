@@ -14,7 +14,7 @@ angular.module('refugeeApp').controller('LocationServicesController', function (
     vm.chunkedServicesList = [];
     vm.services = [];
     vm.serviceTypes = {};
-    vm.serviceTypesMobile = [
+    vm.assignedServiceTypes = [
         {'name': 'All Types', 'number': 0}
     ];
     vm.slug = $stateParams.slug;
@@ -45,10 +45,8 @@ angular.module('refugeeApp').controller('LocationServicesController', function (
         vm.loaded = true;
     });
 
-    LocationService.getServiceTypesMobile(vm.location).then(function (response) {
-        response.data.forEach(function (service) {
-            vm.serviceTypesMobile.push(service.type);
-        });
+    LocationService.getAssignedServiceTypes(vm.location).then(function (response) {
+        vm.assignedServiceTypes = vm.assignedServiceTypes.concat(response.data);
     });
     var page = 1;
 
@@ -174,7 +172,7 @@ angular.module('refugeeApp').controller('LocationServicesController', function (
 
     vm.sortServices = (services) => {
         let sorted = {};
-        for (let type of vm.serviceTypesMobile) {
+        for (let type of vm.assignedServiceTypes) {
             if (type.name != 'All Types') {
                 sorted[type.name] = services.filter( (s) => {
                     let hasType = false;
@@ -186,6 +184,9 @@ angular.module('refugeeApp').controller('LocationServicesController', function (
                     return s.hideFromList == false && hasType;
                 });
                 sorted[type.name] = chunk(sorted[type.name], 3);
+                if (sorted[type.name].length) {
+                    sorted['exists'] = true;
+                }
             }
         }
         return sorted;

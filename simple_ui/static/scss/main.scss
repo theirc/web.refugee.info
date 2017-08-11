@@ -444,8 +444,14 @@ region-flag {
 }
 
 .service-info {
+  padding-left: 15px;
+  padding-right: 15px;
+  width: calc(100% - 95px);
   div {
     padding: 1px;
+  }
+  @media (max-width: 1600px) and (min-width: $screen-sm-min) {
+    width: calc(100% - 75px);
   }
 }
 
@@ -885,7 +891,13 @@ nav {
   @media (max-width: $screen-xs-max) {
     padding-top: 60px;
   }
+  .second-icon {
+    margin-left: 2px !important;
+  }
   .service-list-divider {
+    padding-left: 15px;
+    padding-right: 15px;
+    width: 95px;
     &.ltr {
       border-right: 1px solid $divider-color;
       border-left: none;
@@ -893,6 +905,15 @@ nav {
     &.rtl {
       border-left: 1px solid $divider-color;
       border-right: none;
+    }
+    @media (max-width: 1600px) and (min-width: $screen-sm-min) {
+      width: 75px;
+    }
+    .column-direction {
+      flex-direction: column;
+      .second-icon {
+        margin: 2px auto 0px auto !important;
+      }
     }
   }
   .disclaimer-mobile {
@@ -983,6 +1004,7 @@ nav {
 }
 
 .services-filter-list-desktop-absolute {
+  width: 100%;
   display: flex;
   flex-direction: column;
   height: 400px;
@@ -1016,6 +1038,15 @@ nav {
   padding-bottom: 5px;
   padding-top: 5px;
   cursor: pointer;
+  &.active {
+    background: $green-accent-color;
+    i.fa {
+      color: #FFF !important;
+    }
+    span {
+      color: #FFF !important;
+    }
+  }
 }
 
 .services-filter-list-icon-container-mobile {
@@ -1496,6 +1527,9 @@ nav {
     font-size: 12px;
     color: $text-color-muted !important;
     white-space: normal;
+    a {
+      color: $text-primary-link !important;
+    }
   }
   .time-shift {
     margin: 0 !important;
@@ -1844,14 +1878,31 @@ i.fa {
 }
 
 .leaflet-left .leaflet-control {
+  margin-top: 40px;
   @media (max-width: $screen-sm-max) {
-    margin-top: 85px;
+    margin-top: 120px;
   }
 }
 
 .leaflet-marker-icon.service-list-item-icon-container-map {
   margin-top: -18px;
   margin-left: -10px;
+}
+
+.leaflet-control-custom {
+  background-color: white;
+  width: auto !important;
+  display: flex;
+  justify-content: center;
+  margin-top: -85px !important;
+  cursor: pointer;
+  a {
+    width: auto !important;
+    padding: 0 10px;
+  }
+  @media (max-width: $screen-sm-max) {
+    margin-top: -100px !important;
+  }
 }
 
 .service-info-control {
