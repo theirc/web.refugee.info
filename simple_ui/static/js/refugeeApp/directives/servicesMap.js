@@ -10,6 +10,8 @@ angular.module('refugeeApp').directive('servicesMap', function(leafletData, $sta
             chunkedServicesList: '=',
             loading: '=',
             isRtl: '=',
+            showMapDisclaimerMobile: '=',
+            turnOffDisclaimer: '&',
         },
         link: {
             pre: function (scope) {
@@ -25,7 +27,7 @@ angular.module('refugeeApp').directive('servicesMap', function(leafletData, $sta
                     },
                     showServiceInfo: false,
                     regionSlug: '',
-                    serviceInfo: {}
+                    serviceInfo: {},
                 });
             },
             post: function (scope) {

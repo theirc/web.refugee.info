@@ -29,7 +29,12 @@
             <span ng-bind-html="serviceInfo.description"></span>
         </div>
     </div>
-    <div class="map-info-disclaimer" ng-class="{'hidden': showServiceInfo}">
+    <div class="map-info-disclaimer" ng-class="{'hidden': showServiceInfo || !showMapDisclaimerMobile}">
+        <div class="closing-x-outer" ng-click="turnOffDisclaimer({})">
+            <div class="closing-x-inner">
+                <i class="fa fa-times" aria-hidden="true"></i>
+            </div>
+        </div>
         {$ 'MAP_DISCLAIMER' | translate $}
     </div>
 </div>
