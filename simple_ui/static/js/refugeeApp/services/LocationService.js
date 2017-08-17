@@ -17,8 +17,14 @@ angular.module('refugeeApp').factory('LocationService', function ($http, apiUrl,
                 headers: {'Accept-Language': $translate.proposedLanguage() || $translate.use()}
             });
         },
-        getSameCoordinatesServices(location) {
-            return this.getServices(location, 1, '', []);
+        getSameCoordinatesServices(id) {
+            return $http({
+                method: 'GET',
+                url: apiUrl + `/v2/services/${id}/get_same_coordinates_services/`,
+                params: {
+                },
+                headers: {'Accept-Language': $translate.proposedLanguage() || $translate.use()}
+            });
         },
         getServiceTypes: function () {
             return $http({

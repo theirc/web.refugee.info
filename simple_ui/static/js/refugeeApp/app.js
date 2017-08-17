@@ -212,9 +212,10 @@ angular.module('refugeeApp', ['ui.router', 'ngCookies', 'ngSanitize', 'djng.rmi'
                             return response.data[0];
                         });
                     },
-                    sameCoordinatesServices: (LocationService) => {
+                    sameCoordinatesServices: (LocationService, $stateParams) => {
                         // MOCKED
-                        return LocationService.getSameCoordinatesServices({slug: 'slug'}).then((response) => {
+                        return LocationService.getSameCoordinatesServices($stateParams.serviceId).then((response) => {
+                            console.log(response);
                             return response.data.results;
                         });
                     },
