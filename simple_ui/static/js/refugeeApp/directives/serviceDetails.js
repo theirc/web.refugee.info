@@ -8,7 +8,8 @@ angular.module('refugeeApp').directive('serviceDetails', function () {
             location: '=',
             chunkedSameCoordinatesServices: '=',
             getServiceColor: '&',
-            getServiceIcon: '&'
+            getServiceIcon: '&',
+            slug: '='
         },
         controller: function ($window, $location) {
             var vm = this;
