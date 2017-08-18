@@ -115,13 +115,15 @@
                target="_blank"><i class="fa fa-share" aria-hidden="true"></i>{$ 'SHARE' | translate $}
             </a>
         </div>
-
-        <div style="display:flex;">
-            <i class="fa fa-2x fa-bars" style="margin: 20px 15px 15px 15px"></i>
-            <h2 class="service-description-title other-services-header">
-                Other Services available here:
-            </h2>
+        
+        <div ng-if="ctrl.chunkedSameCoordinatesServices[0]">
+            <div style="display:flex;">
+                <i class="fa fa-2x fa-bars" style="margin: 20px 15px 15px 15px"></i>
+                <h2 class="service-description-title other-services-header">
+                    Other Services available here:
+                </h2>
+            </div>
+            <other-services-list></other-services-list>
         </div>
-        <other-services-list></other-services-list>
     </div>
 </div>

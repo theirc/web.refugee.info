@@ -213,9 +213,7 @@ angular.module('refugeeApp', ['ui.router', 'ngCookies', 'ngSanitize', 'djng.rmi'
                         });
                     },
                     sameCoordinatesServices: (LocationService, $stateParams) => {
-                        // MOCKED
                         return LocationService.getSameCoordinatesServices($stateParams.serviceId).then((response) => {
-                            console.log(response);
                             return response.data.results;
                         });
                     },

@@ -21,8 +21,6 @@ angular.module('refugeeApp').factory('LocationService', function ($http, apiUrl,
             return $http({
                 method: 'GET',
                 url: apiUrl + `/v2/services/${id}/get_same_coordinates_services/`,
-                params: {
-                },
                 headers: {'Accept-Language': $translate.proposedLanguage() || $translate.use()}
             });
         },

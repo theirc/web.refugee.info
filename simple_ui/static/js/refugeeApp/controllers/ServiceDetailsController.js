@@ -5,9 +5,11 @@ angular.module('refugeeApp').controller('ServiceDetailsController', function ($s
     vm.serviceIcon = serviceIcon;
     vm.location = location;
     vm.serviceType = serviceType;
+    vm.maxOtherServicesNumber = 10;
 
     vm.$onInit = () => {
-        vm.chunkedSameCoordinatesServices = vm.chunk(sameCoordinatesServices, 3);
+        let displayedServices = sameCoordinatesServices.slice(0, vm.maxOtherServicesNumber);
+        vm.chunkedSameCoordinatesServices = vm.chunk(displayedServices, 3);
     };
 
     vm.chunk = (arr, size) => {
