@@ -12,7 +12,7 @@ angular.module('refugeeApp').factory('LocationService', function ($http, apiUrl,
                     page_size: 100,
                     search: search,
                     type_numbers: typeNumbers.join(),
-                    filter: 'with-parents'
+                    filter: 'relatives'
                 },
                 headers: {'Accept-Language': $translate.proposedLanguage() || $translate.use()}
             });
