@@ -5,7 +5,7 @@
     <div class="service-info-container" ng-class="{'hidden': !showServiceInfo}">
         <div class="service-info-header" ui-sref="locationDetails.services.details({slug: regionSlug, serviceId: serviceInfo.id})">
             <div style="display: flex; flex-direction: column;" ng-if="serviceInfo.icons">
-                <div class="service-info-icon" ng-class="{'fa-3x': !serviceInfo.icons[1]}">
+                <div class="service-info-icon" ng-class="{'fa-2x': !serviceInfo.icons[1]}">
                     <span class="fa {$ serviceInfo.icons[0].vector_icon $}"></span>
                 </div>
                 <div class="service-info-icon" ng-if="serviceInfo.icons[1].id">
