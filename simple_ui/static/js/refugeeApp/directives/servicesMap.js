@@ -91,7 +91,9 @@ angular.module('refugeeApp').directive('servicesMap', function(leafletData, $sta
                 };
 
                 let checkOverlappingServices = (map) => {
-                    let locs = Object.values(map._layers).map( (m) => {return m._latlng;} );
+                    let locs = Object.keys(map._layers).map((key) => {
+                        return map._layers[key]._latlng;
+                    });
                     for (let marker in map._layers) {
                         let layer = map._layers[marker];
                         if (layer._latlng && layer.options.service) {

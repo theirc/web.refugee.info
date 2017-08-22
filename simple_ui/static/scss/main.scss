@@ -482,8 +482,16 @@ region-flag {
   @media print {
     display: none;
   }
-  i {
-    color: #528d57;
+  .navigation-button-inner {
+    @include flexbox();
+    margin: 0 auto;
+      i {
+        margin: auto;
+        color: $green-accent-color-dark-2;
+      }
+      .button-info {
+        margin: 0 auto;
+      }
   }
   &:hover {
     text-decoration: none;
@@ -1430,6 +1438,9 @@ nav {
       color: #000;
     }
   }
+  ul {
+    margin-top: initial;
+  }
 }
 
 .service-details-map {
@@ -1851,7 +1862,7 @@ a {
 }
 
 i.fa {
-  color: #528d57;
+  color: $green-accent-color-dark-2;
 }
 
 .no-padding {
