@@ -11,6 +11,7 @@ angular.module('refugeeApp').directive('servicesMap', function(leafletData, $sta
             loading: '=',
             isRtl: '=',
             showMapDisclaimerMobile: '=',
+            resetMap: '=',
             turnOffDisclaimer: '&',
         },
         link: {
@@ -39,22 +40,7 @@ angular.module('refugeeApp').directive('servicesMap', function(leafletData, $sta
                     return this._div;
                 };
 
-                let customControl = L.Control.extend({
-                    options: {
-                        position: 'topleft'
-                    },
-                    onAdd: (map) => {
-                        let container = L.DomUtil.create('div', 'leaflet-bar leaflet-control leaflet-control-custom');
 
-                        container.innerHTML = ('<a><span style="align-self: center; color: black">' + $filter('translate')('RESET_MAP') + '</span></a>');
-
-                        container.onclick = () => {
-                            let polygon = L.geoJson(scope.region);
-                            map.fitBounds(polygon.getBounds(), {pan: {animate: true, duration: 1.0}, zoom: {animate: true}});
-                        };
-                        return container;
-                    }
-                });
 
                 infoDiv.update = function (service) {
                     if (!service) {
@@ -169,7 +155,6 @@ angular.module('refugeeApp').directive('servicesMap', function(leafletData, $sta
                         }
                     });
                     infoDiv.addTo(map);
-                    map.addControl(new customControl());
                 });
 
                 let markers = new L.LayerGroup();
@@ -319,6 +304,17 @@ angular.module('refugeeApp').directive('servicesMap', function(leafletData, $sta
                     }
                     scope.showServiceInfo = false;
                     leafletData.getMap();
+
+                }, true);
+
+                scope.$watch('resetMap', (newValue, oldValue) => {
+                    if (oldValue === newValue) {
+                        return;
+                    }
+                    leafletData.getMap().then(function (map) {
+                        let polygon = L.geoJson(scope.region);
+                        map.fitBounds(polygon.getBounds(), {pan: {animate: true, duration: 1.0}, zoom: {animate: true}});
+                    });
 
                 }, true);
 
