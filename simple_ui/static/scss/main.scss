@@ -1190,8 +1190,8 @@ nav {
     height: 40px;
     background-color: $primary-color-2;
     font-size: 20px;
-    border-top: 1px solid $divider-color-2;
-    border-bottom: 1px solid $divider-color-2;
+    border: 1px solid $divider-color-2;
+    margin: 0 5px 0 0;
     input {
       border: none;
       outline: none;
@@ -1203,6 +1203,7 @@ nav {
       }
     }
     @media (max-width: $screen-sm-max) {
+      margin: 0;
       box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
       border: 0;
       background-color: #FFFFFF;
@@ -1230,6 +1231,7 @@ nav {
     display: flex;
     cursor: pointer;
     border: 1px solid $divider-color-2;
+    margin: 0 5px 0 0;
     span {
       color: $divider-color-2;
       text-align: center;
