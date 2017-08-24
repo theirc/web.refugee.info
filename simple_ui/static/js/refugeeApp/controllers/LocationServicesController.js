@@ -20,6 +20,7 @@ angular.module('refugeeApp').controller('LocationServicesController', function (
     vm.slug = $stateParams.slug;
     vm.location = location;
     vm.mapView = $stateParams.mapView;
+    vm.resetMap = false;
     $rootScope.mapView = vm.mapView;
     vm.search = $stateParams.query;
     vm.showMapDisclaimerMobile = !$cookies.get('hideMapDisclaimerMobile');
@@ -145,6 +146,10 @@ angular.module('refugeeApp').controller('LocationServicesController', function (
         vm.filters = false;
         vm.mapView = false;
         $rootScope.mapView = false;
+    };
+
+    vm.reset = () => {
+        vm.resetMap = !vm.resetMap;
     };
 
     vm.setSelectedTypeMobile = function(type) {
