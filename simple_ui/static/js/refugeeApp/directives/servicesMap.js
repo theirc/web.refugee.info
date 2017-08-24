@@ -97,17 +97,17 @@ angular.module('refugeeApp').directive('servicesMap', function(leafletData, $sta
                             if (closestLayer && closestLayer.distance < 2) {
                                 let iconHtml = '';
                                 if (scope.isRtl) {
-                                    iconHtml = `<span class="fa fa-map-marker fa-3x service-icon-map" style="color: ${ctrl.getServiceColor(layer.options.service.types[0].id)}"></span>
-                                                <span class="fa fa-plus service-plus-icon-map-rtl" style="color: white; background-color: ${ctrl.getServiceColor(layer.options.service.types[0].id)}"></span>`;
+                                    iconHtml = `<span class="fa icon-map-marker-filled fa-3x" style="color: ${ctrl.getServiceColor(layer.options.service.types[0].id)}"></span>
+                                                <div class="service-plus-icon-map-absolute"><span class="fa fa-plus service-plus-icon-map-rtl" style="color: white;"></span></div>`;
                                 }
                                 else {
-                                    iconHtml = `<span class="fa fa-map-marker fa-3x service-icon-map" style="color: ${ctrl.getServiceColor(layer.options.service.types[0].id)}"></span>
-                                                <span class="fa fa-plus service-plus-icon-map" style="color: white; background-color: ${ctrl.getServiceColor(layer.options.service.types[0].id)}"></span>`;
+                                    iconHtml = `<span class="fa icon-map-marker-filled fa-3x" style="color: ${ctrl.getServiceColor(layer.options.service.types[0].id)}"></span>
+                                                <div class="service-plus-icon-map-absolute"><span class="fa fa-plus service-plus-icon-map" style="color: white;"></span></div>`;
                                 }
                                 iconDict['html'] = iconHtml;
                             }
                             else {
-                                iconDict['html'] = `<span class="fa fa-map-marker fa-3x service-icon-map" style="color: ${ctrl.getServiceColor(layer.options.service.types[0].id)}"></span>`;
+                                iconDict['html'] = `<span class="fa icon-map-marker-filled fa-3x" style="color: ${ctrl.getServiceColor(layer.options.service.types[0].id)}"></span>`;
                             }
                             let icon = L.divIcon(iconDict);
                             layer.setIcon(icon);
@@ -172,7 +172,7 @@ angular.module('refugeeApp').directive('servicesMap', function(leafletData, $sta
                             let lng = service.location.coordinates[0];
                             let icon = L.divIcon({
                                 className: 'service-list-item-icon-container-map',
-                                html: `<span class="fa fa-map-marker fa-3x service-icon-map" style="color: ${ctrl.getServiceColor(service.types[0].id)}"></span>`,
+                                html: `<span class="fa icon-map-marker-filled fa-3x" style="color: ${ctrl.getServiceColor(service.types[0].id)}"></span>`,
                                 iconSize: null
                             });
                             let marker = L.marker([lat, lng], {
@@ -203,12 +203,12 @@ angular.module('refugeeApp').directive('servicesMap', function(leafletData, $sta
                             if (closestLayer && closestLayer.distance < 2) {
                                 let iconHtml = '';
                                 if (scope.isRtl) {
-                                    iconHtml = `<span class="fa fa-map-marker fa-3x service-icon-map" style="color: ${ctrl.getServiceColor(layer.options.service.types[0].id)}"></span>
-                                                <span class="fa fa-plus service-plus-icon-map-rtl" style="color: white; background-color: ${ctrl.getServiceColor(layer.options.service.types[0].id)}"></span>`;
+                                    iconHtml = `<span class="fa icon-map-marker-filled fa-3x" style="color: ${ctrl.getServiceColor(layer.options.service.types[0].id)}"></span>
+                                                <div class="service-plus-icon-map-absolute"><span class="fa fa-plus service-plus-icon-map-rtl" style="color: white;"></span></div>`;
                                 }
                                 else {
-                                    iconHtml = `<span class="fa fa-map-marker fa-3x service-icon-map" style="color: ${ctrl.getServiceColor(layer.options.service.types[0].id)}"></span>
-                                                <span class="fa fa-plus service-plus-icon-map" style="color: white; background-color: ${ctrl.getServiceColor(layer.options.service.types[0].id)}"></span>`;
+                                    iconHtml = `<span class="fa icon-map-marker-filled fa-3x" style="color: ${ctrl.getServiceColor(layer.options.service.types[0].id)}"></span>
+                                                <div class="service-plus-icon-map-absolute"><span class="fa fa-plus service-plus-icon-map" style="color: white;"></span></div>`;
                                 }
                                 let icon = L.divIcon({
                                     className: 'service-list-item-icon-container-map',
@@ -247,7 +247,7 @@ angular.module('refugeeApp').directive('servicesMap', function(leafletData, $sta
                             for (let i = 0, len = markers.length; i < len; i ++) {
                                 let icon = L.divIcon({
                                     className: 'service-list-item-icon-container-map',
-                                    html: `<span class="fa fa-map-marker fa-3x service-icon-map" style="color: ${ctrl.getServiceColor(markers[i].options.service.types[0].id)}"></span>`,
+                                    html: `<span class="fa icon-map-marker-filled fa-3x" style="color: ${ctrl.getServiceColor(markers[i].options.service.types[0].id)}"></span>`,
                                     iconSize: null
                                 });
                                 markers[i].setIcon(icon);
@@ -257,12 +257,12 @@ angular.module('refugeeApp').directive('servicesMap', function(leafletData, $sta
                             for (let i = 0, len = markers.length; i < len; i ++) {
                                 let iconHtml = '';
                                 if (scope.isRtl) {
-                                    iconHtml = `<span class="fa fa-map-marker fa-3x service-icon-map" style="color: ${ctrl.getServiceColor(markers[i].options.service.types[0].id)}"></span>
-                                                <span class="fa fa-plus service-plus-icon-map-rtl" style="color: white; background-color: ${ctrl.getServiceColor(markers[i].options.service.types[0].id)}"></span>`;
+                                    iconHtml = `<span class="fa icon-map-marker-filled fa-3x" style="color: ${ctrl.getServiceColor(markers[i].options.service.types[0].id)}"></span>
+                                                <div class="service-plus-icon-map-absolute"><span class="fa fa-plus service-plus-icon-map-rtl" style="color: white;"></span></div>`;
                                 }
                                 else {
-                                    iconHtml = `<span class="fa fa-map-marker fa-3x service-icon-map" style="color: ${ctrl.getServiceColor(markers[i].options.service.types[0].id)}"></span>
-                                                <span class="fa fa-plus service-plus-icon-map" style="color: white; background-color: ${ctrl.getServiceColor(markers[i].options.service.types[0].id)}"></span>`;
+                                    iconHtml = `<span class="fa icon-map-marker-filled fa-3x" style="color: ${ctrl.getServiceColor(markers[i].options.service.types[0].id)}"></span>
+                                                <div class="service-plus-icon-map-absolute"><span class="fa fa-plus service-plus-icon-map" style="color: white;"></span></div>`;
                                 }
                                 let icon = L.divIcon({
                                     className: 'service-list-item-icon-container-map',

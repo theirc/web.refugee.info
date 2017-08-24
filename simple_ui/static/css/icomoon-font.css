@@ -1,10 +1,10 @@
 @font-face {
   font-family: 'icomoon';
-  src:  url('../fonts/icomoon.eot?m3iqu');
-  src:  url('../fonts/icomoon.eot?m3iqu#iefix') format('embedded-opentype'),
-    url('../fonts/icomoon.ttf?m3iqu') format('truetype'),
-    url('../fonts/icomoon.woff?m3iqu') format('woff'),
-    url('../fonts/icomoon.svg?m3iqu#icomoon') format('svg');
+  src:  url('../fonts/icomoon.eot?td91jq');
+  src:  url('../fonts/icomoon.eot?td91jq#iefix') format('embedded-opentype'),
+    url('../fonts/icomoon.ttf?td91jq') format('truetype'),
+    url('../fonts/icomoon.woff?td91jq') format('woff'),
+    url('../fonts/icomoon.svg?td91jq#icomoon') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -125,4 +125,7 @@
 }
 .icon-wifi:before {
   content: "\e921";
+}
+.icon-map-marker-filled:before {
+  content: "\e922";
 }
