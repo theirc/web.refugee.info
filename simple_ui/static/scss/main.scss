@@ -1085,22 +1085,23 @@ nav {
   color: #FFF;
 }
 
-.service-icon-map {
-  margin-top: -36px;
+.service-plus-icon-map-absolute {
+  position: absolute;
+  height: 0;
 }
 
 .service-plus-icon-map {
-  top: -32px;
+  top: -36px;
   position: relative;
-  left: 3px;
+  left: 5px;
   text-align: center;
   width: 15px;
 }
 
 .service-plus-icon-map-rtl {
-  top: -32px;
+  top: -36px;
   position: relative;
-  left: -3px;
+  left: -5px;
   text-align: center;
   width: 15px;
 }
@@ -1252,7 +1253,9 @@ nav {
       }
     }
     &.rtl-button {
-      margin: 0 0 0 5px;
+      @media (max-width: $screen-sm-max) {
+        margin: 0 0 0 5px;
+      }
     }
   }
 
@@ -1960,8 +1963,8 @@ i.fa {
 }
 
 .leaflet-marker-icon.service-list-item-icon-container-map {
-  margin-top: -18px;
-  margin-left: -10px;
+  margin-top: -36px;
+  margin-left: -12px;
 }
 
 .service-info-control {
