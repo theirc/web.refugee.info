@@ -1163,7 +1163,7 @@ nav {
       padding: 0;
     }
   }
-  @media (min-width: $screen-sm-min) {
+  @media (min-width: $screen-md-min) {
     margin: 0;
     padding: 0;
     position: absolute;
@@ -1409,7 +1409,7 @@ nav {
   }
   @media (max-width: $screen-sm-max) {
     position: fixed;
-    top: 105px;
+    top: 115px;
     left: 0;
     z-index: 1001;
     width: 100%;
