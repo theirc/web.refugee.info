@@ -1965,6 +1965,9 @@ i.fa {
 .leaflet-marker-icon.service-list-item-icon-container-map {
   margin-top: -36px;
   margin-left: -12px;
+  .icon-map-marker-filled {
+    text-shadow: 0px 0px 1px #000;
+  }
 }
 
 .service-info-control {
