@@ -10,6 +10,9 @@ angular.module('refugeeApp').directive('servicesMap', function(leafletData, $sta
             chunkedServicesList: '=',
             loading: '=',
             isRtl: '=',
+            showMapDisclaimerMobile: '=',
+            resetMap: '=',
+            turnOffDisclaimer: '&',
         },
         link: {
             pre: function (scope) {
@@ -25,7 +28,7 @@ angular.module('refugeeApp').directive('servicesMap', function(leafletData, $sta
                     },
                     showServiceInfo: false,
                     regionSlug: '',
-                    serviceInfo: {}
+                    serviceInfo: {},
                 });
             },
             post: function (scope) {
@@ -37,22 +40,7 @@ angular.module('refugeeApp').directive('servicesMap', function(leafletData, $sta
                     return this._div;
                 };
 
-                let customControl = L.Control.extend({
-                    options: {
-                        position: 'topleft'
-                    },
-                    onAdd: (map) => {
-                        let container = L.DomUtil.create('div', 'leaflet-bar leaflet-control leaflet-control-custom');
 
-                        container.innerHTML = ('<a><span style="align-self: center; color: black">' + $filter('translate')('RESET_MAP') + '</span></a>');
-
-                        container.onclick = () => {
-                            let polygon = L.geoJson(scope.region);
-                            map.fitBounds(polygon.getBounds(), {pan: {animate: true, duration: 1.0}, zoom: {animate: true}});
-                        };
-                        return container;
-                    }
-                });
 
                 infoDiv.update = function (service) {
                     if (!service) {
@@ -89,7 +77,9 @@ angular.module('refugeeApp').directive('servicesMap', function(leafletData, $sta
                 };
 
                 let checkOverlappingServices = (map) => {
-                    let locs = Object.values(map._layers).map( (m) => {return m._latlng;} );
+                    let locs = Object.keys(map._layers).map((key) => {
+                        return map._layers[key]._latlng;
+                    });
                     for (let marker in map._layers) {
                         let layer = map._layers[marker];
                         if (layer._latlng && layer.options.service) {
@@ -107,17 +97,17 @@ angular.module('refugeeApp').directive('servicesMap', function(leafletData, $sta
                             if (closestLayer && closestLayer.distance < 2) {
                                 let iconHtml = '';
                                 if (scope.isRtl) {
-                                    iconHtml = `<span class="fa fa-map-marker fa-3x service-icon-map" style="color: ${ctrl.getServiceColor(layer.options.service.types[0].id)}"></span>
-                                                <span class="fa fa-plus service-plus-icon-map-rtl" style="color: white; background-color: ${ctrl.getServiceColor(layer.options.service.types[0].id)}"></span>`;
+                                    iconHtml = `<span class="fa icon-map-marker-filled fa-3x" style="color: ${ctrl.getServiceColor(layer.options.service.types[0].id)}"></span>
+                                                <div class="service-plus-icon-map-absolute"><span class="fa fa-plus service-plus-icon-map-rtl" style="color: white;"></span></div>`;
                                 }
                                 else {
-                                    iconHtml = `<span class="fa fa-map-marker fa-3x service-icon-map" style="color: ${ctrl.getServiceColor(layer.options.service.types[0].id)}"></span>
-                                                <span class="fa fa-plus service-plus-icon-map" style="color: white; background-color: ${ctrl.getServiceColor(layer.options.service.types[0].id)}"></span>`;
+                                    iconHtml = `<span class="fa icon-map-marker-filled fa-3x" style="color: ${ctrl.getServiceColor(layer.options.service.types[0].id)}"></span>
+                                                <div class="service-plus-icon-map-absolute"><span class="fa fa-plus service-plus-icon-map" style="color: white;"></span></div>`;
                                 }
                                 iconDict['html'] = iconHtml;
                             }
                             else {
-                                iconDict['html'] = `<span class="fa fa-map-marker fa-3x service-icon-map" style="color: ${ctrl.getServiceColor(layer.options.service.types[0].id)}"></span>`;
+                                iconDict['html'] = `<span class="fa icon-map-marker-filled fa-3x" style="color: ${ctrl.getServiceColor(layer.options.service.types[0].id)}"></span>`;
                             }
                             let icon = L.divIcon(iconDict);
                             layer.setIcon(icon);
@@ -165,7 +155,6 @@ angular.module('refugeeApp').directive('servicesMap', function(leafletData, $sta
                         }
                     });
                     infoDiv.addTo(map);
-                    map.addControl(new customControl());
                 });
 
                 let markers = new L.LayerGroup();
@@ -183,7 +172,7 @@ angular.module('refugeeApp').directive('servicesMap', function(leafletData, $sta
                             let lng = service.location.coordinates[0];
                             let icon = L.divIcon({
                                 className: 'service-list-item-icon-container-map',
-                                html: `<span class="fa fa-map-marker fa-3x service-icon-map" style="color: ${ctrl.getServiceColor(service.types[0].id)}"></span>`,
+                                html: `<span class="fa icon-map-marker-filled fa-3x" style="color: ${ctrl.getServiceColor(service.types[0].id)}"></span>`,
                                 iconSize: null
                             });
                             let marker = L.marker([lat, lng], {
@@ -214,12 +203,12 @@ angular.module('refugeeApp').directive('servicesMap', function(leafletData, $sta
                             if (closestLayer && closestLayer.distance < 2) {
                                 let iconHtml = '';
                                 if (scope.isRtl) {
-                                    iconHtml = `<span class="fa fa-map-marker fa-3x service-icon-map" style="color: ${ctrl.getServiceColor(layer.options.service.types[0].id)}"></span>
-                                                <span class="fa fa-plus service-plus-icon-map-rtl" style="color: white; background-color: ${ctrl.getServiceColor(layer.options.service.types[0].id)}"></span>`;
+                                    iconHtml = `<span class="fa icon-map-marker-filled fa-3x" style="color: ${ctrl.getServiceColor(layer.options.service.types[0].id)}"></span>
+                                                <div class="service-plus-icon-map-absolute"><span class="fa fa-plus service-plus-icon-map-rtl" style="color: white;"></span></div>`;
                                 }
                                 else {
-                                    iconHtml = `<span class="fa fa-map-marker fa-3x service-icon-map" style="color: ${ctrl.getServiceColor(layer.options.service.types[0].id)}"></span>
-                                                <span class="fa fa-plus service-plus-icon-map" style="color: white; background-color: ${ctrl.getServiceColor(layer.options.service.types[0].id)}"></span>`;
+                                    iconHtml = `<span class="fa icon-map-marker-filled fa-3x" style="color: ${ctrl.getServiceColor(layer.options.service.types[0].id)}"></span>
+                                                <div class="service-plus-icon-map-absolute"><span class="fa fa-plus service-plus-icon-map" style="color: white;"></span></div>`;
                                 }
                                 let icon = L.divIcon({
                                     className: 'service-list-item-icon-container-map',
@@ -258,7 +247,7 @@ angular.module('refugeeApp').directive('servicesMap', function(leafletData, $sta
                             for (let i = 0, len = markers.length; i < len; i ++) {
                                 let icon = L.divIcon({
                                     className: 'service-list-item-icon-container-map',
-                                    html: `<span class="fa fa-map-marker fa-3x service-icon-map" style="color: ${ctrl.getServiceColor(markers[i].options.service.types[0].id)}"></span>`,
+                                    html: `<span class="fa icon-map-marker-filled fa-3x" style="color: ${ctrl.getServiceColor(markers[i].options.service.types[0].id)}"></span>`,
                                     iconSize: null
                                 });
                                 markers[i].setIcon(icon);
@@ -268,12 +257,12 @@ angular.module('refugeeApp').directive('servicesMap', function(leafletData, $sta
                             for (let i = 0, len = markers.length; i < len; i ++) {
                                 let iconHtml = '';
                                 if (scope.isRtl) {
-                                    iconHtml = `<span class="fa fa-map-marker fa-3x service-icon-map" style="color: ${ctrl.getServiceColor(markers[i].options.service.types[0].id)}"></span>
-                                                <span class="fa fa-plus service-plus-icon-map-rtl" style="color: white; background-color: ${ctrl.getServiceColor(markers[i].options.service.types[0].id)}"></span>`;
+                                    iconHtml = `<span class="fa icon-map-marker-filled fa-3x" style="color: ${ctrl.getServiceColor(markers[i].options.service.types[0].id)}"></span>
+                                                <div class="service-plus-icon-map-absolute"><span class="fa fa-plus service-plus-icon-map-rtl" style="color: white;"></span></div>`;
                                 }
                                 else {
-                                    iconHtml = `<span class="fa fa-map-marker fa-3x service-icon-map" style="color: ${ctrl.getServiceColor(markers[i].options.service.types[0].id)}"></span>
-                                                <span class="fa fa-plus service-plus-icon-map" style="color: white; background-color: ${ctrl.getServiceColor(markers[i].options.service.types[0].id)}"></span>`;
+                                    iconHtml = `<span class="fa icon-map-marker-filled fa-3x" style="color: ${ctrl.getServiceColor(markers[i].options.service.types[0].id)}"></span>
+                                                <div class="service-plus-icon-map-absolute"><span class="fa fa-plus service-plus-icon-map" style="color: white;"></span></div>`;
                                 }
                                 let icon = L.divIcon({
                                     className: 'service-list-item-icon-container-map',
@@ -315,6 +304,17 @@ angular.module('refugeeApp').directive('servicesMap', function(leafletData, $sta
                     }
                     scope.showServiceInfo = false;
                     leafletData.getMap();
+
+                }, true);
+
+                scope.$watch('resetMap', (newValue, oldValue) => {
+                    if (oldValue === newValue) {
+                        return;
+                    }
+                    leafletData.getMap().then(function (map) {
+                        let polygon = L.geoJson(scope.region);
+                        map.fitBounds(polygon.getBounds(), {pan: {animate: true, duration: 1.0}, zoom: {animate: true}});
+                    });
 
                 }, true);
 

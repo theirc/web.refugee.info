@@ -3,7 +3,7 @@
         <location-selected class="hidden-sm-down"></location-selected>
         <location-buttons class="hidden-sm-down" slug="ctrl.slug"></location-buttons>
         <location-info class="hidden-sm-down" location="ctrl.location"></location-info>
-        <search-bar class="mobile-search-bar" ng-class="{'search-background': !ctrl.mapView || ctrl.filters}" search="ctrl.search" direction="baseController.direction()"></search-bar>
+        <search-bar class="mobile-search-bar" ng-class="{'search-background': !ctrl.mapView || ctrl.filters, 'col-md-9': !baseController.isMobile() }" search="ctrl.search" direction="baseController.direction()"></search-bar>
         <services-map region="ctrl.location.envelope"
                       services="ctrl.services"
                       map-view="ctrl.mapView"
@@ -11,7 +11,11 @@
                       chunked-services-list="ctrl.chunkedServicesList"
                       loading="ctrl.busy"
                       is-rtl="baseController.isRTL"
-                      ng-class="{'col-md-12': !baseController.isMobile(), 'services-map-desktop': !baseController.isMobile()}">
+                      reset-map="ctrl.resetMap"
+                      ng-class="{'col-md-12': !baseController.isMobile(), 'services-map-desktop': !baseController.isMobile()}"
+                      show-map-disclaimer-mobile="ctrl.showMapDisclaimerMobile"
+                      turn-off-disclaimer="ctrl.turnOffDisclaimer()"
+                      class="services-map-directive">
         </services-map>
         <div class="col-md-3 services-filter-list-desktop-relative" ng-if="!baseController.isMobile()">
             <div class="services-filter-list-desktop-absolute">

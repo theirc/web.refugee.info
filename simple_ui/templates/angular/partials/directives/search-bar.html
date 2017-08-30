@@ -1,6 +1,9 @@
 <div class="search-bar">
-    <div class="input-group">
-        <div class="input-group-addon">
+    <div class="reset-map-button" ng-class="{'rtl-button': baseController.isRTL}" ng-click="ctrl.reset()">
+        <span style="text-transform: uppercase;">{$ 'RESET_MAP' | translate $}</span>
+    </div>
+    <div class="search-input">
+        <div class="search-input-addon">
             <i class="fa fa-search "></i>
         </div>
         <input ng-model-options="{ debounce: 500 }" ng-model="ctrl.search" type="text" class="form-control"

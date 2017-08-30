@@ -100,7 +100,6 @@ drawer {
       text-transform: uppercase;
       padding: 0 32px;
       color: $green-accent-color;
-      //color: $text-color;
       &:active {
         color: $green-accent-color-dark;
       }
@@ -482,8 +481,16 @@ region-flag {
   @media print {
     display: none;
   }
-  i {
-    color: #528d57;
+  .navigation-button-inner {
+    @include flexbox();
+    margin: 0 auto;
+      i {
+        margin: auto;
+        color: $green-accent-color-dark-2;
+      }
+      .button-info {
+        margin: 0 auto;
+      }
   }
   &:hover {
     text-decoration: none;
@@ -1078,22 +1085,23 @@ nav {
   color: #FFF;
 }
 
-.service-icon-map {
-  margin-top: -36px;
+.service-plus-icon-map-absolute {
+  position: absolute;
+  height: 0;
 }
 
 .service-plus-icon-map {
-  top: -32px;
+  top: -36px;
   position: relative;
-  left: 3px;
+  left: 5px;
   text-align: center;
   width: 15px;
 }
 
 .service-plus-icon-map-rtl {
-  top: -32px;
+  top: -36px;
   position: relative;
-  left: -3px;
+  left: -5px;
   text-align: center;
   width: 15px;
 }
@@ -1148,17 +1156,24 @@ nav {
 }
 
 .search-bar {
+  @include flexbox();
   @media (max-width: $screen-xs-max) {
+    top: 0;
     .col-sm-6 {
       padding: 0;
     }
   }
-  @media (min-width: $screen-sm-min) {
-    @include flexbox();
-    height: 70px;
+  @media (min-width: $screen-md-min) {
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    height: 40px;
+    width: 100%;
+    z-index: 1000;
   }
+
   @include align-items(center);
-  background-color: $primary-color;
+  top: 1px;
   padding: 10px;
 
   .title {
@@ -1169,27 +1184,78 @@ nav {
     }
   }
 
-  .input-group-addon,
-  input {
+  .search-input {
+    @include flexbox();
+    align-items: center;
+    width: 100%;
+    height: 40px;
     background-color: $primary-color-2;
-    border: none;
-    outline: none;
-    box-shadow: none !important;
+    font-size: 20px;
+    border: 1px solid $divider-color-2;
+    margin: 0 5px 0 0;
+    input {
+      border: none;
+      outline: none;
+      box-shadow: none !important;
+      border-radius: 0;
+      background-color: $primary-color-2;
+      @media (max-width: $screen-sm-max) {
+        background-color: #FFFFFF;
+      }
+    }
     @media (max-width: $screen-sm-max) {
+      margin: 0;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+      border: 0;
       background-color: #FFFFFF;
+      font-size: 14px;
+      height: 35px;
+    }
+
+    .search-input-addon {
+      i {
+        padding: 0 10px;
+        color: $text-color;
+        @media (max-width: $screen-sm-max) {
+          color: #515151;
+        }
+      }
     }
   }
 
-  .input-group-btn,
-  button {
-    background-color: $primary-color-2;
-    border: none;
-    padding-left: 5px;
-    outline: none;
-    font-size: 20px;
-    box-shadow: none !important;
+  .reset-map-button {
+    padding: 0 15px;
+    background: $primary-color-2;
+    height: 40px;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    cursor: pointer;
+    border: 1px solid $divider-color-2;
+    margin: 0 5px 0 0;
+    span {
+      color: $divider-color-2;
+      text-align: center;
+      font-size: 12px;
+      font-weight: 700;
+    }
     @media (max-width: $screen-sm-max) {
-      background-color: #FFFFFF;
+      padding: 0 15px;
+      background: white;
+      height: 35px;
+      align-items: center;
+      justify-content: center;
+      display: flex;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+      border: none;
+      span {
+        font-weight: normal;
+      }
+    }
+    &.rtl-button {
+      @media (max-width: $screen-sm-max) {
+        margin: 0 0 0 5px;
+      }
     }
   }
 
@@ -1235,16 +1301,14 @@ nav {
 
 .mobile-services-map-navigation {
   display: flex;
-  top: 95px;
-
-  padding: 10px;
-  padding-top: 0;
+  top: 45px;
+  padding: 10px 10px 0 10px;
   z-index: 1001;
   position: fixed;
   justify-content: space-around;
   @media (min-width: $screen-sm-min) {
     background-color: transparent;
-    top: 135px;
+    top: 75px;
   }
 }
 
@@ -1285,8 +1349,13 @@ nav {
 }
 
 .search-background {
-  background: $page-background-color;
   z-index: 1001;
+  @media (max-width: $screen-sm-max) {
+    background: $page-background-color;
+  }
+  @media (max-width: $screen-md-min) {
+    background: $page-background-color;
+  }
 }
 
 .floating-action-button {
@@ -1340,7 +1409,7 @@ nav {
   }
   @media (max-width: $screen-sm-max) {
     position: fixed;
-    top: 75px;
+    top: 115px;
     left: 0;
     z-index: 1001;
     width: 100%;
@@ -1368,12 +1437,15 @@ nav {
     }
   }
   @media (max-width: $screen-xs-max) {
-    top: 45px;
+    top: 85px;
   }
   @media (max-width: $screen-sm-max) and (min-width: $screen-sm-min) {
     .input-group {
       margin: 0 auto;
     }
+  }
+  &.col-md-9 {
+    padding: 0;
   }
 
 }
@@ -1420,15 +1492,16 @@ nav {
   padding-right: 0 !important;
   background-color: white;
   opacity: 0.8;
-  border-bottom: 1px $divider-color-dark solid;
-  border-left: 1px $divider-color-dark solid;
-  border-top: 1px $divider-color-dark solid;
+  border: 1px $divider-color-dark solid;
   h4 {
     padding: 10px 0;
     i {
       padding-right: 2px;
       color: #000;
     }
+  }
+  ul {
+    margin-top: initial;
   }
 }
 
@@ -1556,6 +1629,9 @@ nav {
     td.day-of-week {
       text-transform: capitalize;
     }
+  }
+  .other-services-header {
+    padding-top: 5px;
   }
 }
 
@@ -1848,7 +1924,7 @@ a {
 }
 
 i.fa {
-  color: #528d57;
+  color: $green-accent-color-dark-2;
 }
 
 .no-padding {
@@ -1877,31 +1953,20 @@ i.fa {
   display: none !important;
 }
 
-.leaflet-left .leaflet-control {
-  margin-top: 40px;
-  @media (max-width: $screen-sm-max) {
-    margin-top: 120px;
+.services-map-directive {
+  .leaflet-left .leaflet-control {
+    margin-top: 45px;
+    @media (max-width: $screen-sm-max) {
+      margin-top: 85px;
+    }
   }
 }
 
 .leaflet-marker-icon.service-list-item-icon-container-map {
-  margin-top: -18px;
-  margin-left: -10px;
-}
-
-.leaflet-control-custom {
-  background-color: white;
-  width: auto !important;
-  display: flex;
-  justify-content: center;
-  margin-top: -85px !important;
-  cursor: pointer;
-  a {
-    width: auto !important;
-    padding: 0 10px;
-  }
-  @media (max-width: $screen-sm-max) {
-    margin-top: -100px !important;
+  margin-top: -36px;
+  margin-left: -12px;
+  .icon-map-marker-filled {
+    text-shadow: 0px 0px 1px #000;
   }
 }
 
@@ -1928,11 +1993,32 @@ i.fa {
 .map-info-container {
   display: none;
   opacity: 0.9;
+
+  .map-info-disclaimer {
+    font-size: 11px;
+
+    .closing-x-outer {
+      position: absolute;
+      right: 0;
+      top: 0;
+      width: 40px;
+      height: 40px;
+    }
+
+    .closing-x-inner {
+      position: absolute;
+      right: 0;
+      top: 0;
+      margin-right: 5px;
+      font-size: 17px;
+    }
+  }
+
   @media (max-width: $screen-sm-max) {
     bottom: 0;
     left: 0;
     right: 0;
-    padding: 10px;
+    padding: 10px 20px 10px 10px;
     background: #FFF;
     display: block;
   }
@@ -1945,6 +2031,10 @@ i.fa {
 
 .service-info-header {
   display: flex;
+}
+
+.service-info-name {
+  padding-left: 10px;
 }
 
 .service-info-icon {
@@ -1960,10 +2050,6 @@ i.fa {
 .service-description {
   padding-left: 5px;
   padding-top: 5px;
-}
-
-.map-info-disclaimer {
-  font-size: 11px;
 }
 
 .modal-fullscreen {

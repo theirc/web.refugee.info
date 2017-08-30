@@ -6,7 +6,7 @@ function chunk(arr, size) {
     return newArr;
 }
 
-angular.module('refugeeApp').controller('LocationServicesController', function ($scope, $state, $stateParams, LocationService, location, $location, $rootScope) {
+angular.module('refugeeApp').controller('LocationServicesController', function ($scope, $state, $stateParams, LocationService, location, $location, $rootScope, $cookies, $timeout) {
     var vm = this;
     vm.filters = true;
     vm.busy = false;
@@ -20,8 +20,12 @@ angular.module('refugeeApp').controller('LocationServicesController', function (
     vm.slug = $stateParams.slug;
     vm.location = location;
     vm.mapView = $stateParams.mapView;
+    vm.resetMap = false;
     $rootScope.mapView = vm.mapView;
     vm.search = $stateParams.query;
+    vm.showMapDisclaimerMobile = !$cookies.get('hideMapDisclaimerMobile');
+    vm.showMapDisclaimerMobileTime = 15000;
+    vm.showMapDisclaimerMobileFunc = null;
     var getFilterTypesArr = function () {
         if ($location.search().type) {
             if (angular.isArray($location.search().type)) {
@@ -131,6 +135,7 @@ angular.module('refugeeApp').controller('LocationServicesController', function (
         vm.mapView = true;
         $rootScope.mapView = true;
         vm.filters = false;
+        vm.checkDisclaimer();
     };
 
     vm.filtersView = function() {
@@ -141,6 +146,10 @@ angular.module('refugeeApp').controller('LocationServicesController', function (
         vm.filters = false;
         vm.mapView = false;
         $rootScope.mapView = false;
+    };
+
+    vm.reset = () => {
+        vm.resetMap = !vm.resetMap;
     };
 
     vm.setSelectedTypeMobile = function(type) {
@@ -190,5 +199,22 @@ angular.module('refugeeApp').controller('LocationServicesController', function (
             }
         }
         return sorted;
+    };
+
+    vm.turnOffDisclaimer = () => {
+        var now = new Date();
+        var exp = new Date(now.getFullYear() + 1, now.getMonth(), now.getDate());
+        vm.showMapDisclaimerMobile = false;
+        $cookies.put('hideMapDisclaimerMobile', 'true', {'expires': exp});
+    };
+
+    vm.checkDisclaimer = () => {
+        vm.showMapDisclaimerMobile = !$cookies.get('hideMapDisclaimerMobile');
+        if (vm.showMapDisclaimerMobile) {
+            $timeout.cancel(vm.showMapDisclaimerFunc);
+            vm.showMapDisclaimerMobileFunc = $timeout(() => {
+                vm.showMapDisclaimerMobile = false;
+            }, vm.showMapDisclaimerMobileTime);
+        }
     };
 });

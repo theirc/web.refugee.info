@@ -5,15 +5,20 @@ angular.module('refugeeApp').directive('serviceDetails', function () {
         bindToController: true,
         scope: {
             service: '=',
-            location: '='
+            location: '=',
+            chunkedSameCoordinatesServices: '=',
+            getServiceColor: '&',
+            getServiceIcon: '&',
+            slug: '='
         },
         controller: function ($window, $location) {
             var vm = this;
             vm.days = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'];
             vm.close = [];
             vm.addressByLanguage = {
-                "serbia": "ADDRESS_IN_SERBIAN",
-                "greece": "ADDRESS_IN_GREEK"
+                'serbia': 'ADDRESS_IN_SERBIAN',
+                'greece': 'ADDRESS_IN_GREEK',
+                'bulgaria': 'ADDRESS_IN_BULGARIAN'
             };
             vm.serviceUrl = $location.absUrl();
 
